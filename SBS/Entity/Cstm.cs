@@ -21,13 +21,13 @@ namespace Entity
         public String cs_brnch { get; set; }
         public String cs_phn { get; set; }
         public String cs_email { get; set; }
-        String cs_uid { get; set; }
-        String cs_secq1 { get; set; }
-        String cs_ans1 { get; set; }
-        String cs_secq2 { get; set; }
-        String cs_ans2 { get; set; }
-        String cs_secq3 { get; set; }
-        String cs_ans3 { get; set; }
-        String cs_access { get; set; }
+        public String cs_uid { get; set; }
+        public String cs_secq1 { get; set; }
+        public String cs_ans1 { get; set; }
+        public String cs_secq2 { get; set; }
+        public String cs_ans2 { get; set; }
+        public String cs_secq3 { get; set; }
+        public String cs_ans3 { get; set; }
+        public String cs_access { get; set; }
     }
 }
