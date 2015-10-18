@@ -57,10 +57,6 @@ namespace Data
             {
                 throw ex;
             }
-           
-            
-               
-            
         }
 
         public static DataSet ReadAll(string connectionString)
