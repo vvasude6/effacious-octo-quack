@@ -42,7 +42,9 @@
   <ItemGroup>
     <Compile Include="ActmD.cs" />
     <Compile Include="DbAccess.cs" />
+    <Compile Include="Dber.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TxnmD.cs" />
     <Compile Include="Utility.cs" />
   </ItemGroup>
   <ItemGroup>
