@@ -13,8 +13,3 @@ C:\Users\Jon\Google Drive\CSE545 - Project\SBS\Security\bin\Debug\Security.pdb
 C:\Users\Jon\Google Drive\CSE545 - Project\SBS\Security\obj\Debug\Security.csprojResolveAssemblyReference.cache
 C:\Users\Jon\Google Drive\CSE545 - Project\SBS\Security\obj\Debug\Security.dll
 C:\Users\Jon\Google Drive\CSE545 - Project\SBS\Security\obj\Debug\Security.pdb
-C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Security\bin\Debug\Security.dll
-C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Security\bin\Debug\Security.pdb
-C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Security\obj\Debug\Security.csprojResolveAssemblyReference.cache
-C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Security\obj\Debug\Security.dll
-C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Security\obj\Debug\Security.pdb

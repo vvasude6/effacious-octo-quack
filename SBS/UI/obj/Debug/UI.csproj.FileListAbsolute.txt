@@ -28,13 +28,3 @@ C:\Users\Jon\Google Drive\CSE545 - Project\SBS\UI\bin\Security.pdb
 C:\Users\Jon\Google Drive\CSE545 - Project\SBS\UI\obj\Debug\UI.csprojResolveAssemblyReference.cache
 C:\Users\Jon\Google Drive\CSE545 - Project\SBS\UI\obj\Debug\UI.dll
 C:\Users\Jon\Google Drive\CSE545 - Project\SBS\UI\obj\Debug\UI.pdb
-C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\UI\bin\UI.dll.config
-C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\UI\bin\UI.dll
-C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\UI\bin\UI.pdb
-C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\UI\bin\Business.dll
-C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\UI\bin\Security.dll
-C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\UI\bin\Business.pdb
-C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\UI\bin\Security.pdb
-C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\UI\obj\Debug\UI.csprojResolveAssemblyReference.cache
-C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\UI\obj\Debug\UI.dll
-C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\UI\obj\Debug\UI.pdb
