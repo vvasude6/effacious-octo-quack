@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,13 +12,13 @@ namespace Data
     public static class TxnmD
     {
 
-        public static Txnm Read(string connectionString, string tran_id)
+        public static Txnm Read(string connectionString, string id)
         {
             try
             {
                 var transactionTypeMasterObject = new Txnm();
 
-                var query = string.Format("select * from txnm where tran_id = {0}", tran_id);
+                var query = string.Format("select * from txnm where tran_id = {0}", id);
                 var data = DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
 
                 //assign the data object to account master object
@@ -54,13 +55,14 @@ namespace Data
             }
         }
 
-        public static int Create(Txnm txnmObject)
+        public static int Create(string connectionString, Txnm dataObject)
         {
-            throw new NotImplementedException();
             try
             {
-                var query = "";
+                var query = string.Format(@"INSERT INTO [TXNM] ([TRAN_DESC], [TRAN_PVGA], [TRAN_PVGB], [TRAN_FIN_TYPE]) OUTPUT INSERTED.TRAN_ID VALUES ('{0}',{1},{2},'{3}')",
+                                        dataObject.tran_desc, dataObject.tran_pvga, dataObject.tran_pvgb, dataObject.tran_fin_type);
 
+                return (int) DbAccess.ExecuteScalar(connectionString, CommandType.Text, query);
             }
             catch (Exception ex)
             {
@@ -68,12 +70,12 @@ namespace Data
             }
         }
 
-        public static bool Delete(string acc_no)
+        public static bool Delete(string connectionString, string id)
         {
-            throw new NotImplementedException();
             try
             {
-                var query = "";
+                var query = string.Format("delete from txnm where tran_id = {0}", id);
+                return DbAccess.ExecuteNonQuery(connectionString, CommandType.Text, query) == 1;
 
             }
             catch (Exception ex)
