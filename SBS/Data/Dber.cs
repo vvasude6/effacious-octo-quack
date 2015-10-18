@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Data
 {
-    class Dber
+    public class Dber
     {
+
     }
 }
