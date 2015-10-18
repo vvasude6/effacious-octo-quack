@@ -1,0 +1,9 @@
+D:\CSE545\Entity\bin\Debug\Entity.dll
+D:\CSE545\Entity\bin\Debug\Entity.pdb
+D:\CSE545\Entity\obj\Debug\Entity.dll
+D:\CSE545\Entity\obj\Debug\Entity.pdb
+C:\Users\Somnath\Source\Repos\effacious-octo-quack\SBS\Entity\bin\Debug\Entity.dll
+C:\Users\Somnath\Source\Repos\effacious-octo-quack\SBS\Entity\bin\Debug\Entity.pdb
+C:\Users\Somnath\Source\Repos\effacious-octo-quack\SBS\Entity\obj\Debug\Entity.dll
+C:\Users\Somnath\Source\Repos\effacious-octo-quack\SBS\Entity\obj\Debug\Entity.pdb
+C:\Users\Somnath\Source\Repos\effacious-octo-quack\SBS\Entity\obj\Debug\Entity.csprojResolveAssemblyReference.cache
