@@ -14,7 +14,7 @@ namespace Data
         //private static string ConnectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
         //private static string ConnectionString = "Data Source=group2.mobicloud.asu.edu, 1433;Initial Catalog=SBS;User ID=sbsAdmin;Password=sbsAdmin;";
         //private static const string CONNECTION_STRING = "Server=group2.mobicloud.asu.edu:1433;Database=SBS;User Id=sbsAdmin; password=sbsAdmin;encrypt=true";
-        private const string CONNECTION_STRING = "Server=(local);Database=SBS;User Id=sbsAdmin; password=sbsAdmin;encrypt=true";
+        private const string CONNECTION_STRING = "Server=(local);Initial Catalog=SBS;Integrated Security=True";
         private const int TIME_OUT = 1024;//Int32.Parse(ConfigurationManager.AppSettings["CommandTimeout"]);
         
         #region ExecuteNonQuery
