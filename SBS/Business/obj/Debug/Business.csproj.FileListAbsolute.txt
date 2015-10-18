@@ -16,12 +16,25 @@ C:\Users\archana\Desktop\Software Security\SBS\Business\bin\Debug\Security.pdb
 C:\Users\archana\Desktop\Software Security\SBS\Business\obj\Debug\Business.csprojResolveAssemblyReference.cache
 C:\Users\archana\Desktop\Software Security\SBS\Business\obj\Debug\Business.dll
 C:\Users\archana\Desktop\Software Security\SBS\Business\obj\Debug\Business.pdb
-C:\Users\Jon\Google Drive\CSE545 - Project\SBS\Business\bin\Debug\Business.dll
-C:\Users\Jon\Google Drive\CSE545 - Project\SBS\Business\bin\Debug\Business.pdb
-C:\Users\Jon\Google Drive\CSE545 - Project\SBS\Business\bin\Debug\Data.dll
-C:\Users\Jon\Google Drive\CSE545 - Project\SBS\Business\bin\Debug\Security.dll
-C:\Users\Jon\Google Drive\CSE545 - Project\SBS\Business\bin\Debug\Data.pdb
-C:\Users\Jon\Google Drive\CSE545 - Project\SBS\Business\bin\Debug\Security.pdb
-C:\Users\Jon\Google Drive\CSE545 - Project\SBS\Business\obj\Debug\Business.csprojResolveAssemblyReference.cache
-C:\Users\Jon\Google Drive\CSE545 - Project\SBS\Business\obj\Debug\Business.dll
-C:\Users\Jon\Google Drive\CSE545 - Project\SBS\Business\obj\Debug\Business.pdb
+D:\CSE545\Business\obj\Debug\Business.csprojResolveAssemblyReference.cache
+D:\CSE545\Business\obj\Debug\Business.dll
+D:\CSE545\Business\obj\Debug\Business.pdb
+D:\CSE545\Business\bin\Debug\Business.dll
+D:\CSE545\Business\bin\Debug\Business.pdb
+D:\CSE545\Business\bin\Debug\Security.dll
+D:\CSE545\Business\bin\Debug\Security.pdb
+D:\CSE545\Business\bin\Debug\Data.dll
+D:\CSE545\Business\bin\Debug\Data.pdb
+D:\CSE545\Business\bin\Debug\Entity.dll
+D:\CSE545\Business\bin\Debug\Entity.pdb
+C:\Users\Somnath\Source\Repos\effacious-octo-quack\SBS\Business\obj\Debug\Business.csprojResolveAssemblyReference.cache
+C:\Users\Somnath\Source\Repos\effacious-octo-quack\SBS\Business\obj\Debug\Business.dll
+C:\Users\Somnath\Source\Repos\effacious-octo-quack\SBS\Business\bin\Debug\Business.dll
+C:\Users\Somnath\Source\Repos\effacious-octo-quack\SBS\Business\bin\Debug\Business.pdb
+C:\Users\Somnath\Source\Repos\effacious-octo-quack\SBS\Business\bin\Debug\Data.dll
+C:\Users\Somnath\Source\Repos\effacious-octo-quack\SBS\Business\bin\Debug\Security.dll
+C:\Users\Somnath\Source\Repos\effacious-octo-quack\SBS\Business\bin\Debug\Data.pdb
+C:\Users\Somnath\Source\Repos\effacious-octo-quack\SBS\Business\bin\Debug\Security.pdb
+C:\Users\Somnath\Source\Repos\effacious-octo-quack\SBS\Business\obj\Debug\Business.pdb
+C:\Users\Somnath\Source\Repos\effacious-octo-quack\SBS\Business\bin\Debug\Entity.dll
+C:\Users\Somnath\Source\Repos\effacious-octo-quack\SBS\Business\bin\Debug\Entity.pdb

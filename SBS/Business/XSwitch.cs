@@ -12,17 +12,31 @@ namespace Business
         {
             char[] delimiters = { '|' };
             String[] dataPart = inData.Split(delimiters);
+            String result;
             // part[0] = transaction id
-            // part[1] = account number
-            // part[2] = customer number
+            // part[1] = account number 1
+            // part[2] = account number 2
+            // part[3] = customer number
             //  ...
             try
             {
                 switch (dataPart[0])
                 {
-                    case "010":
+                    case "010": // Balance Inquiry
                         Y_010 y010 = new Y_010(dataPart[1]);
-                        String result = y010.getOutput();
+                        result = y010.getOutput();
+                        break;
+                    case "011": // Debit
+                        Y_011 y011 = new Y_011(dataPart[1]);
+                        result = y011.getOutput();
+                        break;
+                    case "012": // Credit
+                        Y_012 y012 = new Y_012(dataPart[1]);
+                        result = y012.getOutput();
+                        break;
+                    case "013": // Funds Transfer
+                        Y_013 y013 = new Y_013(dataPart[1], dataPart[2]);
+                        result = y013.getOutput();
                         break;
                 }
             }

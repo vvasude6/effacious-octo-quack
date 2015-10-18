@@ -20,8 +20,8 @@ namespace Business
         {
             errFlag = 'Y';
             this.errCode = errCode;
-            Errm err = new Errm(errCode);
-            errDesc = err.getData();
+            //Errm err = new Errm(errCode);
+            //errDesc = err.getData();
         }
         public Boolean ifError()
         {

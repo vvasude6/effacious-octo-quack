@@ -39,18 +39,43 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Actm.cs" />
+    <Compile Include="Cstm.cs" />
+    <Compile Include="Db.cs" />
+    <Compile Include="Dber.cs" />
+    <Compile Include="Empm.cs" />
+    <Compile Include="Errhist.cs" />
+    <Compile Include="Errm.cs" />
+    <Compile Include="Finhist.cs" />
+    <Compile Include="Mnemonics.cs" />
+    <Compile Include="Nfinhist.cs" />
+    <Compile Include="Pendtxn.cs" />
+    <Compile Include="Privilege.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sequence.cs" />
+    <Compile Include="XSwitch.cs" />
+    <Compile Include="Txnm.cs" />
+    <Compile Include="Y_010.cs" />
+    <Compile Include="Y_011.cs" />
+    <Compile Include="Y_012.cs" />
+    <Compile Include="Y_013.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj">
       <Project>{eb29b159-a5f2-45ea-b0cf-7ac415b18d16}</Project>
       <Name>Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Entity\Entity.csproj">
+      <Project>{cebe7e41-6752-448e-980c-6abfa5a917ec}</Project>
+      <Name>Entity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Security\Security.csproj">
       <Project>{036f6162-4ac7-4399-9358-025e2043b09e}</Project>
       <Name>Security</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

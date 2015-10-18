@@ -18,5 +18,9 @@ namespace Business
         String rem_bal;
         String init_empid;
         String apprv_empid;
+        public Boolean insertIntoFinhist()
+        {
+            return true; // remove later
+        }
     }
 }

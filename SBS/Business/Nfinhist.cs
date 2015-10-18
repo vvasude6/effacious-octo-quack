@@ -15,5 +15,9 @@ namespace Business
         String tran_desc;
         String init_empid;
         String apprv_empid;
+        public Boolean insertIntoNonFinhist()
+        {
+            return true; // remove later
+        }
     }
 }
