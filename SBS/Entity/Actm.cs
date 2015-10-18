@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
 
-namespace Business
+namespace Entity
 {
     public class Actm
     {
