@@ -21,12 +21,14 @@ namespace Entity
         public String emp_zip { get; set; }
         public String emp_brnch { get; set; }
         public String emp_phn { get; set; }
-        String emp_email { get; set; }
-        String emp_mngr { get; set; }
-        String emp_secq1 { get; set; }
-        String emp_ans1 { get; set; }
-        String emp_secq2 { get; set; }
-        String emp_ans2 { get; set; }
-        String emp_secq3 { get; set; }
+        public String emp_email { get; set; }
+        public String emp_mngr { get; set; }
+        public String emp_secq1 { get; set; }
+        public String emp_ans1 { get; set; }
+        public String emp_secq2 { get; set; }
+        public String emp_ans2 { get; set; }
+        public String emp_secq3 { get; set; }
+        public String emp_pw { get; set; }
+        public String emp_usr{ get; set; }
     }
 }
