@@ -6,13 +6,16 @@ using System.Threading.Tasks;
 
 namespace Business
 {
-    class XSwitch
+    public class XSwitch
     {
-        XSwitch(String inData)
+        String result;
+        public String resultP { get { return result; } }
+        public XSwitch(String inData)
         {
             char[] delimiters = { '|' };
             String[] dataPart = inData.Split(delimiters);
-            String result;
+            
+            
             // part[0] = transaction id
             // part[1] = account number 1
             // part[2] = account number 2

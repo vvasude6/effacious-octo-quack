@@ -23,7 +23,7 @@ namespace Business
         public static String FLD_ACTM_BAL = "AC_BAL";
         public static String KEY_ACTM = "AC_NO";
 
-        public static String CONN_STRING = "Server=(local);Intial Catalog=SBS; Integrated Security=True";
+        public static String CONN_STRING = "Server=(local);Initial Catalog=SBS; Integrated Security=True";
 
     }
 }

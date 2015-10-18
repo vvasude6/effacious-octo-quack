@@ -25,8 +25,8 @@ namespace Business
         String ac_cr_flag;
         String ac_open_dt;
 
-        Entity.Actm eActm;
-        public Entity.Actm eActmg { get; set; }
+        //Entity.Actm eActm;
+        public Entity.Actm eActm { get; set; }
        
         Dber dbr;
         //------

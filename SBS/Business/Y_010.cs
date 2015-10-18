@@ -26,7 +26,7 @@ namespace Business
             {
                 dberr = new Dber(); // change to Data.Dber
                 processTransaction(acc_no);
-                //pvg = new Privilege();
+                pvg = new Privilege();
                 // seq will generate and store transaction reference no.
                 seq = new Sequence(TXID);
             }
@@ -39,18 +39,26 @@ namespace Business
         {
             tx = new Txnm(TXID, dberr);
             // Check if TXNM fetch for transaction type "010" is successful. Return if error encountered
-            if (dberr.ifError()) 
+            if (dberr.ifError())
+            {
+                result = "txnm fetch error";
                 return -1;
+            }
             acct = new Actm(acc_no, dberr);
             // Check if ACTM fetch for account number acc_no is successful. Return if error encountered
-            if (dberr.ifError()) 
+            if (dberr.ifError())
+            {
+                result = "actm fetch error";
                 return -1;
-            //if (!pvg.verifyInitiatePrivilege(acct.eActm., tx.getInitPrivilegeLevel(), dberr))
-            //{
-            //    return -1;
-            //}
+            }
+            if (acct.eActm.ac_pvg < tx.txnm.tran_pvga)
+            {
+                result = "privilege error";
+                return -1;
+            }
+            result = Convert.ToString(acct.eActm.ac_bal);
             // Verify if transaction needs to be approved by some authority
-            if (tx.getApprovePrivilegeLevel() != 0)
+            /*if (tx.getApprovePrivilegeLevel() != 0)
             {
                 if (!pvg.verifyApprovePrivilege(acct.eActmg.ac_pvg, tx.txnmP.tran_pvga, dberr))
                 {
@@ -73,7 +81,7 @@ namespace Business
                 // Write to NFINHIST table
                 Nfinhist nFHist = new Nfinhist();
                 nFHist.insertIntoNonFinhist();
-            }
+            }*/
             return 0;
         }
         private Boolean updateTransactedData()
@@ -82,14 +90,15 @@ namespace Business
         }
         public String getOutput()
         {
-            if(dberr.ifError())
+            return result;
+            /*if(dberr.ifError())
             {
                 return dberr.getErrorDesc();
             }
             else
             {
                 return Convert.ToString(acct.getBalance());
-            }
+            }*/
         }
     }
 }

@@ -16,8 +16,8 @@ namespace Business
         Int32 tran_pvgb;
         String tran_fin_type;
         String[] txnmParts;
-        Entity.Txnm txnm;
-        public Entity.Txnm txnmP { get; set; }
+        //Entity.Txnm txnm;
+        public Entity.Txnm txnm { get; set; }
         public Txnm(String tx_id, Dber dbr)
         {
             // fetch data from Txnm tabke for tran_id = tx_id
