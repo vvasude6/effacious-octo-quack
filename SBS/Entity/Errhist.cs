@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace Business
 {
-    class Errhist
+    public class Errhist
     {
-        String ac_no;
-        String ref_no;
-        String tran_date;
-        String tran_timestamp;
-        String tran_desc;
-        String err_desc;
-        String init_empid;
-        String apprv_empid;
+        public String ac_no { get; set; }
+        public String ref_no { get; set; }
+        public String tran_date { get; set; }
+        public String tran_timestamp { get; set; }
+        public String tran_desc { get; set; }
+        public String err_desc { get; set; }
+        public String init_empid { get; set; }
+        public String apprv_empid { get; set; }
     }
 }

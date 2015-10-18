@@ -6,21 +6,17 @@ using System.Threading.Tasks;
 
 namespace Business
 {
-    class Finhist
+    public class Finhist
     {
-        String ac_no;
-        String ref_no;
-        String tran_date;
-        String tran_timestamp;
-        String tran_desc;
-        Decimal dr_amt;
-        Decimal cr_amt;
-        String rem_bal;
-        String init_empid;
-        String apprv_empid;
-        public Boolean insertIntoFinhist()
-        {
-            return true; // remove later
-        }
+        public String ac_no { get; set; }
+        public String ref_no { get; set; }
+        public String tran_date { get; set; }
+        public String tran_timestamp { get; set; }
+        public String tran_desc { get; set; }
+        public Decimal dr_amt { get; set; }
+        public Decimal cr_amt { get; set; }
+        public String rem_bal { get; set; }
+        public String init_empid { get; set; }
+        public String apprv_empid { get; set; }
     }
 }

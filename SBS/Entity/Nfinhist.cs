@@ -6,18 +6,14 @@ using System.Threading.Tasks;
 
 namespace Business
 {
-    class Nfinhist
+    public class Nfinhist
     {
-        String ac_no;
-        String ref_no;
-        String tran_date;
-        String tran_timestamp;
-        String tran_desc;
-        String init_empid;
-        String apprv_empid;
-        public Boolean insertIntoNonFinhist()
-        {
-            return true; // remove later
-        }
+        public String apprv_empid { get; set; }
+        public String ac_no { get; set; }
+        public String ref_no { get; set; }
+        public String tran_date { get; set; }
+        public String tran_timestamp { get; set; }
+        public String tran_desc { get; set; }
+        public String init_empid { get; set; }
     }
 }

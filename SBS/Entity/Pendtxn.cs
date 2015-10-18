@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace Business
 {
-    class Pendtxn
+    public class Pendtxn
     {
-        String ref_no;
-        String tran_date;
-        String ac_no;
-        String tran_pvgb;
-        String tran_desc;
-        String init_empid;
-        Decimal dr_amt;
-        Decimal cr_amt;
+        public Decimal cr_amt {get; set;}
+        public String ref_no { get; set; }
+        public String tran_date { get; set; }
+        public String ac_no { get; set; }
+        public String tran_pvgb { get; set; }
+        public String tran_desc { get; set; }
+        public String init_empid { get; set; }
+        public Decimal dr_amt { get; set; }
     }
 }

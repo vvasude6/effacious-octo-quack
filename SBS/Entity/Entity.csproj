@@ -41,7 +41,6 @@
   <ItemGroup>
     <Compile Include="Actm.cs" />
     <Compile Include="Cstm.cs" />
-    <Compile Include="Db.cs" />
     <Compile Include="Dber.cs" />
     <Compile Include="Empm.cs" />
     <Compile Include="Errhist.cs" />
