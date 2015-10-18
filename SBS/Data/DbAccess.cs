@@ -9,23 +9,23 @@ using System.Text;
 
 namespace Data
 {
-    public static class DbAccess
+    internal static class DbAccess
     {
-        //private static string ConnectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
+        //private static string ConnectionString = ConfigurationManager.ConnectionStrings["ProductionString"].ToString();
         //private static string ConnectionString = "Data Source=group2.mobicloud.asu.edu, 1433;Initial Catalog=SBS;User ID=sbsAdmin;Password=sbsAdmin;";
         //private static const string CONNECTION_STRING = "Server=group2.mobicloud.asu.edu:1433;Database=SBS;User Id=sbsAdmin; password=sbsAdmin;encrypt=true";
-        private const string CONNECTION_STRING = "Server=(local);Initial Catalog=SBS;Integrated Security=True";
+        //private const string CONNECTION_STRING = "Server=(local);Initial Catalog=SBS;Integrated Security=True";
         private const int TIME_OUT = 1024;//Int32.Parse(ConfigurationManager.AppSettings["CommandTimeout"]);
         
         #region ExecuteNonQuery
 
-        public static int ExecuteNonQuery(CommandType commandType, string commandText, params SqlParameter[] commandParameters)
+        public static int ExecuteNonQuery(string connectionString, CommandType commandType, string commandText, params SqlParameter[] commandParameters)
         {
             var command = new SqlCommand();
             var returnValue = 0;
             try
             {
-                var connection = new SqlConnection(CONNECTION_STRING);
+                var connection = new SqlConnection(connectionString);
                 Utility.PrepareCommand(command, connection, (SqlTransaction)null, commandType, commandText, commandParameters);
                 returnValue = command.ExecuteNonQuery();
 
@@ -51,20 +51,20 @@ namespace Data
 
         #region ExecuteQuery
 
-        public static DataSet ExecuteQuery(string procedureName, params object[] parameterValues)
+        public static DataSet ExecuteQuery(string connectionString, string procedureName, params object[] parameterValues)
         {
             SqlParameter[] commandParameters;
             try
             {
                 if ((parameterValues != null) && (parameterValues.Length > 0))
                 {
-                    commandParameters = Utility.GetProcedureParameterSet(CONNECTION_STRING, procedureName);
+                    commandParameters = Utility.GetProcedureParameterSet(connectionString, procedureName);
                     Utility.AssignParameterValues(commandParameters, parameterValues);
-                    return ExecuteQuery(CommandType.StoredProcedure, procedureName, commandParameters);
+                    return ExecuteQuery(connectionString, CommandType.StoredProcedure, procedureName, commandParameters);
                 }
                 else
                 {
-                    return ExecuteQuery(CommandType.StoredProcedure, procedureName);
+                    return ExecuteQuery(connectionString, CommandType.StoredProcedure, procedureName);
                 }
             }
             catch (SystemException ex)
@@ -81,11 +81,11 @@ namespace Data
             }
         }
 
-        public static DataSet ExecuteQuery(CommandType commandType, string commandText)
+        public static DataSet ExecuteQuery(string connectionString, CommandType commandType, string commandText)
         {
             try
             {
-                return ExecuteQuery(commandType, commandText, (SqlParameter[])null);
+                return ExecuteQuery(connectionString, commandType, commandText, (SqlParameter[])null);
             }
             catch (SystemException ex)
             {
@@ -98,9 +98,9 @@ namespace Data
 
         }
 
-        public static DataSet ExecuteQuery(CommandType commandType, string commandText, params SqlParameter[] commandParameters)
+        public static DataSet ExecuteQuery(string connectionString, CommandType commandType, string commandText, params SqlParameter[] commandParameters)
         {
-            var connection = new SqlConnection(CONNECTION_STRING);
+            var connection = new SqlConnection(connectionString);
             var command = new SqlCommand();
             DataSet dataSet;
             SqlDataAdapter dataAdapter;
@@ -132,11 +132,11 @@ namespace Data
 
         #region ExecuteScalar
 
-        public static object ExecuteScalar(CommandType commandType, string commandText)
+        public static object ExecuteScalar(string connectionString, CommandType commandType, string commandText)
         {
             try
             {
-                return ExecuteScalar(commandType, commandText, (SqlParameter[])null);
+                return ExecuteScalar(connectionString, commandType, commandText, (SqlParameter[])null);
             }
             catch (SystemException ex)
             {
@@ -148,20 +148,20 @@ namespace Data
             }
         }
 
-        public static object ExecuteScalar(string procedureName, params object[] parameterValues)
+        public static object ExecuteScalar(string connectionString, string procedureName, params object[] parameterValues)
         {
             SqlParameter[] commandParameters;
             try
             {
                 if ((parameterValues != null) && (parameterValues.Length > 0))
                 {
-                    commandParameters = Utility.GetProcedureParameterSet(CONNECTION_STRING, procedureName);
+                    commandParameters = Utility.GetProcedureParameterSet(connectionString, procedureName);
                     Utility.AssignParameterValues(commandParameters, parameterValues);
-                    return ExecuteScalar(CommandType.StoredProcedure, procedureName, commandParameters);
+                    return ExecuteScalar(connectionString, CommandType.StoredProcedure, procedureName, commandParameters);
                 }
                 else
                 {
-                    return ExecuteScalar(CommandType.StoredProcedure, procedureName);
+                    return ExecuteScalar(connectionString, CommandType.StoredProcedure, procedureName);
                 }
             }
             catch (SystemException ex)
@@ -176,9 +176,9 @@ namespace Data
             { }
         }
 
-        public static object ExecuteScalar(CommandType commandType, string commandText, params SqlParameter[] commandParameters)
+        public static object ExecuteScalar(string connectionString, CommandType commandType, string commandText, params SqlParameter[] commandParameters)
         {
-            var connection = new SqlConnection(CONNECTION_STRING);
+            var connection = new SqlConnection(connectionString);
             var command = new SqlCommand();
             object returnValue;
             try

@@ -10,14 +10,14 @@ namespace Data
 {
     public static class ActmD
     {
-        public static Actm Read(string acc_no)
+        public static Actm Read(string connectionString, string acc_no)
         {
             try
             {
                 var accountMasterObject = new Actm();
 
                 var query = string.Format("select * from actm where ac_no = {0}", acc_no);
-                var data = DbAccess.ExecuteQuery(CommandType.Text, query);
+                var data = DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
 
                 //assign the data object to account master object
                 if (data.Tables[0].Rows.Count > 0)

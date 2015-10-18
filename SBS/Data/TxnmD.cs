@@ -11,14 +11,14 @@ namespace Data
     public static class TxnmD
     {
 
-        public static Txnm Read(string tran_id)
+        public static Txnm Read(string connectionString, string tran_id)
         {
             try
             {
                 var transactionTypeMasterObject = new Txnm();
 
                 var query = string.Format("select * from txnm where tran_id = {0}", tran_id);
-                var data = DbAccess.ExecuteQuery(CommandType.Text, query);
+                var data = DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
 
                 //assign the data object to account master object
                 if (data.Tables[0].Rows.Count > 0)
@@ -41,12 +41,12 @@ namespace Data
             }
         }
 
-        public static DataSet ReadAll()
+        public static DataSet ReadAll(string connectionString)
         {
             try
             {
                 var query = string.Format("select * from txnm");
-                return DbAccess.ExecuteQuery(CommandType.Text, query);
+                return DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
             }
             catch (Exception ex)
             {
