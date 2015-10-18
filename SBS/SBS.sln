@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Security", "Security\Securi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevTester", "DevTester\DevTester.csproj", "{CA26ADB1-4D8F-47ED-B8A8-FE3678BD7FA8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entity", "Entity\Entity.csproj", "{CEBE7E41-6752-448E-980C-6ABFA5A917EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{CA26ADB1-4D8F-47ED-B8A8-FE3678BD7FA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA26ADB1-4D8F-47ED-B8A8-FE3678BD7FA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA26ADB1-4D8F-47ED-B8A8-FE3678BD7FA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEBE7E41-6752-448E-980C-6ABFA5A917EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEBE7E41-6752-448E-980C-6ABFA5A917EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEBE7E41-6752-448E-980C-6ABFA5A917EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEBE7E41-6752-448E-980C-6ABFA5A917EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
