@@ -29,5 +29,10 @@ namespace Entity
         public String cs_secq3 { get; set; }
         public String cs_ans3 { get; set; }
         public String cs_access { get; set; }
-    }
+
+        public String cs_pw { get; set; }
+        public String cs_usr { get; set; }
+
+
+        }
 }
