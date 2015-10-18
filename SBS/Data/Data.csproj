@@ -41,8 +41,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActmD.cs" />
+    <Compile Include="CstmD.cs" />
     <Compile Include="DbAccess.cs" />
     <Compile Include="Dber.cs" />
+    <Compile Include="EmpmD.cs" />
+    <Compile Include="ErrhistD.cs" />
+    <Compile Include="ErrmD.cs" />
+    <Compile Include="FinhistD.cs" />
+    <Compile Include="NfinhistD.cs" />
+    <Compile Include="PendtxnD.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TxnmD.cs" />
     <Compile Include="Utility.cs" />
