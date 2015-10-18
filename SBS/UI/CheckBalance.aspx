@@ -18,7 +18,7 @@
             <br />
             <br />
             <br />
-            <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control"></asp:TextBox>
+            <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" OnTextChanged="TextBox1_TextChanged"></asp:TextBox>
         </div>
     </form>
 </body>

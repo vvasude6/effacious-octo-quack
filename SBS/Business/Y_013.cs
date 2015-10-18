@@ -15,12 +15,12 @@ namespace Business
         Txnm tx;
         Privilege pvg;
         Sequence seq;
-        public Y_013(String acc_no1, String acc_no2)
+        public Y_013(string connectionString, String acc_no1, String acc_no2)
         {
             try
             {
                 dberr = new Dber();
-                processTransaction(acc_no1, acc_no2);
+                processTransaction(connectionString, acc_no1, acc_no2);
                 pvg = new Privilege();
                 // seq will generate and store transaction reference no.
                 seq = new Sequence(TXID);
@@ -30,10 +30,10 @@ namespace Business
                 error = e.ToString();
             }
         }
-        private int processTransaction(String acc1, String acc2)
+        private int processTransaction(string connectionString, String acc1, String acc2)
         {
             String result; // remove later
-            Y_011 y011 = new Y_011(acc1);
+            Y_011 y011 = new Y_011(connectionString, acc1);
             result = y011.getOutput();
 
             Y_012 y012 = new Y_012(acc2);

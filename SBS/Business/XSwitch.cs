@@ -10,7 +10,7 @@ namespace Business
     {
         String result;
         public String resultP { get { return result; } }
-        public XSwitch(String inData)
+        public XSwitch(string connectionString, String inData)
         {
             char[] delimiters = { '|' };
             String[] dataPart = inData.Split(delimiters);
@@ -26,11 +26,11 @@ namespace Business
                 switch (dataPart[0])
                 {
                     case "010": // Balance Inquiry
-                        Y_010 y010 = new Y_010(dataPart[1]);
+                        Y_010 y010 = new Y_010(connectionString, dataPart[1]);
                         result = y010.getOutput();
                         break;
                     case "011": // Debit
-                        Y_011 y011 = new Y_011(dataPart[1]);
+                        Y_011 y011 = new Y_011(connectionString, dataPart[1]);
                         result = y011.getOutput();
                         break;
                     case "012": // Credit
@@ -38,7 +38,7 @@ namespace Business
                         result = y012.getOutput();
                         break;
                     case "013": // Funds Transfer
-                        Y_013 y013 = new Y_013(dataPart[1], dataPart[2]);
+                        Y_013 y013 = new Y_013(connectionString, dataPart[1], dataPart[2]);
                         result = y013.getOutput();
                         break;
                 }

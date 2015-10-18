@@ -18,10 +18,10 @@ namespace Business
         String[] txnmParts;
         //Entity.Txnm txnm;
         public Entity.Txnm txnm { get; set; }
-        public Txnm(String tx_id, Dber dbr)
+        public Txnm(string connectionString, String tx_id, Dber dbr)
         {
             // fetch data from Txnm tabke for tran_id = tx_id
-            txnm = Data.TxnmD.Read(Mnemonics.CONN_STRING, tx_id);
+            txnm = Data.TxnmD.Read(connectionString, tx_id);
             //Db fetch = new Db(SPROC, dbr);
             //if (!dbr.ifError())
             if(txnm==null)

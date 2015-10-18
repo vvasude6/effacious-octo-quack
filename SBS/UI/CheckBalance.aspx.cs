@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Business;
 
 namespace UI
 {
@@ -15,6 +16,12 @@ namespace UI
         }
 
         protected void Button1_Click(object sender, EventArgs e)
+        {
+            Business.XSwitch tran = new Business.XSwitch(Global.ConnectionString, "010|1");
+            TextBox1.Text = tran.resultP;
+        }
+
+        protected void TextBox1_TextChanged(object sender, EventArgs e)
         {
 
         }

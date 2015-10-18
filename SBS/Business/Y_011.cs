@@ -15,12 +15,12 @@ namespace Business
         Txnm tx;
         Privilege pvg;
         Sequence seq;
-        public Y_011(String acc_no)
+        public Y_011(string connectionString, String acc_no)
         {
             try
             {
                 dberr = new Dber();
-                processTransaction(acc_no);
+                processTransaction(connectionString, acc_no);
                 pvg = new Privilege();
                 // seq will generate and store transaction reference no.
                 seq = new Sequence(TXID);
@@ -30,13 +30,13 @@ namespace Business
                 error = e.ToString();
             }
         }
-        private int processTransaction(String acc_no)
+        private int processTransaction(string connectionString, String acc_no)
         {
-            this.tx = new Txnm(TXID, dberr);
+            this.tx = new Txnm(connectionString, TXID, dberr);
             // Check if TXNM fetch for transaction type "010" is successful. Return if error encountered
             if (dberr.ifError())
                 return -1;
-            acct = new Actm(acc_no, dberr);
+            acct = new Actm(connectionString, acc_no, dberr);
             // Check if ACTM fetch for account number acc_no is successful. Return if error encountered
             if (dberr.ifError())
                 return -1;

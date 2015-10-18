@@ -33,12 +33,12 @@ namespace Business
         private Decimal changeAmount;
         String[] actmParts;
         //actm = new Entity.Actm();
-        public Actm(String acno, Dber dbr)
+        public Actm(string connectionString, String acno, Dber dbr)
         {
             // fetch all details for ac_no = acno.
             // call to specific stored procedure
             //eActm = new Entity.Actm();
-            eActm = Data.ActmD.Read(Mnemonics.CONN_STRING, acno);
+            eActm = Data.ActmD.Read(connectionString, acno);
             this.dbr = dbr;
             //Db fetch = new Db(SPROC, dbr);
             if (dbr.ifError())
