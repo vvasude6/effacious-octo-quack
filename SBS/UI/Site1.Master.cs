@@ -11,7 +11,7 @@ namespace UI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            UserNameLabel.InnerText = "Abhijit Ray";
+            UserNameLabel.InnerText = "Abhijit Ray"; 
         }
     }
 }
