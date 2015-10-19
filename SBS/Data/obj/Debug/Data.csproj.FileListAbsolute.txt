@@ -39,3 +39,12 @@ D:\CSE545\OctoQuack\SBS\Data\bin\Debug\Entity.pdb
 D:\CSE545\OctoQuack\SBS\Data\bin\Debug\Security.pdb
 D:\CSE545\OctoQuack\SBS\Data\bin\Debug\Mnemonics.dll
 D:\CSE545\OctoQuack\SBS\Data\bin\Debug\Mnemonics.pdb
+D:\CSE545\SBSv2\SBS\Data\bin\Debug\Data.dll
+D:\CSE545\SBSv2\SBS\Data\bin\Debug\Data.pdb
+D:\CSE545\SBSv2\SBS\Data\bin\Debug\Entity.dll
+D:\CSE545\SBSv2\SBS\Data\bin\Debug\Security.dll
+D:\CSE545\SBSv2\SBS\Data\bin\Debug\Entity.pdb
+D:\CSE545\SBSv2\SBS\Data\bin\Debug\Security.pdb
+D:\CSE545\SBSv2\SBS\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
+D:\CSE545\SBSv2\SBS\Data\obj\Debug\Data.dll
+D:\CSE545\SBSv2\SBS\Data\obj\Debug\Data.pdb
