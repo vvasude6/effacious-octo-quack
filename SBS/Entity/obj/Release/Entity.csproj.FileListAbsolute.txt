@@ -2,3 +2,4 @@ C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Entity\bin\Release\Entit
 C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Entity\bin\Release\Entity.pdb
 C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Entity\obj\Release\Entity.dll
 C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Entity\obj\Release\Entity.pdb
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Entity\obj\Release\Entity.csprojResolveAssemblyReference.cache

@@ -45,7 +45,7 @@ namespace Data
         }
         public static DataSet ReadAll(string connectionString)
         {
-            var query = string.Format("select * from Nfinhist);
+            var query = string.Format("select * from Nfinhist");
            return  DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
         }
         public static int Create(string connectionString, Nfinhist dataObject)
