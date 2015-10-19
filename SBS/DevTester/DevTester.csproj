@@ -56,6 +56,10 @@
       <Project>{eb29b159-a5f2-45ea-b0cf-7ac415b18d16}</Project>
       <Name>Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Entity\Entity.csproj">
+      <Project>{cebe7e41-6752-448e-980c-6abfa5a917ec}</Project>
+      <Name>Entity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Security\Security.csproj">
       <Project>{036f6162-4ac7-4399-9358-025e2043b09e}</Project>
       <Name>Security</Name>

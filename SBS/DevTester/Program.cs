@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Data;
+using Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +10,16 @@ namespace DevTester
 {
     class Program
     {
+        private const string CONNECTION_STRING = "Server=(local);Initial Catalog=SBS;Integrated Security=True";
         static void Main(string[] args)
         {
+
+            //var s = new Txnm { tran_desc="testing5", tran_fin_type="1", tran_pvga=10, tran_pvgb=11};
+            //var id = TxnmD.Create(CONNECTION_STRING, s);
+
+            //var s1 = TxnmD.Delete(CONNECTION_STRING, id.ToString());
+
+
             TestSecurity();
         }
 
