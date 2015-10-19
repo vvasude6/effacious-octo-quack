@@ -3,25 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Mnemonics;
 
 namespace Business
 {
     class Y_013
     {
-        String TXID = Mnemonics.TX_FUNDS_TRANSFER;
+        String TXID = Mnemonics.TxnCodes.TX_FUNDS_TRANSFER;
         String error;
-        Dber dberr;
-        Actm acct;
-        Txnm tx;
-        Privilege pvg;
+        Cp_Actm acct;
+        Cp_Txnm tx;
+        //Privilege pvg;
         Sequence seq;
+        Data.Dber dberr;
+
         public Y_013(string connectionString, String acc_no1, String acc_no2)
         {
             try
             {
-                dberr = new Dber();
+                dberr = new Data.Dber();
                 processTransaction(connectionString, acc_no1, acc_no2);
-                pvg = new Privilege();
+                
                 // seq will generate and store transaction reference no.
                 seq = new Sequence(TXID);
             }
@@ -38,19 +40,21 @@ namespace Business
 
             Y_012 y012 = new Y_012(acc2);
             result = y012.getOutput();
+            //pvg = new Privilege();
 
             return 0; // remove later
         }
         public String getOutput()
         {
-            if (dberr.ifError())
+            return "";
+            /*if (dberr.ifError())
             {
-                return dberr.getErrorDesc();
+                return dberr.getErrorDesc(connectionString);
             }
             else
             {
                 return Convert.ToString(acct.getBalance());
-            }
+            }*/
         }
     }
 }

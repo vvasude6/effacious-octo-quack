@@ -6,13 +6,14 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Mnemonics;
 
 namespace Data
 {
     public static class TxnmD
     {
 
-        public static Txnm Read(string connectionString, string id)
+        public static Txnm Read(string connectionString, string id, Dber dberr)
         {
             try
             {
@@ -24,8 +25,8 @@ namespace Data
                 //assign the data object to account master object
                 if (data.Tables[0].Rows.Count > 0)
                 {
-                    transactionTypeMasterObject.tran_desc = data.Tables[0].Rows[0]["tran_desc"] != null ?data.Tables[0].Rows[0]["tran_desc"].ToString() : "";
-                    transactionTypeMasterObject.tran_fin_type = data.Tables[0].Rows[0]["tran_fin_type"] != null ?data.Tables[0].Rows[0]["tran_fin_type"].ToString() : "";
+                    transactionTypeMasterObject.tran_desc = data.Tables[0].Rows[0]["tran_desc"] != null ? data.Tables[0].Rows[0]["tran_desc"].ToString() : "";
+                    transactionTypeMasterObject.tran_fin_type = data.Tables[0].Rows[0]["tran_fin_type"] != null ? data.Tables[0].Rows[0]["tran_fin_type"].ToString() : "";
                     transactionTypeMasterObject.tran_id = data.Tables[0].Rows[0]["tran_id"].ToString();
                     transactionTypeMasterObject.tran_pvga = Convert.ToInt16(data.Tables[0].Rows[0]["tran_pvga"].ToString());
                     transactionTypeMasterObject.tran_pvgb = Convert.ToInt16(data.Tables[0].Rows[0]["tran_pvgb"].ToString());
@@ -34,7 +35,10 @@ namespace Data
                 }
 
                 else
+                {
+                    dberr.setError(Mnemonics.DbErrorCodes.DBERR_TXNM_NOFIND);
                     return null;
+                }
             }
             catch (Exception ex)
             {
@@ -42,7 +46,7 @@ namespace Data
             }
         }
 
-        public static DataSet ReadAll(string connectionString)
+        public static DataSet ReadAll(string connectionString, Dber dberr)
         {
             try
             {
@@ -55,7 +59,7 @@ namespace Data
             }
         }
 
-        public static int Create(string connectionString, Txnm dataObject)
+        public static int Create(string connectionString, Txnm dataObject, Dber dberr)
         {
             try
             {
@@ -70,7 +74,7 @@ namespace Data
             }
         }
 
-        public static bool Delete(string connectionString, string id)
+        public static bool Delete(string connectionString, string id, Dber dberr)
         {
             try
             {
@@ -84,7 +88,7 @@ namespace Data
             }
         }
 
-        public static bool Update(Txnm txnmObject)
+        public static bool Update(Txnm txnmObject, Dber dberr)
         {
             throw new NotImplementedException();
             try
