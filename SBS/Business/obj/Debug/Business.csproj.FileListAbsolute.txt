@@ -38,3 +38,14 @@ C:\Users\Somnath\Source\Repos\effacious-octo-quack\SBS\Business\bin\Debug\Securi
 C:\Users\Somnath\Source\Repos\effacious-octo-quack\SBS\Business\obj\Debug\Business.pdb
 C:\Users\Somnath\Source\Repos\effacious-octo-quack\SBS\Business\bin\Debug\Entity.dll
 C:\Users\Somnath\Source\Repos\effacious-octo-quack\SBS\Business\bin\Debug\Entity.pdb
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Business\bin\Debug\Business.dll
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Business\bin\Debug\Business.pdb
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Business\bin\Debug\Data.dll
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Business\bin\Debug\Entity.dll
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Business\bin\Debug\Security.dll
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Business\bin\Debug\Data.pdb
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Business\bin\Debug\Entity.pdb
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Business\bin\Debug\Security.pdb
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Business\obj\Debug\Business.csprojResolveAssemblyReference.cache
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Business\obj\Debug\Business.dll
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Business\obj\Debug\Business.pdb

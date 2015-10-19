@@ -46,6 +46,7 @@ namespace Business
             catch (Exception e)
             {
                 String error = e.ToString();
+                throw e;
             }
         }
     }

@@ -7,3 +7,8 @@ C:\Users\Somnath\Source\Repos\effacious-octo-quack\SBS\Entity\bin\Debug\Entity.p
 C:\Users\Somnath\Source\Repos\effacious-octo-quack\SBS\Entity\obj\Debug\Entity.dll
 C:\Users\Somnath\Source\Repos\effacious-octo-quack\SBS\Entity\obj\Debug\Entity.pdb
 C:\Users\Somnath\Source\Repos\effacious-octo-quack\SBS\Entity\obj\Debug\Entity.csprojResolveAssemblyReference.cache
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Entity\bin\Debug\Entity.dll
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Entity\bin\Debug\Entity.pdb
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Entity\obj\Debug\Entity.csprojResolveAssemblyReference.cache
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Entity\obj\Debug\Entity.dll
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Entity\obj\Debug\Entity.pdb

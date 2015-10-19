@@ -34,3 +34,17 @@ C:\Users\Jon\Google Drive\CSE545 - Project\SBS\DevTester\bin\Debug\Security.pdb
 C:\Users\Jon\Google Drive\CSE545 - Project\SBS\DevTester\obj\Debug\DevTester.csprojResolveAssemblyReference.cache
 C:\Users\Jon\Google Drive\CSE545 - Project\SBS\DevTester\obj\Debug\DevTester.exe
 C:\Users\Jon\Google Drive\CSE545 - Project\SBS\DevTester\obj\Debug\DevTester.pdb
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\DevTester\bin\Debug\DevTester.exe.config
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\DevTester\bin\Debug\DevTester.exe
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\DevTester\bin\Debug\DevTester.pdb
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\DevTester\bin\Debug\Business.dll
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\DevTester\bin\Debug\Data.dll
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\DevTester\bin\Debug\Security.dll
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\DevTester\bin\Debug\Entity.dll
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\DevTester\bin\Debug\Business.pdb
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\DevTester\bin\Debug\Data.pdb
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\DevTester\bin\Debug\Security.pdb
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\DevTester\bin\Debug\Entity.pdb
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\DevTester\obj\Debug\DevTester.csprojResolveAssemblyReference.cache
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\DevTester\obj\Debug\DevTester.exe
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\DevTester\obj\Debug\DevTester.pdb
