@@ -17,8 +17,15 @@ namespace UI
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Business.XSwitch tran = new Business.XSwitch(Global.ConnectionString, "010|1");
-            TextBox1.Text = tran.resultP;
+            try
+            {
+                Business.XSwitch tran = new Business.XSwitch(Global.ConnectionString, "010|1");
+                TextBox1.Text = tran.resultP;
+            }
+            catch (Exception ex)
+            {
+                TextBox1.Text = ex.Message;
+            }
         }
 
         protected void TextBox1_TextChanged(object sender, EventArgs e)
