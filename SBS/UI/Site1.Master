@@ -8,7 +8,9 @@
     <script src="Scripts/bootstrap.min.js"></script>
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/bootstrap-theme.min.css" rel="stylesheet" />
-
+    <link href="css/Custom.css" rel="stylesheet" />
+    <script src="Scripts/Custom/Master.js"></script>
+    
     <title>SBS - The most Secure Banking System.</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -19,27 +21,34 @@
             <div class="container">
                 <a class="navbar-brand" href="#">
                     SBS</a>
-                <ul class="nav navbar-nav">
-                    <li class="active">
-                        <a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;Home</a>
+                <ul class="nav navbar-nav menu">
+                    <li>
+                        <a href="Home.aspx"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;Home</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>&nbsp;Transactions 
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="TransferMoney.aspx">Transfer Money</a></li>
+                            <li><a href="MakePayment.aspx">Make Payment</a></li>
+                        </ul>
+                        
                     </li>
                     <li>
-                        <a href="#"><span class="glyphicon glyphicon-sort" aria-hidden="true"></span>&nbsp;Transfer</a>
+                        <a href="About.aspx" onclick="javascript:updateClass();"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>&nbsp;About</a>
                     </li>
                     <li>
-                        <a href="#"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>&nbsp;About</a>
-                    </li>
-                    <li>
-                        <a href="#"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>&nbsp;Help</a>
+                        <a href="Help.aspx"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>&nbsp;Help</a>
                     </li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a id="UserNameLink" runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User name 
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span id="UserNameLabel" runat="server">User name</span> 
                             <span class="caret"></span>
                         </a>
-                        <%--<a href="#" class="navbar-link">User name</a>--%>
                         <ul class="dropdown-menu">
                             <li><a href="#">My Profile</a></li>
                             <li><a href="#">Settings</a></li>
@@ -50,7 +59,7 @@
                 </ul>
             </div>
         </nav>
-        <div>
+        <div class="maincontent">
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>
