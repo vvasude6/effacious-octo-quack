@@ -18,7 +18,7 @@ namespace Data
                 var query = string.Format("select * from cstm where cs_no = {0}", id);
                 var data = DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
 
-                //assign the data object to account master object
+                //assign the data object to customer master object
                 if (data.Tables[0].Rows.Count > 0)
                 {
                     customerMasterObject.cs_no = data.Tables[0].Rows[0]["cs_no"].ToString();

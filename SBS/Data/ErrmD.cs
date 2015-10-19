@@ -10,13 +10,36 @@ namespace Data
 {
     public static class ErrmD
     {
-        public static Errm Read(string connectionString, string id)
+        public static Errm Read(string connectionString, string err_id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var ErrorMasterObject = new Errm();
+
+                var query = string.Format("select * from Errm where err_id = {0}", err_id);
+                var data = DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
+
+                //assign the data object to Error master object
+                if (data.Tables[0].Rows.Count > 0)
+                {
+                    ErrorMasterObject.err_id = data.Tables[0].Rows[0]["err_id"].ToString();
+                    ErrorMasterObject.err_desc = data.Tables[0].Rows[0]["err_desc"].ToString();
+
+                    return ErrorMasterObject;
+                }
+
+                else
+                    return null;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         public static DataSet ReadAll(string connectionString)
         {
-            throw new NotImplementedException();
+            var query = string.Format("select * from Errm");
+            return DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
         }
         public static int Create(string connectionString, Errm dataObject)
         {
