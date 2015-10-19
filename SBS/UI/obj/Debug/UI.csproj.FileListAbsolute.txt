@@ -72,3 +72,5 @@ D:\CSE545\SBSv2\SBS\UI\bin\Data.pdb
 D:\CSE545\SBSv2\SBS\UI\obj\Debug\UI.csprojResolveAssemblyReference.cache
 D:\CSE545\SBSv2\SBS\UI\obj\Debug\UI.dll
 D:\CSE545\SBSv2\SBS\UI\obj\Debug\UI.pdb
+D:\CSE545\SBSv2\SBS\UI\bin\Mnemonics.dll
+D:\CSE545\SBSv2\SBS\UI\bin\Mnemonics.pdb

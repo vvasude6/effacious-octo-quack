@@ -30,7 +30,7 @@ namespace Business
                         result = y010.getOutput();
                         break;
                     case "011": // Debit
-                        Y_011 y011 = new Y_011(connectionString, dataPart[1]);
+                        Y_011 y011 = new Y_011(connectionString, dataPart[1], Convert.ToDecimal(dataPart[2]));
                         result = y011.getOutput();
                         break;
                     case "012": // Credit
@@ -38,7 +38,7 @@ namespace Business
                         result = y012.getOutput();
                         break;
                     case "013": // Funds Transfer
-                        Y_013 y013 = new Y_013(connectionString, dataPart[1], dataPart[2]);
+                        Y_013 y013 = new Y_013(connectionString, dataPart[1], dataPart[2], Convert.ToDecimal(dataPart[3]));
                         result = y013.getOutput();
                         break;
                 }

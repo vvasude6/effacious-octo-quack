@@ -10,7 +10,7 @@ namespace Data
 {
     public static class FinhistD
     {
-        public static Finhist Read(string connectionString, string ref_no)
+        public static Finhist Read(string connectionString, string ref_no, Dber dberr)
         {
             try
             {
@@ -45,22 +45,22 @@ namespace Data
                 throw ex;
             }
         }
-        public static DataSet ReadAll(string connectionString)
+        public static DataSet ReadAll(string connectionString, Dber dberr)
         {
             var query = string.Format("select * from FinHist");
            return DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
 
         }
-        public static int Create(string connectionString, Finhist dataObject)
+        public static int Create(string connectionString, Finhist dataObject, Dber dberr)
         {
             throw new NotImplementedException();
         }
-        public static bool Update(string connectionString, Finhist dataObject)
+        public static bool Update(string connectionString, Finhist dataObject, Dber dberr)
         {
             throw new NotImplementedException();
         }
 
-        public static bool Delete(string connectionString, string id)
+        public static bool Delete(string connectionString, string id, Dber dberr)
         {
             throw new NotImplementedException();
         }

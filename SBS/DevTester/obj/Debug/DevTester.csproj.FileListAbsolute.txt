@@ -78,3 +78,5 @@ D:\CSE545\SBSv2\SBS\DevTester\bin\Debug\Security.pdb
 D:\CSE545\SBSv2\SBS\DevTester\obj\Debug\DevTester.csprojResolveAssemblyReference.cache
 D:\CSE545\SBSv2\SBS\DevTester\obj\Debug\DevTester.exe
 D:\CSE545\SBSv2\SBS\DevTester\obj\Debug\DevTester.pdb
+D:\CSE545\SBSv2\SBS\DevTester\bin\Debug\Mnemonics.dll
+D:\CSE545\SBSv2\SBS\DevTester\bin\Debug\Mnemonics.pdb

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EB29B159-A5F2-45EA-B0CF-7AC415B18D16}</ProjectGuid>
+    <ProjectGuid>{7F750235-D41A-4136-89EE-4BD00D76E801}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Data</RootNamespace>
-    <AssemblyName>Data</AssemblyName>
+    <RootNamespace>Mnemonics</RootNamespace>
+    <AssemblyName>Mnemonics</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,7 +31,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -40,33 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActmD.cs" />
-    <Compile Include="CstmD.cs" />
-    <Compile Include="DbAccess.cs" />
-    <Compile Include="Dber.cs" />
-    <Compile Include="EmpmD.cs" />
-    <Compile Include="ErrhistD.cs" />
-    <Compile Include="ErrmD.cs" />
-    <Compile Include="FinhistD.cs" />
-    <Compile Include="NfinhistD.cs" />
-    <Compile Include="PendtxnD.cs" />
+    <Compile Include="DbErrorCodes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TxnmD.cs" />
-    <Compile Include="Utility.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Entity\Entity.csproj">
-      <Project>{cebe7e41-6752-448e-980c-6abfa5a917ec}</Project>
-      <Name>Entity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Mnemonics\Mnemonics.csproj">
-      <Project>{7f750235-d41a-4136-89ee-4bd00d76e801}</Project>
-      <Name>Mnemonics</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Security\Security.csproj">
-      <Project>{036f6162-4ac7-4399-9358-025e2043b09e}</Project>
-      <Name>Security</Name>
-    </ProjectReference>
+    <Compile Include="TxnCodes.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -73,3 +73,5 @@ D:\CSE545\SBSv2\SBS\Business\bin\Debug\Security.pdb
 D:\CSE545\SBSv2\SBS\Business\obj\Debug\Business.csprojResolveAssemblyReference.cache
 D:\CSE545\SBSv2\SBS\Business\obj\Debug\Business.dll
 D:\CSE545\SBSv2\SBS\Business\obj\Debug\Business.pdb
+D:\CSE545\SBSv2\SBS\Business\bin\Debug\Mnemonics.dll
+D:\CSE545\SBSv2\SBS\Business\bin\Debug\Mnemonics.pdb
