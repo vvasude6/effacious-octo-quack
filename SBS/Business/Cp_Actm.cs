@@ -12,6 +12,7 @@ namespace Business
     public class Cp_Actm
     {
         Entity.Actm actm;
+        Decimal newBal;
         public Entity.Actm actmP 
         { 
             get
@@ -47,8 +48,8 @@ namespace Business
             {
                 if (this.getCreditAllowed())
                 {
-                    Decimal newBal = this.actmP.ac_bal + changeAmount;
-                    this.actmP.ac_bal = newBal;
+                    this.newBal = this.actmP.ac_bal + changeAmount;
+                    this.actmP.ac_bal = this.newBal;
                     // Check if newBal is at most as much as the maximum balance allowed for the account through ACPRM table.
 
                     // Update newBal in Actm.
@@ -70,8 +71,8 @@ namespace Business
             {
                 if (this.getDebitAllowed())
                 {
-                    Decimal newBal = this.actmP.ac_bal - changeAmount;
-                    this.actmP.ac_bal = newBal;
+                    this.newBal = this.actmP.ac_bal - changeAmount;
+                    this.actmP.ac_bal = this.newBal;
                     // need to implement minimum balance check through new account type parameter table ACPRM
 
                     // Update newBal in Actm.
