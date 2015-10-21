@@ -11,6 +11,12 @@ namespace Mnemonics
         public static String TX_BALINQ = "010";
         public static String TX_DEBIT = "011";
         public static String TX_CREDIT = "012";
-        public static String TX_FUNDS_TRANSFER = "013";
+        public static String TX_HIGHVAL_CREDIT = "013";
+        public static String TX_SENT_TO_APPROVER = "014";
+        public static String TX_TRANSFER_DEBIT = "015";
+        public static String TX_TRANSFER_CREDIT = "016";
+        public static String TX_INT_TRANSFER = "017";
+        public static String TX_INT_HIVAL_TRANSFER = "018";
+        public static String TX_EXT_TRANSFER = "019";
     }
 }
