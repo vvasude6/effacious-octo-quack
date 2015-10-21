@@ -1,0 +1,5 @@
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Security\bin\Release\Security.dll
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Security\bin\Release\Security.pdb
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Security\obj\Release\Security.dll
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Security\obj\Release\Security.pdb
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Security\obj\Release\Security.csprojResolveAssemblyReference.cache

@@ -19,3 +19,34 @@ C:\Users\Jon\Google Drive\CSE545 - Project\SBS\Data\bin\Debug\Security.pdb
 C:\Users\Jon\Google Drive\CSE545 - Project\SBS\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
 C:\Users\Jon\Google Drive\CSE545 - Project\SBS\Data\obj\Debug\Data.dll
 C:\Users\Jon\Google Drive\CSE545 - Project\SBS\Data\obj\Debug\Data.pdb
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Data\bin\Debug\Data.dll
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Data\bin\Debug\Data.pdb
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Data\bin\Debug\Entity.dll
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Data\bin\Debug\Security.dll
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Data\bin\Debug\Entity.pdb
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Data\bin\Debug\Security.pdb
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Data\obj\Debug\Data.dll
+C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Data\obj\Debug\Data.pdb
+D:\CSE545\OctoQuack\SBS\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
+D:\CSE545\OctoQuack\SBS\Data\obj\Debug\Data.dll
+D:\CSE545\OctoQuack\SBS\Data\obj\Debug\Data.pdb
+D:\CSE545\OctoQuack\SBS\Data\bin\Debug\Data.dll
+D:\CSE545\OctoQuack\SBS\Data\bin\Debug\Data.pdb
+D:\CSE545\OctoQuack\SBS\Data\bin\Debug\Entity.dll
+D:\CSE545\OctoQuack\SBS\Data\bin\Debug\Security.dll
+D:\CSE545\OctoQuack\SBS\Data\bin\Debug\Entity.pdb
+D:\CSE545\OctoQuack\SBS\Data\bin\Debug\Security.pdb
+D:\CSE545\OctoQuack\SBS\Data\bin\Debug\Mnemonics.dll
+D:\CSE545\OctoQuack\SBS\Data\bin\Debug\Mnemonics.pdb
+D:\CSE545\SBSv2\SBS\Data\bin\Debug\Data.dll
+D:\CSE545\SBSv2\SBS\Data\bin\Debug\Data.pdb
+D:\CSE545\SBSv2\SBS\Data\bin\Debug\Entity.dll
+D:\CSE545\SBSv2\SBS\Data\bin\Debug\Security.dll
+D:\CSE545\SBSv2\SBS\Data\bin\Debug\Entity.pdb
+D:\CSE545\SBSv2\SBS\Data\bin\Debug\Security.pdb
+D:\CSE545\SBSv2\SBS\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
+D:\CSE545\SBSv2\SBS\Data\obj\Debug\Data.dll
+D:\CSE545\SBSv2\SBS\Data\obj\Debug\Data.pdb
+D:\CSE545\SBSv2\SBS\Data\bin\Debug\Mnemonics.dll
+D:\CSE545\SBSv2\SBS\Data\bin\Debug\Mnemonics.pdb

@@ -6,13 +6,16 @@ using System.Threading.Tasks;
 
 namespace Business
 {
-    class XSwitch
+    public class XSwitch
     {
-        XSwitch(String inData)
+        String result;
+        public String resultP { get { return result; } }
+        public XSwitch(string connectionString, String inData)
         {
             char[] delimiters = { '|' };
             String[] dataPart = inData.Split(delimiters);
-            String result;
+            
+            
             // part[0] = transaction id
             // part[1] = account number 1
             // part[2] = account number 2
@@ -23,11 +26,11 @@ namespace Business
                 switch (dataPart[0])
                 {
                     case "010": // Balance Inquiry
-                        Y_010 y010 = new Y_010(dataPart[1]);
+                        Y_010 y010 = new Y_010(connectionString, dataPart[1]);
                         result = y010.getOutput();
                         break;
                     case "011": // Debit
-                        Y_011 y011 = new Y_011(dataPart[1]);
+                        Y_011 y011 = new Y_011(connectionString, dataPart[1], Convert.ToDecimal(dataPart[2]));
                         result = y011.getOutput();
                         break;
                     case "012": // Credit
@@ -35,7 +38,7 @@ namespace Business
                         result = y012.getOutput();
                         break;
                     case "013": // Funds Transfer
-                        Y_013 y013 = new Y_013(dataPart[1], dataPart[2]);
+                        Y_013 y013 = new Y_013(connectionString, dataPart[1], dataPart[2], Convert.ToDecimal(dataPart[3]));
                         result = y013.getOutput();
                         break;
                 }
@@ -43,6 +46,7 @@ namespace Business
             catch (Exception e)
             {
                 String error = e.ToString();
+                throw e;
             }
         }
     }

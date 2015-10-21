@@ -3,30 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Data;
+using Mnemonics;
 
 namespace Business
 {
     // Code for BALANE INQUIRY transaction
     class Y_010
     {
-        String TXID = Mnemonics.TX_BALINQ;
-        //Byte noInstance = 0;
+        String TXID = Mnemonics.TxnCodes.TX_BALINQ;
         String error;
-        //Dber dberr;
-        Actm acct;
-        Txnm tx;
+        Cp_Actm acct;
+        Cp_Txnm tx;
         Privilege pvg;
         Sequence seq;
-        Dber dberr;
+        Data.Dber dberr;
         String result;
         public String resultP { get; set; }
-        public Y_010(String acc_no)
+        public Y_010(string connectionString, String acc_no)
         {
             try
             {
-                dberr = new Dber(); // change to Data.Dber
-                processTransaction(acc_no);
-                //pvg = new Privilege();
+                dberr = new Data.Dber(); // change to Data.Dber
+                processTransaction(connectionString, acc_no, dberr);
                 // seq will generate and store transaction reference no.
                 seq = new Sequence(TXID);
             }
@@ -35,45 +34,44 @@ namespace Business
                 error = e.ToString();
             }
         }
-        private int processTransaction(String acc_no)
+        private int processTransaction(string connectionString, String acc_no, Data.Dber dberr)
         {
-            tx = new Txnm(TXID, dberr);
+            tx = new Cp_Txnm(connectionString, TXID, dberr);
             // Check if TXNM fetch for transaction type "010" is successful. Return if error encountered
-            if (dberr.ifError()) 
-                return -1;
-            acct = new Actm(acc_no, dberr);
-            // Check if ACTM fetch for account number acc_no is successful. Return if error encountered
-            if (dberr.ifError()) 
-                return -1;
-            //if (!pvg.verifyInitiatePrivilege(acct.eActm., tx.getInitPrivilegeLevel(), dberr))
-            //{
-            //    return -1;
-            //}
-            // Verify if transaction needs to be approved by some authority
-            if (tx.getApprovePrivilegeLevel() != 0)
+            if (dberr.ifError())
             {
-                if (!pvg.verifyApprovePrivilege(acct.eActmg.ac_pvg, tx.txnmP.tran_pvga, dberr))
-                {
-                    return -1;
-                }
-                result = Convert.ToString(acct.eActmg.ac_bal);
+                result = dberr.getErrorDesc(connectionString);
+                return -1;
             }
-            // Update Account Balance, etc .....
-            // this.updateTransactedData(dberr); // not required for Non Financial transactions
-
-            // Store transaction in hisory table. Determine which history table to store in based on Txnm.getTranFinType()
-            if(tx.getTranFinType())
+            acct = new Cp_Actm(connectionString, acc_no, dberr);
+            // Check if ACTM fetch for account number acc_no is successful. Return if error encountered
+            if (dberr.ifError())
+            {
+                result = dberr.getErrorDesc(connectionString);
+                return -1;
+            }
+            // Verify if account has the privilege to execute the transaction
+            pvg = new Privilege(tx.txnmP.tran_pvga, tx.txnmP.tran_pvgb, acct.actmP.ac_pvg);
+            if(!pvg.verifyPrivilege(connectionString, dberr))
+            {
+                result = dberr.getErrorDesc(connectionString);
+                return -1;
+            }
+            // Store transaction in hisory table. Determine which history table to store in based on tx.txnmP.tran_fin_type
+            if (tx.txnmP.tran_fin_type.Equals('Y'))
             {
                 // Write to FINHIST table
-                Finhist fhist = new Finhist();
-                fhist.insertIntoFinhist();
+                Entity.Finhist fhist = new Entity.Finhist(this.acct.actmP.ac_no, "0", this.tx.txnmP.tran_desc,
+                    0, 0, Convert.ToString(this.acct.actmP.ac_bal), "0", "0");
+                Data.FinhistD.Create(connectionString, fhist, dberr);
             }
             else
             {
                 // Write to NFINHIST table
-                Nfinhist nFHist = new Nfinhist();
-                nFHist.insertIntoNonFinhist();
+                Entity.Nfinhist nFhist = new Entity.Nfinhist(this.acct.actmP.ac_no, "0", this.tx.txnmP.tran_desc, "0", "0");
+                Data.NfinhistD.Create(connectionString, nFhist, dberr);
             }
+            result = Convert.ToString(acct.actmP.ac_bal - acct.actmP.ac_hold);
             return 0;
         }
         private Boolean updateTransactedData()
@@ -82,14 +80,15 @@ namespace Business
         }
         public String getOutput()
         {
-            if(dberr.ifError())
+            return result;
+            /*if(dberr.ifError())
             {
                 return dberr.getErrorDesc();
             }
             else
             {
                 return Convert.ToString(acct.getBalance());
-            }
+            }*/
         }
     }
 }
