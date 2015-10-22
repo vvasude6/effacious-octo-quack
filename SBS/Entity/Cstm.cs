@@ -18,7 +18,7 @@ namespace Entity
         public String cs_city { get; set; }
         public String cs_state { get; set; }
         public String cs_zip { get; set; }
-        public String cs_brnch { get; set; }
+        public String cs_branch { get; set; }
         public String cs_phn { get; set; }
         public String cs_email { get; set; }
         public String cs_uid { get; set; }
@@ -30,8 +30,8 @@ namespace Entity
         public String cs_ans3 { get; set; }
         public String cs_access { get; set; }
 
-        public String cs_pw { get; set; }
-        public String cs_usr { get; set; }
+        public String cs_pass { get; set; }
+        public String cs_uname { get; set; }
 
 
         }

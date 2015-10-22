@@ -28,7 +28,7 @@ namespace Entity
         public String emp_secq2 { get; set; }
         public String emp_ans2 { get; set; }
         public String emp_secq3 { get; set; }
-        public String emp_pw { get; set; }
-        public String emp_usr{ get; set; }
+        public String emp_pass { get; set; }
+        public String emp_uname { get; set; }
     }
 }
