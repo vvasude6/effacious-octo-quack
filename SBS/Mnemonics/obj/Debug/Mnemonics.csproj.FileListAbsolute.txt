@@ -1,0 +1,5 @@
+F:\Programs\SBSv3\effacious-octo-quack\SBS\Mnemonics\bin\Debug\Mnemonics.dll
+F:\Programs\SBSv3\effacious-octo-quack\SBS\Mnemonics\bin\Debug\Mnemonics.pdb
+F:\Programs\SBSv3\effacious-octo-quack\SBS\Mnemonics\obj\Debug\Mnemonics.csprojResolveAssemblyReference.cache
+F:\Programs\SBSv3\effacious-octo-quack\SBS\Mnemonics\obj\Debug\Mnemonics.dll
+F:\Programs\SBSv3\effacious-octo-quack\SBS\Mnemonics\obj\Debug\Mnemonics.pdb

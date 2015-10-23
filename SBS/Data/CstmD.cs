@@ -10,7 +10,7 @@ namespace Data
 {
     public static class CstmD
     {
-        public static Cstm Read(string connectionString, string id)
+        public static Cstm Read(string connectionString, string id, Dber dberr)
         {
             try
             {
@@ -46,9 +46,11 @@ namespace Data
                     customerMasterObject.cs_ans3 = data.Tables[0].Rows[0]["cs_sec_ans3"].ToString();
                     return customerMasterObject;
                 }
-
                 else
+                {
+                    dberr.setError(Mnemonics.DbErrorCodes.DBERR_ACTM_NOFIND);
                     return null;
+                }
             }
             catch (Exception ex)
             {
@@ -62,7 +64,7 @@ namespace Data
             return  DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
         }
 
-        public static int Create(string connectionString, Cstm dataObject)
+        public static int Create(string connectionString, Cstm dataObject, Dber dberr)
         {
             try
             {
@@ -84,11 +86,12 @@ namespace Data
             }
             catch (Exception ex)
             {
-                throw ex;
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_ACTM_NOFIND);
+                return -1;
             }
         }
 
-        public static bool Update(string connectionString, Cstm dataObject)
+        public static bool Update(string connectionString, Cstm dataObject, Dber dberr)
         {
             throw new NotImplementedException();
         }
