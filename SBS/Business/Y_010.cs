@@ -11,7 +11,7 @@ namespace Business
     // Code for BALANE INQUIRY transaction
     class Y_010
     {
-        String TXID = Mnemonics.TxnCodes.TX_BALINQ;
+        String TXID;
         String error;
         Cp_Actm acct;
         Cp_Txnm tx;
@@ -19,11 +19,19 @@ namespace Business
         Sequence seq;
         Data.Dber dberr;
         String result;
+        public String resultGet
+        {
+            get
+            {
+                return this.result;
+            }
+        }
         public String resultP { get; set; }
-        public Y_010(string connectionString, String acc_no)
+        public Y_010(String txid, String connectionString, String acc_no)
         {
             try
             {
+                this.TXID = txid;
                 dberr = new Data.Dber(); // change to Data.Dber
                 processTransaction(connectionString, acc_no, dberr);
                 // seq will generate and store transaction reference no.
