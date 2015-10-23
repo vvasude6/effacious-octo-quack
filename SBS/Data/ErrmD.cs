@@ -27,9 +27,10 @@ namespace Data
 
                     return ErrorMasterObject;
                 }
-
                 else
+                {
                     return null;
+                }
             }
             catch (Exception ex)
             {

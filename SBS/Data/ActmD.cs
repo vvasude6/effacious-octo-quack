@@ -10,7 +10,7 @@ namespace Data
 {
     public static class ActmD
     {
-        public static Actm Read(string connectionString, string acc_no)
+        public static Actm Read(string connectionString, string acc_no, Dber dberr)
         {
             try
             {
@@ -35,9 +35,11 @@ namespace Data
 
                     return accountMasterObject;
                 }
-
                 else
-                    return null;
+                {
+                    dberr.setError(Mnemonics.DbErrorCodes.DBERR_ACTM_NOFIND);
+                    return null; 
+                }
             }
             catch(Exception ex)
             {
@@ -45,7 +47,7 @@ namespace Data
             }
         }
 
-        public static DataSet ReadAll()
+        public static DataSet ReadAll(Dber dberr)
         {
             throw new NotImplementedException();
             try
@@ -59,7 +61,7 @@ namespace Data
             }
         }
 
-        public static int Create(Actm actmObject)
+        public static int Create(Actm actmObject, Dber dberr)
         {
             throw new NotImplementedException();
             try
@@ -73,7 +75,7 @@ namespace Data
             }
         }
         
-        public static bool Delete (string acc_no)
+        public static bool Delete (string acc_no, Dber dber)
         {
             throw new NotImplementedException();
             try
@@ -87,7 +89,7 @@ namespace Data
             }
         }
 
-        public static bool Update(Actm actmObject)
+        public static bool Update(Actm actmObject, Dber dberr)
         {
             throw new NotImplementedException();
             try

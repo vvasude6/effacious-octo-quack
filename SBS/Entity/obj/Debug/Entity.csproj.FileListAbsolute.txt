@@ -16,3 +16,10 @@ D:\CSE545\OctoQuack\SBS\Entity\bin\Debug\Entity.pdb
 D:\CSE545\OctoQuack\SBS\Entity\obj\Debug\Entity.csprojResolveAssemblyReference.cache
 D:\CSE545\OctoQuack\SBS\Entity\obj\Debug\Entity.dll
 D:\CSE545\OctoQuack\SBS\Entity\obj\Debug\Entity.pdb
+D:\CSE545\SBSv2\SBS\Entity\bin\Debug\Entity.dll
+D:\CSE545\SBSv2\SBS\Entity\bin\Debug\Entity.pdb
+D:\CSE545\SBSv2\SBS\Entity\obj\Debug\Entity.dll
+D:\CSE545\SBSv2\SBS\Entity\obj\Debug\Entity.pdb
+D:\CSE545\SBSv2\SBS\Entity\bin\Debug\Mnemonics.dll
+D:\CSE545\SBSv2\SBS\Entity\bin\Debug\Mnemonics.pdb
+D:\CSE545\SBSv2\SBS\Entity\obj\Debug\Entity.csprojResolveAssemblyReference.cache

@@ -51,6 +51,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Txnm.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Mnemonics\Mnemonics.csproj">
+      <Project>{7f750235-d41a-4136-89ee-4bd00d76e801}</Project>
+      <Name>Mnemonics</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

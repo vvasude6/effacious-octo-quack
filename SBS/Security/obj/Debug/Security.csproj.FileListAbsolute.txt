@@ -23,3 +23,8 @@ D:\CSE545\OctoQuack\SBS\Security\obj\Debug\Security.csprojResolveAssemblyReferen
 D:\CSE545\OctoQuack\SBS\Security\obj\Debug\Security.dll
 D:\CSE545\OctoQuack\SBS\Security\obj\Debug\Security.pdb
 C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Security\obj\Debug\Security.csprojResolveAssemblyReference.cache
+D:\CSE545\SBSv2\SBS\Security\bin\Debug\Security.dll
+D:\CSE545\SBSv2\SBS\Security\bin\Debug\Security.pdb
+D:\CSE545\SBSv2\SBS\Security\obj\Debug\Security.csprojResolveAssemblyReference.cache
+D:\CSE545\SBSv2\SBS\Security\obj\Debug\Security.dll
+D:\CSE545\SBSv2\SBS\Security\obj\Debug\Security.pdb

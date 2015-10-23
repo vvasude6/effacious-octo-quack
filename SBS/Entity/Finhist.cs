@@ -8,6 +8,7 @@ namespace Entity
 {
     public class Finhist
     {
+        private static String DATE_FORMAT = "en-US"; 
         public String ac_no { get; set; }
         public String ref_no { get; set; }
         public String tran_date { get; set; }
@@ -18,5 +19,22 @@ namespace Entity
         public String rem_bal { get; set; }
         public String init_empid { get; set; }
         public String apprv_empid { get; set; }
+        public Finhist()
+        { }
+        public Finhist(String acno, String refno, String trandesc, Decimal dramt,
+            Decimal cramt, String rembal, String initempid, String apprvempid)
+        {
+            DateTime dt = DateTime.Now;
+            this.ac_no = acno;
+            this.ref_no = refno;
+            this.tran_date = dt.Date.ToString(Finhist.DATE_FORMAT);
+            this.tran_timestamp = dt.ToString(Finhist.DATE_FORMAT);
+            this.tran_desc = trandesc;
+            this.dr_amt = dramt;
+            this.cr_amt = cramt;
+            this.rem_bal = rembal;
+            this.init_empid = initempid;
+            this.apprv_empid = apprvempid;
+        }
     }
 }

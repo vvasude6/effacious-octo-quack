@@ -29,24 +29,21 @@ namespace Data
                     customerMasterObject.cs_access = data.Tables[0].Rows[0]["cs_access"].ToString();
                     customerMasterObject.cs_addr1 = data.Tables[0].Rows[0]["cs_addr1"].ToString();
                     customerMasterObject.cs_addr2 = data.Tables[0].Rows[0]["cs_addr2"].ToString();
-                    customerMasterObject.cs_brnch = data.Tables[0].Rows[0]["cs_brnch"].ToString();
+                    customerMasterObject.cs_branch = data.Tables[0].Rows[0]["cs_branch"].ToString();
                     customerMasterObject.cs_city = data.Tables[0].Rows[0]["cs_city"].ToString();
                     customerMasterObject.cs_email = data.Tables[0].Rows[0]["cs_email"].ToString();
                     customerMasterObject.cs_phn = data.Tables[0].Rows[0]["cs_phn"].ToString();
                     customerMasterObject.cs_zip = data.Tables[0].Rows[0]["cs_zip"].ToString();
-                    customerMasterObject.cs_usr = data.Tables[0].Rows[0]["cs_usr"].ToString();
-                    customerMasterObject.cs_pw = data.Tables[0].Rows[0]["cs_pw"].ToString();
-                    customerMasterObject.cs_secq1 = data.Tables[0].Rows[0]["cs_seq1"].ToString();
-                    customerMasterObject.cs_secq2 = data.Tables[0].Rows[0]["cs_seq2"].ToString();
-                    customerMasterObject.cs_secq3 = data.Tables[0].Rows[0]["cs_seq3"].ToString();
+                    customerMasterObject.cs_uname = data.Tables[0].Rows[0]["cs_uname"].ToString();
+                    customerMasterObject.cs_pass = data.Tables[0].Rows[0]["cs_pass"].ToString();
+                    customerMasterObject.cs_secq1 = data.Tables[0].Rows[0]["cs_sec_qs1"].ToString();
+                    customerMasterObject.cs_secq2 = data.Tables[0].Rows[0]["cs_sec_qs2"].ToString();
+                    customerMasterObject.cs_secq3 = data.Tables[0].Rows[0]["cs_sec_qs3"].ToString();
                     customerMasterObject.cs_state = data.Tables[0].Rows[0]["cs_state"].ToString();
                     customerMasterObject.cs_uid = data.Tables[0].Rows[0]["cs_uid"].ToString();
-                    customerMasterObject.cs_ans1 = data.Tables[0].Rows[0]["cs_ans1"].ToString();
-                    customerMasterObject.cs_ans2 = data.Tables[0].Rows[0]["cs_ans2"].ToString();
-                    customerMasterObject.cs_ans3 = data.Tables[0].Rows[0]["cs_ans3"].ToString();
-
-
-
+                    customerMasterObject.cs_ans1 = data.Tables[0].Rows[0]["cs_sec_ans1"].ToString();
+                    customerMasterObject.cs_ans2 = data.Tables[0].Rows[0]["cs_sec_ans2"].ToString();
+                    customerMasterObject.cs_ans3 = data.Tables[0].Rows[0]["cs_sec_ans3"].ToString();
                     return customerMasterObject;
                 }
 
@@ -61,18 +58,34 @@ namespace Data
 
         public static DataSet ReadAll(string connectionString)
         {
-            throw new NotImplementedException();
-
-
-            //var customerMasterObject = new Cstm();
             var query = string.Format("select * from cstm");
             return  DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
-
         }
 
         public static int Create(string connectionString, Cstm dataObject)
         {
-            throw new NotImplementedException();
+            try
+            {
+
+                var query = string.Format(@"INSERT INTO [SBS].[dbo].[CSTM]
+                    ([CS_TYPE],[CS_FNAME],[CS_MNAME],[CS_LNAME],[CS_ADDR1],[CS_ADDR2],[CS_ZIP],[CS_CITY]
+                    ,[CS_STATE],[CS_PHN],[CS_EMAIL],[CS_UID],[CS_BRANCH],[CS_SEC_QS1],[CS_SEC_ANS1],[CS_SEC_QS2],[CS_SEC_ANS2]
+                    ,[CS_SEC_QS3],[CS_SEC_ANS3],[CS_ACCESS],[CS_UNAME],[CS_PASS])
+                    OUTPUT INSERTED.CS_NO            
+                    VALUES
+                    ('{0}'  ,'{1}','{2}'  ,'{3}'  ,'{4}'  ,'{5}'  ,'{6}'  ,'{7}' ,'{8}'  ,'{9}'  ,'{10}' ,'{11}',
+                     '{12}' ,'{13}' ,'{14}' ,'{15}' ,'{16}' ,'{17}' ,'{18}' ,'{19}' ,'{20}' ,'{21}')",
+                dataObject.cs_type, dataObject.cs_fname, dataObject.cs_mname, dataObject.cs_lname,
+                dataObject.cs_addr1, dataObject.cs_addr2, dataObject.cs_zip, dataObject.cs_city, dataObject.cs_state,
+                dataObject.cs_phn, dataObject.cs_email, dataObject.cs_uid, dataObject.cs_branch, dataObject.cs_secq1,
+                dataObject.cs_ans1, dataObject.cs_secq2, dataObject.cs_ans2, dataObject.cs_secq3, dataObject.cs_ans3,
+                dataObject.cs_access, dataObject.cs_uname, dataObject.cs_pass);
+                return (int)DbAccess.ExecuteScalar(connectionString, CommandType.Text, query);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public static bool Update(string connectionString, Cstm dataObject)
@@ -82,7 +95,16 @@ namespace Data
 
         public static bool Delete(string connectionString, string id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var query = string.Format("delete from cstm where cs_no = {0}", id);
+                return DbAccess.ExecuteNonQuery(connectionString, CommandType.Text, query) == 1;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

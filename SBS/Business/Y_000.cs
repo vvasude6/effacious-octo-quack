@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace Business
 {
-    public class Class1
+    class Y_000
     {
-        
     }
 }
