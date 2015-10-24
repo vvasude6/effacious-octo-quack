@@ -21,36 +21,35 @@ namespace Data
                 //assign the data object to customer master object
                 if (data.Tables[0].Rows.Count > 0)
                 {
-                    customerMasterObject.cs_no = data.Tables[0].Rows[0]["cs_no"].ToString();
-                    customerMasterObject.cs_type = data.Tables[0].Rows[0]["cs_type"].ToString();
-                    customerMasterObject.cs_fname = data.Tables[0].Rows[0]["cs_fname"].ToString();
-                    customerMasterObject.cs_mname = data.Tables[0].Rows[0]["cs_mname"].ToString();
-                    customerMasterObject.cs_lname = data.Tables[0].Rows[0]["cs_lname"].ToString();
-                    customerMasterObject.cs_access = data.Tables[0].Rows[0]["cs_access"].ToString();
-                    customerMasterObject.cs_addr1 = data.Tables[0].Rows[0]["cs_addr1"].ToString();
-                    customerMasterObject.cs_addr2 = data.Tables[0].Rows[0]["cs_addr2"].ToString();
-                    customerMasterObject.cs_branch = data.Tables[0].Rows[0]["cs_branch"].ToString();
-                    customerMasterObject.cs_city = data.Tables[0].Rows[0]["cs_city"].ToString();
-                    customerMasterObject.cs_email = data.Tables[0].Rows[0]["cs_email"].ToString();
-                    customerMasterObject.cs_phn = data.Tables[0].Rows[0]["cs_phn"].ToString();
-                    customerMasterObject.cs_zip = data.Tables[0].Rows[0]["cs_zip"].ToString();
-                    customerMasterObject.cs_uname = data.Tables[0].Rows[0]["cs_uname"].ToString();
-                    customerMasterObject.cs_pass = data.Tables[0].Rows[0]["cs_pass"].ToString();
-                    customerMasterObject.cs_secq1 = data.Tables[0].Rows[0]["cs_sec_qs1"].ToString();
-                    customerMasterObject.cs_secq2 = data.Tables[0].Rows[0]["cs_sec_qs2"].ToString();
-                    customerMasterObject.cs_secq3 = data.Tables[0].Rows[0]["cs_sec_qs3"].ToString();
-                    customerMasterObject.cs_state = data.Tables[0].Rows[0]["cs_state"].ToString();
-                    customerMasterObject.cs_uid = data.Tables[0].Rows[0]["cs_uid"].ToString();
-                    customerMasterObject.cs_ans1 = data.Tables[0].Rows[0]["cs_sec_ans1"].ToString();
-                    customerMasterObject.cs_ans2 = data.Tables[0].Rows[0]["cs_sec_ans2"].ToString();
-                    customerMasterObject.cs_ans3 = data.Tables[0].Rows[0]["cs_sec_ans3"].ToString();
-                    return customerMasterObject;
+                    return GetCstmObject(data.Tables[0].Rows[0]);
+                    //customerMasterObject.cs_no = data.Tables[0].Rows[0]["cs_no"].ToString();
+                    //customerMasterObject.cs_type = data.Tables[0].Rows[0]["cs_type"].ToString();
+                    //customerMasterObject.cs_fname = data.Tables[0].Rows[0]["cs_fname"].ToString();
+                    //customerMasterObject.cs_mname = data.Tables[0].Rows[0]["cs_mname"].ToString();
+                    //customerMasterObject.cs_lname = data.Tables[0].Rows[0]["cs_lname"].ToString();
+                    //customerMasterObject.cs_access = data.Tables[0].Rows[0]["cs_access"].ToString();
+                    //customerMasterObject.cs_addr1 = data.Tables[0].Rows[0]["cs_addr1"].ToString();
+                    //customerMasterObject.cs_addr2 = data.Tables[0].Rows[0]["cs_addr2"].ToString();
+                    //customerMasterObject.cs_branch = data.Tables[0].Rows[0]["cs_branch"].ToString();
+                    //customerMasterObject.cs_city = data.Tables[0].Rows[0]["cs_city"].ToString();
+                    //customerMasterObject.cs_email = data.Tables[0].Rows[0]["cs_email"].ToString();
+                    //customerMasterObject.cs_phn = data.Tables[0].Rows[0]["cs_phn"].ToString();
+                    //customerMasterObject.cs_zip = data.Tables[0].Rows[0]["cs_zip"].ToString();
+                    //customerMasterObject.cs_uname = data.Tables[0].Rows[0]["cs_uname"].ToString();
+                    //customerMasterObject.cs_pass = data.Tables[0].Rows[0]["cs_pass"].ToString();
+                    //customerMasterObject.cs_secq1 = data.Tables[0].Rows[0]["cs_sec_qs1"].ToString();
+                    //customerMasterObject.cs_secq2 = data.Tables[0].Rows[0]["cs_sec_qs2"].ToString();
+                    //customerMasterObject.cs_secq3 = data.Tables[0].Rows[0]["cs_sec_qs3"].ToString();
+                    //customerMasterObject.cs_state = data.Tables[0].Rows[0]["cs_state"].ToString();
+                    //customerMasterObject.cs_uid = data.Tables[0].Rows[0]["cs_uid"].ToString();
+                    //customerMasterObject.cs_ans1 = data.Tables[0].Rows[0]["cs_sec_ans1"].ToString();
+                    //customerMasterObject.cs_ans2 = data.Tables[0].Rows[0]["cs_sec_ans2"].ToString();
+                    //customerMasterObject.cs_ans3 = data.Tables[0].Rows[0]["cs_sec_ans3"].ToString();
+                    //return customerMasterObject;
                 }
+
                 else
-                {
-                    dberr.setError(Mnemonics.DbErrorCodes.DBERR_ACTM_NOFIND);
                     return null;
-                }
             }
             catch (Exception ex)
             {
@@ -58,7 +57,30 @@ namespace Data
             }
         }
 
-        public static DataSet ReadAll(string connectionString)
+        public static Cstm Read(string connectionString, string userName, string password, Dber dberr)
+        {
+            try
+            {
+                var customerMasterObject = new Cstm();
+                var query = string.Format("select * from cstm where cs_uname = '{0}' and cs_pass= '{1}'", userName, password);
+                var data = DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
+
+                //assign the data object to customer master object
+                if (data.Tables[0].Rows.Count > 0)
+                {
+                    return GetCstmObject(data.Tables[0].Rows[0]);
+                }
+
+                else
+                    return null;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static DataSet ReadAll(string connectionString, Dber dberr)
         {
             var query = string.Format("select * from cstm");
             return  DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
@@ -86,8 +108,7 @@ namespace Data
             }
             catch (Exception ex)
             {
-                dberr.setError(Mnemonics.DbErrorCodes.DBERR_ACTM_NOFIND);
-                return -1;
+                throw ex;
             }
         }
 
@@ -96,7 +117,7 @@ namespace Data
             throw new NotImplementedException();
         }
 
-        public static bool Delete(string connectionString, string id)
+        public static bool Delete(string connectionString, string id, Dber dberr)
         {
             try
             {
@@ -108,6 +129,35 @@ namespace Data
             {
                 throw ex;
             }
+        }
+
+        private static Cstm GetCstmObject(DataRow row)
+        {
+            var customerMasterObject = new Cstm();
+            customerMasterObject.cs_no = row["cs_no"].ToString();
+            customerMasterObject.cs_type = row["cs_type"].ToString();
+            customerMasterObject.cs_fname = row["cs_fname"].ToString();
+            customerMasterObject.cs_mname = row["cs_mname"].ToString();
+            customerMasterObject.cs_lname = row["cs_lname"].ToString();
+            customerMasterObject.cs_access = row["cs_access"].ToString();
+            customerMasterObject.cs_addr1 = row["cs_addr1"].ToString();
+            customerMasterObject.cs_addr2 = row["cs_addr2"].ToString();
+            customerMasterObject.cs_branch = row["cs_branch"].ToString();
+            customerMasterObject.cs_city = row["cs_city"].ToString();
+            customerMasterObject.cs_email = row["cs_email"].ToString();
+            customerMasterObject.cs_phn = row["cs_phn"].ToString();
+            customerMasterObject.cs_zip = row["cs_zip"].ToString();
+            customerMasterObject.cs_uname = row["cs_uname"].ToString();
+            customerMasterObject.cs_pass = row["cs_pass"].ToString();
+            customerMasterObject.cs_secq1 = row["cs_sec_qs1"].ToString();
+            customerMasterObject.cs_secq2 = row["cs_sec_qs2"].ToString();
+            customerMasterObject.cs_secq3 = row["cs_sec_qs3"].ToString();
+            customerMasterObject.cs_state = row["cs_state"].ToString();
+            customerMasterObject.cs_uid = row["cs_uid"].ToString();
+            customerMasterObject.cs_ans1 = row["cs_sec_ans1"].ToString();
+            customerMasterObject.cs_ans2 = row["cs_sec_ans2"].ToString();
+            customerMasterObject.cs_ans3 = row["cs_sec_ans3"].ToString();
+            return customerMasterObject;
         }
     }
 }

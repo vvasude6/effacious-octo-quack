@@ -21,5 +21,7 @@ namespace Entity
         public String ac_dr_flag { get; set; }
         public String ac_cr_flag { get; set; }
         public String ac_open_dt { get; set; }
+        public bool ac_activ { get; set; }
+
     }
 }

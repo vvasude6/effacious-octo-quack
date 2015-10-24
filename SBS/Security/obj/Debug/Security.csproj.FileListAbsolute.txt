@@ -46,3 +46,9 @@ D:\SoftwareSecurity\v1\effacious-octo-quack\SBS\Security\bin\Debug\Google.Authen
 D:\SoftwareSecurity\v1\effacious-octo-quack\SBS\Security\obj\Debug\Security.csprojResolveAssemblyReference.cache
 D:\SoftwareSecurity\v1\effacious-octo-quack\SBS\Security\obj\Debug\Security.dll
 D:\SoftwareSecurity\v1\effacious-octo-quack\SBS\Security\obj\Debug\Security.pdb
+C:\Ajith\Fall2015\CSE545\v1\effacious-octo-quack\SBS\Security\bin\Debug\Security.dll
+C:\Ajith\Fall2015\CSE545\v1\effacious-octo-quack\SBS\Security\bin\Debug\Security.pdb
+C:\Ajith\Fall2015\CSE545\v1\effacious-octo-quack\SBS\Security\bin\Debug\Google.Authenticator.dll
+C:\Ajith\Fall2015\CSE545\v1\effacious-octo-quack\SBS\Security\obj\Debug\Security.csprojResolveAssemblyReference.cache
+C:\Ajith\Fall2015\CSE545\v1\effacious-octo-quack\SBS\Security\obj\Debug\Security.dll
+C:\Ajith\Fall2015\CSE545\v1\effacious-octo-quack\SBS\Security\obj\Debug\Security.pdb

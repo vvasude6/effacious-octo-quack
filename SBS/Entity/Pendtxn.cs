@@ -9,7 +9,7 @@ namespace Entity
     public class Pendtxn
     {
         private static String DATE_FORMAT = "en-US";
-        public Decimal cr_amt {get; set;}
+        public Decimal cr_amt { get; set; }
         public String ref_no { get; set; }
         public String tran_date { get; set; }
         public String ac_no { get; set; }

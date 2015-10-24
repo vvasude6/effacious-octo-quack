@@ -13,3 +13,8 @@ D:\SoftwareSecurity\v1\effacious-octo-quack\SBS\Mnemonics\bin\Debug\Mnemonics.pd
 D:\SoftwareSecurity\v1\effacious-octo-quack\SBS\Mnemonics\obj\Debug\Mnemonics.csprojResolveAssemblyReference.cache
 D:\SoftwareSecurity\v1\effacious-octo-quack\SBS\Mnemonics\obj\Debug\Mnemonics.dll
 D:\SoftwareSecurity\v1\effacious-octo-quack\SBS\Mnemonics\obj\Debug\Mnemonics.pdb
+C:\Ajith\Fall2015\CSE545\v1\effacious-octo-quack\SBS\Mnemonics\bin\Debug\Mnemonics.dll
+C:\Ajith\Fall2015\CSE545\v1\effacious-octo-quack\SBS\Mnemonics\bin\Debug\Mnemonics.pdb
+C:\Ajith\Fall2015\CSE545\v1\effacious-octo-quack\SBS\Mnemonics\obj\Debug\Mnemonics.csprojResolveAssemblyReference.cache
+C:\Ajith\Fall2015\CSE545\v1\effacious-octo-quack\SBS\Mnemonics\obj\Debug\Mnemonics.dll
+C:\Ajith\Fall2015\CSE545\v1\effacious-octo-quack\SBS\Mnemonics\obj\Debug\Mnemonics.pdb
