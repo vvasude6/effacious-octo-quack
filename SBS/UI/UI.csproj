@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="Admin.aspx" />
     <Content Include="CheckBalance.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -69,6 +70,8 @@
     <Content Include="css\bootstrap.css" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\Custom.css" />
+    <Content Include="CustProfileUpdate.aspx" />
+    <Content Include="EmployeeDisplay.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -84,6 +87,7 @@
     <Content Include="Help.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="MakePayment.aspx" />
+    <Content Include="MerchantDisplay.aspx" />
     <Content Include="OTP.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -114,12 +118,30 @@
     <Compile Include="About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin.aspx.cs">
+      <DependentUpon>Admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin.aspx.designer.cs">
+      <DependentUpon>Admin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CheckBalance.aspx.cs">
       <DependentUpon>CheckBalance.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="CheckBalance.aspx.designer.cs">
       <DependentUpon>CheckBalance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CustProfileUpdate.aspx.cs">
+      <DependentUpon>CustProfileUpdate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CustProfileUpdate.aspx.designer.cs">
+      <DependentUpon>CustProfileUpdate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeDisplay.aspx.cs">
+      <DependentUpon>EmployeeDisplay.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeDisplay.aspx.designer.cs">
+      <DependentUpon>EmployeeDisplay.aspx</DependentUpon>
     </Compile>
     <Compile Include="Encryption.cs" />
     <Compile Include="Global.asax.cs">
@@ -147,6 +169,12 @@
     <Compile Include="MakePayment.aspx.designer.cs">
       <DependentUpon>MakePayment.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MerchantDisplay.aspx.cs">
+      <DependentUpon>MerchantDisplay.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MerchantDisplay.aspx.designer.cs">
+      <DependentUpon>MerchantDisplay.aspx</DependentUpon>
+    </Compile>
     <Compile Include="OTP.aspx.cs">
       <DependentUpon>OTP.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -171,7 +199,6 @@
     </Compile>
     <Compile Include="UserLogin.aspx.cs">
       <DependentUpon>UserLogin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="UserLogin.aspx.designer.cs">
       <DependentUpon>UserLogin.aspx</DependentUpon>

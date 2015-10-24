@@ -4,24 +4,20 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Windows.Forms;
 
 namespace UI
 {
-    public partial class DisplayMerchant : System.Web.UI.Page
+    public partial class CustProfileUpdate : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            LoadAccounts();
-            LoadTransactions();
 
         }
-        private void LoadAccounts()
-        {
 
-        }
-        private void LoadTransactions()
+        protected void Button1_Click(object sender, EventArgs e)
         {
-
+            
         }
     }
 }
