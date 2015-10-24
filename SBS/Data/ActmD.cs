@@ -62,6 +62,27 @@ namespace Data
             }
         }
 
+        public static DataSet GetUserAccountBalance(string connectionString, string customerNumber, Dber dberr)
+        {
+            try
+            {
+                var query = string.Format("select ac_no, ac_type, ac_bal from actm where CS_NO1 = {0} and AC_ACTIV = True", customerNumber);
+                var data = DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
+                if (data.Tables[0].Rows.Count > 0)
+                {
+                    return data;
+                }
+                else
+                {
+                    dberr.setError(Mnemonics.DbErrorCodes.DBERR_ACTM_NOFIND);
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public static int Create(string connectionString, Actm dataObject, Dber dberr)
         {
             try

@@ -72,7 +72,10 @@ namespace Data
                 }
 
                 else
+                {
+                    dberr.setError(Mnemonics.DbErrorCodes.DBERR_ACTM_NOFIND);
                     return null;
+                }
             }
             catch (Exception ex)
             {
