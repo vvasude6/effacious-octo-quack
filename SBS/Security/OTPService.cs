@@ -7,16 +7,38 @@ using Google.Authenticator;
 
 namespace Security
 {
-    public static class OTPService
+    public class OTPService
     {
-        public static bool OTPSucceeded(string secret, string userInput)
+        private const int NB_OTP = 1;
+        private const int SECRET_LENGTH = 20;
+        private OTP _otp;
+
+
+        public OTPService(string secret)
         {
-            var authenticator = new TwoFactorAuthenticator();
-            return authenticator.ValidateTwoFactorPIN(secret, userInput);
+            var unixTimestamp = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+            _otp = new OTP(secretKey: OTP.ToByteArray(TruncateLongString(unixTimestamp.ToString() + secret, 20)));
         }
 
-        //write function to send secret key via message;
-        //write function to send secret key via mail;
+        public string TruncateLongString(string str, int maxLength)
+        {
+            return str.Substring(0, Math.Min(str.Length, maxLength));
+        }
 
+        public bool VerifyOTP(string userOtp)
+        {
+            var current = _otp.GetCurrentOTP();
+            return _otp.GetCurrentOTP() == userOtp;
+        }
+
+        public string GenerateOTP(string customerFullName, string email ="", string cellPhone="", bool notifyByEmail = true)
+        {
+            var otpSecret =  _otp.GetNextOTP();
+            if (notifyByEmail)
+                OTPUtility.SendMail(customerFullName, email, otpSecret);
+            else
+                OTPUtility.SendMessage(cellPhone, otpSecret);
+            return otpSecret;
+        }
     }
 }
