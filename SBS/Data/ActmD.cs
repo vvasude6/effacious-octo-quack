@@ -32,6 +32,7 @@ namespace Data
                     accountMasterObject.ac_type = data.Tables[0].Rows[0]["ac_type"].ToString();
                     accountMasterObject.cs_no1 = data.Tables[0].Rows[0]["cs_no1"].ToString();
                     accountMasterObject.cs_no2 = data.Tables[0].Rows[0]["cs_no2"].ToString();
+                    accountMasterObject.ac_activ = Convert.ToBoolean(data.Tables[0].Rows[0]["ac_activ"].ToString());
 
                     return accountMasterObject;
                 }
@@ -47,12 +48,12 @@ namespace Data
             }
         }
 
-        public static DataSet ReadAll(Dber dberr)
+        public static DataSet ReadAll(string connectionString, Dber dberr)
         {
-            throw new NotImplementedException();
             try
             {
-                var query = "";
+                var query = string.Format("select * from actm");
+                return DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
 
             }
             catch (Exception ex)
@@ -61,13 +62,40 @@ namespace Data
             }
         }
 
-        public static int Create(Actm actmObject, Dber dberr)
+        public static DataSet GetUserAccountBalance(string connectionString, string customerNumber, Dber dberr)
         {
-            throw new NotImplementedException();
             try
             {
-                var query = "";
-
+                var query = string.Format("select ac_no, ac_type, ac_bal from actm where CS_NO1 = {0} and AC_ACTIV = True", customerNumber);
+                var data = DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
+                if (data.Tables[0].Rows.Count > 0)
+                {
+                    return data;
+                }
+                else
+                {
+                    dberr.setError(Mnemonics.DbErrorCodes.DBERR_ACTM_CUSNO_FETCH);
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public static int Create(string connectionString, Actm dataObject, Dber dberr)
+        {
+            try
+            {
+                if (dataObject.cs_no2.Trim() == string.Empty) dataObject.cs_no2 = null;
+                var query = string.Format(@"INSERT INTO [SBS].[dbo].[ACTM]
+                           ([CS_NO1],[CS_NO2],[AC_TYPE],[AC_BAL],[AC_HOLD],[AC_PVG],[AC_DR_FLAG],[AC_CR_FLAG],[AC_OPEN_DT],[AC_ACTIV])
+                            OUTPUT INSERTED.AC_NO                            
+                            VALUES
+                           ({0},{1},'{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}')",
+                            dataObject.cs_no1, dataObject.cs_no2 ?? "null", dataObject.ac_type, dataObject.ac_bal, dataObject.ac_hold,
+                            dataObject.ac_pvg, dataObject.ac_dr_flag, dataObject.ac_cr_flag, dataObject.ac_open_dt, dataObject.ac_activ);
+                return (int)DbAccess.ExecuteScalar(connectionString, CommandType.Text, query);
             }
             catch (Exception ex)
             {
@@ -75,12 +103,12 @@ namespace Data
             }
         }
         
-        public static bool Delete (string acc_no, Dber dber)
+        public static bool Delete (string connectionString, string acc_no, Dber dber)
         {
-            throw new NotImplementedException();
             try
             {
-                var query = "";
+                var query = string.Format("delete from actm where ac_no = {0}", acc_no);
+                return DbAccess.ExecuteNonQuery(connectionString, CommandType.Text, query) == 1;
 
             }
             catch (Exception ex)

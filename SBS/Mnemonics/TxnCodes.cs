@@ -8,6 +8,7 @@ namespace Mnemonics
 {
     public static class TxnCodes
     {
+        public static String TX_LOGIN = "001";
         public static String TX_BALINQ = "010";
         public static String TX_DEBIT = "011";
         public static String TX_CREDIT = "012";
@@ -18,5 +19,7 @@ namespace Mnemonics
         public static String TX_INT_TRANSFER = "017";
         public static String TX_INT_HIVAL_TRANSFER = "018";
         public static String TX_EXT_TRANSFER = "019";
+        public static String TX_TRANSFER = "020";
+        public static String TX_UPDATE_PROFILE = "021";
     }
 }

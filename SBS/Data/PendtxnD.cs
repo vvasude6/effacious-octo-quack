@@ -10,7 +10,7 @@ namespace Data
 {
     public static class PendtxnD
     {
-        public static Pendtxn Read(string connectionString, string ref_no)
+        public static Pendtxn Read(string connectionString, string ref_no, Dber dberr)
         {
             try
             {
@@ -33,16 +33,18 @@ namespace Data
 
                     return PendingTxnMasterObject;
                 }
-
                 else
+                {
+                    dberr.setError(Mnemonics.DbErrorCodes.DBERR_ACTM_NOFIND);
                     return null;
+                }
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        public static DataSet ReadAll(string connectionString)
+        public static DataSet ReadAll(string connectionString, Dber dberr)
         {
             var query = string.Format("select * from Pendtxn");
             return DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);

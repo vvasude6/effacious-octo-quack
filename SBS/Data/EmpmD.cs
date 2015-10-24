@@ -54,6 +54,51 @@ namespace Data
                 throw ex;
             }
         }
+
+        public static Empm Read(string connectionString, string userName, string password)
+        {
+            try
+            {
+                var employeeMasterObject = new Empm();
+
+                var query = string.Format("select * from empm where emp_uname = '{0}', emp_pass= '{1}' ", userName, password);
+                var data = DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
+
+                //assign the data object to employee master object
+                if (data.Tables[0].Rows.Count > 0)
+                {
+                    employeeMasterObject.emp_no = data.Tables[0].Rows[0]["emp_id"].ToString();
+                    employeeMasterObject.emp_fname = data.Tables[0].Rows[0]["emp_fname"].ToString();
+                    employeeMasterObject.emp_mname = data.Tables[0].Rows[0]["emp_mname"].ToString();
+                    employeeMasterObject.emp_lname = data.Tables[0].Rows[0]["emp_lname"].ToString();
+                    employeeMasterObject.emp_phn = data.Tables[0].Rows[0]["emp_phn"].ToString();
+                    employeeMasterObject.emp_addr1 = data.Tables[0].Rows[0]["emp_addr1"].ToString();
+                    employeeMasterObject.emp_addr2 = data.Tables[0].Rows[0]["emp_addr2"].ToString();
+                    employeeMasterObject.emp_city = data.Tables[0].Rows[0]["emp_city"].ToString();
+                    employeeMasterObject.emp_state = data.Tables[0].Rows[0]["emp_state"].ToString();
+                    employeeMasterObject.emp_zip = data.Tables[0].Rows[0]["emp_zip"].ToString();
+                    employeeMasterObject.emp_uname = data.Tables[0].Rows[0]["emp_uname"].ToString();
+                    employeeMasterObject.emp_pass = data.Tables[0].Rows[0]["emp_pass"].ToString();
+                    employeeMasterObject.emp_pvg = Convert.ToInt32(data.Tables[0].Rows[0]["emp_pvg"]);
+                    employeeMasterObject.emp_mngr = data.Tables[0].Rows[0]["emp_mngr"].ToString();
+                    employeeMasterObject.emp_brnch = data.Tables[0].Rows[0]["emp_brnch"].ToString();
+                    employeeMasterObject.emp_secq1 = data.Tables[0].Rows[0]["emp_secq1"].ToString();
+                    employeeMasterObject.emp_ans1 = data.Tables[0].Rows[0]["emp_ans1"].ToString();
+                    employeeMasterObject.emp_secq2 = data.Tables[0].Rows[0]["emp_secq2"].ToString();
+                    employeeMasterObject.emp_ans2 = data.Tables[0].Rows[0]["emp_ans2"].ToString();
+                    employeeMasterObject.emp_ans2 = data.Tables[0].Rows[0]["emp_ans2"].ToString();
+                    employeeMasterObject.emp_email = data.Tables[0].Rows[0]["emp_email"].ToString();
+                    return employeeMasterObject;
+                }
+
+                else
+                    return null;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public static DataSet ReadAll(string connectionString)
         {
             var query = string.Format("select * from Empm");
