@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Windows.Forms;
 
 namespace UI
 {
@@ -14,15 +15,29 @@ namespace UI
 
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void login_Click(object sender, EventArgs e)
+        {
+            if (Username.Text == "" || Password.Text == "")
+            {
+                MessageBox.Show("Enter the fields");
+            }
+            else
+            {   Session["Username"]=Username.Text;
+                Response.Redirect("MakePayment.aspx");
+                Response.Redirect("TransferMoney.aspx");
+                Response.Redirect("Home.aspx");
+                //Response.Redirect("");
+                String user = Username.Text;
+                String pwd = Password.Text;
+            }
+        }
+
+        protected void Forgotpassword_Click(object sender, EventArgs e)
         {
 
         }
 
-        protected void LinkButton1_Click(object sender, EventArgs e)
-        {
-
-        }
+       
 
        
     }

@@ -91,3 +91,17 @@ F:\Programs\SBSv3\effacious-octo-quack\SBS\Business\bin\Debug\Security.pdb
 F:\Programs\SBSv3\effacious-octo-quack\SBS\Business\obj\Debug\Business.pdb
 F:\Programs\SBSv4\effacious-octo-quack\SBS\Business\obj\Debug\Business.csprojResolveAssemblyReference.cache
 F:\Programs\SBSv4\effacious-octo-quack\SBS\Business\obj\Debug\Business.dll
+D:\SoftwareSecurity\v1\effacious-octo-quack\SBS\Business\bin\Debug\Business.dll
+D:\SoftwareSecurity\v1\effacious-octo-quack\SBS\Business\bin\Debug\Business.pdb
+D:\SoftwareSecurity\v1\effacious-octo-quack\SBS\Business\bin\Debug\Data.dll
+D:\SoftwareSecurity\v1\effacious-octo-quack\SBS\Business\bin\Debug\Entity.dll
+D:\SoftwareSecurity\v1\effacious-octo-quack\SBS\Business\bin\Debug\Mnemonics.dll
+D:\SoftwareSecurity\v1\effacious-octo-quack\SBS\Business\bin\Debug\Security.dll
+D:\SoftwareSecurity\v1\effacious-octo-quack\SBS\Business\bin\Debug\Google.Authenticator.dll
+D:\SoftwareSecurity\v1\effacious-octo-quack\SBS\Business\bin\Debug\Data.pdb
+D:\SoftwareSecurity\v1\effacious-octo-quack\SBS\Business\bin\Debug\Entity.pdb
+D:\SoftwareSecurity\v1\effacious-octo-quack\SBS\Business\bin\Debug\Mnemonics.pdb
+D:\SoftwareSecurity\v1\effacious-octo-quack\SBS\Business\bin\Debug\Security.pdb
+D:\SoftwareSecurity\v1\effacious-octo-quack\SBS\Business\obj\Debug\Business.csprojResolveAssemblyReference.cache
+D:\SoftwareSecurity\v1\effacious-octo-quack\SBS\Business\obj\Debug\Business.dll
+D:\SoftwareSecurity\v1\effacious-octo-quack\SBS\Business\obj\Debug\Business.pdb

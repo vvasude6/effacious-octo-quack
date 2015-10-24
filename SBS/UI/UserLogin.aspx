@@ -32,11 +32,11 @@
         <div style="margin-left: 440px">
             <br />
             <br />
-            &nbsp;<asp:Button ID="login" runat="server" OnClick="Button1_Click" Text="Login" CssClass="btn btn-primary" />
+            &nbsp;<asp:Button ID="login" runat="server" Text="Login" CssClass="btn btn-primary" OnClick="login_Click" />
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <br />
             <br />
-            <asp:LinkButton ID="Forgotpassword" runat="server" OnClick="LinkButton1_Click">Forgot Password?</asp:LinkButton>
+            <asp:LinkButton ID="Forgotpassword" runat="server" OnClick="Forgotpassword_Click" >Forgot Password?</asp:LinkButton>
         </div>
     </form>
 </body>

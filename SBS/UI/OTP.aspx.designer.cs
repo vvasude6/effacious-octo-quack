@@ -10,87 +10,78 @@
 namespace UI {
     
     
-    public partial class TransferMoney {
+    public partial class OTP {
         
         /// <summary>
-        /// fromLabel control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label fromLabel;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// FromDropDown control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList FromDropDown;
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// ToLabel control.
+        /// OTpwd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ToLabel;
+        protected global::System.Web.UI.WebControls.TextBox OTpwd;
         
         /// <summary>
-        /// ToDropDown control.
+        /// Label2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ToDropDown;
+        protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// amountLabel control.
+        /// NewPwd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label amountLabel;
+        protected global::System.Web.UI.WebControls.TextBox NewPwd;
         
         /// <summary>
-        /// AmountTransfer control.
+        /// Label3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox AmountTransfer;
+        protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
-        /// ConfirmLabel control.
+        /// ConfirmPwd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ConfirmLabel;
+        protected global::System.Web.UI.WebControls.TextBox ConfirmPwd;
         
         /// <summary>
-        /// ConfirmAmount control.
+        /// Pwd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ConfirmAmount;
-        
-        /// <summary>
-        /// Transfer control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Transfer;
+        protected global::System.Web.UI.WebControls.Button Pwd;
     }
 }
