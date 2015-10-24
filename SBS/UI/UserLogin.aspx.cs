@@ -28,13 +28,13 @@ namespace UI
                 Response.Redirect("Home.aspx");
                 //Response.Redirect("");
                 String user = Username.Text;
-                String pwd = Password.Text;
+                String pwd = Encryption.MD5Hash(user);
             }
         }
 
         protected void Forgotpassword_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("ChangePwd.aspx");
         }
 
        

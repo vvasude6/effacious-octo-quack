@@ -19,15 +19,15 @@
 &nbsp;&nbsp;&nbsp;</p>
         <p style="margin-left: 440px; width: 121px; height: 13px;">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:TextBox ID="Username" runat="server" CssClass="form-control" Width="173px" ></asp:TextBox>
+            <asp:TextBox ID="Username" runat="server"  Width="173px" ></asp:TextBox>
         </p>
         <div style="margin-left: 440px">
             <br />
             <br />
             <asp:Label ID="Label2" runat="server" Font-Bold="True" Text="Password"></asp:Label>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /> 
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
-            <asp:TextBox ID="Password" runat="server" CssClass="form-control" Height="30px" Width="177px"></asp:TextBox>
+            <asp:TextBox ID="Password" runat="server" CssClass="form-control" Height="30px" Width="177px" TextMode="Password"></asp:TextBox>
         </div>
         <div style="margin-left: 440px">
             <br />

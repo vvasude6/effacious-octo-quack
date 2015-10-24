@@ -10,7 +10,7 @@
 namespace UI {
     
     
-    public partial class DisplayMerchant {
+    public partial class Admin {
         
         /// <summary>
         /// form1 control.
@@ -22,12 +22,21 @@ namespace UI {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// EmpTranslist control.
+        /// UpdateProfile control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl EmpTranslist;
+        protected global::System.Web.UI.WebControls.Button UpdateProfile;
+        
+        /// <summary>
+        /// AdminTranlist control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AdminTranlist;
     }
 }
