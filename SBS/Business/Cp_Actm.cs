@@ -23,10 +23,18 @@ namespace Business
         //private Decimal changeAmount;
         String[] actmParts;
         //actm = new Entity.Actm();
+        public Cp_Actm()
+        { }
         public Cp_Actm(string connectionString, String acno, Data.Dber dberr)
         {
             // fetch all details for ac_no = acno.
             actm = Data.ActmD.Read(connectionString, acno, dberr);
+        }
+        public DataSet fetchAccountsFromCusNo(string connectionString, String cusno, Data.Dber dberr)
+        {
+            DataSet dbQuery = new DataSet();
+            dbQuery = Data.ActmD.GetUserAccountBalance(connectionString, cusno, dberr);
+            return dbQuery;
         }
         public Boolean getCreditAllowed()
         {

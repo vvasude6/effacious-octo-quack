@@ -98,3 +98,15 @@ C:\Ajith\Fall2015\CSE545\v1\effacious-octo-quack\SBS\Data\bin\Debug\Google.Authe
 C:\Ajith\Fall2015\CSE545\v1\effacious-octo-quack\SBS\Data\bin\Debug\Entity.pdb
 C:\Ajith\Fall2015\CSE545\v1\effacious-octo-quack\SBS\Data\bin\Debug\Mnemonics.pdb
 C:\Ajith\Fall2015\CSE545\v1\effacious-octo-quack\SBS\Data\bin\Debug\Security.pdb
+F:\Programs\SBSv5\effacious-octo-quack\SBS\Data\bin\Debug\Data.dll
+F:\Programs\SBSv5\effacious-octo-quack\SBS\Data\bin\Debug\Data.pdb
+F:\Programs\SBSv5\effacious-octo-quack\SBS\Data\bin\Debug\Entity.dll
+F:\Programs\SBSv5\effacious-octo-quack\SBS\Data\bin\Debug\Mnemonics.dll
+F:\Programs\SBSv5\effacious-octo-quack\SBS\Data\bin\Debug\Security.dll
+F:\Programs\SBSv5\effacious-octo-quack\SBS\Data\bin\Debug\Google.Authenticator.dll
+F:\Programs\SBSv5\effacious-octo-quack\SBS\Data\bin\Debug\Entity.pdb
+F:\Programs\SBSv5\effacious-octo-quack\SBS\Data\bin\Debug\Mnemonics.pdb
+F:\Programs\SBSv5\effacious-octo-quack\SBS\Data\bin\Debug\Security.pdb
+F:\Programs\SBSv5\effacious-octo-quack\SBS\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
+F:\Programs\SBSv5\effacious-octo-quack\SBS\Data\obj\Debug\Data.dll
+F:\Programs\SBSv5\effacious-octo-quack\SBS\Data\obj\Debug\Data.pdb

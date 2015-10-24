@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections;
+using Data;
 
 namespace Business
 {
     public class XSwitch
     {
         String result;
+        DataSet resultSet;
         public String resultGet
         {
             get 
@@ -35,16 +39,25 @@ namespace Business
                 switch (dataPart[0])
                 {
                     case "000": // Login
-                        String tempResult = "";
+                        //String tempResult = "";
                         Y_000 y000 = new Y_000(Mnemonics.TxnCodes.TX_LOGIN, connectionString, dataPart[1], dataPart[2]);
-                        String accounts = y000.getOutput();
-                        String[] account = accounts.Split(delimiters);
-                        foreach(String s in account)
+                        if (y000.errorGet)
+                        {
+                            resultSet = new DataSet(y000.getOutput().ToString());
+                        }
+                        else
+                        {
+                            resultSet = y000.resultSetGet;
+                        }
+                        //String accounts = y000.getOutput();
+                        //String[] account = accounts.Split(delimiters);
+                        /*foreach(String s in account)
                         {
                             Y_010 y0 = new Y_010(Mnemonics.TxnCodes.TX_BALINQ, connectionString, s);
                             tempResult += y0.resultGet + "|";
                         }
                         result = tempResult;
+                        */
                         // ENCRYPT result here
                         break;
                     case "010": // Balance Inquiry

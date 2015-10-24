@@ -11,6 +11,7 @@ namespace Mnemonics
         public static String DBERR_TXNM_NOFIND = "999";
         public static String DBERR_ERRM_NOFIND = "998";
         public static String DBERR_ACTM_NOFIND = "997";
+        public static String DBERR_ACTM_CUSNO_FETCH = "996";
 
         public static String TXERR_INIT_PVG = "500";
         public static String TXERR_NO_DEBIT = "499";

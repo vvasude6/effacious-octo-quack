@@ -74,7 +74,7 @@ namespace Data
                 }
                 else
                 {
-                    dberr.setError(Mnemonics.DbErrorCodes.DBERR_ACTM_NOFIND);
+                    dberr.setError(Mnemonics.DbErrorCodes.DBERR_ACTM_CUSNO_FETCH);
                     return null;
                 }
             }
