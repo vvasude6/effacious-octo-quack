@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 
 namespace UI
@@ -19,8 +20,18 @@ namespace UI
 
     public static class Validate
     {
+        
         public static Boolean generalValidate(String inputString, Boolean allowAlpha, Boolean allowNumeral, String allowChars = "")
         {
+            String regExpression = @"\(";
+
+            if (allowAlpha) regExpression += "[a-z][A-Z]";
+            if (allowNumeral) regExpression += "[0-9]";
+            regExpression += allowChars;
+
+            regExpression += @"\)";
+
+            String replacedString = Regex.Replace(inputString, @"\([0-9]\)", "");
             return true;
         }
 
