@@ -97,7 +97,7 @@ namespace Business
                         result = y012_1.getOutput();
                         // ENCRYPT result here
                         break;
-                    case "014": // Internal Funds Transfer = TRANSFER_DEBIT + TRANSFER_CREDIT
+                    case "017": // Internal Funds Transfer = TRANSFER_DEBIT + TRANSFER_CREDIT
                         Y_013 y013 = new Y_013(Mnemonics.TxnCodes.TX_INT_TRANSFER, connectionString, dataPart[1], dataPart[2],
                             Convert.ToDecimal(dataPart[3]), loginAc);
                         if (!y013.basicValidationError())
@@ -139,7 +139,7 @@ namespace Business
                         }
                         // ENCRYPT result here
                         break;
-                    case "016": // External Funds Transfer = TRANSFER_DEBIT + TRANSFER_CREDIT
+                    case "019": // External Funds Transfer = TRANSFER_DEBIT + TRANSFER_CREDIT
                         Y_013 y013_2 = new Y_013(Mnemonics.TxnCodes.TX_EXT_TRANSFER, connectionString, dataPart[1], dataPart[2],
                             Convert.ToDecimal(dataPart[3]), loginAc);
                         if (!y013_2.basicValidationError())
@@ -160,7 +160,7 @@ namespace Business
                         }
                         // ENCRYPT result here
                         break;
-                    case "017": // Edit customer info
+                    case "021": // Edit customer info
                         Y_014 y014 = new Y_014(Mnemonics.TxnCodes.TX_UPDATE_PROFILE, connectionString,
                             dataPart[1], dataPart[2], dataPart[3], dataPart[4], dataPart[5], dataPart[6],
                             dataPart[7], dataPart[8], dataPart[9], dataPart[10], dataPart[11], dataPart[12],
