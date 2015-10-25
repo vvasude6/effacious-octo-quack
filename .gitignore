@@ -53,6 +53,7 @@ artifacts/
 *.pch
 *.pdb
 *.dll
+*.suo
 *.exe
 *.cached
 *.FileListAbsolute.txt
