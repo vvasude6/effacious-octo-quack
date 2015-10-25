@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Data;
+using System.Data;
 using Mnemonics;
 
 namespace Business
@@ -26,7 +27,33 @@ namespace Business
                 return this.result;
             }
         }
+        Boolean resultBool;
+        public Boolean resultBoolP
+        {
+            get
+            {
+                return resultBool;
+            }
+            set
+            {
+                resultBool = value;
+            }
+        }
+        DataSet resultSet;
+        public DataSet resultSetP
+        {
+            get
+            {
+                return this.resultSet;
+            }
+            set
+            {
+                this.resultSet = value;
+            }
+        }
         public String resultP { get; set; }
+        public Y_010()
+        { }
         public Y_010(String txid, String connectionString, String acc_no)
         {
             try
@@ -81,6 +108,25 @@ namespace Business
             }
             result = Convert.ToString(acct.actmP.ac_bal - acct.actmP.ac_hold);
             return 0;
+        }
+        public DataSet fetchMultipleAccounts(String connectionString, String cusno)
+        {
+            Cp_Actm ac = new Cp_Actm();
+            this.resultSet = ac.fetchAccountsFromCusNo(connectionString, cusno, dberr);
+            if (dberr.ifError())
+            {
+                result = dberr.getErrorDesc(connectionString);
+                resultBoolP = true;
+                return (new DataSet(result));
+            }
+            if (this.resultSet == null)
+            {
+                dberr.setError(Mnemonics.DbErrorCodes.TXERR_NO_USER);
+                result = dberr.getErrorDesc(connectionString);
+                resultBoolP = true;
+                return (new DataSet(result));
+            }
+            return resultSet;
         }
         private Boolean updateTransactedData()
         {

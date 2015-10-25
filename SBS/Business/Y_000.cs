@@ -29,6 +29,17 @@ namespace Business
             }
         }
         String result;
+        public String resultP
+        {
+            get
+            {
+                return this.result;
+            }
+            set
+            {
+                this.result = value;
+            }
+        }
         Boolean error;
         public Boolean errorGet
         {
@@ -58,7 +69,7 @@ namespace Business
              * Using the retrieved cus_no, fetch all account numbers from cstm, and store the retrieved acc nos. 
              * as "|" delimited string in result. For errors, update error with "true"
             */
-            Entity.Cstm cs = Data.CstmD.Read(connectionString, usr, pwd, dberr);
+            /*Entity.Cstm cs = Data.CstmD.Read(connectionString, usr, pwd, dberr);
             if (dberr.ifError())
             {
                 Cp_Empm empm = new Cp_Empm(connectionString, usr, pwd, dberr);
@@ -84,6 +95,24 @@ namespace Business
                     return -1;
                 }
             }
+            return 0;*/
+            Entity.Cstm cs = Data.CstmD.Read(connectionString, usr, pwd, dberr);
+            if (dberr.ifError())
+            {
+                Cp_Empm empm = new Cp_Empm(connectionString, usr, pwd, dberr);
+                if (dberr.ifError())
+                {
+                    result = dberr.getErrorDesc(connectionString);
+                    return -1;
+                }
+                String empNo = empm.empmP.emp_no;
+                String pvgLevel = Convert.ToString(empm.empmP.emp_pvg);
+                resultP = empNo + "|" + pvgLevel;
+                return 0;
+            }
+            String cusNo = cs.cs_no;
+            String csPvgLevel = cs.cs_type;
+            resultP = cusNo + "|" + csPvgLevel;
             return 0;
         }
         public String getOutput()

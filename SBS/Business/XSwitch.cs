@@ -49,8 +49,11 @@ namespace Business
             {
                 switch (dataPart[0])
                 {
-                    case "000": // Login
+                    case "001": // Login
                         //String tempResult = "";
+                        Y_000 y000 = new Y_000(Mnemonics.TxnCodes.TX_LOGIN, connectionString, dataPart[1], dataPart[2]);
+                        result = y000.resultP;
+                        /*
                         Y_000 y000 = new Y_000(Mnemonics.TxnCodes.TX_LOGIN, connectionString, dataPart[1], dataPart[2]);
                         if (y000.errorGet)
                         {
@@ -59,12 +62,18 @@ namespace Business
                         else
                         {
                             resultSet = y000.resultSetGet;
-                        }
+                        }*/
+                        // ENCRYPT result here
+                        break;
+                    case "009": // Balance Inquiry
+                        Y_010 y010 = new Y_010();//Mnemonics.TxnCodes.TX_BALINQ, connectionString, dataPart[1]);
+                        y010.fetchMultipleAccounts(connectionString, dataPart[1]);
+                        resultSet = y010.resultSetP;
                         // ENCRYPT result here
                         break;
                     case "010": // Balance Inquiry
-                            Y_010 y010 = new Y_010(Mnemonics.TxnCodes.TX_BALINQ, connectionString, dataPart[1]);
-                        result = y010.getOutput();
+                            Y_010 y010_1 = new Y_010(Mnemonics.TxnCodes.TX_BALINQ, connectionString, dataPart[1]);
+                        result = y010_1.getOutput();
                         // ENCRYPT result here
                         break;
                     case "011": // Debit
