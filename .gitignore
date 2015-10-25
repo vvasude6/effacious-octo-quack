@@ -57,6 +57,7 @@ artifacts/
 *.exe
 *.cached
 *.FileListAbsolute.txt
+*.config
 *.pgc
 *.pgd
 *.rsp
