@@ -10,16 +10,16 @@
 <body>
     <form id="form1" runat="server">
       
-     <asp:Button ID="UpdateProfile" runat="server" Text="UpdateProfile" CssClass="btn btn-default"/>
+     <asp:Button ID="update" runat="server" Text="ModifyUsers" CssClass="btn btn-default"/>
         <br />
         <br />
      <div class="panel panel-default">
         <div class="panel-heading">Transactions
          </div>
         <div class="panel-body">
-            <ul id="AdminTranlist" runat="server" class="list-group">
+            <asp:table id="AdminTranlist" runat="server">
 
-            </ul>
+            </asp:table>
         </div>
         </div>
     </form>
