@@ -66,7 +66,7 @@ namespace Data
         {
             try
             {
-                var query = string.Format("select ac_no, ac_type, ac_bal from actm where CS_NO1 = {0} and AC_ACTIV = 'True' and pvg_a >= {1}", customerNumber, privilege);
+                var query = string.Format("select ac_no, ac_type, ac_bal from actm where CS_NO1 = {0} and AC_ACTIV = 'True' and ac_pvg >= {1}", customerNumber, privilege);
                 var data = DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
                 if (data.Tables[0].Rows.Count > 0)
                 {
