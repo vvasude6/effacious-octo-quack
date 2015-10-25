@@ -63,7 +63,7 @@ namespace Data
             {
                 var employeeMasterObject = new Empm();
 
-                var query = string.Format("select * from empm where emp_uname = '{0}', emp_pass= '{1}' ", userName, password);
+                var query = string.Format("select * from empm where emp_uname = '{0}' and emp_pass= '{1}' ", userName, password);
                 var data = DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
 
                 //assign the data object to employee master object
@@ -103,12 +103,14 @@ namespace Data
                 throw ex;
             }
         }
+
         public static DataSet ReadAll(string connectionString, Dber dberr)
         {
             var query = string.Format("select * from Empm");
             return DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
 
         }
+
         public static int Create(string connectionString, Empm dataObject, Dber dberr)
         {
             try

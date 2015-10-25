@@ -14,31 +14,67 @@ namespace UI
         {
 
         }
-
-        protected void login_Click(object sender, EventArgs e)
-        {
-            if (Username.Text == "" || Password.Text == "")
-            {
-                MessageBox.Show("Enter the fields");
-            }
-            else
-            {   Session["Username"]=Username.Text;
-                Response.Redirect("MakePayment.aspx");
-                Response.Redirect("TransferMoney.aspx");
-                Response.Redirect("Home.aspx");
-                //Response.Redirect("");
-                String user = Username.Text;
-                String pwd = Encryption.MD5Hash(user);
-            }
-        }
-
+                
         protected void Forgotpassword_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ChangePwd.aspx");
+            Response.Redirect("ChangePassword.aspx");
         }
 
-       
+        protected void LoginButton_Click(object sender, EventArgs e)
+        {
+            if (UserNameTextBox.Text == string.Empty || PasswordTextBox.Text == string.Empty)
+            {
+                MessageBox.Show("Looks like you have not entered the username and/or the password. They are required for sign in.");
+            }
+            else
+            {
+                var userName = UserNameTextBox.Text;
+                var password = PasswordTextBox.Text;
+                if (UI.Validate.isUserNameValid(userName))
+                {
+                    Session["Username"] = userName;
+                    var xSwitchObject = new Business.XSwitch(Global.ConnectionString, userName, string.Format("001|{0}|{1}", userName, password));
+                    var output = xSwitchObject.resultP;
+                    if (output.Contains("|"))
+                    {
+                        var dataRecieved = output.Split('|');
+                        Session["UserId"] = dataRecieved[0];
+                        Session["UserName"] = dataRecieved[1].Trim() + " " + dataRecieved[2].Trim();
+                        switch (dataRecieved[3])
+                        {
+                            case "1":
+                                Response.Redirect("Home.aspx");
+                                break;
+                            case "2":
+                                Response.Redirect("MerchantHome.aspx");
+                                break;
+                            case "3":
+                            case "4":
+                                Response.Redirect("EmployeeHome.aspx");
+                                break;
+                            case "5":
+                                Response.Redirect("AdminHome.aspx");
+                                break;
+                            default:
+                                MessageBox.Show("Looks like we could not log you in. Please check the details you have entered.");
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show(output);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Looks like you have entered an invalid username.");
+                }
+            }
+        }
 
-       
+        protected void ForgotPasswordLink_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("OTP.aspx");
+        }
     }
 }

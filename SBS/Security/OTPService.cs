@@ -20,7 +20,7 @@ namespace Security
             _otp = new OTP(secretKey: OTP.ToByteArray(TruncateLongString(unixTimestamp.ToString() + secret, 20)));
         }
 
-        public string TruncateLongString(string str, int maxLength)
+        private string TruncateLongString(string str, int maxLength)
         {
             return str.Substring(0, Math.Min(str.Length, maxLength));
         }

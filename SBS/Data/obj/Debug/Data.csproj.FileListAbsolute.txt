@@ -165,3 +165,14 @@ F:\Programs\SBSv10\effacious-octo-quack\SBS\Data\bin\Debug\Security.pdb
 F:\Programs\SBSv10\effacious-octo-quack\SBS\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
 F:\Programs\SBSv10\effacious-octo-quack\SBS\Data\obj\Debug\Data.dll
 F:\Programs\SBSv10\effacious-octo-quack\SBS\Data\obj\Debug\Data.pdb
+C:\Ajith\Fall2015\CSE545\night\effacious-octo-quack\SBS\Data\bin\Debug\Data.dll
+C:\Ajith\Fall2015\CSE545\night\effacious-octo-quack\SBS\Data\bin\Debug\Data.pdb
+C:\Ajith\Fall2015\CSE545\night\effacious-octo-quack\SBS\Data\bin\Debug\Entity.dll
+C:\Ajith\Fall2015\CSE545\night\effacious-octo-quack\SBS\Data\bin\Debug\Mnemonics.dll
+C:\Ajith\Fall2015\CSE545\night\effacious-octo-quack\SBS\Data\bin\Debug\Security.dll
+C:\Ajith\Fall2015\CSE545\night\effacious-octo-quack\SBS\Data\bin\Debug\Entity.pdb
+C:\Ajith\Fall2015\CSE545\night\effacious-octo-quack\SBS\Data\bin\Debug\Mnemonics.pdb
+C:\Ajith\Fall2015\CSE545\night\effacious-octo-quack\SBS\Data\bin\Debug\Security.pdb
+C:\Ajith\Fall2015\CSE545\night\effacious-octo-quack\SBS\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
+C:\Ajith\Fall2015\CSE545\night\effacious-octo-quack\SBS\Data\obj\Debug\Data.dll
+C:\Ajith\Fall2015\CSE545\night\effacious-octo-quack\SBS\Data\obj\Debug\Data.pdb

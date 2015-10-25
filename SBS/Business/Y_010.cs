@@ -54,6 +54,7 @@ namespace Business
         public String resultP { get; set; }
         public Y_010(String connectionString, String txid)
         {
+            dberr = new Dber();
             this.TXID = txid;
             tx = new Cp_Txnm(connectionString, TXID, dberr);
             // Check if TXNM fetch for transaction type "010" is successful. Return if error encountered
@@ -122,7 +123,7 @@ namespace Business
         public DataSet fetchMultipleAccounts(String connectionString, String cusno)
         {
             Cp_Actm ac = new Cp_Actm();
-            this.resultSet = ac.fetchAccountsFromCusNo(connectionString, cusno, dberr);
+            this.resultSet = ac.fetchAccountsFromCusNo(connectionString, cusno, this.tx.txnmP.tran_pvga, dberr);
             if (dberr.ifError())
             {
                 result = dberr.getErrorDesc(connectionString);

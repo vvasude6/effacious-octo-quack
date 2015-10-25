@@ -13,5 +13,6 @@ namespace Entity
         public int tran_pvga { get; set; }
         public int tran_pvgb { get; set; }
         public string tran_fin_type { get; set; }
+        public string tran_code { get; set; }
     }
 }

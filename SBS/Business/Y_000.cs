@@ -106,6 +106,7 @@ namespace Business
             cstm = new Cp_Cstm(connectionString, usr, pwd, dberr);
             if (dberr.ifError())
             {
+                dberr = new Dber();
                 Cp_Empm empm = new Cp_Empm(connectionString, usr, pwd, dberr);
                 if (dberr.ifError())
                 {

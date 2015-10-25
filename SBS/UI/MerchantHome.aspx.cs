@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Text;
+using System.Data;
 
 namespace UI
 {
@@ -14,16 +15,31 @@ namespace UI
         {
             LoadAccounts();
             LoadTransactions();
-
-
-
         }
         private void LoadAccounts()
         {
+            var output = new Business.XSwitch(Global.ConnectionString, Session["Username"].ToString(), string.Format("009|{0}", Session["UserId"].ToString()));
+            if (output == null)
+                Response.Redirect("UserLogin.aspx");
+
+            if (output.resultSet.Tables[0].Rows.Count != 0)
+            {
+                MerchantAccountlist.InnerHtml = GetAccountListHtml(output.resultSet);
+            }
+            else
+            {
+                MerchantAccountlist.InnerHtml = "<li class='list-group-item'>You have no accounts. <a href='CreateAccount.aspx'> Request for one?</a> </li>";
+            }
+        }
+
+        private string GetAccountListHtml(DataSet data)
+        {
             var sb = new StringBuilder();
-            sb.Append(string.Format("<li class='list-group-item'> <span class='custombadge badge'>{1}</span> {0} </li>", "Account Type", "$450.00"));
-            
-            MerchantAccountlist.InnerHtml = sb.ToString();
+            foreach (DataRow row in data.Tables[0].Rows)
+            {
+                sb.Append(string.Format("<li class='list-group-item'> <span class='custombadge badge'>${1}</span> {0} </li>", row["ac_type"].ToString() + " (" + row["ac_no"].ToString() + ")", row["ac_bal"].ToString()));
+            }
+            return sb.ToString();
         }
 
         private void LoadTransactions()

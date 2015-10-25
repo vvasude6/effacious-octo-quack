@@ -30,10 +30,10 @@ namespace Business
             // fetch all details for ac_no = acno.
             actm = Data.ActmD.Read(connectionString, acno, dberr);
         }
-        public DataSet fetchAccountsFromCusNo(string connectionString, String cusno, Data.Dber dberr)
+        public DataSet fetchAccountsFromCusNo(string connectionString, String cusno, int pvg, Data.Dber dberr)
         {
             DataSet dbQuery = new DataSet();
-            dbQuery = Data.ActmD.GetUserAccountBalance(connectionString, cusno, this.actmP.ac_pvg, dberr);
+            dbQuery = Data.ActmD.GetUserAccountBalance(connectionString, cusno, pvg, dberr);
             return dbQuery;
         }
         public Boolean getCreditAllowed()

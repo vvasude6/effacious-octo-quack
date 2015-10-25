@@ -10,42 +10,33 @@
 namespace UI {
     
     
-    public partial class UserLogin {
+    public partial class OTPControl {
         
         /// <summary>
-        /// UserNameTextBox control.
+        /// OTPTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox UserNameTextBox;
+        protected global::System.Web.UI.WebControls.TextBox OTPTextBox;
         
         /// <summary>
-        /// PasswordTextBox control.
+        /// VerifyButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox PasswordTextBox;
+        protected global::System.Web.UI.WebControls.Button VerifyButton;
         
         /// <summary>
-        /// ForgotPasswordLink control.
+        /// ResendOTPLink control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton ForgotPasswordLink;
-        
-        /// <summary>
-        /// LoginButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button LoginButton;
+        protected global::System.Web.UI.WebControls.LinkButton ResendOTPLink;
     }
 }

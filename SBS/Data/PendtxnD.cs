@@ -26,7 +26,7 @@ namespace Data
                     PendingTxnMasterObject.init_csno = data.Tables[0].Rows[0]["init_csno"].ToString();
                     PendingTxnMasterObject.ref_no = data.Tables[0].Rows[0]["ref_no"].ToString();
                     PendingTxnMasterObject.tran_date = data.Tables[0].Rows[0]["tran_date"].ToString();
-                   // PendingTxnMasterObject.tran_desc = data.Tables[0].Rows[0]["ref_no"].ToString();
+                    PendingTxnMasterObject.tran_desc = data.Tables[0].Rows[0]["tran_desc"].ToString();
                     PendingTxnMasterObject.tran_pvgb = data.Tables[0].Rows[0]["tran_pvgb"].ToString();
                     PendingTxnMasterObject.ac_no = data.Tables[0].Rows[0]["ac_no"].ToString();
                     PendingTxnMasterObject.cr_amt = Convert.ToDecimal(data.Tables[0].Rows[0]["cr_amt"]);
@@ -56,18 +56,20 @@ namespace Data
             {
 
                 var query = string.Format(@"INSERT INTO [SBS].[dbo].[PENDTXN]
-           (
-            [TRAN_DATE]
-            ,[AC_NO]
-           ,[TRAN_PVGB]
-           ,[INIT_EMPID]
-           ,[INIT_CSNO]
-           ,[DR_AMT]
-           ,[CR_AMT])
+               (
+                [TRAN_DATE]
+                ,[AC_NO]
+               ,[TRAN_PVGB]
+               ,[INIT_EMPID]
+               ,[INIT_CSNO]
+               ,[DR_AMT]
+               ,[CR_AMT]
+                , [TRAN_DESC])
                     OUTPUT INSERTED.REF_NO          
                     VALUES
-                    ('{0}'  ,'{1}','{2}'  ,'{3}'  ,'{4}'  ,'{5}'  ,'{6}')",
-                dataObject.tran_date,dataObject.ac_no,dataObject.tran_pvgb,dataObject.init_empid,dataObject.init_csno,dataObject.dr_amt, dataObject.cr_amt);
+                    ('{0}'  ,'{1}','{2}'  ,'{3}'  ,'{4}'  ,'{5}'  ,'{6}', '{7}')",
+                dataObject.tran_date,dataObject.ac_no,dataObject.tran_pvgb,dataObject.init_empid,dataObject.init_csno,
+                dataObject.dr_amt, dataObject.cr_amt, dataObject.tran_desc);
                 return (int)DbAccess.ExecuteScalar(connectionString, CommandType.Text, query);
             }
             catch (Exception ex)

@@ -13,19 +13,19 @@ namespace Data
     public static class TxnmD
     {
 
-        public static Txnm Read(string connectionString, string id, Dber dberr)
+        public static Txnm Read(string connectionString, string code, Dber dberr)
         {
             try
             {
                 var transactionTypeMasterObject = new Txnm();
 
-                var query = string.Format("select * from txnm where tran_id = {0}", id);
+                var query = string.Format("select * from txnm where tran_code = '{0}'", code);
                 var data = DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
 
-                //assign the data object to account master object
                 if (data.Tables[0].Rows.Count > 0)
                 {
                     transactionTypeMasterObject.tran_desc = data.Tables[0].Rows[0]["tran_desc"] != null ? data.Tables[0].Rows[0]["tran_desc"].ToString() : "";
+                    transactionTypeMasterObject.tran_code = data.Tables[0].Rows[0]["tran_code"] != null ? data.Tables[0].Rows[0]["tran_code"].ToString() : "";
                     transactionTypeMasterObject.tran_fin_type = data.Tables[0].Rows[0]["tran_fin_type"] != null ? data.Tables[0].Rows[0]["tran_fin_type"].ToString() : "";
                     transactionTypeMasterObject.tran_id = data.Tables[0].Rows[0]["tran_id"].ToString();
                     transactionTypeMasterObject.tran_pvga = Convert.ToInt16(data.Tables[0].Rows[0]["tran_pvga"].ToString());

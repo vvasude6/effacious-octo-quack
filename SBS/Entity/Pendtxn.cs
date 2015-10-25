@@ -14,10 +14,11 @@ namespace Entity
         public String tran_date { get; set; }
         public String ac_no { get; set; }
         public String tran_pvgb { get; set; }
-       // public String tran_desc { get; set; }
+        public String tran_desc { get; set; }
         public String init_empid { get; set; }
         public String init_csno { get; set; }
         public Decimal dr_amt { get; set; }
+        public int tran_id { get; set; }
         public Pendtxn()
         { }
         public Pendtxn(Decimal cr, String refno, String ac1, String ac2,
@@ -29,7 +30,7 @@ namespace Entity
             this.tran_date = dt.Date.ToString(Pendtxn.DATE_FORMAT); ;
             this.ac_no = ac1;
             this.tran_pvgb = pvb;
-           // this.tran_desc = trdesc;
+            this.tran_desc = tran_desc;
             this.init_empid = initemp;
             this.dr_amt = dr;
             this.init_csno = initcsno;

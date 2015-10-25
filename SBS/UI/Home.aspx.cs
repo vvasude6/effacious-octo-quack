@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -8,16 +9,39 @@ using System.Web.UI.WebControls;
 
 namespace UI
 {
-    public partial class Home : System.Web.UI.Page
+    public partial class Home : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["UserId"] == null)
+                Response.Redirect("UserLogin.aspx");
             LoadAccounts();
         }
 
         private void LoadAccounts()
         {
-            AccountList.InnerHtml = GetAccountListHtml();
+            var output = new Business.XSwitch(Global.ConnectionString, Session["Username"].ToString(), string.Format("009|{0}", Session["UserId"].ToString()));
+            if (output == null)
+                Response.Redirect("UserLogin.aspx");
+
+            if (output.resultSet.Tables[0].Rows.Count != 0)
+            {
+                AccountList.InnerHtml = GetAccountListHtml(output.resultSet);
+            }
+            else
+            {
+                AccountList.InnerHtml = "<li class='list-group-item'>You have no accounts. <a href='CreateAccount.aspx'> Request for one?</a> </li>";
+            }
+        }
+
+        private string GetAccountListHtml(DataSet data)
+        {
+            var sb = new StringBuilder();
+            foreach (DataRow row in data.Tables[0].Rows)
+            {
+                sb.Append(string.Format("<li class='list-group-item'> <span class='custombadge badge'>${1}</span> {0} </li>", row["ac_type"].ToString() + " (" + row["ac_no"].ToString() + ")", row["ac_bal"].ToString()));
+            }
+            return sb.ToString();
         }
 
         private string GetAccountListHtml()

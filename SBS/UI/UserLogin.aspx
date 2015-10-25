@@ -1,43 +1,99 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UserLogin.aspx.cs" Inherits="UI.UserLogin" %>
 
+<%@ Register TagPrefix="OTP" TagName="OTPBar" Src="OTPControl.ascx" %>
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>SBS Login</title>
+    <script src="Scripts/jquery-1.9.1.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="css/Custom.css" rel="stylesheet" />
     <link href="Content/bootstrap.min.css" type="text/css" rel="stylesheet" />
+    <style>
+        .spacerRow {
+            height: 10px;
+        }
+        .spacerRowBig {
+            height: 70px;
+        }
+
+        #inner {
+            width: 25%;
+            margin: 0 auto;
+        }
+    </style>
 </head>
 <body>
-    <form id="form1" runat="server">
-    <div style="margin-left: 280px">
-    
+
+    <div ><%--class="container"--%>
+        <div id="inner">
+            <form runat="server" class="form-signin">
+                <div style="text-align: right; margin: auto">
+                    <table>
+                        <tr class="spacerRowBig"></tr>
+                        <tr>
+                            <td colspan="2">
+                                <h2 style="text-align: center">Welcome to <b>SBS !</b></h2>
+                                <h4 style="text-align: center; color: gray">The most secure bank.</h4>
+                            </td>
+                        </tr>
+                        <tr class="spacerRowBig"></tr>
+                        
+                        <tr>
+                            <td>
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon3">Username</span>
+                                    <asp:TextBox runat="server" class="form-control" ID="UserNameTextBox" aria-describedby="basic-addon3" autofocus></asp:TextBox>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="spacerRow"></tr>
+                        <tr>
+                            <td>
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon3">Password&nbsp;</span>
+                                    <asp:TextBox runat="server" class="form-control" ID="PasswordTextBox" aria-describedby="basic-addon3" TextMode="Password"></asp:TextBox>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="spacerRow"></tr>
+                        <tr>
+                            <td style="text-align: right">
+                                <asp:LinkButton runat="server" ID="ForgotPasswordLink" Text="Forgot password" OnClick="ForgotPasswordLink_Click"></asp:LinkButton>
+                                <asp:Button runat="server" ID="LoginButton" type="submit" class="btn btn-default" Text="Sign In" OnClick="LoginButton_Click"></asp:Button>
+                                <br />
+                                <br />
+                                <p>Don't have an account? <a href="#">Request</a> for one now.</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+            </form>
+        </div>
     </div>
-        <p>
-            &nbsp;</p>
-        <p style="margin-left: 440px; width: 121px; height: 13px;">
-            <asp:Label ID="Label1" runat="server" Font-Bold="True" Text="Username"></asp:Label>
-&nbsp;&nbsp;&nbsp;</p>
-        <p style="margin-left: 440px; width: 121px; height: 13px;">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:TextBox ID="Username" runat="server"  Width="173px" ></asp:TextBox>
-        </p>
-        <div style="margin-left: 440px">
-            <br />
-            <br />
-            <asp:Label ID="Label2" runat="server" Font-Bold="True" Text="Password"></asp:Label>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /> 
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
-            <asp:TextBox ID="Password" runat="server" CssClass="form-control" Height="30px" Width="177px" TextMode="Password"></asp:TextBox>
-        </div>
-        <div style="margin-left: 440px">
-            <br />
-            <br />
-            &nbsp;<asp:Button ID="login" runat="server" Text="Login" CssClass="btn btn-primary" OnClick="login_Click" />
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <br />
-            <br />
-            <asp:LinkButton ID="Forgotpassword" runat="server" OnClick="Forgotpassword_Click" >Forgot Password?</asp:LinkButton>
-        </div>
-    </form>
+
+    <script>
+        $('#LoginButton').click(function () {
+            //alert(hashCode($('#PasswordTextBox').val()));
+            $('#PasswordTextBox').val(hashCode($('#PasswordTextBox').val()));
+        });
+
+        function hashCode(str) {
+            var hash = 0;
+            if (str.length == 0) return hash;
+            for (i = 0; i < str.length; i++) {
+                char = str.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash; // Convert to 32bit integer
+            }
+            return hash;
+        }
+    </script>
+
 </body>
 </html>
