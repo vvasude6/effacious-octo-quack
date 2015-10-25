@@ -21,6 +21,7 @@
             <div class="container">
                 <a class="navbar-brand" href="#">
                     SBS</a>
+                <%--<img class="navbar-brand" src="images/logo.png" />--%>
                 <ul class="nav navbar-nav menu">
                     <li>
                         <a href="Home.aspx"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;Home</a>

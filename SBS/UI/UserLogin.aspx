@@ -17,22 +17,25 @@
         .spacerRow {
             height: 10px;
         }
+
         .spacerRowBig {
             height: 70px;
         }
 
         #inner {
-            width: 25%;
+            width: 35%;
             margin: 0 auto;
         }
     </style>
 </head>
 <body>
 
-    <div ><%--class="container"--%>
+    <div>
+        <%--class="container"--%>
         <div id="inner">
             <form runat="server" class="form-signin">
                 <div style="text-align: right; margin: auto">
+
                     <table>
                         <tr class="spacerRowBig"></tr>
                         <tr>
@@ -41,8 +44,13 @@
                                 <h4 style="text-align: center; color: gray">The most secure bank.</h4>
                             </td>
                         </tr>
-                        <tr class="spacerRowBig"></tr>
-                        
+                        <%--<tr class="spacerRowBig"></tr>--%>
+                        <tr>
+                            <td style="text-align: center">
+                                <img style="margin-top: 10px" src="images/logo.png" />
+                            </td>
+                        </tr>
+                        <tr class="spacerRow"></tr>
                         <tr>
                             <td>
                                 <div class="input-group">
@@ -71,8 +79,8 @@
                             </td>
                         </tr>
                     </table>
-                </div>
 
+                </div>
             </form>
         </div>
     </div>
