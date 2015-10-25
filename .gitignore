@@ -52,6 +52,10 @@ artifacts/
 *.obj
 *.pch
 *.pdb
+*.dll
+*.exe
+*.cached
+*.FileListAbsolute.txt
 *.pgc
 *.pgd
 *.rsp

@@ -1,9 +1,0 @@
-C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Data\bin\Release\Data.dll
-C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Data\bin\Release\Data.pdb
-C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Data\bin\Release\Entity.dll
-C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Data\bin\Release\Security.dll
-C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Data\bin\Release\Entity.pdb
-C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Data\bin\Release\Security.pdb
-C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Data\obj\Release\Data.csprojResolveAssemblyReference.cache
-C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Data\obj\Release\Data.dll
-C:\Users\avimalch\Source\Repos\effacious-octo-quack\SBS\Data\obj\Release\Data.pdb
