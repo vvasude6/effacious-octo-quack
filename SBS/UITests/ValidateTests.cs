@@ -188,5 +188,20 @@ namespace UI.Tests
             Assert.IsFalse(Validate.isAmountValid("123-453"));
             Assert.IsFalse(Validate.isAmountValid("123_453"));
         }
+
+        [TestMethod()]
+        public void isPaswordValidTest()
+        {
+            Assert.IsTrue(Validate.isPasswordValid("Ab-45678"));
+            Assert.IsTrue(Validate.isPasswordValid("12345-xX"));
+            Assert.IsTrue(Validate.isPasswordValid("!@#$_a8A"));
+            Assert.IsFalse(Validate.isPasswordValid("!@#$_-8A"));
+            Assert.IsFalse(Validate.isPasswordValid("1234Abc%"));
+            Assert.IsFalse(Validate.isPasswordValid("12345678"));
+            Assert.IsFalse(Validate.isPasswordValid("AbcdEfG1"));
+            Assert.IsFalse(Validate.isPasswordValid("!@#$!@#$"));
+            Assert.IsFalse(Validate.isPasswordValid("Ab123$#"));
+            Assert.IsFalse(Validate.isPasswordValid("Ab1$"));
+        }
     }
 }

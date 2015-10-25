@@ -20,8 +20,10 @@ namespace UI
 
     public static class Validate
     {
-        static String ALPHA = "abcdefghijklmnopqrstuvwxyz";
+        static String UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        static String LOWER = "abcdefghijklmnopqrstuvwxyz";
         static String DIGIT = "0123456789";
+        static String SPECIAL = @"!@#$_-";
 
         public static Boolean generalValidate(String inputString, Boolean allowAlpha, Boolean allowNumeral, String allowChars = "")
         {
@@ -30,7 +32,7 @@ namespace UI
             foreach (char inputChar in lowerString)
             {
                 if (allowAlpha)
-                    if (ALPHA.IndexOf(inputChar) >= 0)
+                    if (LOWER.IndexOf(inputChar) >= 0)
                         continue;
                 if (allowNumeral)
                     if (DIGIT.IndexOf(inputChar) >= 0)
@@ -116,6 +118,31 @@ namespace UI
             if (inputString.Length > 10)
                 return false;
             return generalValidate(inputString, false, true, ".");
+        }
+
+        public static Boolean isPasswordValid(String inputString)
+        {
+            if (inputString.Length < 8)
+                return false;
+
+            int upperCount = 0, lowerCount = 0, digitCount = 0, specialCount = 0;
+
+            foreach (char inputChar in inputString)
+            {
+                if (UPPER.IndexOf(inputChar) >= 0)
+                    upperCount++;
+                if (LOWER.IndexOf(inputChar) >= 0)
+                    lowerCount++;
+                if (DIGIT.IndexOf(inputChar) >= 0)
+                    digitCount++;
+                if (SPECIAL.IndexOf(inputChar) >= 0)
+                    specialCount++;
+            }
+
+            if (upperCount == 0 || lowerCount == 0 || digitCount == 0 || specialCount == 0)
+                return false;
+
+            return generalValidate(inputString, true, true, "!@#$-_");
         }
     }
 }
