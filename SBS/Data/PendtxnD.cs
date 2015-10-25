@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -45,6 +45,51 @@ namespace Data
                 throw ex;
             }
         }
+
+        public static DataSet GetPendingTransactionsForAccount(string connectionString, string ac_no, Dber dberr)
+        {
+            try
+            {
+                var query = string.Format(string.Format("select * from Pendtxn where ac_no = '{0}'", ac_no));
+                var data = DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
+                if(data!=null)
+                {
+                    return data;
+                }
+                else
+                {
+                    dberr.setError(Mnemonics.DbErrorCodes.DBERR_ACTM_NOFIND);
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static DataSet GetAccessiblePendingTransactions(string connectionString, string pvgb, Dber dberr)
+        {
+            try
+            {
+                var query = string.Format(string.Format("select * from Pendtxn where tran_pvgb >= {0}", pvgb));
+                var data = DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
+                if (data != null)
+                {
+                    return data; 
+                }
+                else
+                {
+                    dberr.setError(Mnemonics.DbErrorCodes.DBERR_ACTM_NOFIND);
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public static DataSet ReadAll(string connectionString, Dber dberr)
         {
             var query = string.Format("select * from Pendtxn");
