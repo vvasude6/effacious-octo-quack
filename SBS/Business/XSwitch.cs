@@ -66,8 +66,11 @@ namespace Business
                         // ENCRYPT result here
                         break;
                     case "009": // Balance Inquiry
-                        Y_010 y010 = new Y_010();//Mnemonics.TxnCodes.TX_BALINQ, connectionString, dataPart[1]);
-                        y010.fetchMultipleAccounts(connectionString, dataPart[1]);
+                        Y_010 y010 = new Y_010(connectionString, Mnemonics.TxnCodes.TX_BALINQ_BULK);//Mnemonics.TxnCodes.TX_BALINQ, connectionString, dataPart[1]);
+                        if (!y010.errorBoolP)
+                        {
+                            y010.fetchMultipleAccounts(connectionString, dataPart[1]);
+                        }
                         resultSet = y010.resultSetP;
                         // ENCRYPT result here
                         break;
@@ -176,8 +179,8 @@ namespace Business
             }
             catch (Exception e)
             {
-                String error = e.ToString();
-                throw e;
+                this.result = e.ToString();
+                this.resultSet = new DataSet(e.ToString());
             }
         }
     }

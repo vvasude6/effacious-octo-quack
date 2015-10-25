@@ -27,16 +27,16 @@ namespace Business
                 return this.result;
             }
         }
-        Boolean resultBool;
-        public Boolean resultBoolP
+        Boolean errorBool;
+        public Boolean errorBoolP
         {
             get
             {
-                return resultBool;
+                return errorBool;
             }
             set
             {
-                resultBool = value;
+                errorBool = value;
             }
         }
         DataSet resultSet;
@@ -52,8 +52,18 @@ namespace Business
             }
         }
         public String resultP { get; set; }
-        public Y_010()
-        { }
+        public Y_010(String connectionString, String txid)
+        {
+            this.TXID = txid;
+            tx = new Cp_Txnm(connectionString, TXID, dberr);
+            // Check if TXNM fetch for transaction type "010" is successful. Return if error encountered
+            if (dberr.ifError())
+            {
+                result = dberr.getErrorDesc(connectionString);
+                errorBoolP = true;
+                resultSetP = null;
+            }
+        }
         public Y_010(String txid, String connectionString, String acc_no)
         {
             try
@@ -116,14 +126,14 @@ namespace Business
             if (dberr.ifError())
             {
                 result = dberr.getErrorDesc(connectionString);
-                resultBoolP = true;
+                errorBoolP = true;
                 return (new DataSet(result));
             }
             if (this.resultSet == null)
             {
                 dberr.setError(Mnemonics.DbErrorCodes.TXERR_NO_USER);
                 result = dberr.getErrorDesc(connectionString);
-                resultBoolP = true;
+                errorBoolP = true;
                 return (new DataSet(result));
             }
             return resultSet;

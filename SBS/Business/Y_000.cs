@@ -15,11 +15,12 @@ namespace Business
 {
     class Y_000
     {
-        Entity.Cstm cstm;
+        Cp_Cstm cstm;
         String TXID;
         String userid;
         String pwd;
         Data.Dber dberr;
+        Cp_Txnm txnm;
         DataSet resultSet;
         public DataSet resultSetGet
         {
@@ -96,7 +97,13 @@ namespace Business
                 }
             }
             return 0;*/
-            Entity.Cstm cs = Data.CstmD.Read(connectionString, usr, pwd, dberr);
+            txnm = new Cp_Txnm(connectionString, this.TXID, dberr);
+            if (dberr.ifError())
+            {
+                resultP = dberr.getErrorDesc(connectionString);
+                return -1;
+            }
+            cstm = new Cp_Cstm(connectionString, usr, pwd, dberr);
             if (dberr.ifError())
             {
                 Cp_Empm empm = new Cp_Empm(connectionString, usr, pwd, dberr);
@@ -107,12 +114,16 @@ namespace Business
                 }
                 String empNo = empm.empmP.emp_no;
                 String pvgLevel = Convert.ToString(empm.empmP.emp_pvg);
-                resultP = empNo + "|" + pvgLevel;
+                String empFname = empm.empmP.emp_fname;
+                String empLname = empm.empmP.emp_lname;
+                resultP = empNo + "|" + empFname + "|" + empLname + "|" + pvgLevel;
                 return 0;
             }
-            String cusNo = cs.cs_no;
-            String csPvgLevel = cs.cs_type;
-            resultP = cusNo + "|" + csPvgLevel;
+            String cusNo = cstm.cstmP.cs_no;
+            String csPvgLevel = cstm.cstmP.cs_type;
+            String csFname = cstm.cstmP.cs_fname;
+            String csLname = cstm.cstmP.cs_lname;
+            resultP = cusNo + "|" + csFname + "|" + csLname + "|" + csPvgLevel;
             return 0;
         }
         public String getOutput()
