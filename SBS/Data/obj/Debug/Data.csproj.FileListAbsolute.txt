@@ -121,3 +121,14 @@ F:\Programs\SBSv7\effacious-octo-quack\SBS\Data\bin\Debug\Security.pdb
 F:\Programs\SBSv7\effacious-octo-quack\SBS\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
 F:\Programs\SBSv7\effacious-octo-quack\SBS\Data\obj\Debug\Data.dll
 F:\Programs\SBSv7\effacious-octo-quack\SBS\Data\obj\Debug\Data.pdb
+D:\SoftwareSecurity\v5\effacious-octo-quack\SBS\Data\bin\Debug\Data.dll
+D:\SoftwareSecurity\v5\effacious-octo-quack\SBS\Data\bin\Debug\Data.pdb
+D:\SoftwareSecurity\v5\effacious-octo-quack\SBS\Data\bin\Debug\Entity.dll
+D:\SoftwareSecurity\v5\effacious-octo-quack\SBS\Data\bin\Debug\Mnemonics.dll
+D:\SoftwareSecurity\v5\effacious-octo-quack\SBS\Data\bin\Debug\Security.dll
+D:\SoftwareSecurity\v5\effacious-octo-quack\SBS\Data\bin\Debug\Entity.pdb
+D:\SoftwareSecurity\v5\effacious-octo-quack\SBS\Data\bin\Debug\Mnemonics.pdb
+D:\SoftwareSecurity\v5\effacious-octo-quack\SBS\Data\bin\Debug\Security.pdb
+D:\SoftwareSecurity\v5\effacious-octo-quack\SBS\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
+D:\SoftwareSecurity\v5\effacious-octo-quack\SBS\Data\obj\Debug\Data.dll
+D:\SoftwareSecurity\v5\effacious-octo-quack\SBS\Data\obj\Debug\Data.pdb

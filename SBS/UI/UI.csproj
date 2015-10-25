@@ -66,13 +66,16 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="CreditForm.aspx" />
     <Content Include="css\bootstrap-theme.css" />
     <Content Include="css\bootstrap-theme.min.css" />
     <Content Include="css\bootstrap.css" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\Custom.css" />
     <Content Include="CustProfileUpdate.aspx" />
+    <Content Include="DebitForm.aspx" />
     <Content Include="EmployeeDisplay.aspx" />
+    <Content Include="EmployerProfileUpdate.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -87,6 +90,7 @@
     <Content Include="Global.asax" />
     <Content Include="Help.aspx" />
     <Content Include="Home.aspx" />
+    <Content Include="images\logo.png" />
     <Content Include="MakePayment.aspx" />
     <Content Include="MerchantDisplay.aspx" />
     <Content Include="OTP.aspx" />
@@ -134,6 +138,13 @@
     <Compile Include="CheckBalance.aspx.designer.cs">
       <DependentUpon>CheckBalance.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CreditForm.aspx.cs">
+      <DependentUpon>CreditForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreditForm.aspx.designer.cs">
+      <DependentUpon>CreditForm.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CustProfileUpdate.aspx.cs">
       <DependentUpon>CustProfileUpdate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -141,12 +152,26 @@
     <Compile Include="CustProfileUpdate.aspx.designer.cs">
       <DependentUpon>CustProfileUpdate.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DebitForm.aspx.cs">
+      <DependentUpon>DebitForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DebitForm.aspx.designer.cs">
+      <DependentUpon>DebitForm.aspx</DependentUpon>
+    </Compile>
     <Compile Include="EmployeeDisplay.aspx.cs">
       <DependentUpon>EmployeeDisplay.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EmployeeDisplay.aspx.designer.cs">
       <DependentUpon>EmployeeDisplay.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EmployerProfileUpdate.aspx.cs">
+      <DependentUpon>EmployerProfileUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EmployerProfileUpdate.aspx.designer.cs">
+      <DependentUpon>EmployerProfileUpdate.aspx</DependentUpon>
     </Compile>
     <Compile Include="Encryption.cs" />
     <Compile Include="Global.asax.cs">
@@ -219,6 +244,7 @@
     </Compile>
     <Compile Include="Virtual Keyboard.aspx.cs">
       <DependentUpon>Virtual Keyboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Virtual Keyboard.aspx.designer.cs">
       <DependentUpon>Virtual Keyboard.aspx</DependentUpon>
