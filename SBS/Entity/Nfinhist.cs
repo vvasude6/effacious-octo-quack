@@ -16,9 +16,10 @@ namespace Entity
         public String tran_desc { get; set; }
         public String init_empid { get; set; }
         public String apprv_empid { get; set; }
+        public String init_csno { get; set; }
         public Nfinhist()
         { }
-        public Nfinhist(String acno, String refno, String trandesc, String initempid, String apprvempid)
+        public Nfinhist(String acno, String refno, String trandesc, String initempid, String apprvempid,String initcsno)
         {
             DateTime dt = DateTime.Now;
             this.ac_no = acno;
@@ -28,6 +29,7 @@ namespace Entity
             this.tran_desc = trandesc;
             this.init_empid = initempid;
             this.apprv_empid = apprvempid;
+            this.init_csno = initcsno;
         }
     }
 }

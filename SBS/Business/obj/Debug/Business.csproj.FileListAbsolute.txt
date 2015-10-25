@@ -159,3 +159,16 @@ D:\SoftwareSecurity\v5\effacious-octo-quack\SBS\Business\bin\Debug\Security.pdb
 D:\SoftwareSecurity\v5\effacious-octo-quack\SBS\Business\obj\Debug\Business.csprojResolveAssemblyReference.cache
 D:\SoftwareSecurity\v5\effacious-octo-quack\SBS\Business\obj\Debug\Business.dll
 D:\SoftwareSecurity\v5\effacious-octo-quack\SBS\Business\obj\Debug\Business.pdb
+C:\Users\aray\Desktop\3rdSem\SS\v2\effacious-octo-quack\SBS\Business\obj\Debug\Business.csprojResolveAssemblyReference.cache
+C:\Users\aray\Desktop\3rdSem\SS\v2\effacious-octo-quack\SBS\Business\obj\Debug\Business.dll
+C:\Users\aray\Desktop\3rdSem\SS\v2\effacious-octo-quack\SBS\Business\obj\Debug\Business.pdb
+C:\Users\aray\Desktop\3rdSem\SS\v2\effacious-octo-quack\SBS\Business\bin\Debug\Business.dll
+C:\Users\aray\Desktop\3rdSem\SS\v2\effacious-octo-quack\SBS\Business\bin\Debug\Business.pdb
+C:\Users\aray\Desktop\3rdSem\SS\v2\effacious-octo-quack\SBS\Business\bin\Debug\Data.dll
+C:\Users\aray\Desktop\3rdSem\SS\v2\effacious-octo-quack\SBS\Business\bin\Debug\Entity.dll
+C:\Users\aray\Desktop\3rdSem\SS\v2\effacious-octo-quack\SBS\Business\bin\Debug\Mnemonics.dll
+C:\Users\aray\Desktop\3rdSem\SS\v2\effacious-octo-quack\SBS\Business\bin\Debug\Security.dll
+C:\Users\aray\Desktop\3rdSem\SS\v2\effacious-octo-quack\SBS\Business\bin\Debug\Data.pdb
+C:\Users\aray\Desktop\3rdSem\SS\v2\effacious-octo-quack\SBS\Business\bin\Debug\Entity.pdb
+C:\Users\aray\Desktop\3rdSem\SS\v2\effacious-octo-quack\SBS\Business\bin\Debug\Mnemonics.pdb
+C:\Users\aray\Desktop\3rdSem\SS\v2\effacious-octo-quack\SBS\Business\bin\Debug\Security.pdb

@@ -19,10 +19,11 @@ namespace Entity
         public String rem_bal { get; set; }
         public String init_empid { get; set; }
         public String apprv_empid { get; set; }
+        public String init_csno { get; set; }
         public Finhist()
         { }
         public Finhist(String acno, String refno, String trandesc, Decimal dramt,
-            Decimal cramt, String rembal, String initempid, String apprvempid)
+            Decimal cramt, String rembal, String initempid, String apprvempid,String initcsno)
         {
             DateTime dt = DateTime.Now;
             this.ac_no = acno;
@@ -35,6 +36,7 @@ namespace Entity
             this.rem_bal = rembal;
             this.init_empid = initempid;
             this.apprv_empid = apprvempid;
+            this.init_csno = initcsno;
         }
     }
 }

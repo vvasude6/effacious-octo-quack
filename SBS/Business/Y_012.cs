@@ -109,7 +109,7 @@ namespace Business
                 if (pvg.isPending)
                 {
                     Entity.Pendtxn pending = new Entity.Pendtxn(0, seq.getSequence(), this.acct.actmP.ac_no, " ",
-                        Convert.ToString(this.tx.txnmP.tran_pvgb), this.tx.txnmP.tran_desc, this.acct.actmP.ac_no, this.changeAmount);
+                        Convert.ToString(this.tx.txnmP.tran_pvgb), this.tx.txnmP.tran_desc, this.acct.actmP.ac_no, this.changeAmount,"0");
                     Data.PendtxnD.Create(connectionString, pending);
                     if (dberr.ifError())
                     {
@@ -140,13 +140,13 @@ namespace Business
             {
                 // Write to FINHIST table
                 Entity.Finhist fhist = new Entity.Finhist(this.acct.actmP.ac_no, "0", this.tx.txnmP.tran_desc,
-                    changeAmount, 0, Convert.ToString(this.acct.actmP.ac_bal), "0", "0");
+                    changeAmount, 0, Convert.ToString(this.acct.actmP.ac_bal), "0", "0","0");
                 Data.FinhistD.Create(connectionString, fhist, dberr);
             }
             else
             {
                 // Write to NFINHIST table
-                Entity.Nfinhist nFhist = new Entity.Nfinhist(this.acct.actmP.ac_no, "0", this.tx.txnmP.tran_desc, "0", "0");
+                Entity.Nfinhist nFhist = new Entity.Nfinhist(this.acct.actmP.ac_no, "0", this.tx.txnmP.tran_desc, "0", "0","0");
                 Data.NfinhistD.Create(connectionString, nFhist, dberr);
             }
             if (dberr.ifError())

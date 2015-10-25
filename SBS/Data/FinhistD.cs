@@ -32,6 +32,7 @@ namespace Data
                     FinHistMasterObject.dr_amt = Convert.ToDecimal(data.Tables[0].Rows[0]["dr_amt"]);
                     FinHistMasterObject.ac_no = data.Tables[0].Rows[0]["ac_no"].ToString();
                     FinHistMasterObject.apprv_empid = data.Tables[0].Rows[0]["apprv_empid"].ToString();
+                    FinHistMasterObject.init_csno = data.Tables[0].Rows[0]["init_csno"].ToString();
 
 
                     return FinHistMasterObject;
@@ -53,7 +54,31 @@ namespace Data
         }
         public static int Create(string connectionString, Finhist dataObject, Dber dberr)
         {
-            throw new NotImplementedException();
+            try
+            {
+
+                var query = string.Format(@"INSERT INTO [SBS].[dbo].[FINHIST]
+           ([TRAN_DATE]
+           ,[AC_NO]
+           ,[TRAN_TIMESTAMP]
+           ,[TRAN_DESC]
+           ,[REM_BAL]
+           ,[INIT_CSNO]
+           ,[INIT_EMPID]
+           ,[APPRV_EMPID]
+           ,[DR_AMT]
+           ,[CR_AMT])
+                    OUTPUT INSERTED.REF_NO          
+                    VALUES
+                    ('{0}'  ,'{1}','{2}'  ,'{3}'  ,'{4}'  ,'{5}'  ,'{6}'  ,'{7}' ,'{8}'  ,'{9}')",
+               dataObject.tran_date,dataObject.ac_no,dataObject.tran_timestamp,dataObject.tran_desc,dataObject.rem_bal,dataObject.init_csno,dataObject.init_empid,dataObject.apprv_empid,
+               dataObject.dr_amt,dataObject.cr_amt);
+                return (int)DbAccess.ExecuteScalar(connectionString, CommandType.Text, query);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         public static bool Update(string connectionString, Finhist dataObject, Dber dberr)
         {
@@ -62,7 +87,16 @@ namespace Data
 
         public static bool Delete(string connectionString, string id, Dber dberr)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var query = string.Format("delete from Finhist where ref_no = {0}", id);
+                return DbAccess.ExecuteNonQuery(connectionString, CommandType.Text, query) == 1;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

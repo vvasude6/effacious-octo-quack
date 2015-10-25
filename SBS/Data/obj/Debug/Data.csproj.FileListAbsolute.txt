@@ -132,3 +132,14 @@ D:\SoftwareSecurity\v5\effacious-octo-quack\SBS\Data\bin\Debug\Security.pdb
 D:\SoftwareSecurity\v5\effacious-octo-quack\SBS\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
 D:\SoftwareSecurity\v5\effacious-octo-quack\SBS\Data\obj\Debug\Data.dll
 D:\SoftwareSecurity\v5\effacious-octo-quack\SBS\Data\obj\Debug\Data.pdb
+C:\Users\aray\Desktop\3rdSem\SS\v2\effacious-octo-quack\SBS\Data\bin\Debug\Data.dll
+C:\Users\aray\Desktop\3rdSem\SS\v2\effacious-octo-quack\SBS\Data\bin\Debug\Data.pdb
+C:\Users\aray\Desktop\3rdSem\SS\v2\effacious-octo-quack\SBS\Data\bin\Debug\Entity.dll
+C:\Users\aray\Desktop\3rdSem\SS\v2\effacious-octo-quack\SBS\Data\bin\Debug\Mnemonics.dll
+C:\Users\aray\Desktop\3rdSem\SS\v2\effacious-octo-quack\SBS\Data\bin\Debug\Security.dll
+C:\Users\aray\Desktop\3rdSem\SS\v2\effacious-octo-quack\SBS\Data\bin\Debug\Entity.pdb
+C:\Users\aray\Desktop\3rdSem\SS\v2\effacious-octo-quack\SBS\Data\bin\Debug\Mnemonics.pdb
+C:\Users\aray\Desktop\3rdSem\SS\v2\effacious-octo-quack\SBS\Data\bin\Debug\Security.pdb
+C:\Users\aray\Desktop\3rdSem\SS\v2\effacious-octo-quack\SBS\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
+C:\Users\aray\Desktop\3rdSem\SS\v2\effacious-octo-quack\SBS\Data\obj\Debug\Data.dll
+C:\Users\aray\Desktop\3rdSem\SS\v2\effacious-octo-quack\SBS\Data\obj\Debug\Data.pdb

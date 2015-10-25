@@ -29,6 +29,7 @@ namespace Data
                     NfinhistObject.tran_date = data.Tables[0].Rows[0]["tran_date"].ToString();
                     NfinhistObject.tran_desc = data.Tables[0].Rows[0]["tran_desc"].ToString();
                     NfinhistObject.tran_timestamp = data.Tables[0].Rows[0]["tran_timestamp"].ToString();
+                    NfinhistObject.init_csno = data.Tables[0].Rows[0]["init_csno"].ToString();
                     // NfinhistObject.apprv_empid = data.Tables[0].Rows[0]["ref_no"].ToString();
 
                     return NfinhistObject;
@@ -46,11 +47,31 @@ namespace Data
         public static DataSet ReadAll(string connectionString, Dber dberr)
         {
             var query = string.Format("select * from Nfinhist");
-           return  DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
+            return DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
         }
         public static int Create(string connectionString, Nfinhist dataObject, Dber dberr)
         {
-            throw new NotImplementedException();
+            try
+            {
+
+                var query = string.Format(@"INSERT INTO [SBS].[dbo].[NFINHIST]
+           ([TRAN_DATE]
+           ,[AC_NO]
+           ,[TRAN_TIMESTAMP]
+           ,[TRAN_DESC]
+           ,[INIT_EMPID]
+           ,[APPRV_EMPID]
+           ,[INIT_CSNO])
+                    OUTPUT INSERTED.REF_NO          
+                    VALUES
+                    ('{0}'  ,'{1}','{2}'  ,'{3}'  ,'{4}'  ,'{5}'  ,'{6}')",
+                dataObject.tran_date,dataObject.ac_no,dataObject.tran_timestamp,dataObject.tran_desc,dataObject.init_empid,dataObject.apprv_empid,dataObject.init_csno);
+                return (int)DbAccess.ExecuteScalar(connectionString, CommandType.Text, query);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public static bool Update(string connectionString, Nfinhist dataObject, Dber dberr)
@@ -59,7 +80,16 @@ namespace Data
         }
         public static bool Delete(string connectionString, string id, Dber dberr)
         {
-            throw new NotImplementedException();
+           try
+            {
+                var query = string.Format("delete from nfinhist where ref_no = {0}", id);
+                return DbAccess.ExecuteNonQuery(connectionString, CommandType.Text, query) == 1;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

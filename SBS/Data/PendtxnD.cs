@@ -22,14 +22,15 @@ namespace Data
                 //assign the data object to Error master object
                 if (data.Tables[0].Rows.Count > 0)
                 {
-                    PendingTxnMasterObject.init_empid = data.Tables[0].Rows[0]["ref_no"].ToString();
+                    PendingTxnMasterObject.init_empid = data.Tables[0].Rows[0]["init_empid"].ToString();
+                    PendingTxnMasterObject.init_csno = data.Tables[0].Rows[0]["init_csno"].ToString();
                     PendingTxnMasterObject.ref_no = data.Tables[0].Rows[0]["ref_no"].ToString();
-                    PendingTxnMasterObject.tran_date = data.Tables[0].Rows[0]["ref_no"].ToString();
-                    PendingTxnMasterObject.tran_desc = data.Tables[0].Rows[0]["ref_no"].ToString();
-                    PendingTxnMasterObject.tran_pvgb = data.Tables[0].Rows[0]["ref_no"].ToString();
-                    PendingTxnMasterObject.ac_no = data.Tables[0].Rows[0]["ref_no"].ToString();
-                    PendingTxnMasterObject.cr_amt = Convert.ToDecimal(data.Tables[0].Rows[0]["ref_no"]);
-                    PendingTxnMasterObject.dr_amt = Convert.ToDecimal(data.Tables[0].Rows[0]["ref_no"]);
+                    PendingTxnMasterObject.tran_date = data.Tables[0].Rows[0]["tran_date"].ToString();
+                   // PendingTxnMasterObject.tran_desc = data.Tables[0].Rows[0]["ref_no"].ToString();
+                    PendingTxnMasterObject.tran_pvgb = data.Tables[0].Rows[0]["tran_pvgb"].ToString();
+                    PendingTxnMasterObject.ac_no = data.Tables[0].Rows[0]["ac_no"].ToString();
+                    PendingTxnMasterObject.cr_amt = Convert.ToDecimal(data.Tables[0].Rows[0]["cr_amt"]);
+                    PendingTxnMasterObject.dr_amt = Convert.ToDecimal(data.Tables[0].Rows[0]["dr_amt"]);
 
                     return PendingTxnMasterObject;
                 }
@@ -51,7 +52,28 @@ namespace Data
         }
         public static int Create(string connectionString, Pendtxn dataObject)
         {
-            throw new NotImplementedException();
+            try
+            {
+
+                var query = string.Format(@"INSERT INTO [SBS].[dbo].[PENDTXN]
+           (
+            [TRAN_DATE]
+            ,[AC_NO]
+           ,[TRAN_PVGB]
+           ,[INIT_EMPID]
+           ,[INIT_CSNO]
+           ,[DR_AMT]
+           ,[CR_AMT])
+                    OUTPUT INSERTED.REF_NO          
+                    VALUES
+                    ('{0}'  ,'{1}','{2}'  ,'{3}'  ,'{4}'  ,'{5}'  ,'{6}')",
+                dataObject.tran_date,dataObject.ac_no,dataObject.tran_pvgb,dataObject.init_empid,dataObject.init_csno,dataObject.dr_amt, dataObject.cr_amt);
+                return (int)DbAccess.ExecuteScalar(connectionString, CommandType.Text, query);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         public static bool Update(string connectionString, Pendtxn dataObject)
         {
@@ -60,7 +82,16 @@ namespace Data
 
         public static bool Delete(string connectionString, string id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var query = string.Format("delete from pendtxn where ref_no = {0}", id);
+                return DbAccess.ExecuteNonQuery(connectionString, CommandType.Text, query) == 1;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

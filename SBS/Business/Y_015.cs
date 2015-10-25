@@ -65,7 +65,7 @@ namespace Business
                 if (pvg.isPending)
                 {
                     Entity.Pendtxn pending = new Entity.Pendtxn(0, "0", this.cusNo, " ",
-                        Convert.ToString(this.txnPvgb), tx.txnmP.tran_desc, this.cusNo, 0);
+                        Convert.ToString(this.txnPvgb), this.cusNo, " ", 0, "0");
                     Data.PendtxnD.Create(connectionString, pending);
                     if (dberr.ifError())
                     {

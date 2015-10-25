@@ -13,14 +13,15 @@ namespace DevTester
         private const string CONNECTION_STRING = "Server=(local);Initial Catalog=SBS;Integrated Security=True";
         static void Main(string[] args)
         {
+            var error = new Data.Dber();
+            var s = FinhistD.Read(CONNECTION_STRING,"1", error);
 
-            //var s = new Txnm { tran_desc="testing5", tran_fin_type="1", tran_pvga=10, tran_pvgb=11};
-            //var id = TxnmD.Create(CONNECTION_STRING, s);
+            var c = FinhistD.Create(CONNECTION_STRING,s,error);
 
-            //var s1 = TxnmD.Delete(CONNECTION_STRING, id.ToString());
+            var d = FinhistD.Delete(CONNECTION_STRING, c.ToString(),null);
+            // TestSecurity();
 
-
-            TestSecurity();
+            Console.ReadLine();
         }
 
         private static void TestSecurity()

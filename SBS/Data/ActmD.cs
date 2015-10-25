@@ -62,11 +62,11 @@ namespace Data
             }
         }
 
-        public static DataSet GetUserAccountBalance(string connectionString, string customerNumber, Dber dberr)
+        public static DataSet GetUserAccountBalance(string connectionString, string customerNumber, int privilege, Dber dberr)
         {
             try
             {
-                var query = string.Format("select ac_no, ac_type, ac_bal from actm where CS_NO1 = {0} and AC_ACTIV = True", customerNumber);
+                var query = string.Format("select ac_no, ac_type, ac_bal from actm where CS_NO1 = {0} and AC_ACTIV = 'True' and pvg_a >= {1}", customerNumber, privilege);
                 var data = DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
                 if (data.Tables[0].Rows.Count > 0)
                 {
@@ -74,7 +74,7 @@ namespace Data
                 }
                 else
                 {
-                    dberr.setError(Mnemonics.DbErrorCodes.DBERR_ACTM_CUSNO_FETCH);
+                    dberr.setError(Mnemonics.DbErrorCodes.DBERR_ACTM_NOFIND);
                     return null;
                 }
             }

@@ -33,7 +33,7 @@ namespace Business
         public DataSet fetchAccountsFromCusNo(string connectionString, String cusno, Data.Dber dberr)
         {
             DataSet dbQuery = new DataSet();
-            dbQuery = Data.ActmD.GetUserAccountBalance(connectionString, cusno, dberr);
+            dbQuery = Data.ActmD.GetUserAccountBalance(connectionString, cusno, this.actmP.ac_pvg, dberr);
             return dbQuery;
         }
         public Boolean getCreditAllowed()

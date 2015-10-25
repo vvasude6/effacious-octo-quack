@@ -70,3 +70,9 @@ D:\SoftwareSecurity\v5\effacious-octo-quack\SBS\Security\bin\Debug\Google.Authen
 D:\SoftwareSecurity\v5\effacious-octo-quack\SBS\Security\obj\Debug\Security.csprojResolveAssemblyReference.cache
 D:\SoftwareSecurity\v5\effacious-octo-quack\SBS\Security\obj\Debug\Security.dll
 D:\SoftwareSecurity\v5\effacious-octo-quack\SBS\Security\obj\Debug\Security.pdb
+C:\Users\aray\Desktop\3rdSem\SS\v2\effacious-octo-quack\SBS\Security\bin\Debug\Security.dll
+C:\Users\aray\Desktop\3rdSem\SS\v2\effacious-octo-quack\SBS\Security\bin\Debug\Security.pdb
+C:\Users\aray\Desktop\3rdSem\SS\v2\effacious-octo-quack\SBS\Security\bin\Debug\Google.Authenticator.dll
+C:\Users\aray\Desktop\3rdSem\SS\v2\effacious-octo-quack\SBS\Security\obj\Debug\Security.csprojResolveAssemblyReference.cache
+C:\Users\aray\Desktop\3rdSem\SS\v2\effacious-octo-quack\SBS\Security\obj\Debug\Security.dll
+C:\Users\aray\Desktop\3rdSem\SS\v2\effacious-octo-quack\SBS\Security\obj\Debug\Security.pdb

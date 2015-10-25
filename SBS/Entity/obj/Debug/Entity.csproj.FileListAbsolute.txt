@@ -72,3 +72,10 @@ D:\SoftwareSecurity\v5\effacious-octo-quack\SBS\Entity\bin\Debug\Mnemonics.pdb
 D:\SoftwareSecurity\v5\effacious-octo-quack\SBS\Entity\obj\Debug\Entity.csprojResolveAssemblyReference.cache
 D:\SoftwareSecurity\v5\effacious-octo-quack\SBS\Entity\obj\Debug\Entity.dll
 D:\SoftwareSecurity\v5\effacious-octo-quack\SBS\Entity\obj\Debug\Entity.pdb
+C:\Users\aray\Desktop\3rdSem\SS\v2\effacious-octo-quack\SBS\Entity\bin\Debug\Entity.dll
+C:\Users\aray\Desktop\3rdSem\SS\v2\effacious-octo-quack\SBS\Entity\bin\Debug\Entity.pdb
+C:\Users\aray\Desktop\3rdSem\SS\v2\effacious-octo-quack\SBS\Entity\bin\Debug\Mnemonics.dll
+C:\Users\aray\Desktop\3rdSem\SS\v2\effacious-octo-quack\SBS\Entity\bin\Debug\Mnemonics.pdb
+C:\Users\aray\Desktop\3rdSem\SS\v2\effacious-octo-quack\SBS\Entity\obj\Debug\Entity.csprojResolveAssemblyReference.cache
+C:\Users\aray\Desktop\3rdSem\SS\v2\effacious-octo-quack\SBS\Entity\obj\Debug\Entity.dll
+C:\Users\aray\Desktop\3rdSem\SS\v2\effacious-octo-quack\SBS\Entity\obj\Debug\Entity.pdb

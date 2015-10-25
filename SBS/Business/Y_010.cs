@@ -70,13 +70,13 @@ namespace Business
             {
                 // Write to FINHIST table
                 Entity.Finhist fhist = new Entity.Finhist(this.acct.actmP.ac_no, "0", this.tx.txnmP.tran_desc,
-                    0, 0, Convert.ToString(this.acct.actmP.ac_bal), "0", "0");
+                    0, 0, Convert.ToString(this.acct.actmP.ac_bal), "0", "0","0");
                 Data.FinhistD.Create(connectionString, fhist, dberr);
             }
             else
             {
                 // Write to NFINHIST table
-                Entity.Nfinhist nFhist = new Entity.Nfinhist(this.acct.actmP.ac_no, "0", this.tx.txnmP.tran_desc, "0", "0");
+                Entity.Nfinhist nFhist = new Entity.Nfinhist(this.acct.actmP.ac_no, "0", this.tx.txnmP.tran_desc, "0", "0","0");
                 Data.NfinhistD.Create(connectionString, nFhist, dberr);
             }
             result = Convert.ToString(acct.actmP.ac_bal - acct.actmP.ac_hold);
