@@ -219,7 +219,6 @@
     </Compile>
     <Compile Include="Virtual Keyboard.aspx.cs">
       <DependentUpon>Virtual Keyboard.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Virtual Keyboard.aspx.designer.cs">
       <DependentUpon>Virtual Keyboard.aspx</DependentUpon>

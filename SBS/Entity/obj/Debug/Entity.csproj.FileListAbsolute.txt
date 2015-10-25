@@ -58,3 +58,10 @@ F:\Programs\SBSv5\effacious-octo-quack\SBS\Entity\bin\Debug\Mnemonics.pdb
 F:\Programs\SBSv5\effacious-octo-quack\SBS\Entity\obj\Debug\Entity.csprojResolveAssemblyReference.cache
 F:\Programs\SBSv5\effacious-octo-quack\SBS\Entity\obj\Debug\Entity.dll
 F:\Programs\SBSv5\effacious-octo-quack\SBS\Entity\obj\Debug\Entity.pdb
+F:\Programs\SBSv7\effacious-octo-quack\SBS\Entity\bin\Debug\Entity.dll
+F:\Programs\SBSv7\effacious-octo-quack\SBS\Entity\bin\Debug\Entity.pdb
+F:\Programs\SBSv7\effacious-octo-quack\SBS\Entity\bin\Debug\Mnemonics.dll
+F:\Programs\SBSv7\effacious-octo-quack\SBS\Entity\bin\Debug\Mnemonics.pdb
+F:\Programs\SBSv7\effacious-octo-quack\SBS\Entity\obj\Debug\Entity.csprojResolveAssemblyReference.cache
+F:\Programs\SBSv7\effacious-octo-quack\SBS\Entity\obj\Debug\Entity.dll
+F:\Programs\SBSv7\effacious-octo-quack\SBS\Entity\obj\Debug\Entity.pdb

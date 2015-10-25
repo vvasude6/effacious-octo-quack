@@ -21,5 +21,6 @@ namespace Mnemonics
         public static String TX_EXT_TRANSFER = "019";
         public static String TX_TRANSFER = "020";
         public static String TX_UPDATE_PROFILE = "021";
+        public static String TX_REGISTER_USER = "022";
     }
 }

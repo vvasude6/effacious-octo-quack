@@ -12,7 +12,18 @@ namespace Business
     public class XSwitch
     {
         String result;
-        DataSet resultSet;
+        DataSet _resultSet;
+        public DataSet resultSet
+        {
+            get
+            {
+                return this._resultSet;
+            }
+            set
+            {
+                this._resultSet = value;
+            }
+        }
         public String resultGet
         {
             get 
@@ -49,15 +60,6 @@ namespace Business
                         {
                             resultSet = y000.resultSetGet;
                         }
-                        //String accounts = y000.getOutput();
-                        //String[] account = accounts.Split(delimiters);
-                        /*foreach(String s in account)
-                        {
-                            Y_010 y0 = new Y_010(Mnemonics.TxnCodes.TX_BALINQ, connectionString, s);
-                            tempResult += y0.resultGet + "|";
-                        }
-                        result = tempResult;
-                        */
                         // ENCRYPT result here
                         break;
                     case "010": // Balance Inquiry
@@ -153,6 +155,12 @@ namespace Business
                             dataPart[13], dataPart[14], dataPart[15], dataPart[16], dataPart[17], dataPart[18], dataPart[19], 
                             dataPart[20], dataPart[21], loginAc);
                         result = y014.getOutput();
+                        // ENCRYPT result here
+                        break;
+                    case "018": // User Registration for Online Banking // input = dataPart[1] = customer number
+                        //String loginAccc = dataPart[1];
+                        Y_015 y015 = new Y_015(Mnemonics.TxnCodes.TX_UPDATE_PROFILE, connectionString, loginAc);
+                        result = y015.resultP;
                         // ENCRYPT result here
                         break;
                 }

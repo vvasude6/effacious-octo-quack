@@ -80,11 +80,18 @@ namespace Business
                 if (this.getDebitAllowed())
                 {
                     this.newBal = this.actmP.ac_bal - changeAmount;
-                    this.actmP.ac_bal = this.newBal;
-                    // need to implement minimum balance check through new account type parameter table ACPRM
+                    if (this.newBal < 0)
+                    {
+                        dberr.setError(Mnemonics.DbErrorCodes.TXERR_INSUFFICIENT_BALANCE);
+                    }
+                    else
+                    {
+                        this.actmP.ac_bal = this.newBal;
+                        // need to implement minimum balance check through new account type parameter table ACPRM
 
-                    // Update newBal in Actm.
-                    Boolean dbCode = Data.ActmD.Update(this.actmP, dberr);
+                        // Update newBal in Actm.
+                        Boolean dbCode = Data.ActmD.Update(this.actmP, dberr);
+                    }
                 }
                 else 
                 {

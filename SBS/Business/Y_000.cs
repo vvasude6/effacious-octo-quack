@@ -61,15 +61,28 @@ namespace Business
             Entity.Cstm cs = Data.CstmD.Read(connectionString, usr, pwd, dberr);
             if (dberr.ifError())
             {
-                result = dberr.getErrorDesc(connectionString);
-                return -1;
+                Cp_Empm empm = new Cp_Empm(connectionString, usr, pwd, dberr);
+                if (dberr.ifError())
+                {
+                    result = dberr.getErrorDesc(connectionString);
+                    return -1;
+                }
             }
-            Cp_Actm ac = new Cp_Actm();
-            this.resultSet = ac.fetchAccountsFromCusNo(connectionString, cs.cs_no, dberr);
-            if (dberr.ifError())
+            else
             {
-                result = dberr.getErrorDesc(connectionString);
-                return -1;
+                Cp_Actm ac = new Cp_Actm();
+                this.resultSet = ac.fetchAccountsFromCusNo(connectionString, cs.cs_no, dberr);
+                if (dberr.ifError())
+                {
+                    result = dberr.getErrorDesc(connectionString);
+                    return -1;
+                }
+                if(this.resultSet == null)
+                {
+                    dberr.setError(Mnemonics.DbErrorCodes.TXERR_NO_USER);
+                    result = dberr.getErrorDesc(connectionString);
+                    return -1;
+                }
             }
             return 0;
         }

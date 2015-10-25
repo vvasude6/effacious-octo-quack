@@ -10,7 +10,7 @@ namespace Data
 {
     public static class EmpmD
     {
-        public static Empm Read(string connectionString, string emp_id)
+        public static Empm Read(string connectionString, string emp_id, Dber dberr)
         {
             try
             {
@@ -45,9 +45,11 @@ namespace Data
                     employeeMasterObject.emp_email = data.Tables[0].Rows[0]["emp_email"].ToString();
                     return employeeMasterObject;
                 }
-
                 else
+                {
+                    dberr.setError(Mnemonics.DbErrorCodes.DBERR_EMPM_NOFIND);
                     return null;
+                }
             }
             catch (Exception ex)
             {
@@ -55,7 +57,7 @@ namespace Data
             }
         }
 
-        public static Empm Read(string connectionString, string userName, string password)
+        public static Empm Read(string connectionString, string userName, string password, Dber dberr)
         {
             try
             {
@@ -90,22 +92,24 @@ namespace Data
                     employeeMasterObject.emp_email = data.Tables[0].Rows[0]["emp_email"].ToString();
                     return employeeMasterObject;
                 }
-
                 else
+                {
+                    dberr.setError(Mnemonics.DbErrorCodes.DBERR_EMPM_NOFIND);
                     return null;
+                }
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        public static DataSet ReadAll(string connectionString)
+        public static DataSet ReadAll(string connectionString, Dber dberr)
         {
             var query = string.Format("select * from Empm");
             return DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
 
         }
-        public static int Create(string connectionString, Empm dataObject)
+        public static int Create(string connectionString, Empm dataObject, Dber dberr)
         {
             try
             {
@@ -126,15 +130,16 @@ namespace Data
             }
             catch (Exception ex)
             {
-                throw ex;
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_ACTM_NOFIND);
+                return -1;
             }
         }
-        public static bool Update(string connectionString, Empm dataObject)
+        public static bool Update(string connectionString, Empm dataObject, Dber dberr)
         {
             throw new NotImplementedException();
         }
 
-        public static bool Delete(string connectionString, string id)
+        public static bool Delete(string connectionString, string id, Dber dberr)
         {
             try
             {
@@ -143,7 +148,8 @@ namespace Data
             }
             catch (Exception ex)
             {
-                throw ex;
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_ACTM_NOFIND);
+                return false;
             }
         }
     }

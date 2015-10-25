@@ -11,6 +11,7 @@ namespace Mnemonics
         public static String DBERR_TXNM_NOFIND = "999";
         public static String DBERR_ERRM_NOFIND = "998";
         public static String DBERR_ACTM_NOFIND = "997";
+        public static String DBERR_EMPM_NOFIND = "995";
         public static String DBERR_ACTM_CUSNO_FETCH = "996";
 
         public static String TXERR_INIT_PVG = "500";
@@ -37,6 +38,8 @@ namespace Mnemonics
         public static String TXERR_FMT_CUSANS3 = "479";
         public static String TXERR_FMT_CUSNO = "478";
         public static String TXERR_FMT_CUSTYPE = "477";
+        public static String TXERR_EXISTING_USER = "476";
+        public static String TXERR_INSUFFICIENT_BALANCE = "475";
         public static String TXERR_NO_USER = "000";
     }
 }

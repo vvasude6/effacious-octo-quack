@@ -23,3 +23,8 @@ F:\Programs\SBSv5\effacious-octo-quack\SBS\Mnemonics\bin\Debug\Mnemonics.pdb
 F:\Programs\SBSv5\effacious-octo-quack\SBS\Mnemonics\obj\Debug\Mnemonics.csprojResolveAssemblyReference.cache
 F:\Programs\SBSv5\effacious-octo-quack\SBS\Mnemonics\obj\Debug\Mnemonics.dll
 F:\Programs\SBSv5\effacious-octo-quack\SBS\Mnemonics\obj\Debug\Mnemonics.pdb
+F:\Programs\SBSv7\effacious-octo-quack\SBS\Mnemonics\bin\Debug\Mnemonics.dll
+F:\Programs\SBSv7\effacious-octo-quack\SBS\Mnemonics\bin\Debug\Mnemonics.pdb
+F:\Programs\SBSv7\effacious-octo-quack\SBS\Mnemonics\obj\Debug\Mnemonics.csprojResolveAssemblyReference.cache
+F:\Programs\SBSv7\effacious-octo-quack\SBS\Mnemonics\obj\Debug\Mnemonics.dll
+F:\Programs\SBSv7\effacious-octo-quack\SBS\Mnemonics\obj\Debug\Mnemonics.pdb
