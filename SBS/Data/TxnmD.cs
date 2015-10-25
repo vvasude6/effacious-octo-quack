@@ -101,5 +101,12 @@ namespace Data
                 throw ex;
             }
         }
+        public static string GetTransactionIdFromCode(String connectionString, String transactioncode)
+        {
+           // transactioncode = "vevfe";
+            string p = (string.Format("select TRAN_ID FROM TXNM WHERE TRAN_CODE = '{0}'", transactioncode));
+            var output = DbAccess.ExecuteScalar(connectionString, CommandType.Text, p);
+            return output.ToString();
+        }
     }
 }
