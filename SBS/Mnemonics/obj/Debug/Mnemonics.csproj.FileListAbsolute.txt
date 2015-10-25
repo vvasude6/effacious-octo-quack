@@ -53,3 +53,8 @@ C:\Ajith\Fall2015\CSE545\night\effacious-octo-quack\SBS\Mnemonics\bin\Debug\Mnem
 C:\Ajith\Fall2015\CSE545\night\effacious-octo-quack\SBS\Mnemonics\obj\Debug\Mnemonics.csprojResolveAssemblyReference.cache
 C:\Ajith\Fall2015\CSE545\night\effacious-octo-quack\SBS\Mnemonics\obj\Debug\Mnemonics.dll
 C:\Ajith\Fall2015\CSE545\night\effacious-octo-quack\SBS\Mnemonics\obj\Debug\Mnemonics.pdb
+C:\Source\SBS\Mnemonics\bin\Debug\Mnemonics.dll
+C:\Source\SBS\Mnemonics\bin\Debug\Mnemonics.pdb
+C:\Source\SBS\Mnemonics\obj\Debug\Mnemonics.csprojResolveAssemblyReference.cache
+C:\Source\SBS\Mnemonics\obj\Debug\Mnemonics.dll
+C:\Source\SBS\Mnemonics\obj\Debug\Mnemonics.pdb

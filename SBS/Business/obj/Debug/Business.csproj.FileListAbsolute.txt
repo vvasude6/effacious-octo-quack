@@ -211,3 +211,16 @@ C:\Ajith\Fall2015\CSE545\night\effacious-octo-quack\SBS\Business\bin\Debug\Secur
 C:\Ajith\Fall2015\CSE545\night\effacious-octo-quack\SBS\Business\obj\Debug\Business.csprojResolveAssemblyReference.cache
 C:\Ajith\Fall2015\CSE545\night\effacious-octo-quack\SBS\Business\obj\Debug\Business.dll
 C:\Ajith\Fall2015\CSE545\night\effacious-octo-quack\SBS\Business\obj\Debug\Business.pdb
+C:\Source\SBS\Business\bin\Debug\Business.dll
+C:\Source\SBS\Business\bin\Debug\Business.pdb
+C:\Source\SBS\Business\bin\Debug\Data.dll
+C:\Source\SBS\Business\bin\Debug\Entity.dll
+C:\Source\SBS\Business\bin\Debug\Mnemonics.dll
+C:\Source\SBS\Business\bin\Debug\Security.dll
+C:\Source\SBS\Business\bin\Debug\Data.pdb
+C:\Source\SBS\Business\bin\Debug\Entity.pdb
+C:\Source\SBS\Business\bin\Debug\Mnemonics.pdb
+C:\Source\SBS\Business\bin\Debug\Security.pdb
+C:\Source\SBS\Business\obj\Debug\Business.csprojResolveAssemblyReference.cache
+C:\Source\SBS\Business\obj\Debug\Business.dll
+C:\Source\SBS\Business\obj\Debug\Business.pdb

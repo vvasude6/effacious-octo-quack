@@ -176,3 +176,14 @@ C:\Ajith\Fall2015\CSE545\night\effacious-octo-quack\SBS\Data\bin\Debug\Security.
 C:\Ajith\Fall2015\CSE545\night\effacious-octo-quack\SBS\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
 C:\Ajith\Fall2015\CSE545\night\effacious-octo-quack\SBS\Data\obj\Debug\Data.dll
 C:\Ajith\Fall2015\CSE545\night\effacious-octo-quack\SBS\Data\obj\Debug\Data.pdb
+C:\Source\SBS\Data\bin\Debug\Data.dll
+C:\Source\SBS\Data\bin\Debug\Data.pdb
+C:\Source\SBS\Data\bin\Debug\Entity.dll
+C:\Source\SBS\Data\bin\Debug\Mnemonics.dll
+C:\Source\SBS\Data\bin\Debug\Security.dll
+C:\Source\SBS\Data\bin\Debug\Entity.pdb
+C:\Source\SBS\Data\bin\Debug\Mnemonics.pdb
+C:\Source\SBS\Data\bin\Debug\Security.pdb
+C:\Source\SBS\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
+C:\Source\SBS\Data\obj\Debug\Data.dll
+C:\Source\SBS\Data\obj\Debug\Data.pdb
