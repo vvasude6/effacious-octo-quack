@@ -78,6 +78,7 @@
     <Content Include="EmployeeDisplay.aspx" />
     <Content Include="EmployeeHome.aspx" />
     <Content Include="EmployerProfileUpdate.aspx" />
+    <Content Include="Error.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -191,6 +192,13 @@
       <DependentUpon>EmployerProfileUpdate.aspx</DependentUpon>
     </Compile>
     <Compile Include="Encryption.cs" />
+    <Compile Include="Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

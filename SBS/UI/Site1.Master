@@ -24,7 +24,7 @@
                 <%--<img class="navbar-brand" src="images/logo.png" />--%>
                 <ul class="nav navbar-nav menu">
                     <li>
-                        <a href="Home.aspx"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;Home</a>
+                        <asp:LinkButton runat="server" ID="HomeLink" OnClick="HomeLink_Click"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;Home</asp:LinkButton>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -51,10 +51,10 @@
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">My Profile</a></li>
+                            <li><a href="UserRegistration.aspx">My Profile</a></li>
                             <li><a href="#">Settings</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#">Signout</a></li>
+                            <li><asp:LinkButton runat="server" ID="SignOutLink" OnClick="SignOutLink_Click">Signout</asp:LinkButton></li>
                         </ul>
                     </li>
                 </ul>

@@ -40,6 +40,7 @@ namespace UI
                         var dataRecieved = output.Split('|');
                         Session["UserId"] = dataRecieved[0];
                         Session["UserName"] = dataRecieved[1].Trim() + " " + dataRecieved[2].Trim();
+                        Session["Access"] = dataRecieved[3];
                         switch (dataRecieved[3])
                         {
                             case "1":

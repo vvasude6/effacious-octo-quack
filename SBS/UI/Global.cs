@@ -16,6 +16,17 @@ namespace UI
                 return ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
             }
         }
+
+        public static bool IsPageAccessible(string page)
+        {
+            if (HttpContext.Current.Session["UserId"] == null)
+                return false;
+            else
+            {
+                // call business function with user id and page name
+                return true;
+            }
+        }
     }
 
     public static class Validate

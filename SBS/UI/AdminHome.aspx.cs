@@ -11,7 +11,13 @@ namespace UI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["UserId"] == null)
+                Response.Redirect("UserLogin.aspx");
 
+            if (Global.IsPageAccessible(Page.Title))
+            {
+                //write code here !
+            }
         }
     }
 }

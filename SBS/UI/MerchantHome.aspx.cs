@@ -13,8 +13,14 @@ namespace UI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            LoadAccounts();
-            LoadTransactions();
+            if (Session["UserId"] == null)
+                Response.Redirect("UserLogin.aspx");
+
+            if (Global.IsPageAccessible(Page.Title))
+            {
+                LoadAccounts();
+                LoadTransactions();
+            }
         }
         private void LoadAccounts()
         {
