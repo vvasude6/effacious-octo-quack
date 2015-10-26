@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +11,7 @@ namespace Entity
         
         public String err_id { get; set; }
         public String err_desc { get; set; }
+        public String err_code { get; set; }
         
     }
 }
