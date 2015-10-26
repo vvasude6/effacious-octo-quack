@@ -69,7 +69,7 @@ namespace UI
                 if(amount > 1000)
                 {
                     _otpService = new OTPService(Session["UserId"].ToString() + Session["UserName"].ToString());
-                    _otpService.GenerateOTP(Session["UserName"].ToString(), email: "aj23@asu.edu");
+                    _otpService.GenerateOTP(Session["UserName"].ToString(), email: Session["UserEmail"].ToString());
                     //show otp 
                     DebitButton.Visible = false;
                     OTPDiv.Visible = true;
