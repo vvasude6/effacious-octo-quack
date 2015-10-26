@@ -78,6 +78,7 @@ namespace UI
             {
                 case "approve":
                     //approve request id
+                    //var output = new Business.XSwitch(Global.ConnectionString, Session["Username"].ToString(), string.Format("<tran code>|<account number1>| | <"));
                     break;
                 case "reject":
                     //reject request id

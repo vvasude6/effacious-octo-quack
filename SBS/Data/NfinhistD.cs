@@ -64,8 +64,11 @@ namespace Data
            ,[INIT_CSNO])
                     OUTPUT INSERTED.REF_NO          
                     VALUES
-                    ('{0}'  ,'{1}','{2}'  ,'{3}'  ,'{4}'  ,'{5}'  ,'{6}')",
-                dataObject.tran_date,dataObject.ac_no,dataObject.tran_timestamp,dataObject.tran_desc,dataObject.init_empid,dataObject.apprv_empid,dataObject.init_csno);
+                    ('{0}'  ,'{1}','{2}'  ,'{3}'  ,{4}  ,{5}  ,'{6}')",
+                dataObject.tran_date, dataObject.ac_no, dataObject.tran_timestamp, dataObject.tran_desc,
+                dataObject.init_empid == "0" ? "null" : dataObject.init_empid,
+                dataObject.apprv_empid == "0" ? "null" : dataObject.apprv_empid,
+                dataObject.init_csno);
                 return (int)DbAccess.ExecuteScalar(connectionString, CommandType.Text, query);
             }
             catch (Exception ex)
@@ -85,6 +88,33 @@ namespace Data
                 var query = string.Format("delete from nfinhist where ref_no = {0}", id);
                 return DbAccess.ExecuteNonQuery(connectionString, CommandType.Text, query) == 1;
 
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static DataSet GetAccountStatement(string connectionString, string cs_no, Dber dberr)
+        {
+            try
+            {
+                var query = string.Format(string.Format(@"select 
+                            AC_NO [Account Number],
+                            TRAN_TIMESTAMP [Timestamp],
+                            TRAN_DESC [Transaction]
+                            from NFINHIST
+                            where ac_no in (select AC_NO from ACTM where CS_NO1 = '{0}')", cs_no));
+                var data = DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
+                if (data != null)
+                {
+                    return data;
+                }
+                else
+                {
+                    dberr.setError(Mnemonics.DbErrorCodes.DBERR_ACTM_NOFIND);
+                    return null;
+                }
             }
             catch (Exception ex)
             {

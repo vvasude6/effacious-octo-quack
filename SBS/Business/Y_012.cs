@@ -115,8 +115,8 @@ namespace Business
             {
                 if (pvg.isPending)
                 {
-                    Entity.Pendtxn pending = new Entity.Pendtxn(this.changeAmount, seq.getSequence(), this.acct.actmP.ac_no, " ",
-                        Convert.ToString(this.tx.txnmP.tran_pvgb), this.tx.txnmP.tran_desc, this.acct.actmP.ac_no, 0,"0",
+                    Entity.Pendtxn pending = new Entity.Pendtxn(this.changeAmount, seq.getSequence(), this.acct.actmP.ac_no, "0",
+                        Convert.ToString(this.tx.txnmP.tran_pvgb), this.acct.actmP.cs_no1, "0", 0,  this.tx.txnmP.tran_desc,
                         this.tx.txnmP.tran_id);
                     Data.PendtxnD.Create(connectionString, pending);
                     if (dberr.ifError())

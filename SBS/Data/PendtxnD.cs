@@ -110,17 +110,27 @@ namespace Data
                (
                 [TRAN_DATE]
                 ,[AC_NO]
+                , [AC_NO2]
                ,[TRAN_PVGB]
                ,[INIT_EMPID]
                ,[INIT_CSNO]
                ,[DR_AMT]
                ,[CR_AMT]
+               , [TRAN_ID]
                 , [TRAN_DESC])
                     OUTPUT INSERTED.REF_NO          
                     VALUES
-                    ('{0}'  ,'{1}','{2}'  ,'{3}'  ,'{4}'  ,'{5}'  ,'{6}', '{7}')",
-                dataObject.tran_date,dataObject.ac_no,dataObject.tran_pvgb,dataObject.init_empid,dataObject.init_csno,
-                dataObject.dr_amt, dataObject.cr_amt, dataObject.tran_desc);
+                    ('{0}'  ,{1}, {2}, '{3}'  , {4} , {5}  ,'{6}', '{7}', {8}, '{9}')",
+                dataObject.tran_date,
+                dataObject.ac_no == "0" ? "null" : dataObject.ac_no,
+                dataObject.ac_no2 == "0" ? "null" : dataObject.ac_no2,
+                dataObject.tran_pvgb,
+                dataObject.init_empid == "0" ? "null" : dataObject.init_empid,
+                dataObject.init_csno == "0" ? "null" : dataObject.init_csno,
+                dataObject.dr_amt,
+                dataObject.cr_amt,
+                dataObject.tran_id ,
+                dataObject.tran_desc);
                 return (int)DbAccess.ExecuteScalar(connectionString, CommandType.Text, query);
             }
             catch (Exception ex)
@@ -146,5 +156,6 @@ namespace Data
                 throw ex;
             }
         }
+
     }
 }

@@ -101,5 +101,33 @@ namespace Data
                 throw ex;
             }
         }
+
+        public static DataSet GetAccountStatement(string connectionString, string cs_no, Dber dberr)
+        {
+            try
+            {
+                var query = string.Format(string.Format(@"select 
+                            AC_NO [Account Number],
+                            TRAN_TIMESTAMP [Timestamp],
+                            TRAN_DESC [Transaction],
+                            REM_BAL [Balance]
+                            from FINHIST
+                            where ac_no in (select AC_NO from ACTM where CS_NO1 = '{0}')", cs_no));
+                var data = DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
+                if (data != null)
+                {
+                    return data;
+                }
+                else
+                {
+                    dberr.setError(Mnemonics.DbErrorCodes.DBERR_ACTM_NOFIND);
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

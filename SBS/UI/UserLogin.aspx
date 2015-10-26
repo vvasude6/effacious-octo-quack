@@ -9,10 +9,13 @@
     <title>SBS Login</title>
     <script src="Scripts/jquery-1.9.1.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/jquery.keyboard.extension-typing.js"></script>
+    <script src="Scripts/jquery.keyboard.js"></script>
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/bootstrap-theme.min.css" rel="stylesheet" />
     <link href="css/Custom.css" rel="stylesheet" />
     <link href="Content/bootstrap.min.css" type="text/css" rel="stylesheet" />
+    <link href="css/keyboard.css" type="text/css" rel="stylesheet"/>
     <style>
         .hashPasswordClass { display: none; }
         .spacerRow {
@@ -80,6 +83,17 @@
                                 <p>Don't have an account? <a href="UserRegistration.aspx">Request</a> for one now.</p>
                             </td>
                         </tr>
+                        <tr class="spacerRow"></tr>
+                        <tr>
+                            <td style="text-align: right">
+                                <div class="input-group">
+                                    <span>
+                                        <input type="checkbox" id="VirtualKeyboardCheckBox" />
+                                        Use Virtual Keyboard
+                                    </span>
+                                </div>
+                            </td>
+                        </tr>
                     </table>
 
                 </div>
@@ -91,6 +105,21 @@
         $('#LoginButton').click(function () {
             //alert(hashCode($('#PasswordTextBox').val()));
             $('#hashPasswordHiddenField').val(hashCode($('#PasswordTextBox').val()));
+        });
+
+        $('#VirtualKeyboardCheckBox').change(function () {
+            if ($('#VirtualKeyboardCheckBox').is(':checked') == true) {
+                $('#UserNameTextBox').keyboard({
+                    autoAccept: true
+                }).addTyping();
+                $('#PasswordTextBox').keyboard({
+                    autoAccept: true
+                }).addTyping();
+            }
+            else {
+                //$('#UserNameTextBox').removeTyping();
+                //$('#PasswordTextBox').removeTyping();
+            }
         });
 
         function hashCode(str) {

@@ -73,6 +73,7 @@
     <Content Include="css\bootstrap.css" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\Custom.css" />
+    <Content Include="css\keyboard.css" />
     <Content Include="CustProfileUpdate.aspx" />
     <Content Include="DebitForm.aspx" />
     <Content Include="EmployeeDisplay.aspx" />
@@ -106,6 +107,8 @@
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <Content Include="packages.config" />
+    <Content Include="Scripts\jquery.keyboard.extension-typing.js" />
+    <Content Include="Scripts\jquery.keyboard.js" />
     <Content Include="Site1.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

@@ -24,8 +24,8 @@ namespace Entity
             DateTime dt = DateTime.Now;
             this.ac_no = acno;
             this.ref_no = refno;
-            this.tran_date = dt.Date.ToString(Nfinhist.DATE_FORMAT);
-            this.tran_timestamp = dt.ToString(Nfinhist.DATE_FORMAT);
+            this.tran_date = dt.ToString();
+            this.tran_timestamp = dt.ToString();
             this.tran_desc = trandesc;
             this.init_empid = initempid;
             this.apprv_empid = apprvempid;

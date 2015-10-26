@@ -13,6 +13,7 @@ namespace Entity
         public String ref_no { get; set; }
         public String tran_date { get; set; }
         public String ac_no { get; set; }
+        public String ac_no2 { get; set; }
         public String tran_pvgb { get; set; }
         public String tran_desc { get; set; }
         public String init_empid { get; set; }
@@ -27,8 +28,9 @@ namespace Entity
             DateTime dt = DateTime.Now;
             this.cr_amt = cr;
             this.ref_no = refno;
-            this.tran_date = dt.Date.ToString(Pendtxn.DATE_FORMAT); ;
+            this.tran_date = dt.ToString();
             this.ac_no = ac1;
+            this.ac_no2 = ac2;
             this.tran_pvgb = pvb;
             this.tran_desc = tran_desc;
             this.init_empid = initemp;
