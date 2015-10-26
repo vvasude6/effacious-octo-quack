@@ -54,7 +54,7 @@
                         <tr>
                             <td>
                                 <div class="input-group">
-                                    <span class="input-group-addon" id="basic-addon3">Username</span>
+                                    <span class="input-group-addon" id="basic-addon">Username</span>
                                     <asp:TextBox runat="server" class="form-control" ID="UserNameTextBox" aria-describedby="basic-addon3" autofocus></asp:TextBox>
                                 </div>
                             </td>
@@ -75,7 +75,7 @@
                                 <asp:Button runat="server" ID="LoginButton" type="submit" class="btn btn-default" Text="Sign In" OnClick="LoginButton_Click"></asp:Button>
                                 <br />
                                 <br />
-                                <p>Don't have an account? <a href="#">Request</a> for one now.</p>
+                                <p>Don't have an account? <a href="UserRegistration.aspx">Request</a> for one now.</p>
                             </td>
                         </tr>
                     </table>

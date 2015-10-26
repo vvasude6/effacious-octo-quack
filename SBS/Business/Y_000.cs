@@ -117,14 +117,14 @@ namespace Business
                 String pvgLevel = Convert.ToString(empm.empmP.emp_pvg);
                 String empFname = empm.empmP.emp_fname;
                 String empLname = empm.empmP.emp_lname;
-                resultP = empNo + "|" + empFname + "|" + empLname + "|" + pvgLevel;
+                resultP = empNo + "|" + empFname + "|" + empLname + "|" + pvgLevel + "|" + empm.empmP.emp_email;
                 return 0;
             }
             String cusNo = cstm.cstmP.cs_no;
             String csPvgLevel = cstm.cstmP.cs_type;
             String csFname = cstm.cstmP.cs_fname;
             String csLname = cstm.cstmP.cs_lname;
-            resultP = cusNo + "|" + csFname + "|" + csLname + "|" + csPvgLevel;
+            resultP = cusNo + "|" + csFname + "|" + csLname + "|" + csPvgLevel + "|" + cstm.cstmP.cs_email;
             return 0;
         }
         public String getOutput()

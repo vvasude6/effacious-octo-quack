@@ -28,8 +28,8 @@ namespace Entity
             DateTime dt = DateTime.Now;
             this.ac_no = acno;
             this.ref_no = refno;
-            this.tran_date = dt.Date.ToString(Finhist.DATE_FORMAT);
-            this.tran_timestamp = dt.ToString(Finhist.DATE_FORMAT);
+            this.tran_date = dt.ToString();
+            this.tran_timestamp = dt.ToString();
             this.tran_desc = trandesc;
             this.dr_amt = dramt;
             this.cr_amt = cramt;

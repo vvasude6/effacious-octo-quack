@@ -24,6 +24,13 @@ namespace Business
                 return dberr.ifError();
             }
         }
+
+        public String resultP
+        {
+            get { return result; }
+            set { result = value; }
+        }
+
         Cp_Actm acct, acct_new;
         Cp_Txnm tx;
         Privilege pvg;
@@ -128,24 +135,25 @@ namespace Business
                 }
             }
             // Update new balance in ACTM
-            acct.subtractBalance(this.changeAmount, dberr);
+            acct.subtractBalance(connectionString, this.changeAmount, dberr);
             if (dberr.ifError())
             {
                 result = dberr.getErrorDesc(connectionString);
                 return -1;
             }
+            this.resultP = acct.resultP;
             // Store transaction in hisory table. Determine which history table to store in based on tx.txnmP.tran_fin_type
-            if (tx.txnmP.tran_fin_type.Equals('Y'))
+            if (tx.txnmP.tran_fin_type.Equals("Y"))
             {
                 // Write to FINHIST table
                 Entity.Finhist fhist = new Entity.Finhist(this.acct.actmP.ac_no, "0", this.tx.txnmP.tran_desc,
-                    changeAmount, 0, Convert.ToString(this.acct.actmP.ac_bal), "0", "0","0");
+                    changeAmount, 0, Convert.ToString(this.acct.actmP.ac_bal), "0", "0", "0");
                 Data.FinhistD.Create(connectionString, fhist, dberr);
             }
             else
             {
                 // Write to NFINHIST table
-                Entity.Nfinhist nFhist = new Entity.Nfinhist(this.acct.actmP.ac_no, "0", this.tx.txnmP.tran_desc, "0", "0","0");
+                Entity.Nfinhist nFhist = new Entity.Nfinhist(this.acct.actmP.ac_no, "0", this.tx.txnmP.tran_desc, "0", "0", this.acct.actmP.cs_no1);
                 Data.NfinhistD.Create(connectionString, nFhist, dberr);
             }
             if (dberr.ifError())

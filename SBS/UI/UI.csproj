@@ -292,6 +292,10 @@
       <Project>{cebe7e41-6752-448e-980c-6abfa5a917ec}</Project>
       <Name>Entity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Mnemonics\Mnemonics.csproj">
+      <Project>{7f750235-d41a-4136-89ee-4bd00d76e801}</Project>
+      <Name>Mnemonics</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Security\Security.csproj">
       <Project>{036f6162-4ac7-4399-9358-025e2043b09e}</Project>
       <Name>Security</Name>

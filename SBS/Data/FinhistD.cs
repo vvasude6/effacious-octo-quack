@@ -70,8 +70,11 @@ namespace Data
            ,[CR_AMT])
                     OUTPUT INSERTED.REF_NO          
                     VALUES
-                    ('{0}'  ,'{1}','{2}'  ,'{3}'  ,'{4}'  ,'{5}'  ,'{6}'  ,'{7}' ,'{8}'  ,'{9}')",
-               dataObject.tran_date,dataObject.ac_no,dataObject.tran_timestamp,dataObject.tran_desc,dataObject.rem_bal,dataObject.init_csno,dataObject.init_empid,dataObject.apprv_empid,
+                    ('{0}'  ,'{1}','{2}'  ,'{3}'  ,'{4}'  ,{5}  ,{6}  ,{7} ,'{8}'  ,'{9}')",
+               dataObject.tran_date,dataObject.ac_no,dataObject.tran_timestamp,dataObject.tran_desc,dataObject.rem_bal,
+               dataObject.init_csno == "0" ? "null" : dataObject.init_csno, 
+               dataObject.init_empid == "0" ? "null" : dataObject.init_empid,
+               dataObject.apprv_empid == "0" ? "null" : dataObject.apprv_empid,
                dataObject.dr_amt,dataObject.cr_amt);
                 return (int)DbAccess.ExecuteScalar(connectionString, CommandType.Text, query);
             }

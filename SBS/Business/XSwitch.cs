@@ -87,7 +87,7 @@ namespace Business
                     case "011": // Debit
                         Y_011 y011 = new Y_011(Mnemonics.TxnCodes.TX_DEBIT, connectionString, dataPart[1], 
                             Convert.ToDecimal(dataPart[3]), loginAc);
-                        result = y011.getOutput();
+                        result = y011.resultP;
                         // ENCRYPT result here
                         break;
                     case "012": // Credit

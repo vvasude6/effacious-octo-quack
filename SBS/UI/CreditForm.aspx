@@ -1,19 +1,26 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Site1.Master" CodeBehind="CreditForm.aspx.cs" Inherits="UI.CreditForm" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h3>Credit</h3>
-    
-    <asp:Label ID="Label1" runat="server" Text="To" CssClass="label label-primary"></asp:Label>
-    <br />
-    <asp:DropDownList ID="ToDropdown" runat="server" Width="280px"></asp:DropDownList>
+    <h3>Deposit Money</h3>
+
     <br />
     <br />
-    <asp:Label ID="Label2" runat="server" Text="Amount" CssClass="label label-primary"></asp:Label>
+    <div class="input-group">
+        <span class="input-group-addon">&nbsp;&nbsp;&nbsp;To Account</span>
+        <asp:DropDownList ID="ToDropdown" runat="server" Width="250px" Height="35px" CssClass="form-control"></asp:DropDownList>
+    </div>
+
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">&nbsp;&nbsp;&nbsp;Amount ($)</span>
+        <asp:TextBox ID="Amount" runat="server" class="form-control" Width="250px" TextMode="Number"></asp:TextBox>
+    </div>
+
     <br />
     <br />
-    <asp:TextBox ID="Amount" runat="server"></asp:TextBox>
-    <br />
-    <br />
-    <asp:Button ID="Button1" runat="server" Text="ContinueCredit" OnClick="Button1_Click" CssClass="btn btn-primary" />
+
+    <asp:Button ID="CreditButton" runat="server" Text="Credit Amount" OnClick="CreditButton_Click" CssClass="btn btn-default" />
+
 </asp:Content>

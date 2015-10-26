@@ -131,7 +131,18 @@ namespace Data
             }
         }
 
+        public static bool UpdateAccountBalance(string connectionString, string accountNumber, decimal amount, Dber dberr)
+        {
+            try
+            {
+                var query = string.Format("update actm set ac_bal = {0} where ac_no = '{1}'", amount, accountNumber);
+                return DbAccess.ExecuteNonQuery(connectionString, CommandType.Text, query) == 1;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
-        
     }
 }

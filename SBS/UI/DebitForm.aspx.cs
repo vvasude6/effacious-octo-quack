@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Security;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,34 +13,106 @@ namespace UI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            LoadAccounts();
-        }
-        private void LoadAccounts()
-        {
-            //Return list of Accounts
-            /* List<String> Acc=loadaccounts
-             //foreach(var acc in SenderAcc)
-             //{
-                 FromDropDown.Add(acc);
-             //}*/
+
+            if (Session["UserId"] == null)
+                Response.Redirect("UserLogin.aspx");
+
+            if (!IsPostBack)
+            {
+                if (Global.IsPageAccessible(Page.Title))
+                {
+                    LoadAccounts();
+                }
+                else
+                {
+                    Response.Redirect("Error.aspx?error=NoAccess");
+                }
+                
+            }
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        private void LoadAccounts()
         {
-            if(FromDropdown.SelectedValue==null)
+            var output = new Business.XSwitch(Global.ConnectionString, Session["Username"].ToString(), string.Format("009|{0}", Session["UserId"].ToString()));
+            if (output == null)
+                Response.Redirect("Error.aspx");
+
+
+            if (output.resultSet.Tables[0].Rows.Count != 0)
             {
-                MessageBox.Show("Select the Account from which Amount has to be Debited");
-            }
-            else if (Amount.Text == "")
-            {
-                MessageBox.Show("Enter the Amount");
+                FromDropdown.DataSource = output.resultSet.Tables[0];
+                FromDropdown.DataTextField = "ac_no";
+                FromDropdown.DataValueField = "ac_no";
+                FromDropdown.DataBind();
+                //AccountList.InnerHtml = GetAccountListHtml(output.resultSet);
             }
             else
             {
-                String Amt = Amount.Text;
-                //CAll Debit Function
+                FromDropdown.Items.Add("No Accounts Found");
+            }
+        }
+
+        protected void DebitButton_Click(object sender, EventArgs e)
+        {
+            if (FromDropdown.SelectedValue == null)
+            {
+                MessageBox.Show("Select the Account from which an amount has to be Debited");
+            }
+            else if (Amount.Text == "" || !UI.Validate.isAmountValid(Amount.Text))
+            {
+                MessageBox.Show("Amount cannot be empty, and amount accepts only decimal values.");
+            }
+            else
+            {
+                var amount = Convert.ToDecimal(Amount.Text);
+
+                if(amount > 1000)
+                {
+                    _otpService = new OTPService(Session["UserId"].ToString() + Session["UserName"].ToString());
+                    _otpService.GenerateOTP(Session["UserName"].ToString(), email: "aj23@asu.edu");
+                    //show otp 
+                    DebitButton.Visible = false;
+                    OTPDiv.Visible = true;
+                }
+                else
+                {
+                    ProcessTransaction(amount);
+                }
+            }
+        }
+
+        private static OTPService _otpService;
+        protected void ResendOTPLink_Click(object sender, EventArgs e)
+        {
+            _otpService.GenerateOTP(Session["UserName"].ToString(), email: Session["UserEmail"].ToString());
+        }
+
+        protected void VerifyButton_Click(object sender, EventArgs e)
+        {
+            if (_otpService.VerifyOTP(OTPTextBox.Text.Trim()))
+            {
+                ProcessTransaction(Convert.ToDecimal(Amount.Text));
+                ResetPage();
             }
 
+            else
+            {
+                MessageBox.Show("Could not verify the OTP that you entered.");
+            }
+        }
+
+        private void ProcessTransaction(decimal amount)
+        {
+            var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(), string.Format("011|{0}| |{1}", FromDropdown.SelectedValue, amount));
+            MessageBox.Show(string.Format("The debit was successful. Your current balance is {0}", output.resultP));
+        }
+
+        private void ResetPage()
+        {
+            Amount.Text = string.Empty;
+            FromDropdown.SelectedIndex = 0;
+            OTPDiv.Visible = false;
+            DebitButton.Visible = true;
         }
     }
 }

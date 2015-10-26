@@ -13,6 +13,14 @@ namespace Business
     {
         Entity.Actm actm;
         Decimal newBal;
+        String result;
+
+        public String resultP
+        {
+            get { return result; }
+            set { result = value; }
+        }
+
         public Entity.Actm actmP 
         { 
             get
@@ -50,7 +58,7 @@ namespace Business
             else
                 return false;
         }
-        public void addBalance(Decimal changeAmount, Data.Dber dberr)
+        public void addBalance(string connectionString, Decimal changeAmount, Data.Dber dberr)
         {
             try
             {
@@ -58,22 +66,25 @@ namespace Business
                 {
                     this.newBal = this.actmP.ac_bal + changeAmount;
                     this.actmP.ac_bal = this.newBal;
+                    resultP = this.newBal.ToString();
                     // Check if newBal is at most as much as the maximum balance allowed for the account through ACPRM table.
 
                     // Update newBal in Actm.
-                    Boolean dbCode = Data.ActmD.Update(this.actmP, dberr);
+                    Boolean dbCode = Data.ActmD.UpdateAccountBalance(connectionString, this.actmP.ac_no, this.actmP.ac_bal, dberr);
                 }
                 else
                 {
                     dberr.setError(Mnemonics.DbErrorCodes.TXERR_NO_CREDIT);
+                    resultP = dberr.getErrorDesc(connectionString);
                 }
             }
             catch(Exception e)
             {
-                // do something, or remove later
+                dberr.setError(Mnemonics.DbErrorCodes.TXERR_NO_DEBIT);
+                resultP = dberr.getErrorDesc(connectionString);
             }
         }
-        public void subtractBalance(Decimal changeAmount, Data.Dber dberr)
+        public void subtractBalance(string connectionString, Decimal changeAmount, Data.Dber dberr)
         {
             try
             {
@@ -83,39 +94,27 @@ namespace Business
                     if (this.newBal < 0)
                     {
                         dberr.setError(Mnemonics.DbErrorCodes.TXERR_INSUFFICIENT_BALANCE);
+                        resultP = dberr.getErrorDesc(connectionString);
                     }
                     else
                     {
                         this.actmP.ac_bal = this.newBal;
+                        resultP = this.newBal.ToString();
                         // need to implement minimum balance check through new account type parameter table ACPRM
 
                         // Update newBal in Actm.
-                        Boolean dbCode = Data.ActmD.Update(this.actmP, dberr);
+                        Boolean dbCode = Data.ActmD.UpdateAccountBalance(connectionString, this.actmP.ac_no, this.actmP.ac_bal ,dberr);
                     }
                 }
                 else 
                 {
                     dberr.setError(Mnemonics.DbErrorCodes.TXERR_NO_DEBIT);
+                    resultP = dberr.getErrorDesc(connectionString);
                 }
             }
             catch (Exception e)
             {
                 //do something, or remove later
-            }
-        }
-        
-        public void updateBalance(Decimal changeAmount, Data.Dber dberr)
-        {
-            if(changeAmount > 0)
-            {
-                addBalance(changeAmount, dberr);
-            }
-            else
-            {
-                if (changeAmount < 0)
-                {
-                    subtractBalance(changeAmount, dberr);
-                }
             }
         }
     }

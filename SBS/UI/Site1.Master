@@ -34,6 +34,8 @@
                         <ul class="dropdown-menu">
                             <li><a href="TransferMoney.aspx">Transfer Money</a></li>
                             <li><a href="MakePayment.aspx">Make Payment</a></li>
+                            <li><a href="DebitForm.aspx">Withdraw Money</a></li>
+                            <li><a href="CreditForm.aspx">Deposit Money</a></li>
                         </ul>
                         
                     </li>
@@ -51,7 +53,7 @@
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="UserRegistration.aspx">My Profile</a></li>
+                            <li><a href="CustProfileUpdate.aspx">My Profile</a></li>
                             <li><a href="#">Settings</a></li>
                             <li role="separator" class="divider"></li>
                             <li><asp:LinkButton runat="server" ID="SignOutLink" OnClick="SignOutLink_Click">Signout</asp:LinkButton></li>

@@ -41,6 +41,7 @@ namespace UI
                         Session["UserId"] = dataRecieved[0];
                         Session["UserName"] = dataRecieved[1].Trim() + " " + dataRecieved[2].Trim();
                         Session["Access"] = dataRecieved[3];
+                        Session["UserEmail"] = dataRecieved[4];
                         switch (dataRecieved[3])
                         {
                             case "1":

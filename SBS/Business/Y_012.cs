@@ -25,6 +25,13 @@ namespace Business
                 return dberr.ifError();
             }
         }
+
+        public String resultP
+        {
+            get { return result; }
+            set { result = value; }
+        }
+
         Cp_Actm acct, acct_new;
         Cp_Txnm tx;
         Privilege pvg;
@@ -129,14 +136,15 @@ namespace Business
                 }
             }
             // Update new balance in ACTM
-            acct.addBalance(this.changeAmount, dberr);
+            acct.addBalance(connectionString, this.changeAmount, dberr);
             if (dberr.ifError())
             {
                 result = dberr.getErrorDesc(connectionString);
                 return -1;
             }
+            this.resultP = acct.resultP;
             // Store transaction in hisory table. Determine which history table to store in based on tx.txnmP.tran_fin_type
-            if (tx.txnmP.tran_fin_type.Equals('Y'))
+            if (tx.txnmP.tran_fin_type.Equals("Y"))
             {
                 // Write to FINHIST table
                 Entity.Finhist fhist = new Entity.Finhist(this.acct.actmP.ac_no, "0", this.tx.txnmP.tran_desc,

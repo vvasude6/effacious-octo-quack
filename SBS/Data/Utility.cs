@@ -108,6 +108,7 @@ namespace Data
                     AttachParameters(command, commandParameters);
                 }
             }
+
             catch (SystemException ex)
             {
                 throw ex;
