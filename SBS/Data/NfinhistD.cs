@@ -103,8 +103,8 @@ namespace Data
                             TRAN_TIMESTAMP [Timestamp],
                             TRAN_DESC [Transaction]
                             from NFINHIST
-                            where ac_no in (select AC_NO from ACTM where CS_NO1 = '{0}')
-                            order by AC_NO, TRAN_TIMESTAMP", cs_no));
+                            where INIT_CSNO = '{0}'
+                            order by TRAN_TIMESTAMP desc", cs_no));
                 var data = DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
                 if (data != null)
                 {
