@@ -25,5 +25,10 @@ namespace Business
             // fetch all details for ac_no = acno.
             cstmP = Data.CstmD.Read(connectionString, usr, pwd, dberr);
         }
+        public Cp_Cstm(string connectionString, String cusno, Data.Dber dberr)
+        {
+            // fetch all details for ac_no = acno.
+            cstmP = Data.CstmD.Read(connectionString, cusno, dberr);
+        }
     }
 }

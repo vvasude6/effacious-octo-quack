@@ -180,6 +180,12 @@ namespace Business
                         result = y015.resultP;
                         // ENCRYPT result here
                         break;
+                    case "019": // Fetch Customer record
+                        //String loginAccc = dataPart[1];
+                        Y_019 y019 = new Y_019(Mnemonics.TxnCodes.TX_FETCH_CUSTOMER, connectionString, loginAc);
+                        result = y019.resultP;
+                        // ENCRYPT result here
+                        break;
                 }
             }
             catch (Exception e)
