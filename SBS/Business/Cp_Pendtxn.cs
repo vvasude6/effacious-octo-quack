@@ -3,18 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace Business
 {
     class Cp_Pendtxn
     {
-        String ref_no;
-        String tran_date;
-        String ac_no;
-        String tran_pvgb;
-        String tran_desc;
-        String init_empid;
-        Decimal dr_amt;
-        Decimal cr_amt;
+        DataSet pending;
+        public DataSet pendingP
+        {
+            get
+            {
+                return this.pending;
+            }
+            set
+            {
+                this.pending = value;
+            }
+        }
+        public Cp_Pendtxn(String connectionString, int pvg, Data.Dber dberr)
+        {
+            pendingP = Data.PendtxnD.GetAccessiblePendingTransactions(connectionString, pvg.ToString(), dberr);
+        }
     }
 }

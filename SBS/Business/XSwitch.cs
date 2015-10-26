@@ -65,6 +65,11 @@ namespace Business
                         }*/
                         // ENCRYPT result here
                         break;
+                    case "008": // Fetch Pending transactions - Employee
+                        Y_008 y008 = new Y_008(connectionString, Mnemonics.TxnCodes.TX_EMP_PENDING, Convert.ToInt16(dataPart[1]));//Mnemonics.TxnCodes.TX_BALINQ, connectionString, dataPart[1]);
+                        resultSet = y008.resultSetP;
+                        // ENCRYPT result here
+                        break;
                     case "009": // Balance Inquiry
                         Y_010 y010 = new Y_010(connectionString, Mnemonics.TxnCodes.TX_BALINQ_BULK);//Mnemonics.TxnCodes.TX_BALINQ, connectionString, dataPart[1]);
                         if (!y010.errorBoolP)

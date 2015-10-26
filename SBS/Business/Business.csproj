@@ -52,6 +52,7 @@
     <Compile Include="Sequence.cs" />
     <Compile Include="XSwitch.cs" />
     <Compile Include="Y_000.cs" />
+    <Compile Include="Y_008.cs" />
     <Compile Include="Y_010.cs" />
     <Compile Include="Y_011.cs" />
     <Compile Include="Y_012.cs" />
