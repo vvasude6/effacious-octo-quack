@@ -48,10 +48,11 @@ namespace Business
                 result = dberr.getErrorDesc(connectionString);
                 return -1;
             }
-            resultP = cs.cstmP.cs_no + cs.cstmP.cs_type + cs.cstmP.cs_fname + cs.cstmP.cs_mname + cs.cstmP.cs_lname + cs.cstmP.cs_addr1
-                + cs.cstmP.cs_addr2 + cs.cstmP.cs_city + cs.cstmP.cs_state + cs.cstmP.cs_zip + cs.cstmP.cs_branch + cs.cstmP.cs_phn
-                + cs.cstmP.cs_email + cs.cstmP.cs_uid + cs.cstmP.cs_secq1 + cs.cstmP.cs_ans1 + cs.cstmP.cs_secq2 + cs.cstmP.cs_ans2
-                + cs.cstmP.cs_secq3 + cs.cstmP.cs_ans3;
+            resultP = cs.cstmP.cs_no + "|" + cs.cstmP.cs_type + "|" + cs.cstmP.cs_fname + "|" + cs.cstmP.cs_mname + "|" + cs.cstmP.cs_lname
+                 + "|" + cs.cstmP.cs_addr1 + "|" + cs.cstmP.cs_addr2 + "|" + cs.cstmP.cs_city + "|" + cs.cstmP.cs_state + "|" + cs.cstmP.cs_zip
+                  + "|" + cs.cstmP.cs_branch + "|" + cs.cstmP.cs_phn + "|" + cs.cstmP.cs_email + "|" + cs.cstmP.cs_uid
+                  + "|" + cs.cstmP.cs_secq1 + "|" + cs.cstmP.cs_ans1 + "|" + cs.cstmP.cs_secq2 + "|" + cs.cstmP.cs_ans2 + "|"
+                  + cs.cstmP.cs_secq3 + "|" + cs.cstmP.cs_ans3;
             return 0;
         }
     }

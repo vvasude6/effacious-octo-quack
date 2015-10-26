@@ -148,7 +148,7 @@ namespace Business
             {
                 // Write to FINHIST table
                 Entity.Finhist fhist = new Entity.Finhist(this.acct.actmP.ac_no, "0", this.tx.txnmP.tran_desc,
-                    changeAmount, 0, Convert.ToString(this.acct.actmP.ac_bal), "0", "0","0");
+                    0, changeAmount, Convert.ToString(this.acct.actmP.ac_bal), "0", "0","0");
                 Data.FinhistD.Create(connectionString, fhist, dberr);
             }
             else
