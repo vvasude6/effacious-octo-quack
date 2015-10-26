@@ -1,60 +1,60 @@
 USE [SBS]
 GO
-/****** Object:  ForeignKey [FK_ACTM_CSTM]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  ForeignKey [FK_ACTM_CSTM]    Script Date: 10/25/2015 23:48:32 ******/
 ALTER TABLE [dbo].[ACTM] DROP CONSTRAINT [FK_ACTM_CSTM]
 GO
-/****** Object:  ForeignKey [FK_ACTM_CSTM1]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  ForeignKey [FK_ACTM_CSTM1]    Script Date: 10/25/2015 23:48:32 ******/
 ALTER TABLE [dbo].[ACTM] DROP CONSTRAINT [FK_ACTM_CSTM1]
 GO
-/****** Object:  ForeignKey [FK_ERRHIST_ACTM]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  ForeignKey [FK_ERRHIST_ACTM]    Script Date: 10/25/2015 23:48:32 ******/
 ALTER TABLE [dbo].[ERRHIST] DROP CONSTRAINT [FK_ERRHIST_ACTM]
 GO
-/****** Object:  ForeignKey [FK_ERRHIST_CSTM]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  ForeignKey [FK_ERRHIST_CSTM]    Script Date: 10/25/2015 23:48:32 ******/
 ALTER TABLE [dbo].[ERRHIST] DROP CONSTRAINT [FK_ERRHIST_CSTM]
 GO
-/****** Object:  ForeignKey [FK_ERRHIST_EMPM]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  ForeignKey [FK_ERRHIST_EMPM]    Script Date: 10/25/2015 23:48:32 ******/
 ALTER TABLE [dbo].[ERRHIST] DROP CONSTRAINT [FK_ERRHIST_EMPM]
 GO
-/****** Object:  ForeignKey [FK_ERRHIST_EMPM1]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  ForeignKey [FK_ERRHIST_EMPM1]    Script Date: 10/25/2015 23:48:32 ******/
 ALTER TABLE [dbo].[ERRHIST] DROP CONSTRAINT [FK_ERRHIST_EMPM1]
 GO
-/****** Object:  ForeignKey [FK_FINHIST_ACTM]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  ForeignKey [FK_FINHIST_ACTM]    Script Date: 10/25/2015 23:48:32 ******/
 ALTER TABLE [dbo].[FINHIST] DROP CONSTRAINT [FK_FINHIST_ACTM]
 GO
-/****** Object:  ForeignKey [FK_FINHIST_CSTM]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  ForeignKey [FK_FINHIST_CSTM]    Script Date: 10/25/2015 23:48:32 ******/
 ALTER TABLE [dbo].[FINHIST] DROP CONSTRAINT [FK_FINHIST_CSTM]
 GO
-/****** Object:  ForeignKey [FK_FINHIST_EMPM]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  ForeignKey [FK_FINHIST_EMPM]    Script Date: 10/25/2015 23:48:32 ******/
 ALTER TABLE [dbo].[FINHIST] DROP CONSTRAINT [FK_FINHIST_EMPM]
 GO
-/****** Object:  ForeignKey [FK_FINHIST_EMPM1]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  ForeignKey [FK_FINHIST_EMPM1]    Script Date: 10/25/2015 23:48:32 ******/
 ALTER TABLE [dbo].[FINHIST] DROP CONSTRAINT [FK_FINHIST_EMPM1]
 GO
-/****** Object:  ForeignKey [FK_NFINHIST_ACTM]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  ForeignKey [FK_NFINHIST_ACTM]    Script Date: 10/25/2015 23:48:32 ******/
 ALTER TABLE [dbo].[NFINHIST] DROP CONSTRAINT [FK_NFINHIST_ACTM]
 GO
-/****** Object:  ForeignKey [FK_NFINHIST_CSTM]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  ForeignKey [FK_NFINHIST_CSTM]    Script Date: 10/25/2015 23:48:32 ******/
 ALTER TABLE [dbo].[NFINHIST] DROP CONSTRAINT [FK_NFINHIST_CSTM]
 GO
-/****** Object:  ForeignKey [FK_NFINHIST_EMPM]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  ForeignKey [FK_NFINHIST_EMPM]    Script Date: 10/25/2015 23:48:32 ******/
 ALTER TABLE [dbo].[NFINHIST] DROP CONSTRAINT [FK_NFINHIST_EMPM]
 GO
-/****** Object:  ForeignKey [FK_NFINHIST_EMPM1]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  ForeignKey [FK_NFINHIST_EMPM1]    Script Date: 10/25/2015 23:48:32 ******/
 ALTER TABLE [dbo].[NFINHIST] DROP CONSTRAINT [FK_NFINHIST_EMPM1]
 GO
-/****** Object:  ForeignKey [FK_PENDTXN_ACTM]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  ForeignKey [FK_PENDTXN_ACTM]    Script Date: 10/25/2015 23:48:32 ******/
 ALTER TABLE [dbo].[PENDTXN] DROP CONSTRAINT [FK_PENDTXN_ACTM]
 GO
-/****** Object:  ForeignKey [FK_PENDTXN_CSTM]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  ForeignKey [FK_PENDTXN_CSTM]    Script Date: 10/25/2015 23:48:32 ******/
 ALTER TABLE [dbo].[PENDTXN] DROP CONSTRAINT [FK_PENDTXN_CSTM]
 GO
-/****** Object:  ForeignKey [FK_PENDTXN_EMPM]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  ForeignKey [FK_PENDTXN_EMPM]    Script Date: 10/25/2015 23:48:32 ******/
 ALTER TABLE [dbo].[PENDTXN] DROP CONSTRAINT [FK_PENDTXN_EMPM]
 GO
-/****** Object:  ForeignKey [FK_PENDTXN_TXNM]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  ForeignKey [FK_PENDTXN_TXNM]    Script Date: 10/25/2015 23:48:32 ******/
 ALTER TABLE [dbo].[PENDTXN] DROP CONSTRAINT [FK_PENDTXN_TXNM]
 GO
-/****** Object:  Table [dbo].[FINHIST]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  Table [dbo].[FINHIST]    Script Date: 10/25/2015 23:48:32 ******/
 ALTER TABLE [dbo].[FINHIST] DROP CONSTRAINT [FK_FINHIST_ACTM]
 GO
 ALTER TABLE [dbo].[FINHIST] DROP CONSTRAINT [FK_FINHIST_CSTM]
@@ -65,7 +65,7 @@ ALTER TABLE [dbo].[FINHIST] DROP CONSTRAINT [FK_FINHIST_EMPM1]
 GO
 DROP TABLE [dbo].[FINHIST]
 GO
-/****** Object:  Table [dbo].[NFINHIST]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  Table [dbo].[NFINHIST]    Script Date: 10/25/2015 23:48:32 ******/
 ALTER TABLE [dbo].[NFINHIST] DROP CONSTRAINT [FK_NFINHIST_ACTM]
 GO
 ALTER TABLE [dbo].[NFINHIST] DROP CONSTRAINT [FK_NFINHIST_CSTM]
@@ -76,7 +76,7 @@ ALTER TABLE [dbo].[NFINHIST] DROP CONSTRAINT [FK_NFINHIST_EMPM1]
 GO
 DROP TABLE [dbo].[NFINHIST]
 GO
-/****** Object:  Table [dbo].[PENDTXN]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  Table [dbo].[PENDTXN]    Script Date: 10/25/2015 23:48:32 ******/
 ALTER TABLE [dbo].[PENDTXN] DROP CONSTRAINT [FK_PENDTXN_ACTM]
 GO
 ALTER TABLE [dbo].[PENDTXN] DROP CONSTRAINT [FK_PENDTXN_CSTM]
@@ -87,7 +87,7 @@ ALTER TABLE [dbo].[PENDTXN] DROP CONSTRAINT [FK_PENDTXN_TXNM]
 GO
 DROP TABLE [dbo].[PENDTXN]
 GO
-/****** Object:  Table [dbo].[ERRHIST]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  Table [dbo].[ERRHIST]    Script Date: 10/25/2015 23:48:32 ******/
 ALTER TABLE [dbo].[ERRHIST] DROP CONSTRAINT [FK_ERRHIST_ACTM]
 GO
 ALTER TABLE [dbo].[ERRHIST] DROP CONSTRAINT [FK_ERRHIST_CSTM]
@@ -98,26 +98,26 @@ ALTER TABLE [dbo].[ERRHIST] DROP CONSTRAINT [FK_ERRHIST_EMPM1]
 GO
 DROP TABLE [dbo].[ERRHIST]
 GO
-/****** Object:  Table [dbo].[ACTM]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  Table [dbo].[ACTM]    Script Date: 10/25/2015 23:48:32 ******/
 ALTER TABLE [dbo].[ACTM] DROP CONSTRAINT [FK_ACTM_CSTM]
 GO
 ALTER TABLE [dbo].[ACTM] DROP CONSTRAINT [FK_ACTM_CSTM1]
 GO
 DROP TABLE [dbo].[ACTM]
 GO
-/****** Object:  Table [dbo].[CSTM]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  Table [dbo].[CSTM]    Script Date: 10/25/2015 23:48:32 ******/
 DROP TABLE [dbo].[CSTM]
 GO
-/****** Object:  Table [dbo].[EMPM]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  Table [dbo].[EMPM]    Script Date: 10/25/2015 23:48:32 ******/
 DROP TABLE [dbo].[EMPM]
 GO
-/****** Object:  Table [dbo].[ERRM]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  Table [dbo].[ERRM]    Script Date: 10/25/2015 23:48:32 ******/
 DROP TABLE [dbo].[ERRM]
 GO
-/****** Object:  Table [dbo].[TXNM]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  Table [dbo].[TXNM]    Script Date: 10/25/2015 23:48:32 ******/
 DROP TABLE [dbo].[TXNM]
 GO
-/****** Object:  Table [dbo].[TXNM]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  Table [dbo].[TXNM]    Script Date: 10/25/2015 23:48:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -140,11 +140,18 @@ GO
 SET ANSI_PADDING OFF
 GO
 SET IDENTITY_INSERT [dbo].[TXNM] ON
-INSERT [dbo].[TXNM] ([TRAN_ID], [TRAN_DESC], [TRAN_PVGA], [TRAN_PVGB], [TRAN_FIN_TYPE], [TRAN_CODE]) VALUES (10, N'testing', 1, 1, N'0', N'AISE E')
-INSERT [dbo].[TXNM] ([TRAN_ID], [TRAN_DESC], [TRAN_PVGA], [TRAN_PVGB], [TRAN_FIN_TYPE], [TRAN_CODE]) VALUES (11, N'Balance Enquiry', 1, 1, N'0', N'009')
-INSERT [dbo].[TXNM] ([TRAN_ID], [TRAN_DESC], [TRAN_PVGA], [TRAN_PVGB], [TRAN_FIN_TYPE], [TRAN_CODE]) VALUES (12, N'User Login', 1, 1, N'0', N'001')
+INSERT [dbo].[TXNM] ([TRAN_ID], [TRAN_DESC], [TRAN_PVGA], [TRAN_PVGB], [TRAN_FIN_TYPE], [TRAN_CODE]) VALUES (10, N'testing', 1, 1, N'N', N'AISE E')
+INSERT [dbo].[TXNM] ([TRAN_ID], [TRAN_DESC], [TRAN_PVGA], [TRAN_PVGB], [TRAN_FIN_TYPE], [TRAN_CODE]) VALUES (11, N'Balance Enquiry', 1, 1, N'N', N'009')
+INSERT [dbo].[TXNM] ([TRAN_ID], [TRAN_DESC], [TRAN_PVGA], [TRAN_PVGB], [TRAN_FIN_TYPE], [TRAN_CODE]) VALUES (12, N'User Login', 1, 1, N'N', N'001')
+INSERT [dbo].[TXNM] ([TRAN_ID], [TRAN_DESC], [TRAN_PVGA], [TRAN_PVGB], [TRAN_FIN_TYPE], [TRAN_CODE]) VALUES (13, N'Get Internal Employee Pending Transactions', 3, 3, N'N', N'008')
+INSERT [dbo].[TXNM] ([TRAN_ID], [TRAN_DESC], [TRAN_PVGA], [TRAN_PVGB], [TRAN_FIN_TYPE], [TRAN_CODE]) VALUES (14, N'Debit Transaction', 1, 1, N'Y', N'011')
+INSERT [dbo].[TXNM] ([TRAN_ID], [TRAN_DESC], [TRAN_PVGA], [TRAN_PVGB], [TRAN_FIN_TYPE], [TRAN_CODE]) VALUES (15, N'Credit Transaction', 1, 1, N'Y', N'012')
+INSERT [dbo].[TXNM] ([TRAN_ID], [TRAN_DESC], [TRAN_PVGA], [TRAN_PVGB], [TRAN_FIN_TYPE], [TRAN_CODE]) VALUES (16, N'Internal Transfer', 1, 1, N'Y', N'014')
+INSERT [dbo].[TXNM] ([TRAN_ID], [TRAN_DESC], [TRAN_PVGA], [TRAN_PVGB], [TRAN_FIN_TYPE], [TRAN_CODE]) VALUES (17, N'Transfer Debit', 1, 1, N'Y', N'015')
+INSERT [dbo].[TXNM] ([TRAN_ID], [TRAN_DESC], [TRAN_PVGA], [TRAN_PVGB], [TRAN_FIN_TYPE], [TRAN_CODE]) VALUES (18, N'Transfer Credit', 1, 1, N'Y', N'016')
+INSERT [dbo].[TXNM] ([TRAN_ID], [TRAN_DESC], [TRAN_PVGA], [TRAN_PVGB], [TRAN_FIN_TYPE], [TRAN_CODE]) VALUES (19, N'Fetch Customer Profile', 1, 1, N'N', N'019')
 SET IDENTITY_INSERT [dbo].[TXNM] OFF
-/****** Object:  Table [dbo].[ERRM]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  Table [dbo].[ERRM]    Script Date: 10/25/2015 23:48:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -154,6 +161,7 @@ GO
 CREATE TABLE [dbo].[ERRM](
 	[ERR_ID] [int] IDENTITY(1,1) NOT NULL,
 	[ERR_DESC] [varchar](max) NULL,
+	[ERR_CODE] [varchar](max) NULL,
  CONSTRAINT [PK_ERRM] PRIMARY KEY CLUSTERED 
 (
 	[ERR_ID] ASC
@@ -163,12 +171,12 @@ GO
 SET ANSI_PADDING OFF
 GO
 SET IDENTITY_INSERT [dbo].[ERRM] ON
-INSERT [dbo].[ERRM] ([ERR_ID], [ERR_DESC]) VALUES (1, N'Loot gye hum ')
-INSERT [dbo].[ERRM] ([ERR_ID], [ERR_DESC]) VALUES (2, N'Loot gye hum ')
-INSERT [dbo].[ERRM] ([ERR_ID], [ERR_DESC]) VALUES (3, N'Pata nhi Bhai Kya Problem hai ')
-INSERT [dbo].[ERRM] ([ERR_ID], [ERR_DESC]) VALUES (4, N'Loot gye hum ')
+INSERT [dbo].[ERRM] ([ERR_ID], [ERR_DESC], [ERR_CODE]) VALUES (1, N'Insufficient Balance', N'475')
+INSERT [dbo].[ERRM] ([ERR_ID], [ERR_DESC], [ERR_CODE]) VALUES (2, N'Loot gye hum ', NULL)
+INSERT [dbo].[ERRM] ([ERR_ID], [ERR_DESC], [ERR_CODE]) VALUES (3, N'Pata nhi Bhai Kya Problem hai ', NULL)
+INSERT [dbo].[ERRM] ([ERR_ID], [ERR_DESC], [ERR_CODE]) VALUES (4, N'Loot gye hum ', NULL)
 SET IDENTITY_INSERT [dbo].[ERRM] OFF
-/****** Object:  Table [dbo].[EMPM]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  Table [dbo].[EMPM]    Script Date: 10/25/2015 23:48:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -176,7 +184,7 @@ GO
 SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[EMPM](
-	[EMP_ID] [int] IDENTITY(1,1) NOT NULL,
+	[EMP_ID] [int] IDENTITY(1,5000) NOT NULL,
 	[EMP_FNAME] [varchar](max) NULL,
 	[EMP_MNAME] [varchar](max) NULL,
 	[EMP_LNAME] [varchar](max) NULL,
@@ -209,7 +217,7 @@ INSERT [dbo].[EMPM] ([EMP_ID], [EMP_FNAME], [EMP_MNAME], [EMP_LNAME], [EMP_ADDR1
 INSERT [dbo].[EMPM] ([EMP_ID], [EMP_FNAME], [EMP_MNAME], [EMP_LNAME], [EMP_ADDR1], [EMP_ADDR2], [EMP_ZIP], [EMP_CITY], [EMP_STATE], [EMP_BRNCH], [EMP_PHN], [EMP_EMAIL], [EMP_MNGR], [EMP_PVG], [EMP_SECQ1], [EMP_ANS1], [EMP_SECQ2], [EMP_ANS2], [EMP_UNAME], [EMP_PASS]) VALUES (3, N'Manager', NULL, N'Manager', N'test', N'test', 12345, N'test', N'test      ', N'test', N'1231231231', N'aj23@asu.edu', N'Y         ', 4, N'test', N'test', N'test', N'test', N'mana', N'3556498')
 INSERT [dbo].[EMPM] ([EMP_ID], [EMP_FNAME], [EMP_MNAME], [EMP_LNAME], [EMP_ADDR1], [EMP_ADDR2], [EMP_ZIP], [EMP_CITY], [EMP_STATE], [EMP_BRNCH], [EMP_PHN], [EMP_EMAIL], [EMP_MNGR], [EMP_PVG], [EMP_SECQ1], [EMP_ANS1], [EMP_SECQ2], [EMP_ANS2], [EMP_UNAME], [EMP_PASS]) VALUES (4, N'Admin', NULL, N'Admin', N'test', N'test', 12345, N'test', N'test      ', N'test', N'1231231211', N'aj23@asu.edu', N'N         ', 5, N'test', N'test', N'test', N'test', N'admi', N'3556498')
 SET IDENTITY_INSERT [dbo].[EMPM] OFF
-/****** Object:  Table [dbo].[CSTM]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  Table [dbo].[CSTM]    Script Date: 10/25/2015 23:48:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -217,7 +225,7 @@ GO
 SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[CSTM](
-	[CS_NO] [int] IDENTITY(1,1) NOT NULL,
+	[CS_NO] [int] IDENTITY(1000,1) NOT NULL,
 	[CS_TYPE] [char](1) NULL,
 	[CS_FNAME] [varchar](50) NULL,
 	[CS_MNAME] [varchar](max) NULL,
@@ -228,7 +236,7 @@ CREATE TABLE [dbo].[CSTM](
 	[CS_CITY] [varchar](50) NULL,
 	[CS_STATE] [varchar](max) NULL,
 	[CS_PHN] [varchar](max) NULL,
-	[CS_EMAIL] [varchar](max) NULL,
+	[CS_EMAIL] [varchar](max) NOT NULL,
 	[CS_UID] [int] NULL,
 	[CS_BRANCH] [varchar](max) NULL,
 	[CS_SEC_QS1] [varchar](max) NULL,
@@ -249,10 +257,10 @@ GO
 SET ANSI_PADDING OFF
 GO
 SET IDENTITY_INSERT [dbo].[CSTM] ON
-INSERT [dbo].[CSTM] ([CS_NO], [CS_TYPE], [CS_FNAME], [CS_MNAME], [CS_LNAME], [CS_ADDR1], [CS_ADDR2], [CS_ZIP], [CS_CITY], [CS_STATE], [CS_PHN], [CS_EMAIL], [CS_UID], [CS_BRANCH], [CS_SEC_QS1], [CS_SEC_ANS1], [CS_SEC_QS2], [CS_SEC_ANS2], [CS_SEC_QS3], [CS_SEC_ANS3], [CS_ACCESS], [CS_UNAME], [CS_PASS]) VALUES (1, N'1', N'Abhijit   1   ', NULL, N'Ray', N'1255', N'QDS', 85281, N'Tempe', NULL, N'4805220456', N'aray14@asu.edu', 1234, NULL, N'what', N'dont know', N'how', N'no idea', N'where ', N'here', NULL, N'aray', N'3556498')
+INSERT [dbo].[CSTM] ([CS_NO], [CS_TYPE], [CS_FNAME], [CS_MNAME], [CS_LNAME], [CS_ADDR1], [CS_ADDR2], [CS_ZIP], [CS_CITY], [CS_STATE], [CS_PHN], [CS_EMAIL], [CS_UID], [CS_BRANCH], [CS_SEC_QS1], [CS_SEC_ANS1], [CS_SEC_QS2], [CS_SEC_ANS2], [CS_SEC_QS3], [CS_SEC_ANS3], [CS_ACCESS], [CS_UNAME], [CS_PASS]) VALUES (1, N'1', N'Abhijit', NULL, N'Ray', N'1255', N'QDS', 85281, N'Tempe', NULL, N'4805220456', N'aray14@asu.edu', 1234, NULL, N'what', N'dont know', N'how', N'no idea', N'where ', N'here', NULL, N'aray', N'3556498')
 INSERT [dbo].[CSTM] ([CS_NO], [CS_TYPE], [CS_FNAME], [CS_MNAME], [CS_LNAME], [CS_ADDR1], [CS_ADDR2], [CS_ZIP], [CS_CITY], [CS_STATE], [CS_PHN], [CS_EMAIL], [CS_UID], [CS_BRANCH], [CS_SEC_QS1], [CS_SEC_ANS1], [CS_SEC_QS2], [CS_SEC_ANS2], [CS_SEC_QS3], [CS_SEC_ANS3], [CS_ACCESS], [CS_UNAME], [CS_PASS]) VALUES (2, N'2', N'Merchant', N'', N'Merchant', N'1255', N'QDS', 85281, N'Tempe', N'', N'4805220456', N'aj23@asu.edu', 1235, N'', N'what', N'dont know', N'how', N'no idea', N'where ', N'here', N' ', N'merch', N'3556498')
 SET IDENTITY_INSERT [dbo].[CSTM] OFF
-/****** Object:  Table [dbo].[ACTM]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  Table [dbo].[ACTM]    Script Date: 10/25/2015 23:48:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -260,7 +268,7 @@ GO
 SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[ACTM](
-	[AC_NO] [int] IDENTITY(1,1) NOT NULL,
+	[AC_NO] [int] IDENTITY(100000,1) NOT NULL,
 	[CS_NO1] [int] NOT NULL,
 	[CS_NO2] [int] NULL,
 	[AC_TYPE] [nvarchar](max) NOT NULL,
@@ -280,11 +288,11 @@ GO
 SET ANSI_PADDING OFF
 GO
 SET IDENTITY_INSERT [dbo].[ACTM] ON
-INSERT [dbo].[ACTM] ([AC_NO], [CS_NO1], [CS_NO2], [AC_TYPE], [AC_BAL], [AC_HOLD], [AC_PVG], [AC_DR_FLAG], [AC_CR_FLAG], [AC_OPEN_DT], [AC_ACTIV]) VALUES (1, 1, NULL, N'Checking Account', CAST(1239.00 AS Decimal(12, 2)), CAST(19.00 AS Decimal(12, 2)), 1, N'Y', N'Y', CAST(0x5A390B00 AS Date), 1)
-INSERT [dbo].[ACTM] ([AC_NO], [CS_NO1], [CS_NO2], [AC_TYPE], [AC_BAL], [AC_HOLD], [AC_PVG], [AC_DR_FLAG], [AC_CR_FLAG], [AC_OPEN_DT], [AC_ACTIV]) VALUES (2, 1, NULL, N'Saving Account', CAST(10000.00 AS Decimal(12, 2)), CAST(0.00 AS Decimal(12, 2)), 1, N'Y', N'N', CAST(0x5A390B00 AS Date), 1)
+INSERT [dbo].[ACTM] ([AC_NO], [CS_NO1], [CS_NO2], [AC_TYPE], [AC_BAL], [AC_HOLD], [AC_PVG], [AC_DR_FLAG], [AC_CR_FLAG], [AC_OPEN_DT], [AC_ACTIV]) VALUES (1, 1, NULL, N'Checking Account', CAST(232.00 AS Decimal(12, 2)), CAST(19.00 AS Decimal(12, 2)), 1, N'Y', N'Y', CAST(0x5A390B00 AS Date), 1)
+INSERT [dbo].[ACTM] ([AC_NO], [CS_NO1], [CS_NO2], [AC_TYPE], [AC_BAL], [AC_HOLD], [AC_PVG], [AC_DR_FLAG], [AC_CR_FLAG], [AC_OPEN_DT], [AC_ACTIV]) VALUES (2, 1, NULL, N'Saving Account', CAST(5692.00 AS Decimal(12, 2)), CAST(0.00 AS Decimal(12, 2)), 1, N'Y', N'N', CAST(0x5A390B00 AS Date), 1)
 INSERT [dbo].[ACTM] ([AC_NO], [CS_NO1], [CS_NO2], [AC_TYPE], [AC_BAL], [AC_HOLD], [AC_PVG], [AC_DR_FLAG], [AC_CR_FLAG], [AC_OPEN_DT], [AC_ACTIV]) VALUES (3, 2, NULL, N'Merchant Account', CAST(120000.00 AS Decimal(12, 2)), CAST(0.00 AS Decimal(12, 2)), 1, N'Y', N'Y', CAST(0x5A390B00 AS Date), 1)
 SET IDENTITY_INSERT [dbo].[ACTM] OFF
-/****** Object:  Table [dbo].[ERRHIST]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  Table [dbo].[ERRHIST]    Script Date: 10/25/2015 23:48:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -292,7 +300,7 @@ GO
 SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[ERRHIST](
-	[REF_NO] [int] IDENTITY(1,1) NOT NULL,
+	[REF_NO] [int] IDENTITY(10000,1) NOT NULL,
 	[TRAN_DATE] [date] NOT NULL,
 	[AC_NO] [int] NOT NULL,
 	[TRAN_TIMESTAMP] [varchar](max) NULL,
@@ -312,7 +320,7 @@ GO
 SET IDENTITY_INSERT [dbo].[ERRHIST] ON
 INSERT [dbo].[ERRHIST] ([REF_NO], [TRAN_DATE], [AC_NO], [TRAN_TIMESTAMP], [TRAN_DESC], [ERR_DESC], [INIT_EMPID], [APPRV_EMPID], [INIT_CSNO]) VALUES (1, CAST(0xC73A0B00 AS Date), 1, N'3245', N'Pata Nhi', N'Faltu hai', 1, 1, 1)
 SET IDENTITY_INSERT [dbo].[ERRHIST] OFF
-/****** Object:  Table [dbo].[PENDTXN]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  Table [dbo].[PENDTXN]    Script Date: 10/25/2015 23:48:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -320,7 +328,7 @@ GO
 SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[PENDTXN](
-	[REF_NO] [int] IDENTITY(1,1) NOT NULL,
+	[REF_NO] [int] IDENTITY(90000,1) NOT NULL,
 	[TRAN_DATE] [date] NULL,
 	[AC_NO] [int] NOT NULL,
 	[TRAN_PVGB] [int] NULL,
@@ -341,7 +349,7 @@ GO
 SET IDENTITY_INSERT [dbo].[PENDTXN] ON
 INSERT [dbo].[PENDTXN] ([REF_NO], [TRAN_DATE], [AC_NO], [TRAN_PVGB], [INIT_EMPID], [INIT_CSNO], [DR_AMT], [CR_AMT], [TRAN_ID], [TRAN_DESC]) VALUES (1, CAST(0x883A0B00 AS Date), 1, 11, 1, 1, CAST(1234.00 AS Decimal(12, 2)), CAST(23.00 AS Decimal(12, 2)), NULL, NULL)
 SET IDENTITY_INSERT [dbo].[PENDTXN] OFF
-/****** Object:  Table [dbo].[NFINHIST]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  Table [dbo].[NFINHIST]    Script Date: 10/25/2015 23:48:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -349,7 +357,7 @@ GO
 SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[NFINHIST](
-	[REF_NO] [int] IDENTITY(1,1) NOT NULL,
+	[REF_NO] [int] IDENTITY(60000,1) NOT NULL,
 	[TRAN_DATE] [datetime] NOT NULL,
 	[AC_NO] [int] NOT NULL,
 	[TRAN_TIMESTAMP] [varchar](max) NULL,
@@ -369,7 +377,7 @@ SET IDENTITY_INSERT [dbo].[NFINHIST] ON
 INSERT [dbo].[NFINHIST] ([REF_NO], [TRAN_DATE], [AC_NO], [TRAN_TIMESTAMP], [TRAN_DESC], [INIT_EMPID], [APPRV_EMPID], [INIT_CSNO]) VALUES (2, CAST(0x0000A56900000000 AS DateTime), 1, N'3', N'Nonsense', 1, 1, 1)
 INSERT [dbo].[NFINHIST] ([REF_NO], [TRAN_DATE], [AC_NO], [TRAN_TIMESTAMP], [TRAN_DESC], [INIT_EMPID], [APPRV_EMPID], [INIT_CSNO]) VALUES (3, CAST(0x0000A56900000000 AS DateTime), 1, N'3', N'Nonsense', 1, 1, 1)
 SET IDENTITY_INSERT [dbo].[NFINHIST] OFF
-/****** Object:  Table [dbo].[FINHIST]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  Table [dbo].[FINHIST]    Script Date: 10/25/2015 23:48:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -377,7 +385,7 @@ GO
 SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[FINHIST](
-	[REF_NO] [int] IDENTITY(1,1) NOT NULL,
+	[REF_NO] [int] IDENTITY(30000,1) NOT NULL,
 	[TRAN_DATE] [date] NOT NULL,
 	[AC_NO] [int] NOT NULL,
 	[TRAN_TIMESTAMP] [varchar](max) NULL,
@@ -385,7 +393,7 @@ CREATE TABLE [dbo].[FINHIST](
 	[REM_BAL] [decimal](12, 2) NULL,
 	[INIT_CSNO] [int] NULL,
 	[INIT_EMPID] [int] NULL,
-	[APPRV_EMPID] [int] NOT NULL,
+	[APPRV_EMPID] [int] NULL,
 	[DR_AMT] [decimal](12, 2) NULL,
 	[CR_AMT] [decimal](12, 2) NULL,
  CONSTRAINT [PK_FINHIST_1] PRIMARY KEY CLUSTERED 
@@ -398,110 +406,130 @@ SET ANSI_PADDING OFF
 GO
 SET IDENTITY_INSERT [dbo].[FINHIST] ON
 INSERT [dbo].[FINHIST] ([REF_NO], [TRAN_DATE], [AC_NO], [TRAN_TIMESTAMP], [TRAN_DESC], [REM_BAL], [INIT_CSNO], [INIT_EMPID], [APPRV_EMPID], [DR_AMT], [CR_AMT]) VALUES (1, CAST(0x8A3A0B00 AS Date), 1, N'12343', N'random', CAST(12.00 AS Decimal(12, 2)), 1, 1, 1, CAST(23.00 AS Decimal(12, 2)), CAST(4243.00 AS Decimal(12, 2)))
+INSERT [dbo].[FINHIST] ([REF_NO], [TRAN_DATE], [AC_NO], [TRAN_TIMESTAMP], [TRAN_DESC], [REM_BAL], [INIT_CSNO], [INIT_EMPID], [APPRV_EMPID], [DR_AMT], [CR_AMT]) VALUES (2, CAST(0x973A0B00 AS Date), 1, N'10/25/2015 6:38:49 PM', N'Debit Transaction', CAST(550.00 AS Decimal(12, 2)), NULL, NULL, NULL, CAST(50.00 AS Decimal(12, 2)), CAST(0.00 AS Decimal(12, 2)))
+INSERT [dbo].[FINHIST] ([REF_NO], [TRAN_DATE], [AC_NO], [TRAN_TIMESTAMP], [TRAN_DESC], [REM_BAL], [INIT_CSNO], [INIT_EMPID], [APPRV_EMPID], [DR_AMT], [CR_AMT]) VALUES (3, CAST(0x973A0B00 AS Date), 1, N'10/25/2015 7:02:00 PM', N'Debit Transaction', CAST(500.00 AS Decimal(12, 2)), NULL, NULL, NULL, CAST(50.00 AS Decimal(12, 2)), CAST(0.00 AS Decimal(12, 2)))
+INSERT [dbo].[FINHIST] ([REF_NO], [TRAN_DATE], [AC_NO], [TRAN_TIMESTAMP], [TRAN_DESC], [REM_BAL], [INIT_CSNO], [INIT_EMPID], [APPRV_EMPID], [DR_AMT], [CR_AMT]) VALUES (4, CAST(0x973A0B00 AS Date), 2, N'10/25/2015 7:02:16 PM', N'Debit Transaction', CAST(9910.00 AS Decimal(12, 2)), NULL, NULL, NULL, CAST(90.00 AS Decimal(12, 2)), CAST(0.00 AS Decimal(12, 2)))
+INSERT [dbo].[FINHIST] ([REF_NO], [TRAN_DATE], [AC_NO], [TRAN_TIMESTAMP], [TRAN_DESC], [REM_BAL], [INIT_CSNO], [INIT_EMPID], [APPRV_EMPID], [DR_AMT], [CR_AMT]) VALUES (5, CAST(0x973A0B00 AS Date), 1, N'10/25/2015 7:10:20 PM', N'Credit Transaction', CAST(600.00 AS Decimal(12, 2)), NULL, NULL, NULL, CAST(50.00 AS Decimal(12, 2)), CAST(0.00 AS Decimal(12, 2)))
+INSERT [dbo].[FINHIST] ([REF_NO], [TRAN_DATE], [AC_NO], [TRAN_TIMESTAMP], [TRAN_DESC], [REM_BAL], [INIT_CSNO], [INIT_EMPID], [APPRV_EMPID], [DR_AMT], [CR_AMT]) VALUES (6, CAST(0x973A0B00 AS Date), 1, N'10/25/2015 7:10:27 PM', N'Credit Transaction', CAST(650.00 AS Decimal(12, 2)), NULL, NULL, NULL, CAST(50.00 AS Decimal(12, 2)), CAST(0.00 AS Decimal(12, 2)))
+INSERT [dbo].[FINHIST] ([REF_NO], [TRAN_DATE], [AC_NO], [TRAN_TIMESTAMP], [TRAN_DESC], [REM_BAL], [INIT_CSNO], [INIT_EMPID], [APPRV_EMPID], [DR_AMT], [CR_AMT]) VALUES (7, CAST(0x973A0B00 AS Date), 1, N'10/25/2015 7:10:30 PM', N'Credit Transaction', CAST(700.00 AS Decimal(12, 2)), NULL, NULL, NULL, CAST(50.00 AS Decimal(12, 2)), CAST(0.00 AS Decimal(12, 2)))
+INSERT [dbo].[FINHIST] ([REF_NO], [TRAN_DATE], [AC_NO], [TRAN_TIMESTAMP], [TRAN_DESC], [REM_BAL], [INIT_CSNO], [INIT_EMPID], [APPRV_EMPID], [DR_AMT], [CR_AMT]) VALUES (8, CAST(0x973A0B00 AS Date), 1, N'10/25/2015 7:13:07 PM', N'Debit Transaction', CAST(0.00 AS Decimal(12, 2)), NULL, NULL, NULL, CAST(700.00 AS Decimal(12, 2)), CAST(0.00 AS Decimal(12, 2)))
+INSERT [dbo].[FINHIST] ([REF_NO], [TRAN_DATE], [AC_NO], [TRAN_TIMESTAMP], [TRAN_DESC], [REM_BAL], [INIT_CSNO], [INIT_EMPID], [APPRV_EMPID], [DR_AMT], [CR_AMT]) VALUES (9, CAST(0x973A0B00 AS Date), 2, N'10/25/2015 7:23:59 PM', N'Debit Transaction', CAST(9908.00 AS Decimal(12, 2)), NULL, NULL, NULL, CAST(2.00 AS Decimal(12, 2)), CAST(0.00 AS Decimal(12, 2)))
+INSERT [dbo].[FINHIST] ([REF_NO], [TRAN_DATE], [AC_NO], [TRAN_TIMESTAMP], [TRAN_DESC], [REM_BAL], [INIT_CSNO], [INIT_EMPID], [APPRV_EMPID], [DR_AMT], [CR_AMT]) VALUES (10, CAST(0x973A0B00 AS Date), 1, N'10/25/2015 7:27:46 PM', N'Credit Transaction', CAST(10.00 AS Decimal(12, 2)), NULL, NULL, NULL, CAST(10.00 AS Decimal(12, 2)), CAST(0.00 AS Decimal(12, 2)))
+INSERT [dbo].[FINHIST] ([REF_NO], [TRAN_DATE], [AC_NO], [TRAN_TIMESTAMP], [TRAN_DESC], [REM_BAL], [INIT_CSNO], [INIT_EMPID], [APPRV_EMPID], [DR_AMT], [CR_AMT]) VALUES (11, CAST(0x973A0B00 AS Date), 1, N'10/25/2015 7:28:05 PM', N'Credit Transaction', CAST(20.00 AS Decimal(12, 2)), NULL, NULL, NULL, CAST(10.00 AS Decimal(12, 2)), CAST(0.00 AS Decimal(12, 2)))
+INSERT [dbo].[FINHIST] ([REF_NO], [TRAN_DATE], [AC_NO], [TRAN_TIMESTAMP], [TRAN_DESC], [REM_BAL], [INIT_CSNO], [INIT_EMPID], [APPRV_EMPID], [DR_AMT], [CR_AMT]) VALUES (12, CAST(0x973A0B00 AS Date), 2, N'10/25/2015 7:54:16 PM', N'Debit Transaction', CAST(8907.00 AS Decimal(12, 2)), NULL, NULL, NULL, CAST(1001.00 AS Decimal(12, 2)), CAST(0.00 AS Decimal(12, 2)))
+INSERT [dbo].[FINHIST] ([REF_NO], [TRAN_DATE], [AC_NO], [TRAN_TIMESTAMP], [TRAN_DESC], [REM_BAL], [INIT_CSNO], [INIT_EMPID], [APPRV_EMPID], [DR_AMT], [CR_AMT]) VALUES (13, CAST(0x973A0B00 AS Date), 2, N'10/25/2015 8:58:29 PM', N'Debit Transaction', CAST(7906.00 AS Decimal(12, 2)), NULL, NULL, NULL, CAST(1001.00 AS Decimal(12, 2)), CAST(0.00 AS Decimal(12, 2)))
+INSERT [dbo].[FINHIST] ([REF_NO], [TRAN_DATE], [AC_NO], [TRAN_TIMESTAMP], [TRAN_DESC], [REM_BAL], [INIT_CSNO], [INIT_EMPID], [APPRV_EMPID], [DR_AMT], [CR_AMT]) VALUES (14, CAST(0x973A0B00 AS Date), 2, N'10/25/2015 9:05:09 PM', N'Debit Transaction', CAST(6905.00 AS Decimal(12, 2)), NULL, NULL, NULL, CAST(1001.00 AS Decimal(12, 2)), CAST(0.00 AS Decimal(12, 2)))
+INSERT [dbo].[FINHIST] ([REF_NO], [TRAN_DATE], [AC_NO], [TRAN_TIMESTAMP], [TRAN_DESC], [REM_BAL], [INIT_CSNO], [INIT_EMPID], [APPRV_EMPID], [DR_AMT], [CR_AMT]) VALUES (15, CAST(0x973A0B00 AS Date), 2, N'10/25/2015 9:06:29 PM', N'Debit Transaction', CAST(5904.00 AS Decimal(12, 2)), NULL, NULL, NULL, CAST(1001.00 AS Decimal(12, 2)), CAST(0.00 AS Decimal(12, 2)))
+INSERT [dbo].[FINHIST] ([REF_NO], [TRAN_DATE], [AC_NO], [TRAN_TIMESTAMP], [TRAN_DESC], [REM_BAL], [INIT_CSNO], [INIT_EMPID], [APPRV_EMPID], [DR_AMT], [CR_AMT]) VALUES (16, CAST(0x973A0B00 AS Date), 2, N'10/25/2015 9:54:09 PM', N'Transfer Debit', CAST(5892.00 AS Decimal(12, 2)), NULL, NULL, NULL, CAST(12.00 AS Decimal(12, 2)), CAST(0.00 AS Decimal(12, 2)))
+INSERT [dbo].[FINHIST] ([REF_NO], [TRAN_DATE], [AC_NO], [TRAN_TIMESTAMP], [TRAN_DESC], [REM_BAL], [INIT_CSNO], [INIT_EMPID], [APPRV_EMPID], [DR_AMT], [CR_AMT]) VALUES (17, CAST(0x973A0B00 AS Date), 1, N'10/25/2015 9:54:28 PM', N'Transfer Credit', CAST(32.00 AS Decimal(12, 2)), NULL, NULL, NULL, CAST(12.00 AS Decimal(12, 2)), CAST(0.00 AS Decimal(12, 2)))
+INSERT [dbo].[FINHIST] ([REF_NO], [TRAN_DATE], [AC_NO], [TRAN_TIMESTAMP], [TRAN_DESC], [REM_BAL], [INIT_CSNO], [INIT_EMPID], [APPRV_EMPID], [DR_AMT], [CR_AMT]) VALUES (18, CAST(0x973A0B00 AS Date), 2, N'10/25/2015 10:00:12 PM', N'Transfer Debit', CAST(5792.00 AS Decimal(12, 2)), NULL, NULL, NULL, CAST(100.00 AS Decimal(12, 2)), CAST(0.00 AS Decimal(12, 2)))
+INSERT [dbo].[FINHIST] ([REF_NO], [TRAN_DATE], [AC_NO], [TRAN_TIMESTAMP], [TRAN_DESC], [REM_BAL], [INIT_CSNO], [INIT_EMPID], [APPRV_EMPID], [DR_AMT], [CR_AMT]) VALUES (19, CAST(0x973A0B00 AS Date), 1, N'10/25/2015 10:00:12 PM', N'Transfer Credit', CAST(132.00 AS Decimal(12, 2)), NULL, NULL, NULL, CAST(0.00 AS Decimal(12, 2)), CAST(100.00 AS Decimal(12, 2)))
+INSERT [dbo].[FINHIST] ([REF_NO], [TRAN_DATE], [AC_NO], [TRAN_TIMESTAMP], [TRAN_DESC], [REM_BAL], [INIT_CSNO], [INIT_EMPID], [APPRV_EMPID], [DR_AMT], [CR_AMT]) VALUES (20, CAST(0x973A0B00 AS Date), 2, N'10/25/2015 10:27:08 PM', N'Transfer Debit', CAST(5692.00 AS Decimal(12, 2)), NULL, NULL, NULL, CAST(100.00 AS Decimal(12, 2)), CAST(0.00 AS Decimal(12, 2)))
+INSERT [dbo].[FINHIST] ([REF_NO], [TRAN_DATE], [AC_NO], [TRAN_TIMESTAMP], [TRAN_DESC], [REM_BAL], [INIT_CSNO], [INIT_EMPID], [APPRV_EMPID], [DR_AMT], [CR_AMT]) VALUES (21, CAST(0x973A0B00 AS Date), 1, N'10/25/2015 10:27:08 PM', N'Transfer Credit', CAST(232.00 AS Decimal(12, 2)), NULL, NULL, NULL, CAST(0.00 AS Decimal(12, 2)), CAST(100.00 AS Decimal(12, 2)))
 SET IDENTITY_INSERT [dbo].[FINHIST] OFF
-/****** Object:  ForeignKey [FK_ACTM_CSTM]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  ForeignKey [FK_ACTM_CSTM]    Script Date: 10/25/2015 23:48:32 ******/
 ALTER TABLE [dbo].[ACTM]  WITH CHECK ADD  CONSTRAINT [FK_ACTM_CSTM] FOREIGN KEY([CS_NO2])
 REFERENCES [dbo].[CSTM] ([CS_NO])
 GO
 ALTER TABLE [dbo].[ACTM] CHECK CONSTRAINT [FK_ACTM_CSTM]
 GO
-/****** Object:  ForeignKey [FK_ACTM_CSTM1]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  ForeignKey [FK_ACTM_CSTM1]    Script Date: 10/25/2015 23:48:32 ******/
 ALTER TABLE [dbo].[ACTM]  WITH CHECK ADD  CONSTRAINT [FK_ACTM_CSTM1] FOREIGN KEY([CS_NO1])
 REFERENCES [dbo].[CSTM] ([CS_NO])
 GO
 ALTER TABLE [dbo].[ACTM] CHECK CONSTRAINT [FK_ACTM_CSTM1]
 GO
-/****** Object:  ForeignKey [FK_ERRHIST_ACTM]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  ForeignKey [FK_ERRHIST_ACTM]    Script Date: 10/25/2015 23:48:32 ******/
 ALTER TABLE [dbo].[ERRHIST]  WITH CHECK ADD  CONSTRAINT [FK_ERRHIST_ACTM] FOREIGN KEY([AC_NO])
 REFERENCES [dbo].[ACTM] ([AC_NO])
 GO
 ALTER TABLE [dbo].[ERRHIST] CHECK CONSTRAINT [FK_ERRHIST_ACTM]
 GO
-/****** Object:  ForeignKey [FK_ERRHIST_CSTM]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  ForeignKey [FK_ERRHIST_CSTM]    Script Date: 10/25/2015 23:48:32 ******/
 ALTER TABLE [dbo].[ERRHIST]  WITH CHECK ADD  CONSTRAINT [FK_ERRHIST_CSTM] FOREIGN KEY([INIT_CSNO])
 REFERENCES [dbo].[CSTM] ([CS_NO])
 GO
 ALTER TABLE [dbo].[ERRHIST] CHECK CONSTRAINT [FK_ERRHIST_CSTM]
 GO
-/****** Object:  ForeignKey [FK_ERRHIST_EMPM]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  ForeignKey [FK_ERRHIST_EMPM]    Script Date: 10/25/2015 23:48:32 ******/
 ALTER TABLE [dbo].[ERRHIST]  WITH CHECK ADD  CONSTRAINT [FK_ERRHIST_EMPM] FOREIGN KEY([INIT_EMPID])
 REFERENCES [dbo].[EMPM] ([EMP_ID])
 GO
 ALTER TABLE [dbo].[ERRHIST] CHECK CONSTRAINT [FK_ERRHIST_EMPM]
 GO
-/****** Object:  ForeignKey [FK_ERRHIST_EMPM1]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  ForeignKey [FK_ERRHIST_EMPM1]    Script Date: 10/25/2015 23:48:32 ******/
 ALTER TABLE [dbo].[ERRHIST]  WITH CHECK ADD  CONSTRAINT [FK_ERRHIST_EMPM1] FOREIGN KEY([APPRV_EMPID])
 REFERENCES [dbo].[EMPM] ([EMP_ID])
 GO
 ALTER TABLE [dbo].[ERRHIST] CHECK CONSTRAINT [FK_ERRHIST_EMPM1]
 GO
-/****** Object:  ForeignKey [FK_FINHIST_ACTM]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  ForeignKey [FK_FINHIST_ACTM]    Script Date: 10/25/2015 23:48:32 ******/
 ALTER TABLE [dbo].[FINHIST]  WITH CHECK ADD  CONSTRAINT [FK_FINHIST_ACTM] FOREIGN KEY([AC_NO])
 REFERENCES [dbo].[ACTM] ([AC_NO])
 GO
 ALTER TABLE [dbo].[FINHIST] CHECK CONSTRAINT [FK_FINHIST_ACTM]
 GO
-/****** Object:  ForeignKey [FK_FINHIST_CSTM]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  ForeignKey [FK_FINHIST_CSTM]    Script Date: 10/25/2015 23:48:32 ******/
 ALTER TABLE [dbo].[FINHIST]  WITH CHECK ADD  CONSTRAINT [FK_FINHIST_CSTM] FOREIGN KEY([INIT_CSNO])
 REFERENCES [dbo].[CSTM] ([CS_NO])
 GO
 ALTER TABLE [dbo].[FINHIST] CHECK CONSTRAINT [FK_FINHIST_CSTM]
 GO
-/****** Object:  ForeignKey [FK_FINHIST_EMPM]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  ForeignKey [FK_FINHIST_EMPM]    Script Date: 10/25/2015 23:48:32 ******/
 ALTER TABLE [dbo].[FINHIST]  WITH CHECK ADD  CONSTRAINT [FK_FINHIST_EMPM] FOREIGN KEY([INIT_EMPID])
 REFERENCES [dbo].[EMPM] ([EMP_ID])
 GO
 ALTER TABLE [dbo].[FINHIST] CHECK CONSTRAINT [FK_FINHIST_EMPM]
 GO
-/****** Object:  ForeignKey [FK_FINHIST_EMPM1]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  ForeignKey [FK_FINHIST_EMPM1]    Script Date: 10/25/2015 23:48:32 ******/
 ALTER TABLE [dbo].[FINHIST]  WITH CHECK ADD  CONSTRAINT [FK_FINHIST_EMPM1] FOREIGN KEY([APPRV_EMPID])
 REFERENCES [dbo].[EMPM] ([EMP_ID])
 GO
 ALTER TABLE [dbo].[FINHIST] CHECK CONSTRAINT [FK_FINHIST_EMPM1]
 GO
-/****** Object:  ForeignKey [FK_NFINHIST_ACTM]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  ForeignKey [FK_NFINHIST_ACTM]    Script Date: 10/25/2015 23:48:32 ******/
 ALTER TABLE [dbo].[NFINHIST]  WITH CHECK ADD  CONSTRAINT [FK_NFINHIST_ACTM] FOREIGN KEY([AC_NO])
 REFERENCES [dbo].[ACTM] ([AC_NO])
 GO
 ALTER TABLE [dbo].[NFINHIST] CHECK CONSTRAINT [FK_NFINHIST_ACTM]
 GO
-/****** Object:  ForeignKey [FK_NFINHIST_CSTM]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  ForeignKey [FK_NFINHIST_CSTM]    Script Date: 10/25/2015 23:48:32 ******/
 ALTER TABLE [dbo].[NFINHIST]  WITH CHECK ADD  CONSTRAINT [FK_NFINHIST_CSTM] FOREIGN KEY([INIT_CSNO])
 REFERENCES [dbo].[CSTM] ([CS_NO])
 GO
 ALTER TABLE [dbo].[NFINHIST] CHECK CONSTRAINT [FK_NFINHIST_CSTM]
 GO
-/****** Object:  ForeignKey [FK_NFINHIST_EMPM]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  ForeignKey [FK_NFINHIST_EMPM]    Script Date: 10/25/2015 23:48:32 ******/
 ALTER TABLE [dbo].[NFINHIST]  WITH CHECK ADD  CONSTRAINT [FK_NFINHIST_EMPM] FOREIGN KEY([INIT_EMPID])
 REFERENCES [dbo].[EMPM] ([EMP_ID])
 GO
 ALTER TABLE [dbo].[NFINHIST] CHECK CONSTRAINT [FK_NFINHIST_EMPM]
 GO
-/****** Object:  ForeignKey [FK_NFINHIST_EMPM1]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  ForeignKey [FK_NFINHIST_EMPM1]    Script Date: 10/25/2015 23:48:32 ******/
 ALTER TABLE [dbo].[NFINHIST]  WITH CHECK ADD  CONSTRAINT [FK_NFINHIST_EMPM1] FOREIGN KEY([APPRV_EMPID])
 REFERENCES [dbo].[EMPM] ([EMP_ID])
 GO
 ALTER TABLE [dbo].[NFINHIST] CHECK CONSTRAINT [FK_NFINHIST_EMPM1]
 GO
-/****** Object:  ForeignKey [FK_PENDTXN_ACTM]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  ForeignKey [FK_PENDTXN_ACTM]    Script Date: 10/25/2015 23:48:32 ******/
 ALTER TABLE [dbo].[PENDTXN]  WITH CHECK ADD  CONSTRAINT [FK_PENDTXN_ACTM] FOREIGN KEY([AC_NO])
 REFERENCES [dbo].[ACTM] ([AC_NO])
 GO
 ALTER TABLE [dbo].[PENDTXN] CHECK CONSTRAINT [FK_PENDTXN_ACTM]
 GO
-/****** Object:  ForeignKey [FK_PENDTXN_CSTM]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  ForeignKey [FK_PENDTXN_CSTM]    Script Date: 10/25/2015 23:48:32 ******/
 ALTER TABLE [dbo].[PENDTXN]  WITH CHECK ADD  CONSTRAINT [FK_PENDTXN_CSTM] FOREIGN KEY([INIT_CSNO])
 REFERENCES [dbo].[CSTM] ([CS_NO])
 GO
 ALTER TABLE [dbo].[PENDTXN] CHECK CONSTRAINT [FK_PENDTXN_CSTM]
 GO
-/****** Object:  ForeignKey [FK_PENDTXN_EMPM]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  ForeignKey [FK_PENDTXN_EMPM]    Script Date: 10/25/2015 23:48:32 ******/
 ALTER TABLE [dbo].[PENDTXN]  WITH CHECK ADD  CONSTRAINT [FK_PENDTXN_EMPM] FOREIGN KEY([INIT_EMPID])
 REFERENCES [dbo].[EMPM] ([EMP_ID])
 GO
 ALTER TABLE [dbo].[PENDTXN] CHECK CONSTRAINT [FK_PENDTXN_EMPM]
 GO
-/****** Object:  ForeignKey [FK_PENDTXN_TXNM]    Script Date: 10/25/2015 12:14:33 ******/
+/****** Object:  ForeignKey [FK_PENDTXN_TXNM]    Script Date: 10/25/2015 23:48:32 ******/
 ALTER TABLE [dbo].[PENDTXN]  WITH CHECK ADD  CONSTRAINT [FK_PENDTXN_TXNM] FOREIGN KEY([TRAN_ID])
 REFERENCES [dbo].[TXNM] ([TRAN_ID])
 GO
