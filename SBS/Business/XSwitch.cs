@@ -212,5 +212,25 @@ namespace Business
                 this.resultSet = new DataSet(e.ToString());
             }
         }
+        public DataSet getFinHistory(String connectionString, String cusno)
+        {
+            Data.Dber dberr = new Data.Dber();
+            DataSet dSet = Data.FinhistD.GetAccountStatement(connectionString, cusno, dberr);
+            if (!dberr.ifError())
+            {
+                return dSet;
+            }
+            else return null;
+        }
+        public DataSet getNonFinHistory(String connectionString, String cusno)
+        {
+            Data.Dber dberr = new Data.Dber();
+            DataSet dSet = Data.NfinhistD.GetAccountStatement(connectionString, cusno, dberr);
+            if (!dberr.ifError())
+            {
+                return dSet;
+            }
+            else return null;
+        }
     }
 }
