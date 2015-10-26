@@ -22,6 +22,15 @@ namespace UI {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// MerchantCheckBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox MerchantCheckBox;
+        
+        /// <summary>
         /// Label1 control.
         /// </summary>
         /// <remarks>
@@ -31,13 +40,13 @@ namespace UI {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// Firstname control.
+        /// FirstNameTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Firstname;
+        protected global::System.Web.UI.WebControls.TextBox FirstNameTextBox;
         
         /// <summary>
         /// Label2 control.
@@ -49,13 +58,13 @@ namespace UI {
         protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// Middlename control.
+        /// MiddleNameTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Middlename;
+        protected global::System.Web.UI.WebControls.TextBox MiddleNameTextBox;
         
         /// <summary>
         /// Label3 control.
@@ -67,13 +76,13 @@ namespace UI {
         protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
-        /// Lastname control.
+        /// LastNameTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Lastname;
+        protected global::System.Web.UI.WebControls.TextBox LastNameTextBox;
         
         /// <summary>
         /// Label14 control.
@@ -85,13 +94,22 @@ namespace UI {
         protected global::System.Web.UI.WebControls.Label Label14;
         
         /// <summary>
-        /// pwd control.
+        /// pwdTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox pwd;
+        protected global::System.Web.UI.WebControls.TextBox pwdTextBox;
+        
+        /// <summary>
+        /// hashPwdHiddenField control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hashPwdHiddenField;
         
         /// <summary>
         /// Label15 control.
@@ -103,13 +121,22 @@ namespace UI {
         protected global::System.Web.UI.WebControls.Label Label15;
         
         /// <summary>
-        /// cpwd control.
+        /// cpwdTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox cpwd;
+        protected global::System.Web.UI.WebControls.TextBox cpwdTextBox;
+        
+        /// <summary>
+        /// hashCpwdHiddenField control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hashCpwdHiddenField;
         
         /// <summary>
         /// Label5 control.
@@ -121,13 +148,13 @@ namespace UI {
         protected global::System.Web.UI.WebControls.Label Label5;
         
         /// <summary>
-        /// Addressone control.
+        /// Addrs1TextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Addressone;
+        protected global::System.Web.UI.WebControls.TextBox Addrs1TextBox;
         
         /// <summary>
         /// Label6 control.
@@ -139,13 +166,67 @@ namespace UI {
         protected global::System.Web.UI.WebControls.Label Label6;
         
         /// <summary>
-        /// Addresstwo control.
+        /// Addrs2TextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Addresstwo;
+        protected global::System.Web.UI.WebControls.TextBox Addrs2TextBox;
+        
+        /// <summary>
+        /// Label16 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label16;
+        
+        /// <summary>
+        /// CityTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox CityTextBox;
+        
+        /// <summary>
+        /// Label17 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label17;
+        
+        /// <summary>
+        /// StateTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox StateTextBox;
+        
+        /// <summary>
+        /// Label18 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label18;
+        
+        /// <summary>
+        /// ZipTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox ZipTextBox;
         
         /// <summary>
         /// Label7 control.
@@ -157,13 +238,13 @@ namespace UI {
         protected global::System.Web.UI.WebControls.Label Label7;
         
         /// <summary>
-        /// Phnumber control.
+        /// PhNumTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Phnumber;
+        protected global::System.Web.UI.WebControls.TextBox PhNumTextBox;
         
         /// <summary>
         /// Label8 control.
@@ -175,13 +256,13 @@ namespace UI {
         protected global::System.Web.UI.WebControls.Label Label8;
         
         /// <summary>
-        /// Email control.
+        /// EmailTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Email;
+        protected global::System.Web.UI.WebControls.TextBox EmailTextBox;
         
         /// <summary>
         /// Label9 control.
@@ -193,13 +274,13 @@ namespace UI {
         protected global::System.Web.UI.WebControls.Label Label9;
         
         /// <summary>
-        /// Question1 control.
+        /// Question1TextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList Question1;
+        protected global::System.Web.UI.WebControls.TextBox Question1TextBox;
         
         /// <summary>
         /// Label11 control.
@@ -211,13 +292,13 @@ namespace UI {
         protected global::System.Web.UI.WebControls.Label Label11;
         
         /// <summary>
-        /// Answer1 control.
+        /// Answer1TextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Answer1;
+        protected global::System.Web.UI.WebControls.TextBox Answer1TextBox;
         
         /// <summary>
         /// Label4 control.
@@ -229,13 +310,13 @@ namespace UI {
         protected global::System.Web.UI.WebControls.Label Label4;
         
         /// <summary>
-        /// Question2 control.
+        /// Question2TextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList Question2;
+        protected global::System.Web.UI.WebControls.TextBox Question2TextBox;
         
         /// <summary>
         /// Label12 control.
@@ -247,13 +328,13 @@ namespace UI {
         protected global::System.Web.UI.WebControls.Label Label12;
         
         /// <summary>
-        /// Answer2 control.
+        /// Answer2TextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Answer2;
+        protected global::System.Web.UI.WebControls.TextBox Answer2TextBox;
         
         /// <summary>
         /// Label10 control.
@@ -265,13 +346,13 @@ namespace UI {
         protected global::System.Web.UI.WebControls.Label Label10;
         
         /// <summary>
-        /// Question3 control.
+        /// Question3TextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList Question3;
+        protected global::System.Web.UI.WebControls.TextBox Question3TextBox;
         
         /// <summary>
         /// Label13 control.
@@ -283,21 +364,21 @@ namespace UI {
         protected global::System.Web.UI.WebControls.Label Label13;
         
         /// <summary>
-        /// Answer3 control.
+        /// Answer3TextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Answer3;
+        protected global::System.Web.UI.WebControls.TextBox Answer3TextBox;
         
         /// <summary>
-        /// CustCreate control.
+        /// CustCreateBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button CustCreate;
+        protected global::System.Web.UI.WebControls.Button CustCreateBtn;
     }
 }

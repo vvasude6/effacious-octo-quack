@@ -69,14 +69,25 @@ namespace UI
             return generalValidate(inputString, false, true, "-");
         }
 
+        public static Boolean isAddressValid(String inputString)
+        {
+            if (inputString.Length > 30)
+                return false;
+
+            return generalValidate(inputString, true, true, " .");
+        }
+
         public static Boolean isCityValid(String inputString)
         {
+            if (inputString.Length > 20)
+                return false;
+
             return generalValidate(inputString, true, false, "- ");
         }
 
         public static Boolean isStateValid(String inputString)
         {
-            if (inputString.Length > 2)
+            if (inputString.Length > 20)
                 return false;
 
             return generalValidate(inputString, true, false, " ");

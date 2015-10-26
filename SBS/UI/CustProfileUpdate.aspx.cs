@@ -10,14 +10,129 @@ namespace UI
 {
     public partial class CustProfileUpdate : System.Web.UI.Page
     {
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            FirstNameTextBox.ForeColor = System.Drawing.Color.Black;
+            MiddleNameTextBox.ForeColor = System.Drawing.Color.Black;
+            LastNameTextBox.ForeColor = System.Drawing.Color.Black;
+            Addrs1TextBox.ForeColor = System.Drawing.Color.Black;
+            Addrs2TextBox.ForeColor = System.Drawing.Color.Black;
+            CityTextBox.ForeColor = System.Drawing.Color.Black;
+            StateTextBox.ForeColor = System.Drawing.Color.Black;
+            ZipTextBox.ForeColor = System.Drawing.Color.Black;
+            PhNumTextBox.ForeColor = System.Drawing.Color.Black;
+            EmailTextBox.ForeColor = System.Drawing.Color.Black;
 
+            String[] argList = new String[2];
+            argList[0] = Mnemonics.TxnCodes.TX_FETCH_CUSTOMER;
+            argList[1] = Session["UserId"].ToString();
+
+            var output = new Business.XSwitch(Global.ConnectionString, Session["Username"].ToString(),
+                string.Format("{0}|{1}", argList));
+
+            String[] profileList = output.resultGet.Split();
+            FirstNameTextBox.Text = profileList[0];
+            MiddleNameTextBox.Text = profileList[1];
+            LastNameTextBox.Text = profileList[2];
+            Addrs1TextBox.Text = profileList[3];
+            Addrs2TextBox.Text = profileList[4];
+            ZipTextBox.Text = profileList[5];
+            CityTextBox.Text = profileList[6];
+            StateTextBox.Text = profileList[7];
+            PhNumTextBox.Text = profileList[8];
+            EmailTextBox.Text = profileList[9];
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void UpdateButton_Click(object sender, EventArgs e)
         {
-            
+            bool errorFound = false;
+
+            if (!(UI.Validate.isUserNameValid(FirstNameTextBox.Text)))
+            {
+                errorFound = true;
+                FirstNameTextBox.ForeColor = System.Drawing.Color.Red;
+            }
+            else FirstNameTextBox.ForeColor = System.Drawing.Color.Black;
+            if (!(UI.Validate.isUserNameValid(MiddleNameTextBox.Text)))
+            {
+                errorFound = true;
+                MiddleNameTextBox.ForeColor = System.Drawing.Color.Red;
+            }
+            else MiddleNameTextBox.ForeColor = System.Drawing.Color.Black;
+            if (!(UI.Validate.isUserNameValid(LastNameTextBox.Text)))
+            {
+                errorFound = true;
+                LastNameTextBox.ForeColor = System.Drawing.Color.Red;
+            }
+            else LastNameTextBox.ForeColor = System.Drawing.Color.Black;
+            if (!(UI.Validate.isAddressValid(Addrs1TextBox.Text)))
+            {
+                errorFound = true;
+                Addrs1TextBox.ForeColor = System.Drawing.Color.Red;
+            }
+            else Addrs1TextBox.ForeColor = System.Drawing.Color.Black;
+            if (!(UI.Validate.isAddressValid(Addrs2TextBox.Text)))
+            {
+                errorFound = true;
+                Addrs2TextBox.ForeColor = System.Drawing.Color.Red;
+            }
+            else Addrs2TextBox.ForeColor = System.Drawing.Color.Black;
+            if (!(UI.Validate.isCityValid(CityTextBox.Text)))
+            {       
+                errorFound = true;
+                CityTextBox.ForeColor = System.Drawing.Color.Red;
+            }
+            else CityTextBox.ForeColor = System.Drawing.Color.Black;
+            if (!(UI.Validate.isStateValid(StateTextBox.Text)))
+            {
+                errorFound = true;
+                StateTextBox.ForeColor = System.Drawing.Color.Red;
+            }
+            else StateTextBox.ForeColor = System.Drawing.Color.Black;
+            if (!(UI.Validate.isZipCodeValid(ZipTextBox.Text)))
+            {
+                errorFound = true;
+                ZipTextBox.ForeColor = System.Drawing.Color.Red;
+            }
+            else ZipTextBox.ForeColor = System.Drawing.Color.Black;
+            if (!(UI.Validate.isPhoneNumberValid(PhNumTextBox.Text)))
+            {
+                errorFound = true;
+                PhNumTextBox.ForeColor = System.Drawing.Color.Red;
+            }
+            else PhNumTextBox.ForeColor = System.Drawing.Color.Black;
+            if (!(UI.Validate.isEmailAddressValid(EmailTextBox.Text)))
+            {
+                errorFound = true;
+                EmailTextBox.ForeColor = System.Drawing.Color.Red;
+            }
+            else EmailTextBox.ForeColor = System.Drawing.Color.Black;
+
+            if (errorFound)
+            {
+                MessageBox.Show("Invalid data entered!  Please correct and resubmit.");
+                return;
+            }
+
+            string[] arglist = new String[12];
+            int argIndex = 0;
+
+            arglist[argIndex++] = Mnemonics.TxnCodes.TX_UPDATE_PROFILE;
+            arglist[argIndex++] = Session["UserId"].ToString();
+            arglist[argIndex++] = FirstNameTextBox.Text;
+            arglist[argIndex++] = MiddleNameTextBox.Text;
+            arglist[argIndex++] = LastNameTextBox.Text;
+            arglist[argIndex++] = Addrs1TextBox.Text;
+            arglist[argIndex++] = Addrs2TextBox.Text;
+            arglist[argIndex++] = ZipTextBox.Text;
+            arglist[argIndex++] = CityTextBox.Text;
+            arglist[argIndex++] = StateTextBox.Text;
+            arglist[argIndex++] = PhNumTextBox.Text;
+            arglist[argIndex++] = EmailTextBox.Text;
+
+            var output = new Business.XSwitch(Global.ConnectionString, Session["Username"].ToString(), 
+                string.Format("{0}|{1}|{2}|{3}|{4}|{5}|{6}|{7}|{8}|{9}|{10}|{11}", arglist));
         }
     }
 }

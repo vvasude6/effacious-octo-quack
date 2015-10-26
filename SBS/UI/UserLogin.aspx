@@ -14,6 +14,7 @@
     <link href="css/Custom.css" rel="stylesheet" />
     <link href="Content/bootstrap.min.css" type="text/css" rel="stylesheet" />
     <style>
+        .hashPasswordClass { display: none; }
         .spacerRow {
             height: 10px;
         }
@@ -65,6 +66,7 @@
                                 <div class="input-group">
                                     <span class="input-group-addon" id="basic-addon3">Password&nbsp;</span>
                                     <asp:TextBox runat="server" class="form-control" ID="PasswordTextBox" aria-describedby="basic-addon3" TextMode="Password"></asp:TextBox>
+                                    <asp:HiddenField ID="hashPasswordHiddenField" runat="server" />
                                 </div>
                             </td>
                         </tr>
@@ -88,7 +90,7 @@
     <script>
         $('#LoginButton').click(function () {
             //alert(hashCode($('#PasswordTextBox').val()));
-            $('#PasswordTextBox').val(hashCode($('#PasswordTextBox').val()));
+            $('#hashPasswordHiddenField').val(hashCode($('#PasswordTextBox').val()));
         });
 
         function hashCode(str) {

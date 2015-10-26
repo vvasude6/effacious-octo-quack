@@ -22,14 +22,14 @@ namespace UI
 
         protected void LoginButton_Click(object sender, EventArgs e)
         {
-            if (UserNameTextBox.Text == string.Empty || PasswordTextBox.Text == string.Empty)
+            if (UserNameTextBox.Text == string.Empty || hashPasswordHiddenField.Value == string.Empty)
             {
                 MessageBox.Show("Looks like you have not entered the username and/or the password. They are required for sign in.");
             }
             else
             {
                 var userName = UserNameTextBox.Text;
-                var password = PasswordTextBox.Text;
+                var password = hashPasswordHiddenField.Value;
                 if (UI.Validate.isUserNameValid(userName))
                 {
                     Session["Username"] = userName;
