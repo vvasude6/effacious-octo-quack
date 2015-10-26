@@ -13,12 +13,15 @@ namespace Business
         Boolean newInitiator;
         Data.Dber dberr;
         String result;
+        String TXID;
+        Cp_Txnm tx;
         public Y_014(String txid, String connectionString, String a, String b, String c, String d, String e, String f, 
             String g, String h, String i, String j, String k, String l, String m, String n, String o, String p, String q, String r, 
             String s, String t, String u, String loginAc)
         {
             dberr = new Data.Dber();
             newInitiator = false;
+            this.TXID = txid;
             if (!a.Equals(loginAc))
             {
                 newInitiator = true;
@@ -103,6 +106,13 @@ namespace Business
         }
         private int processTransaction(String connectionString, Entity.Cstm cstm)
         {
+            tx = new Cp_Txnm(connectionString, TXID, dberr);
+            // Check if TXNM fetch for transaction type "010" is successful. Return if error encountered
+            if (dberr.ifError())
+            {
+                result = dberr.getErrorDesc(connectionString);
+                return -1;
+            }
             if (!verifyInputType(1, cstm.cs_no))
             {
                 this.dberr.setError(Mnemonics.DbErrorCodes.TXERR_FMT_CUSNO);
@@ -228,6 +238,19 @@ namespace Business
             {
                 result = dberr.getErrorDesc(connectionString);
                 return -1;
+            }
+            if (tx.txnmP.tran_fin_type.Equals("Y"))
+            {
+                // Write to FINHIST table
+                Entity.Finhist fhist = new Entity.Finhist(this.cstm.cs_no, "0", this.tx.txnmP.tran_desc,
+                    0, 0, "0", "0", "0", "0");
+                Data.FinhistD.Create(connectionString, fhist, dberr);
+            }
+            else
+            {
+                // Write to NFINHIST table
+                Entity.Nfinhist nFhist = new Entity.Nfinhist(this.cstm.cs_no, "0", this.tx.txnmP.tran_desc, "0", "0", this.cstm.cs_no);
+                Data.NfinhistD.Create(connectionString, nFhist, dberr);
             }
             return 0;
         }

@@ -65,7 +65,7 @@ namespace Business
                 if (pvg.isPending)
                 {
                     Entity.Pendtxn pending = new Entity.Pendtxn(0, "0", this.cusNo, " ",
-                        Convert.ToString(this.txnPvgb), this.cusNo, " ", 0, "0");
+                        Convert.ToString(this.txnPvgb), this.cusNo, " ", 0, "0", this.tx.txnmP.tran_id);
                     Data.PendtxnD.Create(connectionString, pending);
                     if (dberr.ifError())
                     {
@@ -83,6 +83,19 @@ namespace Business
                     result = dberr.getErrorDesc(connectionString);
                     return -1;
                 }
+            }
+            if (tx.txnmP.tran_fin_type.Equals("Y"))
+            {
+                // Write to FINHIST table
+                Entity.Finhist fhist = new Entity.Finhist(cstm.cs_no, "0", this.tx.txnmP.tran_desc,
+                    0, 0, "0", "0", "0", "0");
+                Data.FinhistD.Create(connectionString, fhist, dberr);
+            }
+            else
+            {
+                // Write to NFINHIST table
+                Entity.Nfinhist nFhist = new Entity.Nfinhist(cstm.cs_no, "0", this.tx.txnmP.tran_desc, "0", "0", "0");
+                Data.NfinhistD.Create(connectionString, nFhist, dberr);
             }
             resultP = "Successful!";
             return 0;

@@ -40,7 +40,6 @@ namespace Business
         Boolean newInitiator = false; // if the person transacting is different from the initiator, like in case of pending txns
         public Y_011(String txid, String connectionString, String acc_no, Decimal amount, String loginAc)
         {
-            this.dberr = new Data.Dber();
             try
             { 
                 if (amount <= 0)
@@ -51,6 +50,7 @@ namespace Business
                 }
                 else
                 {
+                    dberr = new Data.Dber();
                     this.TXID = txid;
                     this.changeAmount = amount;
                     seq = new Sequence(TXID);
@@ -115,7 +115,7 @@ namespace Business
                 if (pvg.isPending)
                 {
                     Entity.Pendtxn pending = new Entity.Pendtxn(0, seq.getSequence(), this.acct.actmP.ac_no, " ",
-                        Convert.ToString(this.tx.txnmP.tran_pvgb), this.tx.txnmP.tran_desc, this.acct.actmP.ac_no, this.changeAmount,"0");
+                        Convert.ToString(this.tx.txnmP.tran_pvgb), this.tx.txnmP.tran_desc, this.acct.actmP.ac_no, this.changeAmount,"0", this.tx.txnmP.tran_id);
                     Data.PendtxnD.Create(connectionString, pending);
                     if (dberr.ifError())
                     {
@@ -141,7 +141,7 @@ namespace Business
                 result = dberr.getErrorDesc(connectionString);
                 return -1;
             }
-            this.resultP = acct.resultP;
+            this.resultP = "Successful! your new balance: " + acct.resultP;
             // Store transaction in hisory table. Determine which history table to store in based on tx.txnmP.tran_fin_type
             if (tx.txnmP.tran_fin_type.Equals("Y"))
             {

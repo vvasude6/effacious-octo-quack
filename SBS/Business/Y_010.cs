@@ -104,7 +104,7 @@ namespace Business
                 return -1;
             }
             // Store transaction in hisory table. Determine which history table to store in based on tx.txnmP.tran_fin_type
-            if (tx.txnmP.tran_fin_type.Equals('Y'))
+            if (tx.txnmP.tran_fin_type.Equals("Y"))
             {
                 // Write to FINHIST table
                 Entity.Finhist fhist = new Entity.Finhist(this.acct.actmP.ac_no, "0", this.tx.txnmP.tran_desc,

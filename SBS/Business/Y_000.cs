@@ -113,12 +113,43 @@ namespace Business
                     result = dberr.getErrorDesc(connectionString);
                     return -1;
                 }
+                if (txnm.txnmP.tran_fin_type.Equals("Y"))
+                {
+                    // Write to FINHIST table
+                    Entity.Finhist fhist = new Entity.Finhist(empm.empmP.emp_no, "0", this.txnm.txnmP.tran_desc,
+                        0, 0, "0", "0", "0", "0");
+                    Data.FinhistD.Create(connectionString, fhist, dberr);
+                }
+                else
+                {
+                    // Write to NFINHIST table
+                    Entity.Nfinhist nFhist = new Entity.Nfinhist(empm.empmP.emp_no, "0", this.txnm.txnmP.tran_desc, "0", "0", empm.empmP.emp_no);
+                    Data.NfinhistD.Create(connectionString, nFhist, dberr);
+                }
                 String empNo = empm.empmP.emp_no;
                 String pvgLevel = Convert.ToString(empm.empmP.emp_pvg);
                 String empFname = empm.empmP.emp_fname;
                 String empLname = empm.empmP.emp_lname;
                 resultP = empNo + "|" + empFname + "|" + empLname + "|" + pvgLevel + "|" + empm.empmP.emp_email;
                 return 0;
+            }
+            if (txnm.txnmP.tran_fin_type.Equals("Y"))
+            {
+                // Write to FINHIST table
+                Entity.Finhist fhist = new Entity.Finhist(this.cstm.cstmP.cs_no, "0", this.txnm.txnmP.tran_desc,
+                    0, 0, "0", "0", "0", "0");
+                Data.FinhistD.Create(connectionString, fhist, dberr);
+            }
+            else
+            {
+                // Write to NFINHIST table
+                Entity.Nfinhist nFhist = new Entity.Nfinhist(this.cstm.cstmP.cs_no, "0", this.txnm.txnmP.tran_desc, "0", "0", this.cstm.cstmP.cs_no);
+                Data.NfinhistD.Create(connectionString, nFhist, dberr);
+            }
+            if (dberr.ifError())
+            {
+                result = dberr.getErrorDesc(connectionString);
+                return -1;
             }
             String cusNo = cstm.cstmP.cs_no;
             String csPvgLevel = cstm.cstmP.cs_type;

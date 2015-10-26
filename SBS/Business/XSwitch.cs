@@ -31,7 +31,11 @@ namespace Business
                 return this.result;
             }
         }
-        public String resultP { get { return result; } }
+        public String resultP 
+        {
+            get { return this.result; }
+            set { this.result = value; }
+        }
         public XSwitch(string connectionString, String loginAccount, String inData)
         {
             // DECRYPT incoming Message String here
@@ -114,7 +118,14 @@ namespace Business
                             {
                                 Y_012 y012_2 = new Y_012(Mnemonics.TxnCodes.TX_TRANSFER_CREDIT,
                                 connectionString, dataPart[2], Convert.ToDecimal(dataPart[3]), loginAc);
-                                result = y012_2.getOutput();
+                                if (!y012_2.txnErrorP)
+                                {
+                                    resultP = "Successful!";
+                                }
+                                else
+                                {
+                                    resultP = y012_2.getOutput();
+                                }
                             }
                         }
                         else
@@ -135,7 +146,14 @@ namespace Business
                             {
                                 Y_012 y012_2 = new Y_012(Mnemonics.TxnCodes.TX_TRANSFER_CREDIT,
                                 connectionString, dataPart[2], Convert.ToDecimal(dataPart[3]), loginAc);
-                                result = y012_2.getOutput();
+                                if (!y012_2.txnErrorP)
+                                {
+                                    resultP = "Successful!";
+                                }
+                                else
+                                {
+                                    resultP = y012_2.getOutput();
+                                }
                             }
                         }
                         else

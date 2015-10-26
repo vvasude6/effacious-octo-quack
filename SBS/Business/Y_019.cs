@@ -48,6 +48,19 @@ namespace Business
                 result = dberr.getErrorDesc(connectionString);
                 return -1;
             }
+            if (tx.txnmP.tran_fin_type.Equals("Y"))
+            {
+                // Write to FINHIST table
+                Entity.Finhist fhist = new Entity.Finhist(cs.cstmP.cs_no, "0", this.tx.txnmP.tran_desc,
+                    0, 0, "0", "0", "0", "0");
+                Data.FinhistD.Create(connectionString, fhist, dberr);
+            }
+            else
+            {
+                // Write to NFINHIST table
+                Entity.Nfinhist nFhist = new Entity.Nfinhist(cs.cstmP.cs_no, "0", this.tx.txnmP.tran_desc, "0", "0", "0");
+                Data.NfinhistD.Create(connectionString, nFhist, dberr);
+            }
             resultP = cs.cstmP.cs_no + "|" + cs.cstmP.cs_type + "|" + cs.cstmP.cs_fname + "|" + cs.cstmP.cs_mname + "|" + cs.cstmP.cs_lname
                  + "|" + cs.cstmP.cs_addr1 + "|" + cs.cstmP.cs_addr2 + "|" + cs.cstmP.cs_city + "|" + cs.cstmP.cs_state + "|" + cs.cstmP.cs_zip
                   + "|" + cs.cstmP.cs_branch + "|" + cs.cstmP.cs_phn + "|" + cs.cstmP.cs_email + "|" + cs.cstmP.cs_uid

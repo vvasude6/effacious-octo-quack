@@ -22,7 +22,7 @@ namespace Entity
         public Pendtxn()
         { }
         public Pendtxn(Decimal cr, String refno, String ac1, String ac2,
-            String pvb, String initcsno, String initemp, Decimal dr,String tran_desc)
+            String pvb, String initcsno, String initemp, Decimal dr,String tran_desc, String txid)
         {
             DateTime dt = DateTime.Now;
             this.cr_amt = cr;
@@ -34,6 +34,7 @@ namespace Entity
             this.init_empid = initemp;
             this.dr_amt = dr;
             this.init_csno = initcsno;
+            this.tran_id = Convert.ToInt32(txid);
         }
     }
 }
