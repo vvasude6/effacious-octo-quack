@@ -28,20 +28,20 @@ namespace UI
             argList[0] = Mnemonics.TxnCodes.TX_FETCH_CUSTOMER;
             argList[1] = Session["UserId"].ToString();
 
-            var output = new Business.XSwitch(Global.ConnectionString, Session["Username"].ToString(),
+            var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(),
                 string.Format("{0}|{1}", argList));
 
-            String[] profileList = output.resultGet.Split();
-            FirstNameTextBox.Text = profileList[0];
-            MiddleNameTextBox.Text = profileList[1];
-            LastNameTextBox.Text = profileList[2];
-            Addrs1TextBox.Text = profileList[3];
-            Addrs2TextBox.Text = profileList[4];
-            ZipTextBox.Text = profileList[5];
-            CityTextBox.Text = profileList[6];
-            StateTextBox.Text = profileList[7];
-            PhNumTextBox.Text = profileList[8];
-            EmailTextBox.Text = profileList[9];
+            String[] profileList = output.resultGet.Split('|');
+            FirstNameTextBox.Text = profileList[2];
+            MiddleNameTextBox.Text = profileList[3];
+            LastNameTextBox.Text = profileList[4];
+            Addrs1TextBox.Text = profileList[5];
+            Addrs2TextBox.Text = profileList[6];
+            CityTextBox.Text = profileList[7];
+            StateTextBox.Text = profileList[8];
+            ZipTextBox.Text = profileList[9];
+            PhNumTextBox.Text = profileList[11];
+            EmailTextBox.Text = profileList[12];
         }
 
         protected void UpdateButton_Click(object sender, EventArgs e)
@@ -131,7 +131,7 @@ namespace UI
             arglist[argIndex++] = PhNumTextBox.Text;
             arglist[argIndex++] = EmailTextBox.Text;
 
-            var output = new Business.XSwitch(Global.ConnectionString, Session["Username"].ToString(), 
+            var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(), 
                 string.Format("{0}|{1}|{2}|{3}|{4}|{5}|{6}|{7}|{8}|{9}|{10}|{11}", arglist));
         }
     }
