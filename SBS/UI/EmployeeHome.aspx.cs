@@ -13,7 +13,7 @@ namespace UI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["UserId"] == null)
+            if (Session["UserId"] == null || Session["Access"] == null)
                 Response.Redirect("UserLogin.aspx");
 
             if (Global.IsPageAccessible(Page.Title))
@@ -24,19 +24,17 @@ namespace UI
 
         private void LoadPendingTransactions()
         {
-            var output = new Business.XSwitch(Global.ConnectionString, Session["Username"].ToString(), string.Format("009|{0}", Session["UserId"].ToString()));
+            var output = new Business.XSwitch(Global.ConnectionString, Session["Username"].ToString(), string.Format("008|{0}", Session["Access"].ToString()));
             if (output == null)
                 Response.Redirect("UserLogin.aspx");
 
             if (output.resultSet.Tables[0].Rows.Count != 0)
             {
                 GetPendingTransactionTableHtml(output.resultSet);
-                //PendingTransactionTable.InnerHtml = GetPendingTransactionTableHtml(output.resultSet);
             }
             else
             {
-                //PendingTransactionTable.InnerHtml = 
-                //GetPendingTransactionTableHtml();
+               //no data
             }
         }
 
