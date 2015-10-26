@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,7 +16,7 @@ namespace Data
             {
                 var ErrorMasterObject = new Errm();
 
-                var query = string.Format("select * from Errm where err_id = {0}", err_id);
+                var query = string.Format("select * from Errm where err_code = '{0}'", err_id);
                 var data = DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
 
                 //assign the data object to Error master object
@@ -24,6 +24,7 @@ namespace Data
                 {
                     ErrorMasterObject.err_id = data.Tables[0].Rows[0]["err_id"].ToString();
                     ErrorMasterObject.err_desc = data.Tables[0].Rows[0]["err_desc"].ToString();
+                    ErrorMasterObject.err_code = data.Tables[0].Rows[0]["err_code"].ToString();
 
                     return ErrorMasterObject;
                 }
