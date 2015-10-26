@@ -9,6 +9,18 @@ namespace Business
     class Cp_Empm
     {
         Entity.Empm empm;
+        String empNo = "0";
+        public String empNoP
+        {
+            get
+            {
+                return this.empNo;
+            }
+            set
+            {
+                this.empNo = value;
+            }
+        }
         public Entity.Empm empmP
         {
             get
@@ -24,6 +36,11 @@ namespace Business
         {
             // fetch all details for ac_no = acno.
             empmP = Data.EmpmD.Read(connectionString, usr, pwd, dberr);
+        }
+        public Cp_Empm(string connectionString, String usr, Data.Dber dberr)
+        {
+            // fetch all details for ac_no = acno.
+            empNoP = Data.EmpmD.getEmpNumberFromEmpId(connectionString, usr, dberr);
         }
     }
 }

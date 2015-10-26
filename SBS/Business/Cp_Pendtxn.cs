@@ -10,6 +10,7 @@ namespace Business
     class Cp_Pendtxn
     {
         DataSet pending;
+        Entity.Pendtxn pn;
         public DataSet pendingP
         {
             get
@@ -24,6 +25,12 @@ namespace Business
         public Cp_Pendtxn(String connectionString, int pvg, Data.Dber dberr)
         {
             pendingP = Data.PendtxnD.GetAccessiblePendingTransactions(connectionString, pvg.ToString(), dberr);
+        }
+        public Cp_Pendtxn(String connectionString, String ac1, String ac2, String pvgb, String csNo, 
+            String initEmpid, Decimal dr, Decimal cr, String tranDesc, String txid, String inData, Data.Dber dberr)
+        {
+            Entity.Pendtxn pending = new Entity.Pendtxn("0", ac1, ac2, pvgb, csNo, initEmpid, dr, cr, tranDesc, txid, inData);
+            Data.PendtxnD.Create(connectionString, pending, dberr);
         }
     }
 }

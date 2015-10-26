@@ -17,9 +17,6 @@ namespace Business
         Cp_Txnm tx;
         Data.Dber dberr;
         String result;
-        String TXID;
-        String cusNo;
-        Privilege pvg;
         public String resultP
         {
             get
@@ -31,14 +28,28 @@ namespace Business
                 this.result = value;
             }
         }
-        public Y_015(String txid, String connectionString, String loginAc)
+        String TXID;
+        String cusNo;
+        Boolean newInitiator = false; 
+        Privilege pvg;
+        Boolean error = false;
+        
+        public Y_015(String txid, String connectionString, String acc_no, String loginAc)
         {
             this.TXID = txid;
             dberr = new Data.Dber();
             this.cusNo = loginAc;
-            processTransaction(connectionString);
+            if (!acc_no.Equals(loginAc))
+            {
+                newInitiator = true;
+            }
+            if (processTransaction(connectionString, acc_no, loginAc) != 0)
+            {
+                this.error = true;
+            }
+            //processTransaction(connectionString);
         }
-        private int processTransaction(String connectionString)
+        private int processTransaction(String connectionString, String acct, String loginAc)
         {
             this.tx = new Cp_Txnm(connectionString, TXID, dberr);
             // Check if TXNM fetch for transaction type "010" is successful. Return if error encountered
@@ -60,8 +71,36 @@ namespace Business
                 return -1;
             }
             pvg = new Privilege(this.txnPvga, this.usrPvga, this.txnPvgb);
-            if (!pvg.verifyPrivilege(connectionString, dberr))
+            if (!pvg.verifyInitPrivilege(dberr))
             {
+                result = dberr.getErrorDesc(connectionString);
+                return -1;
+            }
+            if (!pvg.verifyApprovePrivilege())
+            {
+                String inData = this.TXID + "|" + "0"/*acct.actmP.ac_no*/ + "0" + "0"/*this.changeAmount.ToString()*/;
+                if (pvg.writeToPendingTxns(
+                    connectionString,               /* connection string */
+                    "0", //acct.actmP.ac_no,               /* account 1 */
+                    "0",                            /* account 2 */
+                    "0", //initCustomer,                   /* customer number */
+                    tx.txnmP.tran_pvgb.ToString(),  /* transaction approve privilege */
+                    tx.txnmP.tran_desc,             /* transaction description */
+                    "0", //initEmpNumber,                  /* initiating employee number */
+                    0,                              /* debit amount */
+                    0, //this.changeAmount,              /* credit amount */
+                    tx.txnmP.tran_id,               /* transaction id (not tran code) */
+                    inData,                         /* incoming transaction string in XSwitch */
+                    dberr                           /* error tracking object */
+                    ) != 0)
+                {
+                    resultP = dberr.getErrorDesc(connectionString);
+                    return -1;
+                }
+                resultP = Mnemonics.DbErrorCodes.MSG_SENT_FOR_AUTH;
+                return 0;
+            }
+            /*
                 if (pvg.isPending)
                 {
                     Entity.Pendtxn pending = new Entity.Pendtxn(0, "0", this.cusNo, "0",
@@ -83,7 +122,7 @@ namespace Business
                     result = dberr.getErrorDesc(connectionString);
                     return -1;
                 }
-            }
+            }*/
             if (tx.txnmP.tran_fin_type.Equals("Y"))
             {
                 // Write to FINHIST table

@@ -43,7 +43,8 @@ namespace Data
             }
             catch (Exception ex)
             {
-                throw ex;
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_ACTM_NOFIND);
+                throw (new Exception("Transaction Error: " + Mnemonics.DbErrorCodes.DBERR_ACTM_NOFIND));
             }
         }
 
@@ -65,7 +66,8 @@ namespace Data
             }
             catch (Exception ex)
             {
-                throw ex;
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_ACTM_NOFIND);
+                throw (new Exception("Transaction Error: " + Mnemonics.DbErrorCodes.DBERR_ACTM_NOFIND));
             }
         }
 
@@ -93,7 +95,8 @@ namespace Data
             }
             catch (Exception ex)
             {
-                throw ex;
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_PENDTXN_NOFETCH);
+                throw (new Exception("Transaction Error: " + Mnemonics.DbErrorCodes.DBERR_PENDTXN_NOFETCH));
             }
         }
 
@@ -102,7 +105,7 @@ namespace Data
             var query = string.Format("select * from Pendtxn");
             return DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
         }
-        public static int Create(string connectionString, Pendtxn dataObject)
+        public static int Create(string connectionString, Pendtxn dataObject, Data.Dber dberr)
         {
             try
             {
@@ -138,7 +141,8 @@ namespace Data
             }
             catch (Exception ex)
             {
-                throw ex;
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_PENDTXN_NOWRITE);
+                throw (new Exception("Transaction Error: " + Mnemonics.DbErrorCodes.DBERR_PENDTXN_NOWRITE));
             }
         }
         public static bool Update(string connectionString, Pendtxn dataObject)

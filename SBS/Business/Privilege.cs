@@ -33,7 +33,7 @@ namespace Business
             this.ac_pvga = c;
             //pending = new Cp_Pendtxn();
         }
-        public Boolean verifyPrivilege(String connectionString, Data.Dber dberr)
+        public Boolean verifyInitPrivilege(Data.Dber dberr)
         {
             if(tx_pvga > ac_pvga)
             {
@@ -49,17 +49,26 @@ namespace Business
             //Data.PendtxnD.Create(connectionString, pending);
             return true; // remove later
         }
-        public Boolean verifyApprovePrivilege(Int32 current, Int32 required, Data.Dber dberr)
+        public Boolean verifyApprovePrivilege()
         {
-            if (current < required)
+            if (this.ac_pvga < this.tx_apprv)
             {
-                // Write to PENDTXN table
                 return false;
             }
             else
             {
                 return true;
             }
+        }
+        public int writeToPendingTxns(String connectionString, String ac1, String ac2, String csNo, String pvgb,
+            String tranDesc, String initEmpid, Decimal dr, Decimal cr, String tranid, String inData, Data.Dber dberr)
+        {
+            Cp_Pendtxn cpPend = new Cp_Pendtxn(connectionString, ac1, ac2, pvgb, csNo, initEmpid, dr, cr, tranDesc, tranid, inData, dberr);
+            if(dberr.ifError())
+            {
+                return -1;
+            }
+            return 0;
         }
     }
 }

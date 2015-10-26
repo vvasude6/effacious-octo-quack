@@ -103,7 +103,20 @@ namespace Data
                 throw ex;
             }
         }
-
+        // Somnath ---------------------------------
+        public static String getEmpNumberFromEmpId(string connectionString, string emp_id, Dber dberr)
+        {
+            try
+            {
+                // put query here, and return employee number
+                return "1234";
+            }
+            catch (Exception ex)
+            {
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_EMPM_NOFIND);
+                throw (new Exception(Mnemonics.DbErrorCodes.DBERR_EMPM_NOFIND));
+            }
+        }
         public static DataSet ReadAll(string connectionString, Dber dberr)
         {
             var query = string.Format("select * from Empm");

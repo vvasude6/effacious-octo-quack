@@ -32,7 +32,7 @@ namespace Business
             set { result = value; }
         }
 
-        Cp_Actm acct, acct_new;
+        Cp_Actm acct, acct_init;
         Cp_Txnm tx;
         Privilege pvg;
         Sequence seq;
@@ -95,46 +95,62 @@ namespace Business
                 result = dberr.getErrorDesc(connectionString);
                 return -1;
             }
+            String initEmpNumber = "0";
+            String initCustomer = "0";
             if (this.newInitiator)
             {
-                acct_new = new Cp_Actm(connectionString, loginAc, dberr);
+                acct_init = new Cp_Actm(connectionString, loginAc, dberr);
                 // Check if ACTM fetch for account number acc_no is successful. Return if error encountered
                 if (dberr.ifError())
                 {
-                    result = dberr.getErrorDesc(connectionString);
-                    return -1;
-                }
-            }
-            else
-            {
-                acct_new = acct;
-            }
-            // Verify if account has the privilege to execute the transaction
-            pvg = new Privilege(tx.txnmP.tran_pvga, tx.txnmP.tran_pvgb, acct_new.actmP.ac_pvg);
-            if (!pvg.verifyPrivilege(connectionString, dberr))
-            {
-                if (pvg.isPending)
-                {
-                    Entity.Pendtxn pending = new Entity.Pendtxn(this.changeAmount, seq.getSequence(), this.acct.actmP.ac_no, "0",
-                        Convert.ToString(this.tx.txnmP.tran_pvgb), this.acct.actmP.cs_no1, "0", 0,  this.tx.txnmP.tran_desc,
-                        this.tx.txnmP.tran_id);
-                    Data.PendtxnD.Create(connectionString, pending);
+                    Cp_Empm em = new Cp_Empm(connectionString, loginAc, " ", dberr);
                     if (dberr.ifError())
                     {
                         result = dberr.getErrorDesc(connectionString);
                         return -1;
                     }
-                    else
-                    {
-                        dberr.setError(Mnemonics.TxnCodes.TX_SENT_TO_APPROVER);
-                        return -1;
-                    }   
+                    initEmpNumber = em.empNoP;
                 }
                 else
                 {
-                    result = dberr.getErrorDesc(connectionString);
+                    initCustomer = this.acct_init.actmP.cs_no1;
+                }
+            }
+            else
+            {
+                this.acct_init = this.acct;
+                initCustomer = this.acct_init.actmP.cs_no1;
+            }
+            // Verify if account has the privilege to execute the transaction
+            pvg = new Privilege(tx.txnmP.tran_pvga, tx.txnmP.tran_pvgb, acct_init.actmP.ac_pvg);
+            if (!pvg.verifyInitPrivilege(dberr))
+            {
+                result = dberr.getErrorDesc(connectionString);
+                return -1;
+            }
+            if (!pvg.verifyApprovePrivilege())
+            {
+                String inData = this.TXID + "|" + acct.actmP.ac_no + "0" + this.changeAmount.ToString();
+                if (pvg.writeToPendingTxns(
+                    connectionString,               /* connection string */
+                    acct.actmP.ac_no,               /* account 1 */
+                    "0",                            /* account 2 */
+                    initCustomer,                   /* customer number */
+                    tx.txnmP.tran_pvgb.ToString(),  /* transaction approve privilege */
+                    tx.txnmP.tran_desc,             /* transaction description */
+                    initEmpNumber,                  /* initiating employee number */
+                    0,                              /* debit amount */
+                    this.changeAmount,              /* credit amount */
+                    tx.txnmP.tran_id,               /* transaction id (not tran code) */
+                    inData,                         /* incoming transaction string in XSwitch */
+                    dberr                           /* error tracking object */
+                    ) != 0)
+                {
+                    resultP = dberr.getErrorDesc(connectionString);
                     return -1;
                 }
+                resultP = Mnemonics.DbErrorCodes.MSG_SENT_FOR_AUTH;
+                return 0;
             }
             // Update new balance in ACTM
             acct.addBalance(connectionString, this.changeAmount, dberr);

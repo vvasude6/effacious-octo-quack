@@ -98,10 +98,22 @@ namespace Business
             }
             // Verify if account has the privilege to execute the transaction
             pvg = new Privilege(tx.txnmP.tran_pvga, tx.txnmP.tran_pvgb, acct.actmP.ac_pvg);
-            if(!pvg.verifyPrivilege(connectionString, dberr))
+            if(!pvg.verifyInitPrivilege(dberr))
             {
                 result = dberr.getErrorDesc(connectionString);
                 return -1;
+            }
+            if (!pvg.verifyApprovePrivilege())
+            {
+                String inData = this.TXID + "|" + acct.actmP.ac_no;
+                if (pvg.writeToPendingTxns(connectionString, acct.actmP.ac_no, "0", acct.actmP.cs_no1, tx.txnmP.tran_pvgb.ToString(),
+                    tx.txnmP.tran_desc, "0", 0, 0, tx.txnmP.tran_id, inData, dberr) != 0)
+                {
+                    resultP = dberr.getErrorDesc(connectionString);
+                    return -1;
+                }
+                resultP = Mnemonics.DbErrorCodes.MSG_SENT_FOR_AUTH;
+                return 0;
             }
             // Store transaction in hisory table. Determine which history table to store in based on tx.txnmP.tran_fin_type
             if (tx.txnmP.tran_fin_type.Equals("Y"))
@@ -117,7 +129,7 @@ namespace Business
                 Entity.Nfinhist nFhist = new Entity.Nfinhist(this.acct.actmP.ac_no, "0", this.tx.txnmP.tran_desc, "0", "0","0");
                 Data.NfinhistD.Create(connectionString, nFhist, dberr);
             }
-            result = Convert.ToString(acct.actmP.ac_bal - acct.actmP.ac_hold);
+            resultP = Convert.ToString(acct.actmP.ac_bal - acct.actmP.ac_hold);
             return 0;
         }
         public DataSet fetchMultipleAccounts(String connectionString, String cusno)

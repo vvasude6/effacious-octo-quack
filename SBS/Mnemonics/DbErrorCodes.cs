@@ -13,6 +13,8 @@ namespace Mnemonics
         public static String DBERR_ACTM_NOFIND = "997";
         public static String DBERR_EMPM_NOFIND = "995";
         public static String DBERR_ACTM_CUSNO_FETCH = "996";
+        public static String DBERR_PENDTXN_NOWRITE = "995";
+        public static String DBERR_PENDTXN_NOFETCH = "994";
 
         public static String TXERR_INIT_PVG = "500";
         public static String TXERR_NO_DEBIT = "499";
@@ -41,5 +43,7 @@ namespace Mnemonics
         public static String TXERR_EXISTING_USER = "476";
         public static String TXERR_INSUFFICIENT_BALANCE = "475";
         public static String TXERR_NO_USER = "000";
+
+        public static String MSG_SENT_FOR_AUTH = "The Transaction is pending Authorization!";
     }
 }

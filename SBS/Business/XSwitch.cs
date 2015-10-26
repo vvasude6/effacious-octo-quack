@@ -195,12 +195,12 @@ namespace Business
                         result = y014.getOutput();
                         // ENCRYPT result here
                         break;
-                    case "018": // User Registration for Online Banking // input = dataPart[1] = customer number
+                    /*case "018": // User Registration for Online Banking // input = dataPart[1] = customer number
                         //String loginAccc = dataPart[1];
                         Y_015 y015 = new Y_015(Mnemonics.TxnCodes.TX_REGISTER_CUSTOMER, connectionString, loginAc);
                         result = y015.resultP;
                         // ENCRYPT result here
-                        break;
+                        break;*/
                     case "019": // Fetch Customer record
                         //String loginAccc = dataPart[1];
                         Y_019 y019 = new Y_019(Mnemonics.TxnCodes.TX_FETCH_CUSTOMER, connectionString, loginAc);
