@@ -14,14 +14,17 @@ namespace UI
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            if (Session["UserId"] == null)
+            if (Session["UserId"] == null || Session["Access"] == null)
                 Response.Redirect("UserLogin.aspx");
 
             if (!IsPostBack)
             {
                 if (Global.IsPageAccessible(Page.Title))
                 {
-                    LoadAccounts();
+                    if (Session["Access"].ToString() == "1" || Session["Access"].ToString() == "2")
+                        LoadAccounts(Session["UserId"].ToString());
+                    else
+                        LoadCustomers(Session["UserId"].ToString());
                 }
                 else
                 {
@@ -31,52 +34,63 @@ namespace UI
             }
         }
 
-        private void LoadAccounts()
+        private void LoadCustomers(string internalUserId)
         {
-            var output = new Business.XSwitch(Global.ConnectionString, Session["Username"].ToString(), string.Format("009|{0}", Session["UserId"].ToString()));
-            if (output == null)
-                Response.Redirect("Error.aspx");
+
+        }
+
+        private void LoadAccounts(string externalUserId, bool byPass = false)
+        {
+            if (Session["Access"].ToString() == "1" || Session["Access"].ToString() == "2" || byPass)
+            {
+                var output = new Business.XSwitch(Global.ConnectionString, Session["Username"].ToString(), string.Format("009|{0}", externalUserId));
+                if (output == null)
+                    Response.Redirect("Error.aspx");
 
 
-            if (output.resultSet.Tables[0].Rows.Count != 0)
-            {
-                FromDropdown.DataSource = output.resultSet.Tables[0];
-                FromDropdown.DataTextField = "ac_no";
-                FromDropdown.DataValueField = "ac_no";
-                FromDropdown.DataBind();
-                //AccountList.InnerHtml = GetAccountListHtml(output.resultSet);
-            }
-            else
-            {
-                FromDropdown.Items.Add("No Accounts Found");
+                if (output.resultSet.Tables[0].Rows.Count != 0)
+                {
+                    FromDropdown.DataSource = output.resultSet.Tables[0];
+                    FromDropdown.DataTextField = "ac_no";
+                    FromDropdown.DataValueField = "ac_no";
+                    FromDropdown.DataBind();
+                    //AccountList.InnerHtml = GetAccountListHtml(output.resultSet);
+                }
+                else
+                {
+                    FromDropdown.Items.Add("No Accounts Found");
+                }
             }
         }
 
         protected void DebitButton_Click(object sender, EventArgs e)
         {
-            if (FromDropdown.SelectedValue == null)
+            if (Session["Access"].ToString() == "1" || Session["Access"].ToString() == "2")
             {
-                MessageBox.Show("Select the Account from which an amount has to be Debited");
-            }
-            else if (Amount.Text == "" || !UI.Validate.isAmountValid(Amount.Text))
-            {
-                MessageBox.Show("Amount cannot be empty, and amount accepts only decimal values.");
-            }
-            else
-            {
-                var amount = Convert.ToDecimal(Amount.Text);
-
-                if(amount > 1000)
+                if (FromDropdown.SelectedValue == null)
                 {
-                    _otpService = new OTPService(Session["UserId"].ToString() + Session["UserName"].ToString());
-                    _otpService.GenerateOTP(Session["UserName"].ToString(), email: Session["UserEmail"].ToString());
-                    //show otp 
-                    DebitButton.Visible = false;
-                    OTPDiv.Visible = true;
+                    MessageBox.Show("Select the Account from which an amount has to be Debited");
+                }
+                else if (Amount.Text == "" || !UI.Validate.isAmountValid(Amount.Text))
+                {
+                    MessageBox.Show("Amount cannot be empty, and amount accepts only decimal values.");
                 }
                 else
                 {
-                    ProcessTransaction(amount);
+                    var amount = Convert.ToDecimal(Amount.Text);
+
+                    if (amount > 1000)
+                    {
+                        _otpService = new OTPService(Session["UserId"].ToString() + Session["UserName"].ToString());
+                        _otpService.GenerateOTP(Session["UserName"].ToString(), email: Session["UserEmail"].ToString());
+                        //show otp 
+                        DebitButton.Visible = false;
+                        OTPDiv.Visible = true;
+                    }
+                    else
+                    {
+                        ProcessTransaction(amount);
+                    }
                 }
             }
         }

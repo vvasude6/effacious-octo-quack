@@ -32,11 +32,13 @@
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="InternalTransfer.aspx">Internal Transfer</a></li>
-                            <li><a href="ExternalTransfer.aspx">External Transfer</a></li>
-                            <li><a href="MakePayment.aspx">Make Payment</a></li>
+                            <li><a runat="server" id="InternalTransferLink" href="InternalTransfer.aspx">Internal Transfer</a></li>
+                            <li><a runat="server" id="ExternalTransferLink" href="ExternalTransfer.aspx">External Transfer</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a runat="server" id="MakePaymentLink" href="MakePayment.aspx">Make Payment</a></li>
                             <li><a href="DebitForm.aspx">Withdraw Money</a></li>
                             <li><a href="CreditForm.aspx">Deposit Money</a></li>
+                            <li role="separator" class="divider"></li>
                             <li><a href="AccountStatement.aspx">Account Statement</a></li>
                         </ul>
                         
@@ -55,8 +57,8 @@
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="CustProfileUpdate.aspx">My Profile</a></li>
-                            <li><a href="#">Settings</a></li>
+                            <li><asp:LinkButton ID="ProfileUpdateLink" runat="server" Text="My Profile" OnClick="ProfileUpdateLink_Click"></asp:LinkButton> </li>
+                            <%--<li><a href="#">Settings</a></li>--%>
                             <li role="separator" class="divider"></li>
                             <li><asp:LinkButton runat="server" ID="SignOutLink" OnClick="SignOutLink_Click">Signout</asp:LinkButton></li>
                         </ul>

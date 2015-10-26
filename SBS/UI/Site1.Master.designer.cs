@@ -40,6 +40,33 @@ namespace UI {
         protected global::System.Web.UI.WebControls.LinkButton HomeLink;
         
         /// <summary>
+        /// InternalTransferLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor InternalTransferLink;
+        
+        /// <summary>
+        /// ExternalTransferLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor ExternalTransferLink;
+        
+        /// <summary>
+        /// MakePaymentLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor MakePaymentLink;
+        
+        /// <summary>
         /// UserNameLabel control.
         /// </summary>
         /// <remarks>
@@ -47,6 +74,15 @@ namespace UI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl UserNameLabel;
+        
+        /// <summary>
+        /// ProfileUpdateLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton ProfileUpdateLink;
         
         /// <summary>
         /// SignOutLink control.

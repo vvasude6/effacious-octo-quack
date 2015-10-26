@@ -16,11 +16,18 @@ namespace UI
             Response.Cache.SetNoStore();
             if (Global.IsPageAccessible(Page.Title))
             {
-                if (Session["UserName"] == null)
+                if (Session["UserName"] == null || Session["Access"] == null)
                     Response.Redirect("UserLogin.aspx");
                 else
                 {
                     UserNameLabel.InnerText = Session["UserName"].ToString();
+                    if (Session["Access"].ToString() != "2") MakePaymentLink.Visible = false;
+
+                    if (Session["Access"].ToString() != "2" && Session["Access"].ToString() != "1")
+                    {
+                        InternalTransferLink.Visible = false;
+                        ExternalTransferLink.Visible = false;
+                    }
                 }
             }
         }
@@ -60,6 +67,32 @@ namespace UI
                         break;
                     case "5":
                         Response.Redirect("AdminHome.aspx");
+                        break;
+                    default:
+                        Response.Redirect("Error.aspx");
+                        break;
+                }
+            }
+        }
+
+        protected void ProfileUpdateLink_Click(object sender, EventArgs e)
+        {
+            if (Session["Access"] == null)
+            {
+                Response.Redirect("UserLogin.aspx");
+            }
+            else
+            {
+                switch (Session["Access"].ToString())
+                {
+                    case "1":
+                    case "2":
+                        Response.Redirect("CustProfileUpdate.aspx");
+                        break;
+                    case "3":
+                    case "4":
+                    case "5":
+                        ProfileUpdateLink.Visible = false;
                         break;
                     default:
                         Response.Redirect("Error.aspx");
