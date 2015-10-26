@@ -72,7 +72,13 @@ namespace Data
         {
             try
             {
-                var query = string.Format(string.Format("select * from Pendtxn where tran_pvgb >= {0}", pvgb));
+                var query = string.Format(string.Format(@"select 
+                                                        [REF_NO] as [Reference Number],
+                                                        [TRAN_DATE] as [Transaction Date],
+                                                        [AC_NO] as [Account Number],
+                                                        [INIT_CSNO] as [Customer Number],
+                                                        [TRAN_DESC] as [Transaction Details], '' as Command
+                                                        from PENDTXN  where tran_pvgb >= {0}", pvgb));
                 var data = DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
                 if (data != null)
                 {
