@@ -117,8 +117,7 @@
                 }).addTyping();
             }
             else {
-                //$('#UserNameTextBox').removeTyping();
-                //$('#PasswordTextBox').removeTyping();
+                window.location.reload();
             }
         });
 
