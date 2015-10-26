@@ -40,6 +40,7 @@ namespace Business
         Boolean newInitiator = false; // if the person transacting is different from the initiator, like in case of pending txns
         public Y_011(String txid, String connectionString, String acc_no, Decimal amount, String loginAc)
         {
+            this.dberr = new Data.Dber();
             try
             { 
                 if (amount <= 0)
@@ -50,7 +51,6 @@ namespace Business
                 }
                 else
                 {
-                    dberr = new Data.Dber();
                     this.TXID = txid;
                     this.changeAmount = amount;
                     seq = new Sequence(TXID);

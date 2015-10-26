@@ -94,6 +94,7 @@
     <Content Include="Help.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="images\logo.png" />
+    <Content Include="ExternalTransfer.aspx" />
     <Content Include="MakePayment.aspx" />
     <Content Include="MerchantHome.aspx" />
     <Content Include="OTP.aspx" />
@@ -114,7 +115,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TransferMoney.aspx" />
+    <Content Include="InternalTransfer.aspx" />
     <Content Include="UserLogin.aspx" />
     <Content Include="UserRegistration.aspx" />
     <Content Include="Virtual Keyboard.aspx" />
@@ -217,6 +218,13 @@
     <Compile Include="Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ExternalTransfer.aspx.cs">
+      <DependentUpon>ExternalTransfer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ExternalTransfer.aspx.designer.cs">
+      <DependentUpon>ExternalTransfer.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MakePayment.aspx.cs">
       <DependentUpon>MakePayment.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -253,12 +261,12 @@
     <Compile Include="Site1.Master.designer.cs">
       <DependentUpon>Site1.Master</DependentUpon>
     </Compile>
-    <Compile Include="TransferMoney.aspx.cs">
-      <DependentUpon>TransferMoney.aspx</DependentUpon>
+    <Compile Include="InternalTransfer.aspx.cs">
+      <DependentUpon>InternalTransfer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="TransferMoney.aspx.designer.cs">
-      <DependentUpon>TransferMoney.aspx</DependentUpon>
+    <Compile Include="InternalTransfer.aspx.designer.cs">
+      <DependentUpon>InternalTransfer.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserLogin.aspx.cs">
       <DependentUpon>UserLogin.aspx</DependentUpon>

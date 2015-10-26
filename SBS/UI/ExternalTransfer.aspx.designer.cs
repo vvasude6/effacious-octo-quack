@@ -13,15 +13,6 @@ namespace UI {
     public partial class TransferMoney {
         
         /// <summary>
-        /// fromLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label fromLabel;
-        
-        /// <summary>
         /// FromDropDown control.
         /// </summary>
         /// <remarks>
@@ -31,31 +22,13 @@ namespace UI {
         protected global::System.Web.UI.WebControls.DropDownList FromDropDown;
         
         /// <summary>
-        /// ToLabel control.
+        /// ToTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ToLabel;
-        
-        /// <summary>
-        /// ToDropDown control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ToDropDown;
-        
-        /// <summary>
-        /// amountLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label amountLabel;
+        protected global::System.Web.UI.WebControls.TextBox ToTextBox;
         
         /// <summary>
         /// AmountTransfer control.
@@ -65,15 +38,6 @@ namespace UI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox AmountTransfer;
-        
-        /// <summary>
-        /// ConfirmLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ConfirmLabel;
         
         /// <summary>
         /// ConfirmAmount control.

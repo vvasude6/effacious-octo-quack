@@ -30,6 +30,7 @@ namespace Business
         {
             this.TXID = txid;
             this.pvg = pvg;
+            this.dberr = new Data.Dber();
             processTransaction(connectionString, this.pvg);
         }
         public int processTransaction(String connectionString, int pvg)

@@ -32,7 +32,8 @@
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="TransferMoney.aspx">Transfer Money</a></li>
+                            <li><a href="InternalTransfer.aspx">Internal Transfer</a></li>
+                            <li><a href="ExternalTransfer.aspx">External Transfer</a></li>
                             <li><a href="MakePayment.aspx">Make Payment</a></li>
                             <li><a href="DebitForm.aspx">Withdraw Money</a></li>
                             <li><a href="CreditForm.aspx">Deposit Money</a></li>
