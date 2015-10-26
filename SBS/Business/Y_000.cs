@@ -136,14 +136,14 @@ namespace Business
             if (txnm.txnmP.tran_fin_type.Equals("Y"))
             {
                 // Write to FINHIST table
-                Entity.Finhist fhist = new Entity.Finhist(this.cstm.cstmP.cs_no, "0", this.txnm.txnmP.tran_desc,
-                    0, 0, "0", "0", "0", "0");
+                Entity.Finhist fhist = new Entity.Finhist("0", "0", this.txnm.txnmP.tran_desc,
+                    0, 0, "0", "0", "0", this.cstm.cstmP.cs_no);
                 Data.FinhistD.Create(connectionString, fhist, dberr);
             }
             else
             {
                 // Write to NFINHIST table
-                Entity.Nfinhist nFhist = new Entity.Nfinhist(this.cstm.cstmP.cs_no, "0", this.txnm.txnmP.tran_desc, "0", "0", this.cstm.cstmP.cs_no);
+                Entity.Nfinhist nFhist = new Entity.Nfinhist("0", "0", this.txnm.txnmP.tran_desc, "0", "0", this.cstm.cstmP.cs_no);
                 Data.NfinhistD.Create(connectionString, nFhist, dberr);
             }
             if (dberr.ifError())

@@ -112,7 +112,8 @@ namespace Data
                             TRAN_DESC [Transaction],
                             REM_BAL [Balance]
                             from FINHIST
-                            where ac_no in (select AC_NO from ACTM where CS_NO1 = '{0}')", cs_no));
+                            where ac_no in (select AC_NO from ACTM where CS_NO1 = '{0}')
+                            order by AC_NO, TRAN_TIMESTAMP", cs_no));
                 var data = DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
                 if (data != null)
                 {

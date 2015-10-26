@@ -37,6 +37,7 @@
                             <li><a href="MakePayment.aspx">Make Payment</a></li>
                             <li><a href="DebitForm.aspx">Withdraw Money</a></li>
                             <li><a href="CreditForm.aspx">Deposit Money</a></li>
+                            <li><a href="AccountStatement.aspx">Account Statement</a></li>
                         </ul>
                         
                     </li>

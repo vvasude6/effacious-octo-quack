@@ -64,8 +64,8 @@ namespace Data
            ,[INIT_CSNO])
                     OUTPUT INSERTED.REF_NO          
                     VALUES
-                    ('{0}'  ,'{1}','{2}'  ,'{3}'  ,{4}  ,{5}  ,'{6}')",
-                dataObject.tran_date, dataObject.ac_no, dataObject.tran_timestamp, dataObject.tran_desc,
+                    ('{0}'  ,{1},'{2}'  ,'{3}'  ,{4}  ,{5}  ,'{6}')",
+                dataObject.tran_date, dataObject.ac_no == "0" ? "null" : dataObject.ac_no, dataObject.tran_timestamp, dataObject.tran_desc,
                 dataObject.init_empid == "0" ? "null" : dataObject.init_empid,
                 dataObject.apprv_empid == "0" ? "null" : dataObject.apprv_empid,
                 dataObject.init_csno);
@@ -100,11 +100,11 @@ namespace Data
             try
             {
                 var query = string.Format(string.Format(@"select 
-                            AC_NO [Account Number],
                             TRAN_TIMESTAMP [Timestamp],
                             TRAN_DESC [Transaction]
                             from NFINHIST
-                            where ac_no in (select AC_NO from ACTM where CS_NO1 = '{0}')", cs_no));
+                            where ac_no in (select AC_NO from ACTM where CS_NO1 = '{0}')
+                            order by AC_NO, TRAN_TIMESTAMP", cs_no));
                 var data = DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
                 if (data != null)
                 {

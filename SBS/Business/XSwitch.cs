@@ -36,6 +36,9 @@ namespace Business
             get { return this.result; }
             set { this.result = value; }
         }
+        public XSwitch()
+        {
+        }
         public XSwitch(string connectionString, String loginAccount, String inData)
         {
             // DECRYPT incoming Message String here

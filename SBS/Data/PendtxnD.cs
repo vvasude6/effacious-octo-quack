@@ -31,6 +31,7 @@ namespace Data
                     PendingTxnMasterObject.ac_no = data.Tables[0].Rows[0]["ac_no"].ToString();
                     PendingTxnMasterObject.cr_amt = Convert.ToDecimal(data.Tables[0].Rows[0]["cr_amt"]);
                     PendingTxnMasterObject.dr_amt = Convert.ToDecimal(data.Tables[0].Rows[0]["dr_amt"]);
+                    PendingTxnMasterObject.tran_data = data.Tables[0].Rows[0]["tran_data"].ToString();
 
                     return PendingTxnMasterObject;
                 }
@@ -117,10 +118,11 @@ namespace Data
                ,[DR_AMT]
                ,[CR_AMT]
                , [TRAN_ID]
-                , [TRAN_DESC])
+                , [TRAN_DESC]
+                , [TRAN_DATA])
                     OUTPUT INSERTED.REF_NO          
                     VALUES
-                    ('{0}'  ,{1}, {2}, '{3}'  , {4} , {5}  ,'{6}', '{7}', {8}, '{9}')",
+                    ('{0}'  ,{1}, {2}, '{3}'  , {4} , {5}  ,'{6}', '{7}', {8}, '{9}', '{10}')",
                 dataObject.tran_date,
                 dataObject.ac_no == "0" ? "null" : dataObject.ac_no,
                 dataObject.ac_no2 == "0" ? "null" : dataObject.ac_no2,
@@ -130,7 +132,8 @@ namespace Data
                 dataObject.dr_amt,
                 dataObject.cr_amt,
                 dataObject.tran_id ,
-                dataObject.tran_desc);
+                dataObject.tran_desc,
+                dataObject.tran_data);
                 return (int)DbAccess.ExecuteScalar(connectionString, CommandType.Text, query);
             }
             catch (Exception ex)

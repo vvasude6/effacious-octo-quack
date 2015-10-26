@@ -20,6 +20,7 @@ namespace Entity
         public String init_csno { get; set; }
         public Decimal dr_amt { get; set; }
         public int tran_id { get; set; }
+        public string tran_data { get; set; }
         public Pendtxn()
         { }
         public Pendtxn(Decimal cr, String refno, String ac1, String ac2,
