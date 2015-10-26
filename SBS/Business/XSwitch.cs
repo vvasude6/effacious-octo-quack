@@ -144,7 +144,7 @@ namespace Business
                         }
                         // ENCRYPT result here
                         break;
-                    case "016": // External Funds Transfer = TRANSFER_DEBIT + TRANSFER_CREDIT
+                    case "021": // External Funds Transfer = TRANSFER_DEBIT + TRANSFER_CREDIT
                         Y_013 y013_2 = new Y_013(Mnemonics.TxnCodes.TX_EXT_TRANSFER, connectionString, dataPart[1], dataPart[2],
                             Convert.ToDecimal(dataPart[3]), loginAc);
                         if (!y013_2.basicValidationError())
@@ -176,7 +176,7 @@ namespace Business
                         break;
                     case "018": // User Registration for Online Banking // input = dataPart[1] = customer number
                         //String loginAccc = dataPart[1];
-                        Y_015 y015 = new Y_015(Mnemonics.TxnCodes.TX_UPDATE_PROFILE, connectionString, loginAc);
+                        Y_015 y015 = new Y_015(Mnemonics.TxnCodes.TX_REGISTER_CUSTOMER, connectionString, loginAc);
                         result = y015.resultP;
                         // ENCRYPT result here
                         break;
