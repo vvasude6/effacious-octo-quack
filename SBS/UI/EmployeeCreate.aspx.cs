@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace UI
 {
-    public partial class EmployerProfileUpdate : System.Web.UI.Page
+    public partial class EmployeeCreate : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

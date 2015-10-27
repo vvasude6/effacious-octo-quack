@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EmployeeCreate.aspx.cs" Inherits="UI.EmployerProfileUpdate" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EmployeeCreate.aspx.cs" Inherits="UI.EmployeeCreate" %>
 
 <!DOCTYPE html>
 

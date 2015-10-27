@@ -10,7 +10,7 @@
 namespace UI {
     
     
-    public partial class OTP {
+    public partial class ForgotPassword {
         
         /// <summary>
         /// form1 control.

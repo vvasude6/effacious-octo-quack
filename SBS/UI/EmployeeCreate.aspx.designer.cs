@@ -10,7 +10,7 @@
 namespace UI {
     
     
-    public partial class EmployerProfileUpdate {
+    public partial class EmployeeCreate {
         
         /// <summary>
         /// form1 control.

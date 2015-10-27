@@ -76,7 +76,7 @@ namespace UI
 
         protected void ForgotPasswordLink_Click(object sender, EventArgs e)
         {
-            Response.Redirect("OTP.aspx");
+            Response.Redirect("ForgotPassword.aspx");
         }
     }
 }
