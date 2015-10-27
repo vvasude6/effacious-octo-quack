@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -232,6 +232,17 @@ namespace Business
             if (!dberr.ifError())
             {
                 return dSet;
+            }
+            else return null;
+        }
+
+        public string geTranDataFromRefNumber(string connectionString, string ref_no)
+        {
+            var dberr = new Dber();
+            var data = Data.PendtxnD.GetTranDataFromRefNumber(connectionString, ref_no, dberr);
+            if (!dberr.ifError())
+            {
+                return data;
             }
             else return null;
         }
