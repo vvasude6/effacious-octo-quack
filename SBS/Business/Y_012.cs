@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -130,7 +130,7 @@ namespace Business
             }
             if (!pvg.verifyApprovePrivilege())
             {
-                String inData = this.TXID + "|" + acct.actmP.ac_no + "0" + this.changeAmount.ToString();
+                String inData = this.TXID + "|" + acct.actmP.ac_no + "| |"+ this.changeAmount.ToString();
                 if (pvg.writeToPendingTxns(
                     connectionString,               /* connection string */
                     acct.actmP.ac_no,               /* account 1 */
