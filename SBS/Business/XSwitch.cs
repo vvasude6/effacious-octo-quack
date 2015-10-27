@@ -265,5 +265,16 @@ namespace Business
             }
             else return null;
         }
+        
+        public DataSet getEmployeeAccessibleCustomerData(string connectionString, string employeeId)
+        {
+            var dberr = new Dber();
+            var ds = Data.CstmD.GetEmployeeAccessibleCustomerData(connectionString, employeeId, dberr);
+            if (!dberr.ifError())
+            {
+                return ds;
+            }
+            else return null;
+        }
     }
 }
