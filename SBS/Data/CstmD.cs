@@ -142,25 +142,25 @@ namespace Data
         {
             var query = string.Format(@"UPDATE [SBS].[dbo].[CSTM]
                                        SET 
-                                           [CS_FNAME] =       '{1}'
-                                          ,[CS_MNAME] =       '{2}'
-                                          ,[CS_LNAME] =       '{3}'
-                                          ,[CS_ADDR1] =       '{4}'
-                                          ,[CS_ADDR2] =       '{5}'
-                                          ,[CS_ZIP] =         '{6}'
-                                          ,[CS_CITY] =        '{7}'
-                                          ,[CS_STATE] =       '{8}'
-                                          ,[CS_PHN] =         '{9}'
-                                          ,[CS_EMAIL] =       '{10}'
+                                           [CS_FNAME] =       '{0}'
+                                          ,[CS_MNAME] =       '{1}'
+                                          ,[CS_LNAME] =       '{2}'
+                                          ,[CS_ADDR1] =       '{3}'
+                                          ,[CS_ADDR2] =       '{4}'
+                                          ,[CS_ZIP] =         '{5}'
+                                          ,[CS_CITY] =        '{6}'
+                                          ,[CS_STATE] =       '{7}'
+                                          ,[CS_PHN] =         '{8}'
+                                          ,[CS_EMAIL] =       '{9}'
                                          
-                                          ,[CS_SEC_QS1] =     '{11}'
-                                          ,[CS_SEC_ANS1] =    '{12}'
-                                          ,[CS_SEC_QS2] =     '{13}'
-                                          ,[CS_SEC_ANS2] =    '{14}'
-                                          ,[CS_SEC_QS3] =     '{15}'
-                                          ,[CS_SEC_ANS3] =    '{16}'
+                                          ,[CS_SEC_QS1] =     '{10}'
+                                          ,[CS_SEC_ANS1] =    '{11}'
+                                          ,[CS_SEC_QS2] =     '{12}'
+                                          ,[CS_SEC_ANS2] =    '{13}'
+                                          ,[CS_SEC_QS3] =     '{14}'
+                                          ,[CS_SEC_ANS3] =    '{15}'
                                           
-                                     WHERE CS_NO = {18}",  dataObject.cs_fname, dataObject.cs_mname, dataObject.cs_lname,
+                                     WHERE CS_NO = {16}",  dataObject.cs_fname, dataObject.cs_mname, dataObject.cs_lname,
                                      dataObject.cs_addr1, dataObject.cs_addr2, dataObject.cs_zip, dataObject.cs_city, dataObject.cs_state, dataObject.cs_phn,
                                      dataObject.cs_email,  dataObject.cs_secq1, dataObject.cs_ans1, dataObject.cs_secq2,
                                      dataObject.cs_ans2, dataObject.cs_secq3, dataObject.cs_ans3, dataObject.cs_no);
