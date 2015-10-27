@@ -260,7 +260,7 @@ namespace Business
 
         public string geTranDataFromRefNumber(string connectionString, string ref_no)
         {
-            var dberr = new Dber();
+            var dberr = new Data.Dber();
             var data = Data.PendtxnD.GetTranDataFromRefNumber(connectionString, ref_no, dberr);
             if (!dberr.ifError())
             {
@@ -271,7 +271,7 @@ namespace Business
         
         public Entity.Cstm getExternalUserDataFromUserName(string connectionString, string username)
         {
-            var dberr = new Dber();
+            var dberr = new Data.Dber();
             var data = Data.CstmD.GetCustomerObjectFromUserName(connectionString, username, dberr);
             if (!dberr.ifError())
             {
@@ -282,7 +282,7 @@ namespace Business
         
         public DataSet getEmployeeAccessibleCustomerData(string connectionString, string employeeId)
         {
-            var dberr = new Dber();
+            var dberr = new Data.Dber();
             var ds = Data.CstmD.GetEmployeeAccessibleCustomerData(connectionString, employeeId, dberr);
             if (!dberr.ifError())
             {
@@ -293,7 +293,7 @@ namespace Business
 
         public bool deletePendingTransaction(string connectionString, string referenceNumber)
         {
-            var dberr = new Dber();
+            var dberr = new Data.Dber();
             return Data.PendtxnD.Delete(connectionString, referenceNumber);
         }
     }
