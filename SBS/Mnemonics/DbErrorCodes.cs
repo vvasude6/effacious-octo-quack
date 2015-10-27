@@ -15,6 +15,7 @@ namespace Mnemonics
         public static String DBERR_ACTM_CUSNO_FETCH = "996";
         public static String DBERR_PENDTXN_NOWRITE = "995";
         public static String DBERR_PENDTXN_NOFETCH = "994";
+        public static String DBERR_FAIL_UPDATE_PWD = "993";
 
         public static String TXERR_INIT_PVG = "500";
         public static String TXERR_NO_DEBIT = "499";

@@ -176,7 +176,8 @@ namespace Data
             }
             catch (Exception ex)
             {
-                throw ex;
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_FAIL_UPDATE_PWD);
+                throw (new Exception(Mnemonics.DbErrorCodes.DBERR_FAIL_UPDATE_PWD));
             }
         }
 

@@ -35,5 +35,9 @@ namespace Business
         {
             cstmP = new Entity.Cstm(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u);
         }
+        public Boolean updatePassword(String connectionString, String cus_no, String pwd, Data.Dber dberr)
+        {
+            return Data.CstmD.UpdatePassword(connectionString, this.cstmP.cs_no, pwd, dberr);
+        }
     }
 }

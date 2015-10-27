@@ -33,23 +33,24 @@ namespace Business
         Boolean newInitiator = false; 
         Privilege pvg;
         Boolean error = false;
-        
-        public Y_015(String txid, String connectionString, String acc_no, String loginAc)
+
+        public Y_015(String txid, String connectionString, String a, String b, String c, String d, String e, String f,
+            String g, String h, String i, String j, String k, String l, String m, String n, String o, String p, String q, String r,
+            String s, String t, String u, String v, String w)
         {
             this.TXID = txid;
             dberr = new Data.Dber();
-            this.cusNo = loginAc;
-            if (!acc_no.Equals(loginAc))
-            {
-                newInitiator = true;
-            }
-            if (processTransaction(connectionString, acc_no, loginAc) != 0)
+            //this.cusNo = loginAc;
+            
+            if (processTransaction(connectionString, a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w) != 0)
             {
                 this.error = true;
             }
             //processTransaction(connectionString);
         }
-        private int processTransaction(String connectionString, String acct, String loginAc)
+        private int processTransaction(String connectionString, String a, String b, String c, String d, String e, String f,
+            String g, String h, String i, String j, String k, String l, String m, String n, String o, String p, String q, String r,
+            String s, String t, String u, String v, String w)
         {
             this.tx = new Cp_Txnm(connectionString, TXID, dberr);
             // Check if TXNM fetch for transaction type "010" is successful. Return if error encountered
@@ -78,17 +79,19 @@ namespace Business
             }
             if (!pvg.verifyApprovePrivilege())
             {
-                String inData = this.TXID + "|" + "0"/*acct.actmP.ac_no*/ + "0" + "0"/*this.changeAmount.ToString()*/;
+                String inData = this.TXID + "|" + a + "|" + b + "|" + c + "|" + d + "|" + e + "|" + f + "|" + g + "|" + h + "|"
+                    + i + "|" + j + "|" + k + "|" + l + "|" + m + "|" + n + "|" + o + "|" + p + "|" + q + "|" + r + "|" + s + "|"
+                    + t + "|" + u + "|" + v + "|" + w;/*this.changeAmount.ToString()*/;
                 if (pvg.writeToPendingTxns(
                     connectionString,               /* connection string */
-                    "0", //acct.actmP.ac_no,               /* account 1 */
+                    "0",                            /* account 1 */
                     "0",                            /* account 2 */
-                    "0", //initCustomer,                   /* customer number */
+                    a, //initCustomer,              /* customer number */
                     tx.txnmP.tran_pvgb.ToString(),  /* transaction approve privilege */
                     tx.txnmP.tran_desc,             /* transaction description */
-                    "0", //initEmpNumber,                  /* initiating employee number */
+                    "0",                            /* initiating employee number */
                     0,                              /* debit amount */
-                    0, //this.changeAmount,              /* credit amount */
+                    0,                              /* credit amount */
                     tx.txnmP.tran_id,               /* transaction id (not tran code) */
                     inData,                         /* incoming transaction string in XSwitch */
                     dberr                           /* error tracking object */
@@ -100,6 +103,7 @@ namespace Business
                 resultP = Mnemonics.DbErrorCodes.MSG_SENT_FOR_AUTH;
                 return 0;
             }
+
             /*
                 if (pvg.isPending)
                 {
@@ -123,6 +127,7 @@ namespace Business
                     return -1;
                 }
             }*/
+            /*
             if (tx.txnmP.tran_fin_type.Equals("Y"))
             {
                 // Write to FINHIST table
@@ -135,7 +140,7 @@ namespace Business
                 // Write to NFINHIST table
                 Entity.Nfinhist nFhist = new Entity.Nfinhist(cstm.cs_no, "0", this.tx.txnmP.tran_desc, "0", "0", "0");
                 Data.NfinhistD.Create(connectionString, nFhist, dberr);
-            }
+            }*/
             resultP = "Successful!";
             return 0;
         }

@@ -186,26 +186,34 @@ namespace Business
                         }
                         // ENCRYPT result here
                         break;
-                    case "017": // Edit customer info
+                    case Mnemonics.TxnCodes.TX_UPDATE_PROFILE: // Edit customer info
                         Y_014 y014 = new Y_014(Mnemonics.TxnCodes.TX_UPDATE_PROFILE, connectionString,
                             dataPart[1], dataPart[2], dataPart[3], dataPart[4], dataPart[5], dataPart[6],
                             dataPart[7], dataPart[8], dataPart[9], dataPart[10], dataPart[11], dataPart[12],
                             dataPart[13], dataPart[14], dataPart[15], dataPart[16], dataPart[17], dataPart[18],
-                            dataPart[19], dataPart[20], dataPart[21], loginAc);
+                            dataPart[19], dataPart[20], dataPart[21], dataPart[22], dataPart[23]);
                         result = y014.getOutput();
                         // ENCRYPT result here
                         break;
-                    /*case "018": // User Registration for Online Banking // input = dataPart[1] = customer number
+                    case Mnemonics.TxnCodes.TX_REGISTER_CUSTOMER: // User Registration for Online Banking // input = dataPart[1] = customer number
                         //String loginAccc = dataPart[1];
-                        Y_015 y015 = new Y_015(Mnemonics.TxnCodes.TX_REGISTER_CUSTOMER, connectionString, loginAc);
+                        Y_015 y015 = new Y_015(Mnemonics.TxnCodes.TX_UPDATE_PROFILE, connectionString,
+                            dataPart[1], dataPart[2], dataPart[3], dataPart[4], dataPart[5], dataPart[6],
+                            dataPart[7], dataPart[8], dataPart[9], dataPart[10], dataPart[11], dataPart[12],
+                            dataPart[13], dataPart[14], dataPart[15], dataPart[16], dataPart[17], dataPart[18],
+                            dataPart[19], dataPart[20], dataPart[21], dataPart[22], dataPart[23]);
                         result = y015.resultP;
                         // ENCRYPT result here
-                        break;*/
-                    case "019": // Fetch Customer record
+                        break;
+                    case Mnemonics.TxnCodes.TX_FETCH_CUSTOMER: // Fetch Customer record
                         //String loginAccc = dataPart[1];
                         Y_019 y019 = new Y_019(Mnemonics.TxnCodes.TX_FETCH_CUSTOMER, connectionString, loginAc);
                         result = y019.resultP;
                         // ENCRYPT result here
+                        break;
+                    case Mnemonics.TxnCodes.TX_FORGET_PASSWORD:
+                        Y_024 y024 = new Y_024(Mnemonics.TxnCodes.TX_FORGET_PASSWORD, connectionString, dataPart[1], dataPart[2]);
+                        resultP = y024.resultP;
                         break;
                 }
             }
