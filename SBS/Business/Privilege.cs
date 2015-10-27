@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -40,11 +40,7 @@ namespace Business
                 dberr.setError(Mnemonics.DbErrorCodes.TXERR_INIT_PVG);
                 return false;
             }
-            if(this.tx_apprv > ac_pvga)
-            {
-                isPending = true;
-                return false;
-            }
+            
             //Entity.Pendtxn pending = new Entity.Pendtxn();
             //Data.PendtxnD.Create(connectionString, pending);
             return true; // remove later
