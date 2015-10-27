@@ -13,6 +13,9 @@ namespace UI
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (IsPostBack)
+                return;
+            
             FirstNameTextBox.ForeColor = System.Drawing.Color.Black;
             MiddleNameTextBox.ForeColor = System.Drawing.Color.Black;
             LastNameTextBox.ForeColor = System.Drawing.Color.Black;
