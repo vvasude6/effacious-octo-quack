@@ -190,8 +190,8 @@ namespace Business
                         Y_014 y014 = new Y_014(Mnemonics.TxnCodes.TX_UPDATE_PROFILE, connectionString,
                             dataPart[1], dataPart[2], dataPart[3], dataPart[4], dataPart[5], dataPart[6],
                             dataPart[7], dataPart[8], dataPart[9], dataPart[10], dataPart[11], dataPart[12],
-                            dataPart[13], dataPart[14], dataPart[15], dataPart[16], dataPart[17], dataPart[18], dataPart[19], 
-                            dataPart[20], dataPart[21], loginAc);
+                            dataPart[13], dataPart[14], dataPart[15], dataPart[16], dataPart[17], dataPart[18],
+                            dataPart[19], dataPart[20], dataPart[21], loginAc);
                         result = y014.getOutput();
                         // ENCRYPT result here
                         break;
