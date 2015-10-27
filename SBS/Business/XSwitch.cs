@@ -137,6 +137,13 @@ namespace Business
                                 connectionString, dataPart[2], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
                                 if (!y012_2.txnErrorP)
                                 {
+                                    if (y012_2.pvgBypassedP)
+                                    {
+                                        if (!deletePendingTransaction(connectionString, dataPart[5]))
+                                        {
+                                            throw (new Exception("Pending transaction not removed"));
+                                        }
+                                    }
                                     resultP = "Successful!";
                                 }
                                 else
@@ -165,6 +172,13 @@ namespace Business
                                 connectionString, dataPart[2], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
                                 if (!y012_2.txnErrorP)
                                 {
+                                    if (y012_2.pvgBypassedP)
+                                    {
+                                        if (!deletePendingTransaction(connectionString, dataPart[5]))
+                                        {
+                                            throw (new Exception("Pending transaction not removed"));
+                                        }
+                                    }
                                     resultP = "Successful!";
                                 }
                                 else
