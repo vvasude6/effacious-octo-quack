@@ -114,6 +114,12 @@ namespace UI
                     }
                 }
             }
+
+            else
+            {
+                var amount = Convert.ToDecimal(Amount.Text);
+                ProcessTransaction(amount);
+            }
         }
 
         private static OTPService _otpService;
