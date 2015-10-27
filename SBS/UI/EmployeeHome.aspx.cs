@@ -73,12 +73,13 @@ namespace UI
 
         protected void PendingTransactionGridView_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            var id = Convert.ToInt32(e.CommandArgument);
+            var referenceNumber = e.CommandArgument.ToString();
             switch (e.CommandName.ToLower())
             {
                 case "approve":
                     //approve request id
                     //var output = new Business.XSwitch(Global.ConnectionString, Session["Username"].ToString(), string.Format("<tran code>|<account number1>| | <"));
+                    ProcessTransaction(referenceNumber, true);
                     break;
                 case "reject":
                     //reject request id
@@ -91,9 +92,19 @@ namespace UI
         public void ProcessTransaction(string referenceNumber, bool approved)
         {
             var xSwitchObject = new Business.XSwitch();
-            var data = xSwitchObject.geTranDataFromRefNumber(Global.ConnectionString, referenceNumber);
+            if (approved)
+            {
+                var data = xSwitchObject.geTranDataFromRefNumber(Global.ConnectionString, referenceNumber);
 
-            var output = new Business.XSwitch(Global.ConnectionString, Session["Username"].ToString(), data);
+                var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(), string.Format("{0}|{1}|{2}", data, Session["Access"].ToString(), referenceNumber));
+                System.Windows.Forms.MessageBox.Show("Transaction was processed.");
+            }
+            else
+            {
+                if(xSwitchObject.deletePendingTransaction(Global.ConnectionString, referenceNumber))
+                    System.Windows.Forms.MessageBox.Show("Transaction was deleted.");
+            }
+            
         }
     }
 }

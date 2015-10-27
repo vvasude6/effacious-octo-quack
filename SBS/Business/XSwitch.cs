@@ -276,5 +276,11 @@ namespace Business
             }
             else return null;
         }
+
+        public bool deletePendingTransaction(string connectionString, string referenceNumber)
+        {
+            var dberr = new Dber();
+            return Data.PendtxnD.Delete(connectionString, referenceNumber);
+        }
     }
 }

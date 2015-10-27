@@ -138,7 +138,7 @@ namespace UI
 
         private void ProcessTransaction(decimal amount)
         {
-            var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(), string.Format("011|{0}| |{1}", FromDropdown.SelectedValue, amount));
+            var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(), string.Format("011|{0}| |{1}|{2}| ", FromDropdown.SelectedValue, amount, Session["Access"]));
             MessageBox.Show(string.Format("The debit was successful. Your current balance is {0}", output.resultP));
         }
 

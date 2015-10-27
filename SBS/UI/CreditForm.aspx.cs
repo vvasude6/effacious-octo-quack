@@ -96,7 +96,7 @@ namespace UI
                 else
                 {
                     var amount = Convert.ToDouble(Amount.Text);
-                    var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(), string.Format("012|{0}| |{1}", ToDropdown.SelectedValue, amount));
+                    var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(), string.Format("012|{0}| |{1}|{2}| ", ToDropdown.SelectedValue, amount, Session["Access"].ToString()));
                     MessageBox.Show(output.resultP);
                 }
             }
