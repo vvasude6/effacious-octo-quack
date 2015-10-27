@@ -164,5 +164,28 @@ namespace Data
             }
         }
 
+
+        public static string GetTranDataFromRefNumber(string connectionString, string ref_no, Dber dberr)
+        {
+            try
+            {
+                var query = string.Format(string.Format(@"select tran_data from PENDTXN where ref_no = {0}", ref_no));
+                var data = DbAccess.ExecuteScalar(connectionString, CommandType.Text, query);
+                if (data != null)
+                {
+                    return data.ToString();
+                }
+                else
+                {
+                    dberr.setError(Mnemonics.DbErrorCodes.DBERR_ACTM_NOFIND);
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_PENDTXN_NOFETCH);
+                throw (new Exception("Transaction Error: " + Mnemonics.DbErrorCodes.DBERR_PENDTXN_NOFETCH));
+            }
+        }
     }
 }
