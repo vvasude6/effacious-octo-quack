@@ -73,6 +73,5 @@ namespace UI
             _otpService = null;
             Response.Redirect("UserLogin.aspx");
         }
-
     }
 }
