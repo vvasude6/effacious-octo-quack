@@ -22,6 +22,33 @@ namespace UI {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// Label4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label4;
+        
+        /// <summary>
+        /// UserNameTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox UserNameTextBox;
+        
+        /// <summary>
+        /// SendOTPBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button SendOTPBtn;
+        
+        /// <summary>
         /// Label1 control.
         /// </summary>
         /// <remarks>
@@ -31,13 +58,13 @@ namespace UI {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// OTpwd control.
+        /// OTPTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox OTpwd;
+        protected global::System.Web.UI.WebControls.TextBox OTPTextBox;
         
         /// <summary>
         /// Label2 control.
@@ -49,13 +76,22 @@ namespace UI {
         protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// NewPwd control.
+        /// pwdTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox NewPwd;
+        protected global::System.Web.UI.WebControls.TextBox pwdTextBox;
+        
+        /// <summary>
+        /// hashPwdHiddenField control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hashPwdHiddenField;
         
         /// <summary>
         /// Label3 control.
@@ -67,21 +103,30 @@ namespace UI {
         protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
-        /// ConfirmPwd control.
+        /// cpwdTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ConfirmPwd;
+        protected global::System.Web.UI.WebControls.TextBox cpwdTextBox;
         
         /// <summary>
-        /// Pwd control.
+        /// hashCpwdHiddenField control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Pwd;
+        protected global::System.Web.UI.WebControls.HiddenField hashCpwdHiddenField;
+        
+        /// <summary>
+        /// ChangePwdBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ChangePwdBtn;
     }
 }
