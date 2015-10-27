@@ -160,9 +160,6 @@
         $('#CustCreateBtn').click(function () {
             //alert(hashCode($('#PasswordTextBox').val()));
             $('#hashPwdHiddenField').val(hashCode($('#pwdTextBox').val()));
-        });
-        $('#CustCreateBtn').click(function () {
-            //alert(hashCode($('#PasswordTextBox').val()));
             $('#hashCpwdHiddenField').val(hashCode($('#cpwdTextBox').val()));
         });
 

@@ -68,7 +68,7 @@ namespace UI
 
             arglist[argIndex++] = Mnemonics.TxnCodes.TX_FORGET_PASSWORD;
             arglist[argIndex++] = userId;
-            arglist[argIndex++] = hashCpwdHiddenField.Value;
+            arglist[argIndex++] = hashPwdHiddenField.Value;
 
             var output = new Business.XSwitch(Global.ConnectionString, userId, string.Format("{0}|{1}|{2}", arglist));
 
