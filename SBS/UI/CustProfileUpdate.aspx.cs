@@ -115,7 +115,7 @@ namespace UI
                 return;
             }
 
-            string[] arglist = new String[12];
+            string[] arglist = new String[24];
             int argIndex = 0;
 
             arglist[argIndex++] = Mnemonics.TxnCodes.TX_UPDATE_PROFILE;
