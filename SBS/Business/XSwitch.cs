@@ -254,5 +254,16 @@ namespace Business
             }
             else return null;
         }
+        
+        public Entity.Cstm getExternalUserDataFromUserName(string connectionString, string username)
+        {
+            var dberr = new Dber();
+            var data = Data.CstmD.GetCustomerObjectFromUserName(connectionString, username, dberr);
+            if (!dberr.ifError())
+            {
+                return data;
+            }
+            else return null;
+        }
     }
 }
