@@ -119,7 +119,7 @@ namespace UI
             int argIndex = 0;
 
             arglist[argIndex++] = Mnemonics.TxnCodes.TX_UPDATE_PROFILE;
-            arglist[argIndex++] = " ";
+            arglist[argIndex++] = Session["UserId"].ToString();
             arglist[argIndex++] = " ";
             arglist[argIndex++] = FirstNameTextBox.Text;
             arglist[argIndex++] = MiddleNameTextBox.Text;

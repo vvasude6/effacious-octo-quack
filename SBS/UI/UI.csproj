@@ -79,7 +79,7 @@
     <Content Include="DebitForm.aspx" />
     <Content Include="EmployeeDisplay.aspx" />
     <Content Include="EmployeeHome.aspx" />
-    <Content Include="EmployerProfileUpdate.aspx" />
+    <Content Include="EmployeeCreate.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -99,7 +99,7 @@
     <Content Include="ExternalTransfer.aspx" />
     <Content Include="MakePayment.aspx" />
     <Content Include="MerchantHome.aspx" />
-    <Content Include="OTP.aspx" />
+    <Content Include="ForgotPassword.aspx" />
     <Content Include="OTPControl.ascx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -122,7 +122,6 @@
     <Content Include="InternalTransfer.aspx" />
     <Content Include="UserLogin.aspx" />
     <Content Include="UserRegistration.aspx" />
-    <Content Include="Virtual Keyboard.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -196,12 +195,12 @@
     <Compile Include="EmployeeHome.aspx.designer.cs">
       <DependentUpon>EmployeeHome.aspx</DependentUpon>
     </Compile>
-    <Compile Include="EmployerProfileUpdate.aspx.cs">
-      <DependentUpon>EmployerProfileUpdate.aspx</DependentUpon>
+    <Compile Include="EmployeeCreate.aspx.cs">
+      <DependentUpon>EmployeeCreate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="EmployerProfileUpdate.aspx.designer.cs">
-      <DependentUpon>EmployerProfileUpdate.aspx</DependentUpon>
+    <Compile Include="EmployeeCreate.aspx.designer.cs">
+      <DependentUpon>EmployeeCreate.aspx</DependentUpon>
     </Compile>
     <Compile Include="Encryption.cs" />
     <Compile Include="Error.aspx.cs">
@@ -250,12 +249,12 @@
     <Compile Include="MerchantHome.aspx.designer.cs">
       <DependentUpon>MerchantHome.aspx</DependentUpon>
     </Compile>
-    <Compile Include="OTP.aspx.cs">
-      <DependentUpon>OTP.aspx</DependentUpon>
+    <Compile Include="ForgotPassword.aspx.cs">
+      <DependentUpon>ForgotPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="OTP.aspx.designer.cs">
-      <DependentUpon>OTP.aspx</DependentUpon>
+    <Compile Include="ForgotPassword.aspx.designer.cs">
+      <DependentUpon>ForgotPassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="OTPControl.ascx.cs">
       <DependentUpon>OTPControl.ascx</DependentUpon>
@@ -292,13 +291,6 @@
     </Compile>
     <Compile Include="UserRegistration.aspx.designer.cs">
       <DependentUpon>UserRegistration.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Virtual Keyboard.aspx.cs">
-      <DependentUpon>Virtual Keyboard.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Virtual Keyboard.aspx.designer.cs">
-      <DependentUpon>Virtual Keyboard.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup />

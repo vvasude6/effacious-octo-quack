@@ -14,7 +14,17 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <tr>
+            <td colspan="2">
+                <h2 style="text-align: center">Welcome to <b>SBS !</b></h2>
+                <h4 style="text-align: center; color: gray">The most secure bank.</h4>
+            </td>
+        </tr>
+        <%--<tr class="spacerRowBig"></tr>--%>
+        <br /><br />
+        <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Reset User Password</h4>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <br /><br />
         <asp:CheckBox ID="MerchantCheckBox" runat="server" Text="Merchant"/>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:Label ID="Label1" runat="server" Text="FirstName" CssClass="label label-primary"></asp:Label>
