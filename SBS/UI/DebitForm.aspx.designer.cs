@@ -13,6 +13,24 @@ namespace UI {
     public partial class DebitForm {
         
         /// <summary>
+        /// FromCustomerDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl FromCustomerDiv;
+        
+        /// <summary>
+        /// CustomerDropDown control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList CustomerDropDown;
+        
+        /// <summary>
         /// FromDropdown control.
         /// </summary>
         /// <remarks>

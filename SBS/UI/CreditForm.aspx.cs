@@ -20,9 +20,15 @@ namespace UI
                 if (Global.IsPageAccessible(Page.Title))
                 {
                     if (Session["Access"].ToString() == "1" || Session["Access"].ToString() == "2")
+                    {
+                        FromCustomerDiv.Visible = false;
                         LoadAccounts(Session["UserId"].ToString());
+                    }
                     else
+                    {
+                        FromCustomerDiv.Visible = true;
                         LoadCustomers(Session["UserId"].ToString());
+                    }
                 }
                 else
                 {
@@ -33,7 +39,22 @@ namespace UI
         
         private void LoadCustomers(string internalUserId)
         {
+            var xSwitchObject = new Business.XSwitch();
 
+            var output = xSwitchObject.getEmployeeAccessibleCustomerData(Global.ConnectionString, Session["UserId"].ToString());
+            if (output.Tables[0].Rows.Count != 0)
+            {
+                CustomerDropDown.DataSource = output.Tables[0];
+                CustomerDropDown.DataTextField = "cs_uname";
+                CustomerDropDown.DataValueField = "cs_no";
+                CustomerDropDown.DataBind();
+                //AccountList.InnerHtml = GetAccountListHtml(output.resultSet);
+                LoadAccounts(CustomerDropDown.SelectedValue, byPass: true);
+            }
+            else
+            {
+                CustomerDropDown.Items.Add(new ListItem { Text= "You have access to no customers", Value="0"});
+            }
         }
 
         private void LoadAccounts(string externalUserId, bool byPass = false)
@@ -55,7 +76,7 @@ namespace UI
                 }
                 else
                 {
-                    ToDropdown.Items.Add("No Accounts Found");
+                    ToDropdown.Items.Add(new ListItem { Text = "No Accounts Found", Value = null });
                 }
             }
         }
@@ -79,6 +100,11 @@ namespace UI
                     MessageBox.Show(output.resultP);
                 }
             }
+        }
+
+        protected void CustomerDropDown_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadAccounts(CustomerDropDown.SelectedValue, byPass: true);
         }
     }
 }
