@@ -16,6 +16,18 @@ namespace Business
         String TXID;
         String result;
         Boolean error = false;
+        Boolean pvgBypassed;
+        public Boolean pvgBypassedP
+        {
+            get
+            {
+                return this.pvgBypassed;
+            }
+            set
+            {
+                this.pvgBypassed = value;
+            }
+        }
         Data.Dber dberr;
         // only needed for wrapper transactions
         public Boolean txnErrorP
@@ -156,6 +168,10 @@ namespace Business
                     resultP = Mnemonics.DbErrorCodes.MSG_SENT_FOR_AUTH;
                     return 0;
                 }
+            }
+            else
+            {
+                this.pvgBypassedP = true;
             }
             // Update new balance in ACTM
             acct.addBalance(connectionString, this.changeAmount, dberr);

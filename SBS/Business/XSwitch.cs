@@ -94,12 +94,26 @@ namespace Business
                     case "011": // Debit
                         Y_011 y011 = new Y_011(Mnemonics.TxnCodes.TX_DEBIT, connectionString, dataPart[1],
                             Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
+                        if (y011.pvgBypassedP)
+                        {
+                            if(!deletePendingTransaction(connectionString, dataPart[5]))
+                            {
+                                throw (new Exception("Pending transaction not removed"));
+                            }
+                        }
                         result = y011.resultP;
                         // ENCRYPT result here
                         break;
                     case "012": // Credit
                         Y_012 y012 = new Y_012(Mnemonics.TxnCodes.TX_CREDIT, connectionString, dataPart[1],
                             Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
+                        if (y012.pvgBypassedP)
+                        {
+                            if (!deletePendingTransaction(connectionString, dataPart[5]))
+                            {
+                                throw (new Exception("Pending transaction not removed"));
+                            }
+                        }
                         result = y012.getOutput();
                         // ENCRYPT result here
                         break;
