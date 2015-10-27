@@ -104,10 +104,9 @@ namespace UI
                 if (xSwitchObject.deletePendingTransaction(Global.ConnectionString, referenceNumber))
                 {
                     System.Windows.Forms.MessageBox.Show("Transaction was deleted.");
-                    Response.Redirect(Request.RawUrl);
                 }
             }
-            
+            Response.Redirect(Request.RawUrl);
         }
     }
 }

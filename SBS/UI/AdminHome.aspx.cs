@@ -111,7 +111,7 @@ namespace UI
                     Response.Redirect(Request.RawUrl);
                 }
             }
-
+            Response.Redirect(Request.RawUrl);
         }
     }
 }
