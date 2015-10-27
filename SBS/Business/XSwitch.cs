@@ -92,20 +92,20 @@ namespace Business
                         // ENCRYPT result here
                         break;
                     case "011": // Debit
-                        Y_011 y011 = new Y_011(Mnemonics.TxnCodes.TX_DEBIT, connectionString, dataPart[1], 
-                            Convert.ToDecimal(dataPart[3]), loginAc);
+                        Y_011 y011 = new Y_011(Mnemonics.TxnCodes.TX_DEBIT, connectionString, dataPart[1],
+                            Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
                         result = y011.resultP;
                         // ENCRYPT result here
                         break;
                     case "012": // Credit
-                        Y_012 y012 = new Y_012(Mnemonics.TxnCodes.TX_CREDIT, connectionString, dataPart[1], 
-                            Convert.ToDecimal(dataPart[3]), loginAc);
+                        Y_012 y012 = new Y_012(Mnemonics.TxnCodes.TX_CREDIT, connectionString, dataPart[1],
+                            Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
                         result = y012.getOutput();
                         // ENCRYPT result here
                         break;
                     case "013": // High Value Credit
-                        Y_012 y012_1 = new Y_012(Mnemonics.TxnCodes.TX_HIGHVAL_CREDIT, connectionString, 
-                            dataPart[1], Convert.ToDecimal(dataPart[3]), loginAc);
+                        Y_012 y012_1 = new Y_012(Mnemonics.TxnCodes.TX_HIGHVAL_CREDIT, connectionString,
+                            dataPart[1], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
                         result = y012_1.getOutput();
                         // ENCRYPT result here
                         break;
@@ -115,12 +115,12 @@ namespace Business
                         if (!y013.basicValidationError())
                         {
                             Y_011 y011_1 = new Y_011(Mnemonics.TxnCodes.TX_TRANSFER_DEBIT,
-                                connectionString, dataPart[1], Convert.ToDecimal(dataPart[3]), loginAc);
+                                connectionString, dataPart[1], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
                             result = y011_1.getOutput();
                             if (!y011_1.basicValidationError())
                             {
                                 Y_012 y012_2 = new Y_012(Mnemonics.TxnCodes.TX_TRANSFER_CREDIT,
-                                connectionString, dataPart[2], Convert.ToDecimal(dataPart[3]), loginAc);
+                                connectionString, dataPart[2], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
                                 if (!y012_2.txnErrorP)
                                 {
                                     resultP = "Successful!";
@@ -143,12 +143,12 @@ namespace Business
                         if (!y013_1.basicValidationError())
                         {
                             Y_011 y011_1 = new Y_011(Mnemonics.TxnCodes.TX_TRANSFER_DEBIT,
-                                connectionString, dataPart[1], Convert.ToDecimal(dataPart[3]), loginAc);
+                                connectionString, dataPart[1], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
                             result = y011_1.getOutput();
                             if (!y011_1.basicValidationError())
                             {
                                 Y_012 y012_2 = new Y_012(Mnemonics.TxnCodes.TX_TRANSFER_CREDIT,
-                                connectionString, dataPart[2], Convert.ToDecimal(dataPart[3]), loginAc);
+                                connectionString, dataPart[2], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
                                 if (!y012_2.txnErrorP)
                                 {
                                     resultP = "Successful!";
@@ -171,12 +171,12 @@ namespace Business
                         if (!y013_2.basicValidationError())
                         {
                             Y_011 y011_1 = new Y_011(Mnemonics.TxnCodes.TX_TRANSFER_DEBIT,
-                                connectionString, dataPart[1], Convert.ToDecimal(dataPart[3]), loginAc);
+                                connectionString, dataPart[1], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
                             result = y011_1.getOutput();
                             if (!y011_1.basicValidationError())
                             {
                                 Y_012 y012_2 = new Y_012(Mnemonics.TxnCodes.TX_TRANSFER_CREDIT,
-                                connectionString, dataPart[2], Convert.ToDecimal(dataPart[3]), loginAc);
+                                connectionString, dataPart[2], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
                                 result = y012_2.getOutput();
                             }
                         }
