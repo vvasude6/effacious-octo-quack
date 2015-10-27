@@ -150,10 +150,11 @@ namespace UI
                 return;
             }
 
-            string[] arglist = new String[19];
+            string[] arglist = new String[23];
             int argIndex = 0;
 
             arglist[argIndex++] = Mnemonics.TxnCodes.TX_REGISTER_USER;
+            arglist[argIndex++] = " ";
             arglist[argIndex++] = MerchantCheckBox.Checked ? "2" : "1";
             arglist[argIndex++] = FirstNameTextBox.Text;
             arglist[argIndex++] = MiddleNameTextBox.Text;
@@ -165,16 +166,19 @@ namespace UI
             arglist[argIndex++] = StateTextBox.Text;
             arglist[argIndex++] = PhNumTextBox.Text;
             arglist[argIndex++] = EmailTextBox.Text;
+            arglist[argIndex++] = " ";
+            arglist[argIndex++] = " ";
             arglist[argIndex++] = Question1TextBox.Text;
             arglist[argIndex++] = Answer1TextBox.Text;
             arglist[argIndex++] = Question2TextBox.Text;
             arglist[argIndex++] = Answer2TextBox.Text;
             arglist[argIndex++] = Question3TextBox.Text;
             arglist[argIndex++] = Answer3TextBox.Text;
+            arglist[argIndex++] = " ";
+            arglist[argIndex++] = " ";
             arglist[argIndex++] = pwdTextBox.Text;
 
-            var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(),
-                string.Format("{0}|{1}|{2}|{3}|{4}|{5}|{6}|{7}|{8}|{9}|{10}|{11}|{12}|{13}|{14}|{15}|{16}|{17}|{17}|{18}", arglist));
+            var output = new Business.XSwitch(Global.ConnectionString, "", string.Format("{0}|{1}|{2}|{3}|{4}|{5}|{6}|{7}|{8}|{9}|{10}|{11}|{12}|{13}|{14}|{15}|{16}|{17}|{17}|{18}{19}|{20}|{21}|{22}|{23}", arglist));
         }
     }
 }
