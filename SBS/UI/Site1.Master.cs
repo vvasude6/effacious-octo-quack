@@ -27,6 +27,16 @@ namespace UI
                     {
                         InternalTransferLink.Visible = false;
                         ExternalTransferLink.Visible = false;
+                        AccountStatementLink.Visible = false;
+                    }
+                    if (Session["Access"].ToString() == "5")
+                    {
+                        TransactionMenu.Visible = false;
+                        AccountStatementLink.Visible = false;
+                        InternalTransferLink.Visible = false;
+                        ExternalTransferLink.Visible = false;
+                        CreditFormLink.Visible = false;
+                        DebitFormLink.Visible = false;
                     }
                 }
             }

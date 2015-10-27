@@ -16,6 +16,8 @@ namespace UI
 
             if (Session["UserId"] == null || Session["Access"] == null)
                 Response.Redirect("UserLogin.aspx");
+            if (Session["Access"].ToString() == "5")
+                Response.Redirect("AdminHome.aspx");
 
             if (!IsPostBack)
             {

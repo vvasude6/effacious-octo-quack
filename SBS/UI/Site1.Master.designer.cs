@@ -40,6 +40,15 @@ namespace UI {
         protected global::System.Web.UI.WebControls.LinkButton HomeLink;
         
         /// <summary>
+        /// TransactionMenu control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TransactionMenu;
+        
+        /// <summary>
         /// InternalTransferLink control.
         /// </summary>
         /// <remarks>
@@ -65,6 +74,33 @@ namespace UI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor MakePaymentLink;
+        
+        /// <summary>
+        /// DebitFormLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor DebitFormLink;
+        
+        /// <summary>
+        /// CreditFormLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor CreditFormLink;
+        
+        /// <summary>
+        /// AccountStatementLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor AccountStatementLink;
         
         /// <summary>
         /// UserNameLabel control.
