@@ -150,10 +150,10 @@ namespace UI
                 return;
             }
 
-            string[] arglist = new String[23];
+            string[] arglist = new String[24];
             int argIndex = 0;
 
-            arglist[argIndex++] = Mnemonics.TxnCodes.TX_REGISTER_USER;
+            arglist[argIndex++] = Mnemonics.TxnCodes.TX_REGISTER_CUSTOMER;
             arglist[argIndex++] = " ";
             arglist[argIndex++] = MerchantCheckBox.Checked ? "2" : "1";
             arglist[argIndex++] = FirstNameTextBox.Text;
