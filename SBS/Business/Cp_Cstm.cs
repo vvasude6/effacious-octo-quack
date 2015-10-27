@@ -30,5 +30,10 @@ namespace Business
             // fetch all details for ac_no = acno.
             cstmP = Data.CstmD.Read(connectionString, cusno, dberr);
         }
+        public Cp_Cstm(String a, String b, String c, String d, String e, String f, String g, String h, String i, 
+            String j, String k, String l, String m, String n, String o, String p, String q, String r, String s, String t, String u)
+        {
+            cstmP = new Entity.Cstm(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u);
+        }
     }
 }
