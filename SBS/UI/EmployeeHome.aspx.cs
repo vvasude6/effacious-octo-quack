@@ -87,5 +87,13 @@ namespace UI
                     break;
             }
         }
+
+        public void ProcessTransaction(string referenceNumber, bool approved)
+        {
+            var xSwitchObject = new Business.XSwitch();
+            var data = xSwitchObject.geTranDataFromRefNumber(Global.ConnectionString, referenceNumber);
+
+            var output = new Business.XSwitch(Global.ConnectionString, Session["Username"].ToString(), data);
+        }
     }
 }
