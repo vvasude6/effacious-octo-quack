@@ -1,4 +1,4 @@
-﻿using Entity;
+using Entity;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -46,6 +46,29 @@ namespace Data
                     //customerMasterObject.cs_ans2 = data.Tables[0].Rows[0]["cs_sec_ans2"].ToString();
                     //customerMasterObject.cs_ans3 = data.Tables[0].Rows[0]["cs_sec_ans3"].ToString();
                     //return customerMasterObject;
+                }
+
+                else
+                    return null;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static Cstm GetCustomerObjectFromUserName(string connectionString, string userName, Dber dberr)
+        {
+            try
+            {
+                var customerMasterObject = new Cstm();
+                var query = string.Format("select * from cstm where cs_uname = '{0}'", userName);
+                var data = DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
+
+                //assign the data object to customer master object
+                if (data.Tables[0].Rows.Count > 0)
+                {
+                    return GetCstmObject(data.Tables[0].Rows[0]);
                 }
 
                 else
@@ -161,6 +184,29 @@ namespace Data
             customerMasterObject.cs_ans2 = row["cs_sec_ans2"].ToString();
             customerMasterObject.cs_ans3 = row["cs_sec_ans3"].ToString();
             return customerMasterObject;
+        }
+
+        public static DataSet GetEmployeeAccessibleCustomerData(string connectionString, string employeeId, Dber dberr)
+        {
+            try
+            {
+                var query = string.Format("select * from cstm");
+                var data = DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
+                if (data.Tables[0].Rows.Count > 0)
+                {
+                    return data;
+                }
+
+                else
+                {
+                    dberr.setError(Mnemonics.DbErrorCodes.DBERR_ACTM_NOFIND);
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }
