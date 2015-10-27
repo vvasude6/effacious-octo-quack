@@ -81,7 +81,7 @@ namespace Data
                                                         [AC_NO] as [Account Number],
                                                         [INIT_CSNO] as [Customer Number],
                                                         [TRAN_DESC] as [Transaction Details], '' as Command
-                                                        from PENDTXN  where tran_pvgb >= {0}", pvgb));
+                                                        from PENDTXN  where tran_pvgb <= {0}", pvgb));
                 var data = DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
                 if (data != null)
                 {
