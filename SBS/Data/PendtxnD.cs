@@ -71,17 +71,19 @@ namespace Data
             }
         }
 
-        public static DataSet GetAccessiblePendingTransactions(string connectionString, string pvgb, Dber dberr)
+        public static DataSet GetAccessiblePendingTransactions(string connectionString, string pvgb, Dber dberr, bool isAdmin = false)
         {
             try
             {
+                var condition = "<=";
+                if (isAdmin) condition = "=";
                 var query = string.Format(string.Format(@"select 
                                                         [REF_NO] as [Reference Number],
                                                         [TRAN_DATE] as [Transaction Date],
                                                         [AC_NO] as [Account Number],
                                                         [INIT_CSNO] as [Customer Number],
                                                         [TRAN_DESC] as [Transaction Details], '' as Command
-                                                        from PENDTXN  where tran_pvgb <= {0}", pvgb));
+                                                        from PENDTXN  where tran_pvgb {0} {1}", condition, pvgb));
                 var data = DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
                 if (data != null)
                 {
