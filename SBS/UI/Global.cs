@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Text.RegularExpressions;
 using System.Web;
 
@@ -25,6 +27,43 @@ namespace UI
             {
                 // call business function with user id and page name
                 return true;
+            }
+        }
+
+
+        public static bool SendPendingTransactionStatusMail(string customerName, string customerEmail, string status, string employeeName)
+        {
+            try
+            {
+                var fromAddress = new MailAddress("group2csefall2015@gmail.com", "SBS");
+                var toAddress = new MailAddress(customerEmail, customerName);
+                const string fromPassword = "group2fall";
+                const string subject = "Update from SBS.";
+                string body = string.Format("Hello {0}, <br /> <br />Your pending transaction has been {1} by {2}. <br /><br /> Regards, <br /> SBS Team.", customerName, status, employeeName);
+
+                var smtp = new SmtpClient
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+                };
+                using (var message = new MailMessage(fromAddress, toAddress)
+                {
+                    Subject = subject,
+                    Body = body,
+                    IsBodyHtml = true
+                })
+                {
+                    smtp.Send(message);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
     }
