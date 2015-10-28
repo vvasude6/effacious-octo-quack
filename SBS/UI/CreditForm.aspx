@@ -7,14 +7,20 @@
 
     <br />
     <br />
+     <div runat="server" id="FromCustomerDiv" class="input-group">
+        <span class="input-group-addon">&nbsp;From Customer</span>
+        <asp:DropDownList ID="CustomerDropDown" runat="server" Width="250px" Height="35px" CssClass="form-control" 
+            AutoPostBack="true" OnSelectedIndexChanged="CustomerDropDown_SelectedIndexChanged"></asp:DropDownList>
+    </div>
+    <br />
     <div class="input-group">
-        <span class="input-group-addon">&nbsp;&nbsp;&nbsp;To Account</span>
+        <span class="input-group-addon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To Account</span>
         <asp:DropDownList ID="ToDropdown" runat="server" Width="250px" Height="35px" CssClass="form-control"></asp:DropDownList>
     </div>
 
     <br />
     <div class="input-group">
-        <span class="input-group-addon">&nbsp;&nbsp;&nbsp;Amount ($)</span>
+        <span class="input-group-addon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Amount ($)</span>
         <asp:TextBox ID="Amount" runat="server" class="form-control" Width="250px" TextMode="Number"></asp:TextBox>
     </div>
 

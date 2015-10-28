@@ -116,14 +116,15 @@ namespace Business
                 if (txnm.txnmP.tran_fin_type.Equals("Y"))
                 {
                     // Write to FINHIST table
-                    Entity.Finhist fhist = new Entity.Finhist(empm.empmP.emp_no, "0", this.txnm.txnmP.tran_desc,
-                        0, 0, "0", "0", "0", "0");
+                    Entity.Finhist fhist = new Entity.Finhist("0", "0", this.txnm.txnmP.tran_desc,
+                        0, 0, "0", empm.empmP.emp_no, "0", "0");
                     Data.FinhistD.Create(connectionString, fhist, dberr);
                 }
                 else
                 {
                     // Write to NFINHIST table
-                    Entity.Nfinhist nFhist = new Entity.Nfinhist(empm.empmP.emp_no, "0", this.txnm.txnmP.tran_desc, "0", "0", empm.empmP.emp_no);
+                    Entity.Nfinhist nFhist = new Entity.Nfinhist("0", "0", 
+                        this.txnm.txnmP.tran_desc, empm.empmP.emp_no, "0", "0");
                     Data.NfinhistD.Create(connectionString, nFhist, dberr);
                 }
                 String empNo = empm.empmP.emp_no;

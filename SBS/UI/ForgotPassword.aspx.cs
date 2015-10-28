@@ -18,7 +18,7 @@ namespace UI
         {
         }
 
-        private String userId = "1234";
+        //private static String userId = "1234";
 
         protected void SendOTPBtn_Click(object sender, EventArgs e)
         {
@@ -38,10 +38,10 @@ namespace UI
             }
 
             
-            userId = output.cs_uid;
+            Session["TempUserId"] = output.cs_no;
             String userName = output.cs_fname + " " + output.cs_lname;
 
-            _otpService = new OTPService(userId + userName);
+            _otpService = new OTPService(output.cs_uid + userName);
             _otpService.GenerateOTP(userName, email: output.cs_email);
         }
 
@@ -67,10 +67,10 @@ namespace UI
             int argIndex = 0;
 
             arglist[argIndex++] = Mnemonics.TxnCodes.TX_FORGET_PASSWORD;
-            arglist[argIndex++] = userId;
+            arglist[argIndex++] = Session["TempUserId"].ToString();
             arglist[argIndex++] = hashPwdHiddenField.Value;
 
-            var output = new Business.XSwitch(Global.ConnectionString, userId, string.Format("{0}|{1}|{2}", arglist));
+            var output = new Business.XSwitch(Global.ConnectionString, Session["TempUserId"].ToString(), string.Format("{0}|{1}|{2}", arglist));
 
             MessageBox.Show("Password changed successfully.");
             _otpService = null;

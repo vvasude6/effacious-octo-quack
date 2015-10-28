@@ -64,11 +64,11 @@ namespace Data
            ,[INIT_CSNO])
                     OUTPUT INSERTED.REF_NO          
                     VALUES
-                    ('{0}'  ,{1},'{2}'  ,'{3}'  ,{4}  ,{5}  ,'{6}')",
+                    ('{0}'  ,{1},'{2}'  ,'{3}'  ,{4}  ,{5}  ,{6})",
                 dataObject.tran_date, dataObject.ac_no == "0" ? "null" : dataObject.ac_no, dataObject.tran_timestamp, dataObject.tran_desc,
                 dataObject.init_empid == "0" ? "null" : dataObject.init_empid,
                 dataObject.apprv_empid == "0" ? "null" : dataObject.apprv_empid,
-                dataObject.init_csno);
+                dataObject.init_csno == "0" ? "null": dataObject.init_csno);
                 return (int)DbAccess.ExecuteScalar(connectionString, CommandType.Text, query);
             }
             catch (Exception ex)

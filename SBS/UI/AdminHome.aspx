@@ -5,11 +5,17 @@
     <h3>Home</h3>
     <div class="panel panel-default">
         <div class="panel-heading">Pending Transactions</div>
-        <div class="panel-body">
-            <ul id="PendingTransactionList" runat="server" class="list-group">
-                <li class="list-group-item"> Sample format </li>
-            </ul>
-        </div>
+        <br />
+         <asp:GridView ID="PendingTransactionGridView" runat="server" CssClass="table gridview" BorderWidth="0px" BorderColor="Transparent"
+            OnRowDataBound="PendingTransactionGridView_RowDataBound" OnRowCommand="PendingTransactionGridView_RowCommand">
+
+            <RowStyle BackColor="#EFEFEF"
+                ForeColor="#333333" />
+
+            <AlternatingRowStyle BackColor="#FEFEFE"
+                ForeColor="#333333" />
+            
+        </asp:GridView>
     </div>
 
     <div class="panel panel-default">

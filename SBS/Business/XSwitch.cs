@@ -92,20 +92,34 @@ namespace Business
                         // ENCRYPT result here
                         break;
                     case "011": // Debit
-                        Y_011 y011 = new Y_011(Mnemonics.TxnCodes.TX_DEBIT, connectionString, dataPart[1], 
-                            Convert.ToDecimal(dataPart[3]), loginAc);
+                        Y_011 y011 = new Y_011(Mnemonics.TxnCodes.TX_DEBIT, connectionString, dataPart[1],
+                            Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
+                        if (y011.pvgBypassedP)
+                        {
+                            if(!deletePendingTransaction(connectionString, dataPart[5]))
+                            {
+                                throw (new Exception("Pending transaction not removed"));
+                            }
+                        }
                         result = y011.resultP;
                         // ENCRYPT result here
                         break;
                     case "012": // Credit
-                        Y_012 y012 = new Y_012(Mnemonics.TxnCodes.TX_CREDIT, connectionString, dataPart[1], 
-                            Convert.ToDecimal(dataPart[3]), loginAc);
+                        Y_012 y012 = new Y_012(Mnemonics.TxnCodes.TX_CREDIT, connectionString, dataPart[1],
+                            Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
+                        if (y012.pvgBypassedP)
+                        {
+                            if (!deletePendingTransaction(connectionString, dataPart[5]))
+                            {
+                                throw (new Exception("Pending transaction not removed"));
+                            }
+                        }
                         result = y012.getOutput();
                         // ENCRYPT result here
                         break;
                     case "013": // High Value Credit
-                        Y_012 y012_1 = new Y_012(Mnemonics.TxnCodes.TX_HIGHVAL_CREDIT, connectionString, 
-                            dataPart[1], Convert.ToDecimal(dataPart[3]), loginAc);
+                        Y_012 y012_1 = new Y_012(Mnemonics.TxnCodes.TX_HIGHVAL_CREDIT, connectionString,
+                            dataPart[1], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
                         result = y012_1.getOutput();
                         // ENCRYPT result here
                         break;
@@ -115,14 +129,21 @@ namespace Business
                         if (!y013.basicValidationError())
                         {
                             Y_011 y011_1 = new Y_011(Mnemonics.TxnCodes.TX_TRANSFER_DEBIT,
-                                connectionString, dataPart[1], Convert.ToDecimal(dataPart[3]), loginAc);
+                                connectionString, dataPart[1], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
                             result = y011_1.getOutput();
                             if (!y011_1.basicValidationError())
                             {
                                 Y_012 y012_2 = new Y_012(Mnemonics.TxnCodes.TX_TRANSFER_CREDIT,
-                                connectionString, dataPart[2], Convert.ToDecimal(dataPart[3]), loginAc);
+                                connectionString, dataPart[2], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
                                 if (!y012_2.txnErrorP)
                                 {
+                                    if (y012_2.pvgBypassedP)
+                                    {
+                                        if (!deletePendingTransaction(connectionString, dataPart[5]))
+                                        {
+                                            throw (new Exception("Pending transaction not removed"));
+                                        }
+                                    }
                                     resultP = "Successful!";
                                 }
                                 else
@@ -143,14 +164,21 @@ namespace Business
                         if (!y013_1.basicValidationError())
                         {
                             Y_011 y011_1 = new Y_011(Mnemonics.TxnCodes.TX_TRANSFER_DEBIT,
-                                connectionString, dataPart[1], Convert.ToDecimal(dataPart[3]), loginAc);
+                                connectionString, dataPart[1], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
                             result = y011_1.getOutput();
                             if (!y011_1.basicValidationError())
                             {
                                 Y_012 y012_2 = new Y_012(Mnemonics.TxnCodes.TX_TRANSFER_CREDIT,
-                                connectionString, dataPart[2], Convert.ToDecimal(dataPart[3]), loginAc);
+                                connectionString, dataPart[2], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
                                 if (!y012_2.txnErrorP)
                                 {
+                                    if (y012_2.pvgBypassedP)
+                                    {
+                                        if (!deletePendingTransaction(connectionString, dataPart[5]))
+                                        {
+                                            throw (new Exception("Pending transaction not removed"));
+                                        }
+                                    }
                                     resultP = "Successful!";
                                 }
                                 else
@@ -171,12 +199,12 @@ namespace Business
                         if (!y013_2.basicValidationError())
                         {
                             Y_011 y011_1 = new Y_011(Mnemonics.TxnCodes.TX_TRANSFER_DEBIT,
-                                connectionString, dataPart[1], Convert.ToDecimal(dataPart[3]), loginAc);
+                                connectionString, dataPart[1], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
                             result = y011_1.getOutput();
                             if (!y011_1.basicValidationError())
                             {
                                 Y_012 y012_2 = new Y_012(Mnemonics.TxnCodes.TX_TRANSFER_CREDIT,
-                                connectionString, dataPart[2], Convert.ToDecimal(dataPart[3]), loginAc);
+                                connectionString, dataPart[2], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
                                 result = y012_2.getOutput();
                             }
                         }
@@ -201,7 +229,7 @@ namespace Business
                             dataPart[1], dataPart[2], dataPart[3], dataPart[4], dataPart[5], dataPart[6],
                             dataPart[7], dataPart[8], dataPart[9], dataPart[10], dataPart[11], dataPart[12],
                             dataPart[13], dataPart[14], dataPart[15], dataPart[16], dataPart[17], dataPart[18],
-                            dataPart[19], dataPart[20], dataPart[21], dataPart[22], dataPart[23]);
+                            dataPart[19], dataPart[20], dataPart[21], dataPart[22], dataPart[23], loginAc);
                         result = y015.resultP;
                         // ENCRYPT result here
                         break;
@@ -246,7 +274,7 @@ namespace Business
 
         public string geTranDataFromRefNumber(string connectionString, string ref_no)
         {
-            var dberr = new Dber();
+            var dberr = new Data.Dber();
             var data = Data.PendtxnD.GetTranDataFromRefNumber(connectionString, ref_no, dberr);
             if (!dberr.ifError())
             {
@@ -257,7 +285,7 @@ namespace Business
         
         public Entity.Cstm getExternalUserDataFromUserName(string connectionString, string username)
         {
-            var dberr = new Dber();
+            var dberr = new Data.Dber();
             var data = Data.CstmD.GetCustomerObjectFromUserName(connectionString, username, dberr);
             if (!dberr.ifError())
             {
@@ -268,13 +296,19 @@ namespace Business
         
         public DataSet getEmployeeAccessibleCustomerData(string connectionString, string employeeId)
         {
-            var dberr = new Dber();
+            var dberr = new Data.Dber();
             var ds = Data.CstmD.GetEmployeeAccessibleCustomerData(connectionString, employeeId, dberr);
             if (!dberr.ifError())
             {
                 return ds;
             }
             else return null;
+        }
+
+        public bool deletePendingTransaction(string connectionString, string referenceNumber)
+        {
+            var dberr = new Data.Dber();
+            return Data.PendtxnD.Delete(connectionString, referenceNumber);
         }
     }
 }

@@ -16,15 +16,23 @@ namespace UI
 
             if (Session["UserId"] == null || Session["Access"] == null)
                 Response.Redirect("UserLogin.aspx");
+            if (Session["Access"].ToString() == "5")
+                Response.Redirect("AdminHome.aspx");
 
             if (!IsPostBack)
             {
                 if (Global.IsPageAccessible(Page.Title))
                 {
                     if (Session["Access"].ToString() == "1" || Session["Access"].ToString() == "2")
+                    {
+                        FromCustomerDiv.Visible = false;
                         LoadAccounts(Session["UserId"].ToString());
+                    }
                     else
+                    {
+                        FromCustomerDiv.Visible = true;
                         LoadCustomers(Session["UserId"].ToString());
+                    }
                 }
                 else
                 {
@@ -36,7 +44,22 @@ namespace UI
 
         private void LoadCustomers(string internalUserId)
         {
+            var xSwitchObject = new Business.XSwitch();
 
+            var output = xSwitchObject.getEmployeeAccessibleCustomerData(Global.ConnectionString, Session["UserId"].ToString());
+            if (output.Tables[0].Rows.Count != 0)
+            {
+                CustomerDropDown.DataSource = output.Tables[0];
+                CustomerDropDown.DataTextField = "cs_uname";
+                CustomerDropDown.DataValueField = "cs_no";
+                CustomerDropDown.DataBind();
+                //AccountList.InnerHtml = GetAccountListHtml(output.resultSet);
+                LoadAccounts(CustomerDropDown.SelectedValue, byPass: true);
+            }
+            else
+            {
+                CustomerDropDown.Items.Add(new ListItem { Text = "You have access to no customers", Value = "0" });
+            }
         }
 
         private void LoadAccounts(string externalUserId, bool byPass = false)
@@ -58,7 +81,7 @@ namespace UI
                 }
                 else
                 {
-                    FromDropdown.Items.Add("No Accounts Found");
+                    FromDropdown.Items.Add(new ListItem { Text = "No Accounts Found", Value = null });
                 }
             }
         }
@@ -93,6 +116,12 @@ namespace UI
                     }
                 }
             }
+
+            else
+            {
+                var amount = Convert.ToDecimal(Amount.Text);
+                ProcessTransaction(amount);
+            }
         }
 
         private static OTPService _otpService;
@@ -117,7 +146,7 @@ namespace UI
 
         private void ProcessTransaction(decimal amount)
         {
-            var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(), string.Format("011|{0}| |{1}", FromDropdown.SelectedValue, amount));
+            var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(), string.Format("011|{0}| |{1}|{2}| ", FromDropdown.SelectedValue, amount, Session["Access"]));
             MessageBox.Show(string.Format("The debit was successful. Your current balance is {0}", output.resultP));
         }
 
@@ -127,6 +156,11 @@ namespace UI
             FromDropdown.SelectedIndex = 0;
             OTPDiv.Visible = false;
             DebitButton.Visible = true;
+        }
+
+        protected void CustomerDropDown_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadAccounts(CustomerDropDown.SelectedValue, byPass: true);
         }
     }
 }

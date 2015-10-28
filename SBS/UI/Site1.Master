@@ -26,7 +26,7 @@
                     <li>
                         <asp:LinkButton runat="server" ID="HomeLink" OnClick="HomeLink_Click"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;Home</asp:LinkButton>
                     </li>
-                    <li class="dropdown">
+                    <li class="dropdown" runat="server" id="TransactionMenu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>&nbsp;Transactions 
                             <span class="caret"></span>
@@ -36,10 +36,10 @@
                             <li><a runat="server" id="ExternalTransferLink" href="ExternalTransfer.aspx">External Transfer</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a runat="server" id="MakePaymentLink" href="MakePayment.aspx">Make Payment</a></li>
-                            <li><a href="DebitForm.aspx">Withdraw Money</a></li>
-                            <li><a href="CreditForm.aspx">Deposit Money</a></li>
+                            <li><a runat="server" id="DebitFormLink" href="DebitForm.aspx">Withdraw Money</a></li>
+                            <li><a runat="server" id="CreditFormLink" href="CreditForm.aspx">Deposit Money</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="AccountStatement.aspx">Account Statement</a></li>
+                            <li><a runat="server" id="AccountStatementLink"  href="AccountStatement.aspx">Account Statement</a></li>
                         </ul>
                         
                     </li>

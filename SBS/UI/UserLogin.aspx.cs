@@ -12,7 +12,9 @@ namespace UI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
+            Response.Cache.SetNoStore();
         }
                 
         protected void Forgotpassword_Click(object sender, EventArgs e)
