@@ -117,13 +117,14 @@ namespace Business
                 // Check if ACTM fetch for account number acc_no is successful. Return if error encountered
                 if (dberr.ifError())
                 {
-                    Cp_Empm em = new Cp_Empm(connectionString, loginAc, " ", dberr);
+                    dberr = new Data.Dber();
+                    Cp_Empm em = new Cp_Empm(connectionString, loginAc, dberr);
                     if (dberr.ifError())
                     {
                         result = dberr.getErrorDesc(connectionString);
                         return -1;
                     }
-                    initEmpNumber = em.empNoP;
+                    initEmpNumber = em.empmP.emp_no;
                 }
                 else
                 {

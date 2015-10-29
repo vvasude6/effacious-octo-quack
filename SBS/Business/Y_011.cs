@@ -108,19 +108,27 @@ namespace Business
                 result = dberr.getErrorDesc(connectionString);
                 return -1;
             }
+            String initEmpNumber = "0";
+            String initCustomer = "0";
             if (this.newInitiator)
             {
                 acct_new = new Cp_Actm(connectionString, loginAc, dberr);
                 // Check if ACTM fetch for account number acc_no is successful. Return if error encountered
                 if (dberr.ifError())
                 {
-                    result = dberr.getErrorDesc(connectionString);
-                    return -1;
+                    dberr = new Data.Dber();
+                    Cp_Empm em = new Cp_Empm(connectionString, loginAc, dberr);
+                    if (dberr.ifError())
+                    {
+                        result = dberr.getErrorDesc(connectionString);
+                        return -1;
+                    }
+                    initEmpNumber = em.empmP.emp_no;
                 }
             }
             else
             {
-                acct_new = acct;
+                initCustomer = this.acct_new.actmP.cs_no1;
             }
             // Verify if account has the privilege to execute the transaction
             if (acct_new.actmP.ac_pvg == initPvg)
