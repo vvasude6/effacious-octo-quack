@@ -42,7 +42,8 @@ namespace Business
                 return -1;
             }
             Cp_Cstm cstm = new Cp_Cstm(connectionString, cus_no, dberr);
-            cstm.updatePassword(connectionString, cus_no, pwd, dberr);
+            if (cstm.cstmP != null)
+                cstm.updatePassword(connectionString, cus_no, pwd, dberr);
             if (dberr.ifError())
             {
                 dberr = new Data.Dber();

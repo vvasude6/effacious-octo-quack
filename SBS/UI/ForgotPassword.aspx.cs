@@ -33,20 +33,37 @@ namespace UI
 
                     return;
                 }
+                var employeeOutput = new Entity.Empm();
                 var output = xsw.getExternalUserDataFromUserName(Global.ConnectionString, UserNameTextBox.Text);
                 if (output == null)
                 {
-                    //MessageBox.Show("Invalid User Name");
-                    ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Invalid user name');", true);
+                    employeeOutput = xsw.getInternalUserDataFromUserName(Global.ConnectionString, UserNameTextBox.Text);
 
-                    return;
+                    if (employeeOutput == null)
+                    {
+                        //MessageBox.Show("Invalid User Name");
+                        ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Invalid user name');", true);
+                        return;
+                    }
+                    
                 }
 
-                Session["TempUserId"] = output.cs_no;
-                String userName = output.cs_fname + " " + output.cs_lname;
+                if (output != null)
+                {
+                    Session["TempUserId"] = output.cs_no;
+                    String userName = output.cs_fname + " " + output.cs_lname;
 
-                _otpService = new OTPService(output.cs_uid + userName);
-                _otpService.GenerateOTP(userName, email: output.cs_email);
+                    _otpService = new OTPService(output.cs_uid + userName);
+                    _otpService.GenerateOTP(userName, email: output.cs_email);
+                }
+                else if (employeeOutput != null)
+                {
+                    Session["TempUserId"] =  employeeOutput.emp_no;
+                    String userName = employeeOutput.emp_fname + " " + employeeOutput.emp_lname;
+
+                    _otpService = new OTPService(employeeOutput.emp_no + userName);
+                    _otpService.GenerateOTP(userName, email: employeeOutput.emp_email);
+                }
             }
             catch { }
         }
