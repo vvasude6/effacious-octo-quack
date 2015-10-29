@@ -80,6 +80,7 @@ namespace Business
             cstm.cs_secq3 = s;
             cstm.cs_ans3 = t;
             cstm.cs_access = u;
+
             // Fetch data from CSTM. if CS_ACCESS = 'N', registration can be done, else fail txn
             //Entity.Cstm cstm = Data.CstmD.Read(connectionString, this.cusNo, dberr);
             //if (dberr.ifError())
@@ -142,6 +143,7 @@ namespace Business
             else
             {
                 int cstmId = Data.CstmD.Create(connectionString, cstm, dberr);
+
                 // Insert new row in Customer table
                 int data = Data.CstmD.Create(connectionString, cstm, dberr);
                 if (dberr.ifError())
