@@ -73,7 +73,7 @@ namespace UI
                     }
                     else
                     {
-                        MessageBox.Show("Looks like you have entered an invalid username.");
+                        MessageBox.Show("Looks like we could not log you in. Please check the details you have entered.");
                     }
                 }
             }
