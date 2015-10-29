@@ -85,7 +85,7 @@ namespace Business
             catch(Exception e)
             {
                 this.error = true;
-                result = e.ToString();
+                result = e.Message.ToString();
             }
         }
         public Boolean basicValidationError()
@@ -187,6 +187,14 @@ namespace Business
                 result = dberr.getErrorDesc(connectionString);
                 return -1;
             }
+            // --------------- send mail -----------------
+
+            //if(!loginAc.Equals(acc_no))
+            //{
+            //    Security.OTPUtility.SendMail(acc_no, )
+            //}
+
+            // -------------------------------------------
             return 0; // remove later
         }
         public String getOutput()
