@@ -10,7 +10,6 @@ namespace Business
     {
         char[] delimiter = { '|' };
         //String SPROC = Mnemonics.SP_TXNM_ALL;
-        String tran_id;
         String tran_desc;
         Int32 tran_pvga;
         Int32 tran_pvgb;

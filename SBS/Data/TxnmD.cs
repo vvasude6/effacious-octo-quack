@@ -40,9 +40,10 @@ namespace Data
                     return null;
                 }
             }
-            catch (Exception ex)
+            catch //(Exception ex)
             {
-                throw ex;
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_TXNM_NOFIND);
+                return null;
             }
         }
 
@@ -53,9 +54,10 @@ namespace Data
                 var query = string.Format("select * from txnm");
                 return DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
             }
-            catch (Exception ex)
+            catch //(Exception ex)
             {
-                throw ex;
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_TXNM_READALL);
+                return null;
             }
         }
 
@@ -70,7 +72,8 @@ namespace Data
             }
             catch (Exception ex)
             {
-                throw ex;
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_TXNM_CREATE);
+                return -1;
             }
         }
 
@@ -84,7 +87,8 @@ namespace Data
             }
             catch (Exception ex)
             {
-                throw ex;
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_TXNM_DELETE);
+                return false;
             }
         }
 
@@ -98,7 +102,8 @@ namespace Data
             }
             catch (Exception ex)
             {
-                throw ex;
+                //throw ex;
+                return false;
             }
         }
         public static string GetTransactionIdFromCode(String connectionString, String transactioncode)

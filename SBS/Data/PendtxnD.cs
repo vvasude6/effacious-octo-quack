@@ -37,14 +37,14 @@ namespace Data
                 }
                 else
                 {
-                    dberr.setError(Mnemonics.DbErrorCodes.DBERR_ACTM_NOFIND);
+                    dberr.setError(Mnemonics.DbErrorCodes.DBERR_PENDTXN_READ);
                     return null;
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                dberr.setError(Mnemonics.DbErrorCodes.DBERR_ACTM_NOFIND);
-                throw (new Exception("Transaction Error: " + Mnemonics.DbErrorCodes.DBERR_ACTM_NOFIND));
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_PENDTXN_READ);
+                return null;
             }
         }
 
@@ -60,14 +60,14 @@ namespace Data
                 }
                 else
                 {
-                    dberr.setError(Mnemonics.DbErrorCodes.DBERR_ACTM_NOFIND);
+                    dberr.setError(Mnemonics.DbErrorCodes.DBERR_PENDTXN_NOFETCH);
                     return null;
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                dberr.setError(Mnemonics.DbErrorCodes.DBERR_ACTM_NOFIND);
-                throw (new Exception("Transaction Error: " + Mnemonics.DbErrorCodes.DBERR_ACTM_NOFIND));
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_PENDTXN_NOFETCH);
+                return null;
             }
         }
 
@@ -99,14 +99,14 @@ namespace Data
                 }
                 else
                 {
-                    dberr.setError(Mnemonics.DbErrorCodes.DBERR_ACTM_NOFIND);
+                    dberr.setError(Mnemonics.DbErrorCodes.DBERR_PENDTXN_NOFETCH);
                     return null;
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 dberr.setError(Mnemonics.DbErrorCodes.DBERR_PENDTXN_NOFETCH);
-                throw (new Exception("Transaction Error: " + Mnemonics.DbErrorCodes.DBERR_PENDTXN_NOFETCH));
+                return null;
             }
         }
 
@@ -149,10 +149,10 @@ namespace Data
                 dataObject.tran_data);
                 return (int)DbAccess.ExecuteScalar(connectionString, CommandType.Text, query);
             }
-            catch (Exception ex)
+            catch
             {
                 dberr.setError(Mnemonics.DbErrorCodes.DBERR_PENDTXN_NOWRITE);
-                throw (new Exception("Transaction Error: " + Mnemonics.DbErrorCodes.DBERR_PENDTXN_NOWRITE));
+                return -1;
             }
         }
         public static bool Update(string connectionString, Pendtxn dataObject)
@@ -168,9 +168,9 @@ namespace Data
                 return DbAccess.ExecuteNonQuery(connectionString, CommandType.Text, query) == 1;
 
             }
-            catch (Exception ex)
+            catch
             {
-                throw ex;
+                return false;
             }
         }
 
@@ -191,10 +191,10 @@ namespace Data
                     return null;
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 dberr.setError(Mnemonics.DbErrorCodes.DBERR_PENDTXN_NOFETCH);
-                throw (new Exception("Transaction Error: " + Mnemonics.DbErrorCodes.DBERR_PENDTXN_NOFETCH));
+                return "Transaction Error: " + Mnemonics.DbErrorCodes.DBERR_PENDTXN_NOFETCH;
             }
         }
     }
