@@ -28,6 +28,7 @@ namespace UI
                         InternalTransferLink.Visible = false;
                         ExternalTransferLink.Visible = false;
                         AccountStatementLink.Visible = false;
+                        CreateAccountLink.Visible = false;
                     }
                     if (Session["Access"].ToString() == "5")
                     {
@@ -37,6 +38,7 @@ namespace UI
                         ExternalTransferLink.Visible = false;
                         CreditFormLink.Visible = false;
                         DebitFormLink.Visible = false;
+                        CreateAccountLink.Visible = false;
                     }
                 }
             }
