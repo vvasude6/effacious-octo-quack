@@ -158,6 +158,20 @@ namespace Data
             throw new NotImplementedException();
         }
 
+        public static bool UpdatePassword(string connectionString, string userId, string password, Dber dberr)
+        {
+            try
+            {
+                var query = string.Format("update empm set emp_pass = '{0}' where emp_id = {1}", password, userId);
+                return DbAccess.ExecuteNonQuery(connectionString, CommandType.Text, query) == 1;
+            }
+            catch (Exception ex)
+            {
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_FAIL_UPDATE_PWD);
+                return false;
+            }
+        }
+
         private static bool UpdateUserId(string connectionString, int employeeId, Dber dberr)
         {
             try
