@@ -200,6 +200,22 @@ namespace Business
                 result = dberr.getErrorDesc(connectionString);
                 return -1;
             }
+            
+            // ----------- send email ------------------
+            Entity.Cstm cstm = Data.CstmD.Read(connectionString, acct.actmP.cs_no1, dberr);
+            if (dberr.ifError())
+            {
+                result = dberr.getErrorDesc(connectionString);
+                return -1;
+            }
+            String mailResponse = "";
+            if(!Security.OTPUtility.SendMail(cstm.cs_fname + cstm.cs_mname + cstm.cs_lname, cstm.cs_email, " "))
+            {
+                mailResponse = "Mail sent.";
+            }
+            // -----------------------------------------
+            resultP = "Transaction Successful. Your new account balance is $" + acct.actmP.ac_bal + " " + mailResponse;
+            //-------------------------------------------
             return 0; // remove later
         }
         public String getOutput()
