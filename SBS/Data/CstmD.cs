@@ -141,7 +141,8 @@ namespace Data
                 dataObject.cs_access, dataObject.cs_uname, dataObject.cs_pass);
                 var customerId = (int)DbAccess.ExecuteScalar(connectionString, CommandType.Text, query);
                 UpdateUserId(connectionString, customerId, dberr);
-                    return customerId;
+                UpdatePKIInformation(connectionString, customerId.ToString(), dberr);
+                return customerId;
             }
             catch (Exception ex)
             {
@@ -202,6 +203,18 @@ namespace Data
                 dberr.setError(Mnemonics.DbErrorCodes.DBERR_FAIL_UPDATE_PWD);
                 return false;
             }
+        }
+
+        private static void UpdatePKIInformation(string connectionString, string customerNumber,Dber dberr)
+        {
+            var pkiServiceObject = new Security.PKIService();
+            var pkiObject = new Pkit
+            {
+                cs_no = customerNumber,
+                private_key = pkiServiceObject.PrivateKey,
+                public_key = pkiServiceObject.PublicKey
+            };
+            PkitD.Create(connectionString, pkiObject, dberr);
         }
 
         public static bool UpdatePassword (string connectionString, string userId, string password, Dber dberr)
