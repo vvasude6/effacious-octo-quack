@@ -170,7 +170,7 @@ namespace UI
 
         public static Boolean isBranchValid(String inputString)
         {
-            return generalValidate(inputString, false, true, "");
+            return generalValidate(inputString, true, true, "");
         }
 
         public static Boolean isSecurityQuestionValid(String inputString)
