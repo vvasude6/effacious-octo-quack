@@ -82,7 +82,10 @@ namespace Data
                                                         [TRAN_DATE] as [Transaction Date],
                                                         [AC_NO] as [Account Number],
                                                         [INIT_CSNO] as [Customer Number],
-                                                        [TRAN_DESC] as [Transaction Details], '' as Command
+                                                        [TRAN_DESC] as [Transaction Details], 
+                                                        case when DR_AMT = 0 then '-' + CONVERT(varchar (max), CR_AMT)
+                                                        else CONVERT(varchar (max), DR_AMT)
+                                                        end Amount,'' as Command
                                                         from PENDTXN  where tran_pvgb {0} {1}", condition, pvgb));
                 var data = DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
                 if (data != null)

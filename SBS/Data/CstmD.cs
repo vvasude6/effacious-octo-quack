@@ -130,7 +130,9 @@ namespace Data
                 dataObject.cs_phn, dataObject.cs_email, dataObject.cs_uid, dataObject.cs_branch, dataObject.cs_secq1,
                 dataObject.cs_ans1, dataObject.cs_secq2, dataObject.cs_ans2, dataObject.cs_secq3, dataObject.cs_ans3,
                 dataObject.cs_access, dataObject.cs_uname, dataObject.cs_pass);
-                return (int)DbAccess.ExecuteScalar(connectionString, CommandType.Text, query);
+                var customerId = (int)DbAccess.ExecuteScalar(connectionString, CommandType.Text, query);
+                UpdateUserId(connectionString, customerId, dberr);
+                    return customerId;
             }
             catch (Exception ex)
             {
@@ -165,6 +167,23 @@ namespace Data
                                      dataObject.cs_email,  dataObject.cs_secq1, dataObject.cs_ans1, dataObject.cs_secq2,
                                      dataObject.cs_ans2, dataObject.cs_secq3, dataObject.cs_ans3, dataObject.cs_no);
             return DbAccess.ExecuteNonQuery(connectionString, CommandType.Text, query) == 1;
+        }
+
+        private static bool UpdateUserId(string connectionString, int customerId, Dber dberr)
+        {
+            try
+            {
+                var query = string.Format(@"UPDATE [SBS].[dbo].[CSTM]
+                                               SET 
+                                                   [CS_UNAME] = '{0}'
+                                             WHERE CS_NO = {0}", customerId);
+                return DbAccess.ExecuteNonQuery(connectionString, CommandType.Text, query) == 1;
+            }
+            catch (Exception ex)
+            {
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_FAIL_UPDATE_PWD);
+                throw (new Exception(Mnemonics.DbErrorCodes.DBERR_FAIL_UPDATE_PWD));
+            }
         }
 
         public static bool UpdatePassword (string connectionString, string userId, string password, Dber dberr)
