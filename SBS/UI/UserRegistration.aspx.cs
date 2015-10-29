@@ -180,7 +180,8 @@ namespace UI
                 arglist[argIndex++] = " ";
                 arglist[argIndex++] = pwdTextBox.Text;
 
-                var output = new Business.XSwitch(Global.ConnectionString, "", string.Format("{0}|{1}|{2}|{3}|{4}|{5}|{6}|{7}|{8}|{9}|{10}|{11}|{12}|{13}|{14}|{15}|{16}|{17}|{17}|{18}{19}|{20}|{21}|{22}|{23}", arglist));
+                var output = new Business.XSwitch(Global.ConnectionString, "0", string.Format("{0}|{1}|{2}|{3}|{4}|{5}|{6}|{7}|{8}|{9}|{10}|{11}|{12}|{13}|{14}|{15}|{16}|{17}|{17}|{18}{19}|{20}|{21}|{22}|{23}", arglist));
+                MessageBox.Show("Request for new user login created.");
             }
             catch { }
             Response.Redirect("Home.aspx");
