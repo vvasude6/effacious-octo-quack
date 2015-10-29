@@ -121,7 +121,7 @@ namespace UI
                     return;
                 }
 
-                string[] arglist = new String[20];
+                string[] arglist = new String[19];
                 int argIndex = 0;
                 arglist[argIndex++] = Mnemonics.TxnCodes.TX_REGISTER_USER;
                 arglist[argIndex++] = " ";
@@ -138,16 +138,15 @@ namespace UI
                 arglist[argIndex++] = EmailTextBox.Text;
                 arglist[argIndex++] = EmpTypeDropList.SelectedValue.Equals("4") ? "Y" : "N";
                 arglist[argIndex++] = EmpTypeDropList.SelectedValue;
-                arglist[argIndex++] = hashPwdHiddenField.Value;
                 arglist[argIndex++] = Question1TextBox.Text;
                 arglist[argIndex++] = Answer1TextBox.Text;
                 arglist[argIndex++] = Question2TextBox.Text;
                 arglist[argIndex++] = Answer2TextBox.Text;
-                arglist[argIndex++] = " ";
-                arglist[argIndex++] = " ";
+                arglist[argIndex++] = LoginNameTextBox.Text;
+                arglist[argIndex++] = hashPwdHiddenField.Value;
 
                 var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(),
-                    string.Format("{0}|{1}|{2}|{3}|{4}|{5}|{6}|{7}|{8}|{9}|{10}|{11}|{12}|{13}|{14}|{15}|{16}|{17}|{18}|{19}", arglist));
+                    string.Format("{0}|{1}|{2}|{3}|{4}|{5}|{6}|{7}|{8}|{9}|{10}|{11}|{12}|{13}|{14}|{15}|{16}|{17}|{18}", arglist));
 
             }
             catch { }
