@@ -68,12 +68,15 @@ namespace UI
                         }
                         else
                         {
-                            MessageBox.Show(output);
+                            //MessageBox.Show(output);
+                            ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('" + output + "');", true);
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Looks like we could not log you in. Please check the details you have entered.");
+                        //MessageBox.Show("Looks like we could not log you in. Please check the details you have entered.");
+                        var message = "Looks like we could not log you in. Please check the details you have entered.";
+                        ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('" + message + "');", true);
                     }
                 }
             }
