@@ -251,6 +251,21 @@ namespace Business
                 Entity.Nfinhist nFhist = new Entity.Nfinhist(this.cstm.cs_no, "0", this.tx.txnmP.tran_desc, "0", "0", this.cstm.cs_no);
                 Data.NfinhistD.Create(connectionString, nFhist, dberr);
             }
+            //------------------------------
+            //Entity.Cstm cstm = Data.CstmD.Read(connectionString, acct.actmP.cs_no1, dberr);
+            if (dberr.ifError())
+            {
+                result = dberr.getErrorDesc(connectionString);
+                return -1;
+            }
+            String mailResponse = "";
+            if (!Security.OTPUtility.SendMail("SBS", "group2csefall2015@gmail.com", cstm.cs_fname + cstm.cs_mname + cstm.cs_lname,
+                cstm.cs_email, "Update from SBS: you profile has been updated via trnasaction: ", tx.txnmP.tran_desc))
+            {
+                mailResponse = "Mail sent.";
+            }
+            //-------------------------------
+            result = "Successful!" + mailResponse;
             return 0;
         }
         public String getOutput()

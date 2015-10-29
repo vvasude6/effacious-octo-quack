@@ -65,13 +65,21 @@ namespace Business
             empm.emp_secq2 = o;
             empm.emp_ans2 = p;
             empm.emp_pass = q;
-            Data.EmpmD.Create(connectionString, empm, dberr);
+            int empId = Data.EmpmD.Create(connectionString, empm, dberr);
             if (dberr.ifError())
             {
                 resultP = dberr.getErrorDesc(connectionString);
                 return -1;
             }
-            resultP = "Successful!";
+            String mailResponse = "";
+            if (!Security.OTPUtility.SendMail("SBS", "group2csefall2015@gmail.com", empm.emp_fname + empm.emp_mname + empm.emp_lname,
+                empm.emp_email, "Update from SBS: you new User Id with us is: " + empId.ToString(), tx.txnmP.tran_desc))
+            {
+                mailResponse = "Mail sent.";
+            }
+            //-------------------------------
+            resultP = "Successful!" + mailResponse;
+            //resultP = "Successful!";
             return 0;
         }
     }
