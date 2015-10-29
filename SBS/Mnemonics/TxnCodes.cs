@@ -26,5 +26,6 @@ namespace Mnemonics
         public const String TX_REGISTER_USER = "022";
         public const String TX_SENT_TO_APPROVER = "023";
         public const String TX_FORGET_PASSWORD = "024";
+        public const String TX_CREATE_ACCOUNT = "025";
     }
 }
