@@ -22,7 +22,7 @@ namespace Business
         }
         private int processTransaction(String connectionString, String empCusId, Data.Dber dberr)
         {
-            Data.CstmD.deactivateCustomer(connectionString, empCusId, "99", dberr);
+            Data.CstmD.deactivateCustomer(connectionString, empCusId, "-1", dberr);
             if (dberr.ifError())
             {
                 dberr = new Data.Dber();
