@@ -78,7 +78,7 @@ namespace Security
             }
             catch (Exception ex)
             {
-                throw ex;
+                return false;
             }
         }
 
