@@ -319,6 +319,39 @@ namespace Business
             else return null;
         }
 
+        //public DataSet getMerchantAccessibleCustomerData(string connectionString, string employeeId)
+        //{
+        //    var dberr = new Data.Dber();
+        //    var ds = Data.CstmD.GetMerchantAccessibleCustomerData(connectionString, employeeId, dberr);
+        //    if (!dberr.ifError())
+        //    {
+        //        return ds;
+        //    }
+        //    else return null;
+        //}
+
+        public string getCustomerPrivateKey(string connectionString, string customerNumber)
+        {
+            var dberr = new Data.Dber();
+            var data = Data.PkitD.GetCustomerPrivateKey(connectionString, customerNumber);
+            if (!dberr.ifError())
+            {
+                return data;
+            }
+            else return null;
+        }
+
+        public string getBankPublicKey(string connectionString)
+        {
+            var dberr = new Data.Dber();
+            var data = Data.PkitD.GetBankPrivateKey(connectionString);
+            if (!dberr.ifError())
+            {
+                return data;
+            }
+            else return null;
+        }
+
         public bool deletePendingTransaction(string connectionString, string referenceNumber)
         {
             var dberr = new Data.Dber();
