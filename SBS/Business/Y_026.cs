@@ -54,9 +54,9 @@ namespace Business
             empm.emp_lname = d;
             empm.emp_addr1 = e;
             empm.emp_addr2 = f;
-            empm.emp_city = g;
-            empm.emp_state = h;
-            empm.emp_zip = i;
+            empm.emp_city = i;
+            empm.emp_state = g;
+            empm.emp_zip = h;
             empm.emp_brnch = j;
             empm.emp_phn = k;
             empm.emp_email = l;
