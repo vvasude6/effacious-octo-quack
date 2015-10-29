@@ -112,6 +112,51 @@ namespace UI {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor CreateAccountLink;
         
         /// <summary>
+        /// AdminDropDown control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AdminDropDown;
+        
+        /// <summary>
+        /// EmployeeCreateLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor EmployeeCreateLink;
+        
+        /// <summary>
+        /// AdminHomeLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor AdminHomeLink;
+        
+        /// <summary>
+        /// PIILink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor PIILink;
+        
+        /// <summary>
+        /// SystemLogLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor SystemLogLink;
+        
+        /// <summary>
         /// UserNameLabel control.
         /// </summary>
         /// <remarks>

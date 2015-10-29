@@ -1,29 +1,13 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EmployeeCreate.aspx.cs" Inherits="UI.EmployeeCreate" %>
+﻿<%--<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EmployeeCreate.aspx.cs" Inherits="UI.EmployeeCreate" %>--%>
 
-<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Employer Profile Update</title>
-    <script src="Scripts/jquery-1.9.1.min.js"></script>
-    <script src="Scripts/bootstrap.min.js"></script>
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/bootstrap-theme.min.css" rel="stylesheet" />
-    <link href="css/Custom.css" rel="stylesheet" />
-    <link href="Content/bootstrap.min.css" type="text/css" rel="stylesheet" />
-    <link href="Content/bootstrap.min.css" type="text/css" rel="stylesheet" />
-</head>
-<body>
-    <form id="form1" runat="server">
-            <tr>
-                <td colspan="2">
-                    <h2 style="text-align: center">Welcome to <b>SBS !</b></h2>
-                    <h4 style="text-align: center; color: gray">The most secure bank.</h4>
-                </td>
-            </tr>
-            <br /><br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Add New Employee</h4>
+<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Site1.Master" CodeBehind="EmployeeCreate.aspx.cs" Inherits="UI.EmployeeCreate" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <h3>Create Employee</h3>
+
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:Label ID="Label13" runat="server" Text="Employee Type" CssClass="label label-primary"></asp:Label>
         &nbsp;&nbsp;&nbsp;
@@ -143,8 +127,9 @@
         <asp:Button ID="CreateBtn" runat="server" OnClick="CreateBtn_Click" Text="Create" Cssclass="btn btn-primary"/>
         <br />
         <br />
-    </form>
-    <script>
+   
+
+     <script>
         $('#CustCreateBtn').click(function () {
             //alert(hashCode($('#PasswordTextBox').val()));
             $('#hashCpwdHiddenField').val(hashCode($('#cpwdTextBox').val()));
@@ -162,5 +147,4 @@
             return hash;
         }
     </script>
-</body>
-</html>
+</asp:Content>

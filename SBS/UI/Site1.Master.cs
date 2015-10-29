@@ -39,6 +39,8 @@ namespace UI
                         CreditFormLink.Visible = false;
                         DebitFormLink.Visible = false;
                         CreateAccountLink.Visible = false;
+
+                        AdminDropDown.Visible = true;
                     }
                 }
             }

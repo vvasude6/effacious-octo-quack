@@ -28,7 +28,7 @@ namespace UI
 
         private void LoadPendingTransactions()
         {
-            var output = new Business.XSwitch(Global.ConnectionString, Session["Username"].ToString(), string.Format("008|{0}", Session["Access"].ToString()));
+            var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(), string.Format("008|{0}", Session["Access"].ToString()));
             if (output == null)
                 Response.Redirect("UserLogin.aspx");
 

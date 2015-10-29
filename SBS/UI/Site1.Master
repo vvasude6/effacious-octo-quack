@@ -44,6 +44,21 @@
                         </ul>
                         
                     </li>
+
+                    <li class="dropdown" runat="server" id="AdminDropDown" visible="false">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>&nbsp;Transactions 
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a runat="server" id="EmployeeCreateLink" href="EmployeeCreate.aspx">Create New Employee</a></li>
+                            <li><a runat="server" id="AdminHomeLink" href="AdminHome.aspx">Pending Transactions</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a runat="server" id="PIILink" href="PII.aspx">PII</a></li>
+                            <li><a runat="server" id="SystemLogLink" href="SystemLog.aspx">System Log</a></li>
+                        </ul>
+                    </li>
+
                     <li>
                         <a href="About.aspx" onclick="javascript:updateClass();"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>&nbsp;About</a>
                     </li>
