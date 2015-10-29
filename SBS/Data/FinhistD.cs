@@ -39,17 +39,29 @@ namespace Data
                 }
 
                 else
+                {
+                    dberr.setError(Mnemonics.DbErrorCodes.DBERR_FINHIST_READ);
                     return null;
+                }
             }
             catch (Exception ex)
             {
-                throw ex;
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_FINHIST_READ);
+                return null;
             }
         }
         public static DataSet ReadAll(string connectionString, Dber dberr)
         {
-            var query = string.Format("select * from FinHist");
-           return DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
+            try
+            {
+                var query = string.Format("select * from FinHist");
+                return DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
+            }
+            catch(Exception ex)
+            {
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_FINHIST_READ);
+                return null;
+            }
 
         }
         public static int Create(string connectionString, Finhist dataObject, Dber dberr)
@@ -80,7 +92,8 @@ namespace Data
             }
             catch (Exception ex)
             {
-                throw ex;
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_FINHIST_CREATE);
+                return -1;
             }
         }
         public static bool Update(string connectionString, Finhist dataObject, Dber dberr)
@@ -98,7 +111,8 @@ namespace Data
             }
             catch (Exception ex)
             {
-                throw ex;
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_FINHIST_DELETE);
+                return false;
             }
         }
 
@@ -124,13 +138,14 @@ namespace Data
                 }
                 else
                 {
-                    dberr.setError(Mnemonics.DbErrorCodes.DBERR_ACTM_NOFIND);
+                    dberr.setError(Mnemonics.DbErrorCodes.DBERR_FINHIST_READ);
                     return null;
                 }
             }
             catch (Exception ex)
             {
-                throw ex;
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_FINHIST_READ);
+                return null;
             }
         }
     }

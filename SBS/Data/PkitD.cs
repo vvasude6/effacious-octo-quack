@@ -33,14 +33,14 @@ namespace Data
                 }
                 else
                 {
-                    dberr.setError(Mnemonics.DbErrorCodes.DBERR_ACTM_NOFIND);
+                    dberr.setError(Mnemonics.DbErrorCodes.DBERR_PKIT_ERROR);
                     return null;
                 }
             }
             catch (Exception ex)
             {
-                dberr.setError(Mnemonics.DbErrorCodes.DBERR_ACTM_NOFIND);
-                throw (new Exception("Transaction Error: " + Mnemonics.DbErrorCodes.DBERR_ACTM_NOFIND));
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_PKIT_ERROR);
+                return null;
             }
         }
 
@@ -61,13 +61,16 @@ namespace Data
             }
             catch (Exception ex)
             {
-                throw ex;
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_PKIT_ERROR);
+                return -1;
             }
         }
 
         public static bool Update(string connectionString, Pkit dataObject, Dber dberr)
         {
-            var query = string.Format(@"UPDATE [SBS].[dbo].[PKIT]
+            try
+            {
+                var query = string.Format(@"UPDATE [SBS].[dbo].[PKIT]
                                        SET 
                                            [PUBLIC_KEY] =       '{0}'
                                           ,[PRIVATE_KEY] =       '{1}'
@@ -75,7 +78,13 @@ namespace Data
                                           
                                           
                                      WHERE CS_NO = {2}", dataObject.public_key, dataObject.private_key, dataObject.cs_no);
-            return DbAccess.ExecuteNonQuery(connectionString, CommandType.Text, query) == 1;
+                return DbAccess.ExecuteNonQuery(connectionString, CommandType.Text, query) == 1;
+            }
+            catch(Exception ex)
+            {
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_PKIT_ERROR);
+                return false;
+            }
         }
 
         public static bool Delete(string connectionString, string cs_no, Dber dberr)
@@ -88,39 +97,64 @@ namespace Data
             }
             catch (Exception ex)
             {
-                throw ex;
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_PKIT_ERROR);
+                return false;
             }
         }
 
         public static string GetBankPrivateKey(String connectionString)
         {
-
-            string p = (string.Format("select private_key FROM Pkit WHERE id = '{0}'", '1'));
-            var output = DbAccess.ExecuteScalar(connectionString, CommandType.Text, p);
-            return output.ToString();
+            try
+            {
+                string p = (string.Format("select private_key FROM Pkit WHERE id = '{0}'", '1'));
+                var output = DbAccess.ExecuteScalar(connectionString, CommandType.Text, p);
+                return output.ToString();
+            }
+            catch(Exception ex)
+            {
+                //dberr.setError(Mnemonics.DbErrorCodes.DBERR_PKIT_ERROR);
+                return null;
+            }
         }
         public static string GetBankPublicKey(String connectionString)
         {
-
-            string p = (string.Format("select public_key FROM Pkit WHERE id = '{0}'", '1'));
-            var output = DbAccess.ExecuteScalar(connectionString, CommandType.Text, p);
-            return output.ToString();
+            try
+            {
+                string p = (string.Format("select public_key FROM Pkit WHERE id = '{0}'", '1'));
+                var output = DbAccess.ExecuteScalar(connectionString, CommandType.Text, p);
+                return output.ToString();
+            }
+            catch(Exception ex)
+            {
+                return "error";
+            }
         }
         public static string GetCustomerPublicKey(String connectionString, string cs_no)
         {
-
-            string p = (string.Format("select public_key FROM Pkit WHERE cs_no = '{0}'", cs_no));
-            var output = DbAccess.ExecuteScalar(connectionString, CommandType.Text, p);
-            return output.ToString();
-
+            try
+            {
+                string p = (string.Format("select public_key FROM Pkit WHERE cs_no = '{0}'", cs_no));
+                var output = DbAccess.ExecuteScalar(connectionString, CommandType.Text, p);
+                return output.ToString();
+            }
+            catch (Exception ex)
+            {
+                return "error";
+            }
         }
 
         public static string GetCustomerPrivateKey(String connectionString, string cs_no)
         {
-
-            string p = (string.Format("select private_key FROM Pkit WHERE cs_no = '{0}'", cs_no));
-            var output = DbAccess.ExecuteScalar(connectionString, CommandType.Text, p);
-            return output.ToString();
+            try
+            {
+                string p = (string.Format("select private_key FROM Pkit WHERE cs_no = '{0}'", cs_no));
+                var output = DbAccess.ExecuteScalar(connectionString, CommandType.Text, p);
+                return output.ToString();
+            }
+            catch (Exception ex)
+            {
+                return "error";
+            }
 
         }
     }

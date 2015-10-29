@@ -116,7 +116,7 @@ namespace Data
             catch (Exception ex)
             {
                 dberr.setError(Mnemonics.DbErrorCodes.DBERR_EMPM_NOFIND);
-                throw (new Exception(Mnemonics.DbErrorCodes.DBERR_EMPM_NOFIND));
+                return " ";
             }
         }
         public static DataSet ReadAll(string connectionString, Dber dberr)
@@ -170,8 +170,8 @@ namespace Data
             }
             catch (Exception ex)
             {
-                dberr.setError(Mnemonics.DbErrorCodes.DBERR_FAIL_UPDATE_PWD);
-                throw (new Exception(Mnemonics.DbErrorCodes.DBERR_FAIL_UPDATE_PWD));
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_EMPM_UPDATE); 
+                return false;
             }
         }
         public static bool Delete(string connectionString, string id, Dber dberr)
@@ -183,7 +183,7 @@ namespace Data
             }
             catch (Exception ex)
             {
-                dberr.setError(Mnemonics.DbErrorCodes.DBERR_ACTM_NOFIND);
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_EMPM_NOFIND);
                 return false;
             }
         }
