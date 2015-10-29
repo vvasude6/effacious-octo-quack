@@ -101,7 +101,11 @@ namespace Data
             {
                 var query = string.Format(string.Format(@"select 
                             TRAN_TIMESTAMP [Timestamp],
-                            TRAN_DESC [Transaction]
+                            TRAN_DESC [Transaction],
+                            INIT_CSNO [Customer Number],
+                            INIT_EMPID [Employee Id],
+                            APPRV_EMPID [Approver Id],
+                            AC_NO [Account Number]
                             from NFINHIST
                             where INIT_CSNO = '{0}'
                             order by TRAN_TIMESTAMP desc", cs_no));
