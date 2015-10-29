@@ -68,6 +68,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="CreateAccount.aspx" />
     <Content Include="CreditForm.aspx" />
     <Content Include="css\bootstrap-theme.css" />
     <Content Include="css\bootstrap-theme.min.css" />
@@ -120,6 +121,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="InternalTransfer.aspx" />
+    <Content Include="UserGuide.html" />
     <Content Include="UserLogin.aspx" />
     <Content Include="UserRegistration.aspx" />
     <Content Include="Web.config" />
@@ -159,6 +161,13 @@
     </Compile>
     <Compile Include="CheckBalance.aspx.designer.cs">
       <DependentUpon>CheckBalance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CreateAccount.aspx.cs">
+      <DependentUpon>CreateAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreateAccount.aspx.designer.cs">
+      <DependentUpon>CreateAccount.aspx</DependentUpon>
     </Compile>
     <Compile Include="CreditForm.aspx.cs">
       <DependentUpon>CreditForm.aspx</DependentUpon>
