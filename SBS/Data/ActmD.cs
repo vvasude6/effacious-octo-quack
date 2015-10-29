@@ -93,7 +93,7 @@ namespace Data
                             OUTPUT INSERTED.AC_NO                            
                             VALUES
                            ({0},{1},'{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}')",
-                            dataObject.cs_no1, dataObject.cs_no2 ?? "null", dataObject.ac_type, dataObject.ac_bal, dataObject.ac_hold,
+                            dataObject.cs_no1, dataObject.cs_no2 == "0" ? "null" :dataObject.cs_no2, dataObject.ac_type, dataObject.ac_bal, dataObject.ac_hold,
                             dataObject.ac_pvg, dataObject.ac_dr_flag, dataObject.ac_cr_flag, dataObject.ac_open_dt, dataObject.ac_activ);
                 return (int)DbAccess.ExecuteScalar(connectionString, CommandType.Text, query);
             }
