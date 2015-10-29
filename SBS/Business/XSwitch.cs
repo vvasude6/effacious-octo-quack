@@ -44,10 +44,11 @@ namespace Business
         public XSwitch(string connectionString, String loginAccount, String inData)
         {
             // DECRYPT incoming Message String here
+            //String tranCode = inData.Substring(0, 3);
             char[] delimiters = { '|' };
             String[] dataPart = inData.Split(delimiters);
             String loginAc = loginAccount;
-            
+            //String tranCode = inData.Substring(0, 3);
             
             // part[0] = transaction id
             // part[1] = account number 1
@@ -60,8 +61,13 @@ namespace Business
                 {
                     case "001": // Login
                         //String tempResult = "";
-                        Y_000 y000 = new Y_000(Mnemonics.TxnCodes.TX_LOGIN, connectionString, dataPart[1], dataPart[2]);
+                        String encrString = String.Join("|", dataPart.Skip(1));
+                        String loginAE = Security.PKIService.DecryptData(loginAccount, PkitD.GetBankPrivateKey(connectionString)).ToString();
+                        String inDataE = Security.PKIService.DecryptData(inData, PkitD.GetBankPrivateKey(connectionString)).ToString();
+                        dataPart = inDataE.Split(delimiters);
+                        Y_000 y000 = new Y_000(Mnemonics.TxnCodes.TX_LOGIN, connectionString, dataPart[0], dataPart[1]);
                         result = y000.resultP;
+                        Security.PKIService.EncryptData(resultP, PkitD.GetCustomerPublicKey(connectionString, loginAE));
                         /*
                         Y_000 y000 = new Y_000(Mnemonics.TxnCodes.TX_LOGIN, connectionString, dataPart[1], dataPart[2]);
                         if (y000.errorGet)
