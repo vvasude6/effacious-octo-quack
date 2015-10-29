@@ -120,6 +120,23 @@ namespace Business
                 result = dberr.getErrorDesc(connectionString);
                 return -1;
             }
+            //retCode
+            //Entity.Cstm cstm = Data.CstmD.Read(connectionString, acct.actmP.cs_no1, dberr);
+            Entity.Cstm cstm1 = Data.CstmD.Read(connectionString, retCode.ToString(), dberr);
+            if (dberr.ifError())
+            {
+                result = dberr.getErrorDesc(connectionString);
+                return -1;
+            }
+            String mailResponse = "";
+            if (!Security.OTPUtility.SendMail("SBS", "group2csefall2015@gmail.com",
+                cstm1.cs_fname + cstm1.cs_mname + cstm1.cs_lname, cstm1.cs_email,
+                "new account " + retCode.ToString() + " created via transaction: ", tx.txnmP.tran_desc))
+            {
+                mailResponse = "Mail sent.";
+            }
+            //-------------------------------
+            resultP = "Successful!" + mailResponse;
             return 0;
         }
     }
