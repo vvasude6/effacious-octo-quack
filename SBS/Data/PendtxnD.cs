@@ -76,6 +76,12 @@ namespace Data
             try
             {
                 var condition = "<=";
+                var accountColumn = string.Empty;
+                if (!isAdmin) accountColumn = @" case 
+                                                when DR_AMT = 0 and CR_AMT = 0  then ''
+                                                when DR_AMT = 0 then '-' + CONVERT(varchar (max), CR_AMT)
+                                                else CONVERT(varchar (max), DR_AMT)
+                                                end Amount, ";
                 if (isAdmin) condition = "=";
                 var query = string.Format(string.Format(@"select 
                                                         [REF_NO] as [Reference Number],
@@ -83,10 +89,9 @@ namespace Data
                                                         [AC_NO] as [Account Number],
                                                         [INIT_CSNO] as [Customer Number],
                                                         [TRAN_DESC] as [Transaction Details], 
-                                                        case when DR_AMT = 0 then '-' + CONVERT(varchar (max), CR_AMT)
-                                                        else CONVERT(varchar (max), DR_AMT)
-                                                        end Amount,'' as Command
-                                                        from PENDTXN  where tran_pvgb {0} {1}", condition, pvgb));
+                                                        {2} 
+                                                        '' as Command
+                                                        from PENDTXN  where tran_pvgb {0} {1}", condition, pvgb, accountColumn));
                 var data = DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
                 if (data != null)
                 {
