@@ -3,10 +3,10 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h4>Request Create New Account</h4>
-    <asp:RadioButtonList ID="RadioButtonList1" runat="server">
-        <asp:RadioButton runat="server" text=""></asp:RadioButton>
-        <asp:RadioButton runat="server"></asp:RadioButton>
-    </asp:RadioButtonList>
-    <asp:Button ID="CustCreateBtn" runat="server" Text="Create" CssClass="btn btn-primary" OnClick="CustCreate_Click"/>
+    <asp:DropDownList ID="AccountTypeDropDownList" runat="server">
+        <asp:ListItem Selected="True">SavingsAccount</asp:ListItem>
+        <asp:ListItem>Checking Account</asp:ListItem>
+    </asp:DropDownList>
+    <asp:Button ID="AccountCreateBtn" runat="server" Text="Create" CssClass="btn btn-primary" OnClick="AccountCreate_click"/>
 
 </asp:Content>

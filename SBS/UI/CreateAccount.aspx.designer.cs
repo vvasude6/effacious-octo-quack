@@ -13,21 +13,21 @@ namespace UI {
     public partial class CreateAccount {
         
         /// <summary>
-        /// RadioButtonList1 control.
+        /// AccountTypeDropDownList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList1;
+        protected global::System.Web.UI.WebControls.DropDownList AccountTypeDropDownList;
         
         /// <summary>
-        /// CustCreateBtn control.
+        /// AccountCreateBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button CustCreateBtn;
+        protected global::System.Web.UI.WebControls.Button AccountCreateBtn;
     }
 }
