@@ -142,7 +142,7 @@ namespace UI
                 arglist[argIndex++] = Answer1TextBox.Text;
                 arglist[argIndex++] = Question2TextBox.Text;
                 arglist[argIndex++] = Answer2TextBox.Text;
-                arglist[argIndex++] = LoginNameTextBox.Text;
+                arglist[argIndex++] = " ";
                 arglist[argIndex++] = hashPwdHiddenField.Value;
 
                 var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(),
