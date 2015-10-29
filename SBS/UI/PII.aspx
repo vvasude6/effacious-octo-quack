@@ -13,7 +13,7 @@
    <br />
    <br />
    <div runat="server" id="OTPDiv" visible="false">
-        <p>To proceed please enter the OTP that was sent to your mail ID</p>
+        <p>To proceed please enter the OTP that was sent to the Government mail ID</p>
         <div class="input-group" style="width: 300px">
             <span class="input-group-addon" id="basic-addon3">OTP Secret</span>
             <asp:TextBox runat="server" type="text" class="form-control" ID="OTPTextBox" aria-describedby="basic-addon3"></asp:TextBox>
