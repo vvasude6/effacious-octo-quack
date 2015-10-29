@@ -22,7 +22,6 @@ namespace UI
             PhNumTextBox.ForeColor = System.Drawing.Color.Black;
             EmailTextBox.ForeColor = System.Drawing.Color.Black;
             BranchTextBox.ForeColor = System.Drawing.Color.Black;
-            EmpTypeDropList.SelectedValue = "3";
         }
 
         protected void CreateBtn_Click(object sender, EventArgs e)
@@ -115,7 +114,7 @@ namespace UI
 
                 if (errorFound)
                 {
-                    ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Invalid date entered. Please correct and resubmit.');", true);
+                    ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Invalid data entered. Please correct and resubmit.');", true);
                     //MessageBox.Show("Invalid data entered!  Please correct and resubmit.");
                     return;
                 }
