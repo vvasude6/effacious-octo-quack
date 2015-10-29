@@ -32,7 +32,8 @@ namespace Mnemonics
         public static String DBERR_NFINHIST_READ = "979";
         public static String DBERR_NFINHIST_CREATE = "978";
         public static String DBERR_NFINHIST_DELETE = "977";
-        public static String DBERR_PKIT_ERROR = "977";
+        public static String DBERR_PKIT_ERROR = "976";
+        public static String DBERR_EMP_CUS_DELETE = "975";
 
         public static String TXERR_INIT_PVG = "500";
         public static String TXERR_NO_DEBIT = "499";

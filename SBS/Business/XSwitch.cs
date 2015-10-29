@@ -270,6 +270,10 @@ namespace Business
                             dataPart[19], dataPart[20], loginAc);
                             resultP = y026.resultP;
                         break;
+                    case Mnemonics.TxnCodes.TX_DELETE_USER_EMPLOYEE:
+                        Y_027 y027 = new Y_027(connectionString, Mnemonics.TxnCodes.TX_DELETE_USER_EMPLOYEE, dataPart[1], loginAc);
+                        resultP = y027.resultP;
+                        break;
                 }
             }
             catch (Exception e)

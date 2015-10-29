@@ -28,5 +28,6 @@ namespace Mnemonics
         public const String TX_FORGET_PASSWORD = "024";
         public const String TX_CREATE_ACCOUNT = "025";
         public const String TX_CREATE_EMPLOYEE = "026";
+        public const String TX_DELETE_USER_EMPLOYEE = "027";
     }
 }

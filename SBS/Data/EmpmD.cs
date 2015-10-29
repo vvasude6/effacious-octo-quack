@@ -105,7 +105,20 @@ namespace Data
                 return null;
             }
         }
-        // Somnath ---------------------------------
+        public static bool deactivateEmployee(string connectionString, String empNo, String deacType, Dber dberr)
+        {
+            try
+            {
+                var query = string.Format(@"UPDATE [SBS].[dbo].[EMPM]
+                                               SET [EMP_PVG] = {0} WHERE [EMP_ID] = {1}", deacType, empNo);
+                return DbAccess.ExecuteNonQuery(connectionString, CommandType.Text, query) == 1;
+            }
+            catch (Exception ex)
+            {
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_EMP_CUS_DELETE);
+                return false;
+            }
+        }
         public static String getEmpNumberFromEmpId(string connectionString, string emp_id, Dber dberr)
         {
             try

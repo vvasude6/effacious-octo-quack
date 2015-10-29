@@ -187,7 +187,20 @@ namespace Data
                 return false;
             }
         }
-
+        public static bool deactivateCustomer(string connectionString, String cusNo, String deacType, Dber dberr)
+        {
+            try
+            {
+                var query = string.Format(@"UPDATE [SBS].[dbo].[CSTM]
+                                               SET [CS_TYPE] = {0} WHERE CS_NO = {1}", deacType, cusNo);
+                return DbAccess.ExecuteNonQuery(connectionString, CommandType.Text, query) == 1;
+            }
+            catch(Exception ex)
+            {
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_EMP_CUS_DELETE);
+                return false;
+            }
+        }
         private static bool UpdateUserId(string connectionString, int customerId, Dber dberr)
         {
             try
