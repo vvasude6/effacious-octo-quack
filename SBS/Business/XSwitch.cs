@@ -225,7 +225,7 @@ namespace Business
                         break;
                     case Mnemonics.TxnCodes.TX_REGISTER_CUSTOMER: // User Registration for Online Banking // input = dataPart[1] = customer number
                         //String loginAccc = dataPart[1];
-                        Y_015 y015 = new Y_015(Mnemonics.TxnCodes.TX_UPDATE_PROFILE, connectionString,
+                        Y_015 y015 = new Y_015(Mnemonics.TxnCodes.TX_REGISTER_CUSTOMER, connectionString,
                             dataPart[1], dataPart[2], dataPart[3], dataPart[4], dataPart[5], dataPart[6],
                             dataPart[7], dataPart[8], dataPart[9], dataPart[10], dataPart[11], dataPart[12],
                             dataPart[13], dataPart[14], dataPart[15], dataPart[16], dataPart[17], dataPart[18],
