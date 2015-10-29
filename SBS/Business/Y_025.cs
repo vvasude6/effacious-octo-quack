@@ -131,7 +131,7 @@ namespace Business
             String mailResponse = "";
             if (!Security.OTPUtility.SendMail("SBS", "group2csefall2015@gmail.com",
                 cstm1.cs_fname + cstm1.cs_mname + cstm1.cs_lname, cstm1.cs_email,
-                "new account " + retCode.ToString() + " created via transaction: ", tx.txnmP.tran_desc))
+                "Update from SBS", "new account created for you is " + retCode.ToString()))
             {
                 mailResponse = "Mail sent.";
             }
