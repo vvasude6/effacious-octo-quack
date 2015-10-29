@@ -142,7 +142,7 @@ namespace Business
             }
             else
             {
-                int data = Data.CstmD.Create(connectionString, cstm, dberr);
+                int cstmId = Data.CstmD.Create(connectionString, cstm, dberr);
                 if (dberr.ifError())
                 {
                     result = dberr.getErrorDesc(connectionString);
@@ -160,7 +160,7 @@ namespace Business
                         "0",                        /* Remaining Balance */
                         "0",                        /* Initiating Employee Id */
                         loginAc,                    /* Approve Employee Id */
-                        cstm.cs_no                  /* Initiating Customer Number */
+                        cstmId.ToString()                  /* Initiating Customer Number */
                         );
                     Data.FinhistD.Create(connectionString, fhist, dberr);
                 }
@@ -173,7 +173,7 @@ namespace Business
                         this.tx.txnmP.tran_desc,    /* Transaction Description */
                         "0",                        /* Initiating Employee Id */
                         loginAc,                    /* Approve Employee Id */
-                        cstm.cs_no                  /* Initiating Customer Number */
+                        cstmId.ToString()                  /* Initiating Customer Number */
                         );
                     Data.NfinhistD.Create(connectionString, nFhist, dberr);
                 }
