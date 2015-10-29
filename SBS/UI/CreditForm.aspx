@@ -8,7 +8,7 @@
     <br />
     <br />
      <div runat="server" id="FromCustomerDiv" class="input-group">
-        <span class="input-group-addon">&nbsp;From Customer</span>
+        <span class="input-group-addon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To Customer</span>
         <asp:DropDownList ID="CustomerDropDown" runat="server" Width="250px" Height="35px" CssClass="form-control" 
             AutoPostBack="true" OnSelectedIndexChanged="CustomerDropDown_SelectedIndexChanged"></asp:DropDownList>
     </div>
