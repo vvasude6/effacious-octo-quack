@@ -154,7 +154,7 @@ namespace Business
             }
             //else
             //{
-            int cstmId = Data.CstmD.Create(connectionString, cstm, dberr);
+            //int cstmId = Data.CstmD.Create(connectionString, cstm, dberr);
 
                 // Insert new row in Customer table
             int data = Data.CstmD.Create(connectionString, cstm, dberr);
