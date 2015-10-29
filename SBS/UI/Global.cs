@@ -141,11 +141,18 @@ namespace UI
 
         public static Boolean isEmailAddressValid(String inputString)
         {
+            if ((inputString.Length < 8) ||
+                (inputString.IndexOf('@') < 0) ||
+                (inputString.IndexOf('.') < 0))
+                return false;
             return generalValidate(inputString, true, true, "@.-_");
         }
 
         public static Boolean isUserIDValid(String inputString)
         {
+            if (inputString.Length < 4)
+                return false;
+
             return generalValidate(inputString, false, true, "");
         }
 
@@ -156,11 +163,17 @@ namespace UI
 
         public static Boolean isSecurityQuestionValid(String inputString)
         {
+            if (inputString.Length < 3)
+                return false;
+
             return generalValidate(inputString, true, true, " '?.,-");
         }
 
         public static Boolean isSecurityAnswerValid(String inputString)
         {
+            if (inputString.Length < 3)
+                return false;
+
             return generalValidate(inputString, true, true, " '-,.");
         }
 
@@ -171,6 +184,8 @@ namespace UI
 
         public static Boolean isAccountNumberValid(String inputString)
         {
+            if (inputString.Length < 4)
+                return false;
             return generalValidate(inputString, false, true, "");
         }
 
