@@ -27,25 +27,35 @@
         
         <div class="input-group" style="width: 300px" id="UserDetails" runat="server" visible="false">
         <span class="input-group-addon" id="First name">First Name</span>
-            <asp:TextBox runat="server" type="text" Text="Archana" class="form-control" ReadOnly="true" ID="FirstNamebox" aria-describedby="basic-addon3"></asp:TextBox>
+            <asp:TextBox runat="server" type="text"  class="form-control" ReadOnly="true" ID="FirstNamebox" aria-describedby="basic-addon3"></asp:TextBox>
+            <br />
              <span class="input-group-addon" id="MiddleName">Middle Name</span>
             <asp:TextBox runat="server" type="text" class="form-control" ReadOnly="true" ID="MiddleNamebox" aria-describedby="basic-addon3"></asp:TextBox>               
+            <br />
             <span class="input-group-addon" id="Last Name">Last Name</span>
             <asp:TextBox runat="server" type="text" class="form-control" ReadOnly="true" ID="LastNamebox" aria-describedby="basic-addon3"></asp:TextBox>
+            <br />
             <span class="input-group-addon" id="Addr1">Address Line 1</span>
             <asp:TextBox runat="server" type="text" class="form-control" ReadOnly="true" ID="Address1box" aria-describedby="basic-addon3"></asp:TextBox>
+            <br />
             <span class="input-group-addon" id="Addrs2">Address Line 2</span>
             <asp:TextBox runat="server" type="text" class="form-control" ReadOnly="true" ID="Address2box" aria-describedby="basic-addon3"></asp:TextBox>
+            <br />
             <span class="input-group-addon" id="city">City</span>
             <asp:TextBox runat="server" type="text" class="form-control" ReadOnly="true" ID="Citybox" aria-describedby="basic-addon3"></asp:TextBox>
+            <br />
             <span class="input-group-addon" id="state">State</span>
             <asp:TextBox runat="server" type="text" class="form-control" ReadOnly="true" ID="Statebox" aria-describedby="basic-addon3"></asp:TextBox>
+            <br />
             <span class="input-group-addon" id="zip">Zip Code</span>
             <asp:TextBox runat="server" type="text" class="form-control" ReadOnly="true" ID="Zipbox" aria-describedby="basic-addon3"></asp:TextBox>
+            <br />
             <span class="input-group-addon" id="phno">Contact Number</span>
             <asp:TextBox runat="server" type="text" class="form-control" ReadOnly="true" ID="Phnobox" aria-describedby="basic-addon3"></asp:TextBox> 
+            <br />
             <span class="input-group-addon" id="emailid">Email ID</span>
             <asp:TextBox runat="server" type="text" class="form-control" ReadOnly="true" ID="Mailidbox" aria-describedby="basic-addon3"></asp:TextBox>
+            <br />
         
         </div>
 
