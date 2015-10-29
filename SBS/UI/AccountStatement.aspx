@@ -6,6 +6,10 @@
     <div class="panel panel-default">
         <div class="panel-heading">Financial Account Statement</div>
         <br />
+        <br />
+        <asp:Button ID="CreatePdfButton" runat="server" OnClick="CreatePdfButton_Click" Text=" Export To PDF" Cssclass="btn btn-default"></asp:Button>
+        <br />
+        <br />
         <asp:GridView ID="FinHistoryGridView" runat="server" CssClass="table gridview" BorderWidth="0px" BorderColor="Transparent">
             <RowStyle BackColor="#EFEFEF"
                 ForeColor="#333333" />
