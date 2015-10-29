@@ -20,20 +20,29 @@ namespace UI
         protected void AccountCreate_click(object sender, EventArgs e)
         {
             try { 
-                string[] arglist = new String[4];
+                string[] arglist = new String[5];
                 int argIndex = 0;
 
                 arglist[argIndex++] = Mnemonics.TxnCodes.TX_CREATE_ACCOUNT;
                 arglist[argIndex++] = AccountTypeDropDownList.Text;
+                arglist[argIndex++] = Session["UserId"].ToString();
                 arglist[argIndex++] = "0";
                 arglist[argIndex++] = "0";
 
-                var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(), string.Format("{0}|{1}|{2}|{3}", arglist));
+                var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(), string.Format("{0}|{1}|{2}|{3}|{4}", arglist));
                 //MessageBox.Show("Request for account created.  Email will be sent when administrator reviews.");
                 ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Request for new account created.  Email will be sent when reviewed.');", true);
             }
             catch { }
-            Response.Redirect(callingURL);
+
+            if (Session["Access"].ToString() == "1")
+            {
+                Response.Redirect("Home.aspx");
+            }
+            else if (Session["Access"].ToString() == "2")
+            {
+                Response.Redirect("MerchantHome.aspx");
+            }
 
         }
     }
