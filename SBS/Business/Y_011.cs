@@ -45,6 +45,7 @@ namespace Business
 
         Cp_Actm acct, acct_new;
         Cp_Txnm tx;
+        Cp_Empm em;
         Privilege pvg;
         Sequence seq;
         Decimal changeAmount;
@@ -117,7 +118,7 @@ namespace Business
                 if (dberr.ifError())
                 {
                     dberr = new Data.Dber();
-                    Cp_Empm em = new Cp_Empm(connectionString, loginAc, dberr);
+                    em = new Cp_Empm(connectionString, loginAc, dberr);
                     if (dberr.ifError())
                     {
                         result = dberr.getErrorDesc(connectionString);
@@ -130,10 +131,18 @@ namespace Business
             {
                 initCustomer = this.acct_new.actmP.cs_no1;
             }
-            // Verify if account has the privilege to execute the transaction
-            if (acct_new.actmP.ac_pvg == initPvg)
+            if (newInitiator)
             {
-                pvg = new Privilege(tx.txnmP.tran_pvga, tx.txnmP.tran_pvgb, acct_new.actmP.ac_pvg);
+                pvg = new Privilege(this.tx.txnmP.tran_pvga, this.tx.txnmP.tran_pvgb, Convert.ToInt32(em.empmP.emp_pvg));
+            }
+            else
+            {
+                pvg = new Privilege(this.tx.txnmP.tran_pvga, this.tx.txnmP.tran_pvgb, Convert.ToInt32(acct.actmP.ac_pvg));
+            }
+            // Verify if account has the privilege to execute the transaction
+            //if (acct_new.actmP.ac_pvg == initPvg)
+            //{
+                //pvg = new Privilege(tx.txnmP.tran_pvga, tx.txnmP.tran_pvgb, acct_new.actmP.ac_pvg);
                 if (!pvg.verifyInitPrivilege(dberr))
                 {
                     result = dberr.getErrorDesc(connectionString);
@@ -163,11 +172,11 @@ namespace Business
                     resultP = Mnemonics.DbErrorCodes.MSG_SENT_FOR_AUTH;
                     return 0;
                 }
-            }
-            else
-            {
-                this.pvgBypassedP = true;
-            }
+            //}
+                else
+                {
+                    this.pvgBypassedP = true;
+                }
             // Update new balance in ACTM
             acct.subtractBalance(connectionString, this.changeAmount, dberr);
             if (dberr.ifError())
