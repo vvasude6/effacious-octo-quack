@@ -100,8 +100,7 @@ namespace UI
                 else BranchTextBox.ForeColor = System.Drawing.Color.Black;
 
                 if (!UI.Validate.isPasswordValid(pwdTextBox.Text) ||
-                    hashPwdHiddenField.Value.Equals("0") ||
-                    !hashPwdHiddenField.Value.Equals(hashCpwdHiddenField.Value))
+                    UI.Global.hashCode(pwdTextBox.Text) != UI.Global.hashCode(cpwdTextBox.Text))
                 {
                     errorFound = true;
                     pwdTextBox.ForeColor = System.Drawing.Color.Red;
@@ -143,7 +142,7 @@ namespace UI
                 arglist[argIndex++] = Question2TextBox.Text;
                 arglist[argIndex++] = Answer2TextBox.Text;
                 arglist[argIndex++] = " ";
-                arglist[argIndex++] = hashPwdHiddenField.Value;
+                arglist[argIndex++] = UI.Global.hashCode(pwdTextBox.Text).ToString();
 
                 var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(),
                     string.Format("{0}|{1}|{2}|{3}|{4}|{5}|{6}|{7}|{8}|{9}|{10}|{11}|{12}|{13}|{14}|{15}|{16}|{17}|{18}|{19}|{20}", arglist));

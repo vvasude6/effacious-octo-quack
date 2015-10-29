@@ -66,6 +66,18 @@ namespace UI
                 throw ex;
             }
         }
+        public static int hashCode(String str)
+        {
+            int hash = 0;
+            if (str.Length < 8) return 0;
+            for (int i = 0; i < str.Length; i++)
+            {
+                hash = ((hash << 5) - hash) + str[i];
+                hash = hash & hash; // Convert to 32bit integer
+            }
+            return hash;
+        }
+
     }
 
     public static class Validate

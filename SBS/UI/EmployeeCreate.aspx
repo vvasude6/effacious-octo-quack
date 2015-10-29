@@ -129,7 +129,7 @@
    
 
      <script>
-        $('#CustCreateBtn').click(function () {
+        $('#CreateBtn').click(function () {
             //alert(hashCode($('#PasswordTextBox').val()));
             $('#hashCpwdHiddenField').val(hashCode($('#cpwdTextBox').val()));
             $('#hashPwdHiddenField').val(hashCode($('#pwdTextBox').val()));
