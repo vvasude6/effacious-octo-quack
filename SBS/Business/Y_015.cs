@@ -35,24 +35,24 @@ namespace Business
         Privilege pvg;
         Boolean error = false;
 
-        public Y_015(String txid, String connectionString, String a, String b, String c, String d, String e, String f,
-            String g, String h, String i, String j, String k, String l, String m, String n, String o, String p, String q, String r,
-            String s, String t, String u, String v, String w, String dummyAc, String dummyRef, String loginAc)
+        public Y_015(String txid, String connectionString, String a1, String a2, String a3, String a4, String a5, String a6,
+            String a7, String a8, String a9, String a10, String a11, String a12, String a13, String a14, String a15, String a16,
+            String a17, String a18, String a19, String a20, String a21, String a22, String a23, String dummyAc, String dummyRef, String loginAc)
         {
             this.TXID = txid;
             dberr = new Data.Dber();
             //this.cusNo = loginAc;
             
-            if (processTransaction(connectionString, a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p,
-                q, r, s, t, u, v, w, dummyAc, dummyRef, loginAc) != 0)
+            if (processTransaction(connectionString, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16,
+                a17, a18, a19, a20, a21, a22, a23, dummyAc, dummyRef, loginAc) != 0)
             {
                 this.error = true;
             }
             //processTransaction(connectionString);
         }
-        private int processTransaction(String connectionString, String a, String b, String c, String d, String e, String f,
-            String g, String j, String h, String i, String l, String m, String n, String k, String o, String p, String q, String r,
-            String s, String t, String u, String v, String w, String dummyAc, String dummyRef, String loginAc)
+        private int processTransaction(String connectionString, String a1, String a2, String a3, String a4, String a5, String a6,
+            String a7, String a8, String a9, String a10, String a11, String a12, String a13, String a14, String a15, String a16,
+            String a17, String a18, String a19, String a20, String a21, String a22, String a23, String dummyAc, String dummyRef, String loginAc)
         {
             int cusPvg = 0;
             this.tx = new Cp_Txnm(connectionString, TXID, dberr);
@@ -62,28 +62,30 @@ namespace Business
                 result = dberr.getErrorDesc(connectionString);
                 return -1;
             }
-            cstm.cs_no = a;
-            cstm.cs_type = b;
-            cstm.cs_fname = c;
-            cstm.cs_mname = d;
-            cstm.cs_lname = e;
-            cstm.cs_addr1 = f;
-            cstm.cs_addr2 = g;
-            cstm.cs_city = h;
-            cstm.cs_state = i;
-            cstm.cs_zip = j;
-            cstm.cs_branch = k;
-            cstm.cs_phn = l;
-            cstm.cs_email = m;
-            cstm.cs_uid = n;
-            cstm.cs_secq1 = o;
-            cstm.cs_ans1 = p;
-            cstm.cs_secq2 = q;
-            cstm.cs_ans2 = r;
-            cstm.cs_secq3 = s;
-            cstm.cs_ans3 = t;
-            cstm.cs_pass = u;
-
+            cstm.cs_no = a1;
+            cstm.cs_type = a2;
+            cstm.cs_fname = a3;
+            cstm.cs_mname = a4;
+            cstm.cs_lname = a5;
+            cstm.cs_addr1 = a6;
+            cstm.cs_addr2 = a7;
+            cstm.cs_zip = a8;
+            cstm.cs_city = a9;
+            cstm.cs_state = a10;
+            cstm.cs_phn = a11;
+            cstm.cs_email = a12;
+            cstm.cs_uid = a13;
+            cstm.cs_branch = a14;
+            cstm.cs_secq1 = a15;
+            cstm.cs_ans1 = a16;
+            cstm.cs_secq2 = a17;
+            cstm.cs_ans2 = a18;
+            cstm.cs_secq3 = a19;
+            cstm.cs_ans3 = a20;
+            cstm.cs_access = a21;
+            cstm.cs_uname = a22;
+            cstm.cs_pass = a23;
+            cstm.cs_merch = " ";
             // Fetch data from CSTM. if CS_ACCESS = 'N', registration can be done, else fail txn
             //Entity.Cstm cstm = Data.CstmD.Read(connectionString, this.cusNo, dberr);
             //if (dberr.ifError())
@@ -128,9 +130,9 @@ namespace Business
             }
             if (!pvg.verifyApprovePrivilege())
             {
-                    String inData = this.TXID + "|" + a + "|" + b + "|" + c + "|" + d + "|" + e + "|" + f +
-                        "|" + g + "|" + j + "|" + h + "|" + i + "|" + l + "|" + m + "|" + n + "|" + k + "|" + o +
-                        "|" + p + "|" + q + "|" + r + "|" + s + "|" + t + "|" + u + "|" + v + "|" + w ;
+                    String inData = this.TXID + "|" + a1 + "|" + a2 + "|" + a3 + "|" + a4 + "|" + a5 + "|" + a6 +
+                        "|" + a7 + "|" + a8 + "|" + a9 + "|" + a10 + "|" + a11 + "|" + a12 + "|" + a13 + "|" + a14 + "|" + a15 +
+                        "|" + a16 + "|" + a17 + "|" + a18 + "|" + a19 + "|" + a20 + "|" + a21 + "|" + a22 + "|" + a23 ;
                     if (pvg.writeToPendingTxns(
                         connectionString,               /* connection string */
                         "0",                            /* account 1 */
