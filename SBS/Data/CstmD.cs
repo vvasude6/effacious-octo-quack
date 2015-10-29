@@ -305,5 +305,29 @@ namespace Data
                 return null;
             }
         }
+
+        public static DataSet GetMerchantAccessibleCustomerData(string connectionString, string employeeId, Dber dberr)
+        {
+            try
+            {
+                var query = string.Format("select * from cstm");
+                var data = DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
+                if (data.Tables[0].Rows.Count > 0)
+                {
+                    return data;
+                }
+
+                else
+                {
+                    dberr.setError(Mnemonics.DbErrorCodes.DBERR_ACTM_NOFIND);
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_FAIL_UPDATE_PWD);
+                return null;
+            }
+        }
     }
 }

@@ -319,16 +319,16 @@ namespace Business
             else return null;
         }
 
-        //public DataSet getMerchantAccessibleCustomerData(string connectionString, string employeeId)
-        //{
-        //    var dberr = new Data.Dber();
-        //    var ds = Data.CstmD.GetMerchantAccessibleCustomerData(connectionString, employeeId, dberr);
-        //    if (!dberr.ifError())
-        //    {
-        //        return ds;
-        //    }
-        //    else return null;
-        //}
+        public DataSet getMerchantAccessibleCustomerData(string connectionString, string employeeId)
+        {
+            var dberr = new Data.Dber();
+            var ds = Data.CstmD.GetMerchantAccessibleCustomerData(connectionString, employeeId, dberr);
+            if (!dberr.ifError())
+            {
+                return ds;
+            }
+            else return null;
+        }
 
         public string getCustomerPrivateKey(string connectionString, string customerNumber)
         {

@@ -50,7 +50,7 @@ namespace UI
 
             try
             {
-                var output = xSwitchObject.getEmployeeAccessibleCustomerData(Global.ConnectionString, Session["UserId"].ToString());
+                var output = xSwitchObject.getMerchantAccessibleCustomerData(Global.ConnectionString, Session["UserId"].ToString());
                 if ((output == null) || (output.Tables[0].Rows.Count != 0))
                 {
                     CustomerDropDown.DataSource = output.Tables[0];
