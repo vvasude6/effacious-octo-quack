@@ -141,12 +141,9 @@ namespace Business
             }
             else
             {
-<<<<<<< HEAD
                 int cstmId = Data.CstmD.Create(connectionString, cstm, dberr);
-=======
                 // Insert new row in Customer table
                 int data = Data.CstmD.Create(connectionString, cstm, dberr);
->>>>>>> biz1
                 if (dberr.ifError())
                 {
                     result = dberr.getErrorDesc(connectionString);
@@ -178,11 +175,7 @@ namespace Business
                         this.tx.txnmP.tran_desc,    /* Transaction Description */
                         "0",                        /* Initiating Employee Id */
                         loginAc,                    /* Approve Employee Id */
-<<<<<<< HEAD
-                        cstmId.ToString()                  /* Initiating Customer Number */
-=======
-                        data.ToString()             /* Initiating Customer Number */
->>>>>>> biz1
+                        cstmId.ToString()           /* Initiating Customer Number */
                         );
                     Data.NfinhistD.Create(connectionString, nFhist, dberr);
                 }
