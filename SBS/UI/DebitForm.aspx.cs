@@ -13,141 +13,169 @@ namespace UI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            if (Session["UserId"] == null || Session["Access"] == null)
-                Response.Redirect("UserLogin.aspx");
-            if (Session["Access"].ToString() == "5")
-                Response.Redirect("AdminHome.aspx");
-
-            if (!IsPostBack)
+            try
             {
-                if (Global.IsPageAccessible(Page.Title))
+                if (Session["UserId"] == null || Session["Access"] == null)
+                    Response.Redirect("UserLogin.aspx");
+                if (Session["Access"].ToString() == "5")
+                    Response.Redirect("AdminHome.aspx");
+
+                if (!IsPostBack)
                 {
-                    if (Session["Access"].ToString() == "1" || Session["Access"].ToString() == "2")
+                    if (Global.IsPageAccessible(Page.Title))
                     {
-                        FromCustomerDiv.Visible = false;
-                        LoadAccounts(Session["UserId"].ToString());
+                        if (Session["Access"].ToString() == "1" || Session["Access"].ToString() == "2")
+                        {
+                            FromCustomerDiv.Visible = false;
+                            LoadAccounts(Session["UserId"].ToString());
+                        }
+                        else
+                        {
+                            FromCustomerDiv.Visible = true;
+                            LoadCustomers(Session["UserId"].ToString());
+                        }
                     }
                     else
                     {
-                        FromCustomerDiv.Visible = true;
-                        LoadCustomers(Session["UserId"].ToString());
+                        Response.Redirect("Error.aspx?error=NoAccess");
                     }
+
                 }
-                else
-                {
-                    Response.Redirect("Error.aspx?error=NoAccess");
-                }
-                
             }
+            catch { }
         }
 
         private void LoadCustomers(string internalUserId)
         {
             var xSwitchObject = new Business.XSwitch();
 
-            var output = xSwitchObject.getEmployeeAccessibleCustomerData(Global.ConnectionString, Session["UserId"].ToString());
-            if (output.Tables[0].Rows.Count != 0)
+            try
             {
-                CustomerDropDown.DataSource = output.Tables[0];
-                CustomerDropDown.DataTextField = "cs_uname";
-                CustomerDropDown.DataValueField = "cs_no";
-                CustomerDropDown.DataBind();
-                //AccountList.InnerHtml = GetAccountListHtml(output.resultSet);
-                LoadAccounts(CustomerDropDown.SelectedValue, byPass: true);
+                var output = xSwitchObject.getEmployeeAccessibleCustomerData(Global.ConnectionString, Session["UserId"].ToString());
+                if ((output == null) || (output.Tables[0].Rows.Count != 0))
+                {
+                    CustomerDropDown.DataSource = output.Tables[0];
+                    CustomerDropDown.DataTextField = "cs_uname";
+                    CustomerDropDown.DataValueField = "cs_no";
+                    CustomerDropDown.DataBind();
+                    //AccountList.InnerHtml = GetAccountListHtml(output.resultSet);
+                    LoadAccounts(CustomerDropDown.SelectedValue, byPass: true);
+                }
+                else
+                {
+                    CustomerDropDown.Items.Add(new ListItem { Text = "You have access to no customers", Value = "0" });
+                }
             }
-            else
-            {
-                CustomerDropDown.Items.Add(new ListItem { Text = "You have access to no customers", Value = "0" });
-            }
+            catch { }
         }
 
         private void LoadAccounts(string externalUserId, bool byPass = false)
         {
-            if (Session["Access"].ToString() == "1" || Session["Access"].ToString() == "2" || byPass)
-            {
-                var output = new Business.XSwitch(Global.ConnectionString, Session["Username"].ToString(), string.Format("009|{0}", externalUserId));
-                if (output == null)
-                    Response.Redirect("Error.aspx");
+            try {
+                if (Session["Access"].ToString() == "1" || Session["Access"].ToString() == "2" || byPass)
+                {
+                    var output = new Business.XSwitch(Global.ConnectionString, Session["Username"].ToString(), string.Format("009|{0}", externalUserId));
+                    if (output == null)
+                        Response.Redirect("Error.aspx");
 
 
-                if (output.resultSet.Tables[0].Rows.Count != 0)
-                {
-                    FromDropdown.DataSource = output.resultSet.Tables[0];
-                    FromDropdown.DataTextField = "ac_no";
-                    FromDropdown.DataValueField = "ac_no";
-                    FromDropdown.DataBind();
-                    //AccountList.InnerHtml = GetAccountListHtml(output.resultSet);
-                }
-                else
-                {
-                    FromDropdown.Items.Add(new ListItem { Text = "No Accounts Found", Value = null });
+                    if (output.resultSet.Tables[0].Rows.Count != 0)
+                    {
+                        FromDropdown.DataSource = output.resultSet.Tables[0];
+                        FromDropdown.DataTextField = "ac_no";
+                        FromDropdown.DataValueField = "ac_no";
+                        FromDropdown.DataBind();
+                        //AccountList.InnerHtml = GetAccountListHtml(output.resultSet);
+                    }
+                    else
+                    {
+                        FromDropdown.Items.Add(new ListItem { Text = "No Accounts Found", Value = null });
+                    }
+
                 }
             }
+            catch { }
         }
 
         protected void DebitButton_Click(object sender, EventArgs e)
         {
-            if (Session["Access"].ToString() == "1" || Session["Access"].ToString() == "2")
+            try
             {
-                if (FromDropdown.SelectedValue == null)
+                if (Session["Access"].ToString() == "1" || Session["Access"].ToString() == "2")
                 {
-                    MessageBox.Show("Select the Account from which an amount has to be Debited");
-                }
-                else if (Amount.Text == "" || !UI.Validate.isAmountValid(Amount.Text))
-                {
-                    MessageBox.Show("Amount cannot be empty, and amount accepts only decimal values.");
-                }
-                else
-                {
-                    var amount = Convert.ToDecimal(Amount.Text);
-
-                    if (amount > 1000)
+                    if (FromDropdown.SelectedValue == null)
                     {
-                        _otpService = new OTPService(Session["UserId"].ToString() + Session["UserName"].ToString());
-                        _otpService.GenerateOTP(Session["UserName"].ToString(), email: Session["UserEmail"].ToString());
-                        //show otp 
-                        DebitButton.Visible = false;
-                        OTPDiv.Visible = true;
+                        MessageBox.Show("Select the Account from which an amount has to be Debited");
+                    }
+                    else if (Amount.Text == "" || !UI.Validate.isAmountValid(Amount.Text))
+                    {
+                        MessageBox.Show("Amount cannot be empty, and amount accepts only decimal values.");
                     }
                     else
                     {
-                        ProcessTransaction(amount);
+                        var amount = Convert.ToDecimal(Amount.Text);
+
+                        if (amount > 1000)
+                        {
+                            _otpService = new OTPService(Session["UserId"].ToString() + Session["UserName"].ToString());
+                            _otpService.GenerateOTP(Session["UserName"].ToString(), email: Session["UserEmail"].ToString());
+                            //show otp 
+                            DebitButton.Visible = false;
+                            OTPDiv.Visible = true;
+                        }
+                        else
+                        {
+                            ProcessTransaction(amount);
+                        }
                     }
                 }
-            }
 
-            else
-            {
-                var amount = Convert.ToDecimal(Amount.Text);
-                ProcessTransaction(amount);
+                else
+                {
+                    var amount = Convert.ToDecimal(Amount.Text);
+                    ProcessTransaction(amount);
+                }
             }
+            catch { }
+
         }
 
         private static OTPService _otpService;
         protected void ResendOTPLink_Click(object sender, EventArgs e)
         {
-            _otpService.GenerateOTP(Session["UserName"].ToString(), email: Session["UserEmail"].ToString());
+            try
+            {
+                _otpService.GenerateOTP(Session["UserName"].ToString(), email: Session["UserEmail"].ToString());
+            }
+            catch { }
         }
 
         protected void VerifyButton_Click(object sender, EventArgs e)
         {
-            if (_otpService.VerifyOTP(OTPTextBox.Text.Trim()))
+            try
             {
-                ProcessTransaction(Convert.ToDecimal(Amount.Text));
-                ResetPage();
-            }
+                if (_otpService.VerifyOTP(OTPTextBox.Text.Trim()))
+                {
+                    ProcessTransaction(Convert.ToDecimal(Amount.Text));
+                    ResetPage();
+                }
 
-            else
-            {
-                MessageBox.Show("Could not verify the OTP that you entered.");
+                else
+                {
+                    MessageBox.Show("Could not verify the OTP that you entered.");
+                }
             }
+            catch { }
         }
 
         private void ProcessTransaction(decimal amount)
         {
-            var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(), string.Format("011|{0}| |{1}|{2}| ", FromDropdown.SelectedValue, amount, Session["Access"]));
-            MessageBox.Show(string.Format("The debit was successful. Your current balance is {0}", output.resultP));
+            try
+            {
+                var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(), string.Format("011|{0}| |{1}|{2}| ", FromDropdown.SelectedValue, amount, Session["Access"]));
+                MessageBox.Show(string.Format("The debit was successful. Your current balance is {0}", output.resultP));
+            }
+            catch { }
         }
 
         private void ResetPage()

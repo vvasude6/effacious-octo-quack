@@ -22,58 +22,65 @@ namespace UI
 
         protected void SendOTPBtn_Click(object sender, EventArgs e)
         {
-            string[] arglist = new String[2];
-
-            Business.XSwitch xsw = new Business.XSwitch();
-            if (!UI.Validate.isUserNameValid(UserNameTextBox.Text))
-             {
-                MessageBox.Show("Invalid User Name");
-                return;
-            }
-            var output = xsw.getExternalUserDataFromUserName(Global.ConnectionString, UserNameTextBox.Text);
-            if (output == null)
+            try
             {
-                MessageBox.Show("Invalid User Name");
-                return;
+                string[] arglist = new String[2];
+
+                Business.XSwitch xsw = new Business.XSwitch();
+                if (!UI.Validate.isUserNameValid(UserNameTextBox.Text))
+                {
+                    MessageBox.Show("Invalid User Name");
+                    return;
+                }
+                var output = xsw.getExternalUserDataFromUserName(Global.ConnectionString, UserNameTextBox.Text);
+                if (output == null)
+                {
+                    MessageBox.Show("Invalid User Name");
+                    return;
+                }
+
+                Session["TempUserId"] = output.cs_no;
+                String userName = output.cs_fname + " " + output.cs_lname;
+
+                _otpService = new OTPService(output.cs_uid + userName);
+                _otpService.GenerateOTP(userName, email: output.cs_email);
             }
-
-            
-            Session["TempUserId"] = output.cs_no;
-            String userName = output.cs_fname + " " + output.cs_lname;
-
-            _otpService = new OTPService(output.cs_uid + userName);
-            _otpService.GenerateOTP(userName, email: output.cs_email);
+            catch { }
         }
 
         protected void ChangePwdBtn_Click(object sender, EventArgs e)
         {
-            if (!_otpService.VerifyOTP(OTPTextBox.Text.Trim()))
+            try
             {
-                MessageBox.Show("Could not verify the OTP that you entered.");
-                return;
+                if (!_otpService.VerifyOTP(OTPTextBox.Text.Trim()))
+                {
+                    MessageBox.Show("Could not verify the OTP that you entered.");
+                    return;
+                }
+
+                if (!UI.Validate.isPasswordValid(pwdTextBox.Text) ||
+                    hashPwdHiddenField.Value.Equals("0") ||
+                    !hashPwdHiddenField.Value.Equals(hashCpwdHiddenField.Value))
+                {
+                    MessageBox.Show("Invalid Password Entered, or passwords do not match.");
+                    pwdTextBox.Text = "";
+                    cpwdTextBox.Text = "";
+                    return;
+                }
+
+                string[] arglist = new String[3];
+                int argIndex = 0;
+
+                arglist[argIndex++] = Mnemonics.TxnCodes.TX_FORGET_PASSWORD;
+                arglist[argIndex++] = Session["TempUserId"].ToString();
+                arglist[argIndex++] = hashPwdHiddenField.Value;
+
+                var output = new Business.XSwitch(Global.ConnectionString, Session["TempUserId"].ToString(), string.Format("{0}|{1}|{2}", arglist));
+
+                MessageBox.Show("Password changed successfully.");
+                _otpService = null;
             }
-
-            if (!UI.Validate.isPasswordValid(pwdTextBox.Text) ||
-                hashPwdHiddenField.Value.Equals("0") ||
-                !hashPwdHiddenField.Value.Equals(hashCpwdHiddenField.Value))
-            {
-                MessageBox.Show("Invalid Password Entered, or passwords do not match.");
-                pwdTextBox.Text = "";
-                cpwdTextBox.Text = "";
-                return;
-            }
-
-            string[] arglist = new String[3];
-            int argIndex = 0;
-
-            arglist[argIndex++] = Mnemonics.TxnCodes.TX_FORGET_PASSWORD;
-            arglist[argIndex++] = Session["TempUserId"].ToString();
-            arglist[argIndex++] = hashPwdHiddenField.Value;
-
-            var output = new Business.XSwitch(Global.ConnectionString, Session["TempUserId"].ToString(), string.Format("{0}|{1}|{2}", arglist));
-
-            MessageBox.Show("Password changed successfully.");
-            _otpService = null;
+            catch { }
             Response.Redirect("UserLogin.aspx");
         }
     }
