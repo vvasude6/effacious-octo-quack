@@ -243,6 +243,10 @@ namespace Business
                         Y_024 y024 = new Y_024(Mnemonics.TxnCodes.TX_FORGET_PASSWORD, connectionString, dataPart[1], dataPart[2]);
                         resultP = y024.resultP;
                         break;
+                    case Mnemonics.TxnCodes.TX_CREATE_ACCOUNT:
+                        Y_025 y025 = new Y_025(Mnemonics.TxnCodes.TX_CREATE_ACCOUNT, connectionString, dataPart[1], dataPart[3], loginAc);
+                        resultP = y025.resultP;
+                        break;
                 }
             }
             catch (Exception e)
