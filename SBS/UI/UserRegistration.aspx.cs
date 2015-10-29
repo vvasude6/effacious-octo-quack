@@ -178,11 +178,11 @@ namespace UI
                 arglist[argIndex++] = Answer3TextBox.Text;
                 arglist[argIndex++] = " ";
                 arglist[argIndex++] = " ";
-                arglist[argIndex++] = hashPwdHiddenField.Value;
+                arglist[argIndex++] = UI.Global.hashCode(pwdTextBox.Text).ToString();
                 arglist[argIndex++] = " ";
                 arglist[argIndex++] = " ";
 
-                var output = new Business.XSwitch(Global.ConnectionString, "0", string.Format("{0}|{1}|{2}|{3}|{4}|{5}|{6}|{7}|{8}|{9}|{10}|{11}|{12}|{13}|{14}|{15}|{16}|{17}|{17}|{18}{19}|{20}|{21}|{22}|{23}|{24}|{25}", arglist));
+                var output = new Business.XSwitch(Global.ConnectionString, "0", string.Format("{0}|{1}|{2}|{3}|{4}|{5}|{6}|{7}|{8}|{9}|{10}|{11}|{12}|{13}|{14}|{15}|{16}|{17}|{17}|{18}|{19}|{20}|{21}|{22}|{23}|{24}|{25}", arglist));
 
                 //MessageBox.Show("Request for new user login created.  Email will be sent when administrator reviews.");
                 ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Request for new user login created.  Email will be sent when administrator reviews.');", true);

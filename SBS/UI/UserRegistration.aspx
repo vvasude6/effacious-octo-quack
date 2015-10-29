@@ -104,7 +104,7 @@
         </asp:TextBox>
          <br />
         <br />
-&nbsp;&n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:Label ID="Label11" runat="server" Text="Answer 1" ></asp:Label>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:TextBox ID="Answer1TextBox" runat="server" Width="283px"></asp:TextBox>
         <br />
@@ -143,22 +143,24 @@
         
     </form>
     <script>
-        $('#CustCreateBtn').click(function () {
-            //alert(hashCode($('#PasswordTextBox').val()));
-            $('#hashPwdHiddenField').val(hashCode($('#pwdTextBox').val()));
-            $('#hashCpwdHiddenField').val(hashCode($('#cpwdTextBox').val()));
-        });
+        //$('#CustCreateBtn').click(function () {
+        //    //alert(hashCode($('#PasswordTextBox').val()));
+        //    //$('#hashPwdHiddenField').val(hashCode($('#pwdTextBox').val()));
+        //    $('#pwdTextBox').val(hashCode($('#pwdTextBox').val()));
+        //    $('#cpwdTextBox').val(hashCode($('#cpwdTextBox').val()));
+        //    //$('#hashCpwdHiddenField').val(hashCode($('#cpwdTextBox').val()));
+        //});
 
-        function hashCode(str) {
-            var hash = 0;
-            if (str.length < 8) return 0;
-            for (i = 0; i < str.length; i++) {
-                char = str.charCodeAt(i);
-                hash = ((hash << 5) - hash) + char;
-                hash = hash & hash; // Convert to 32bit integer
-            }
-            return hash;
-        }
+        //function hashCode(str) {
+        //    var hash = 0;
+        //    if (str.length < 8) return 0;
+        //    for (i = 0; i < str.length; i++) {
+        //        char = str.charCodeAt(i);
+        //        hash = ((hash << 5) - hash) + char;
+        //        hash = hash & hash; // Convert to 32bit integer
+        //    }
+        //    return hash;
+        //}
     </script>
 
 </body>
