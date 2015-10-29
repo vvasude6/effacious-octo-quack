@@ -35,6 +35,7 @@ namespace Business
         {
             dberr = new Data.Dber();
             this.TXID = txid;
+            empm = new Entity.Empm();
             processTransaction(conectionString, a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, loginAc);
         }
         private int processTransaction(String connectionString, String a, String b, String c, String d, String e,
@@ -53,9 +54,9 @@ namespace Business
             empm.emp_lname = d;
             empm.emp_addr1 = e;
             empm.emp_addr2 = f;
-            empm.emp_city = g;
-            empm.emp_state = h;
-            empm.emp_zip = i;
+            empm.emp_city = i;
+            empm.emp_state = g;
+            empm.emp_zip = h;
             empm.emp_brnch = j;
             empm.emp_phn = k;
             empm.emp_email = l;

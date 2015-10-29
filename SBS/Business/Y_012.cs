@@ -209,7 +209,8 @@ namespace Business
                 return -1;
             }
             String mailResponse = "";
-            if(!Security.OTPUtility.SendMail(cstm.cs_fname + cstm.cs_mname + cstm.cs_lname, cstm.cs_email, " "))
+            if (!Security.OTPUtility.SendMail("SBS", "group2csefall2015@gmail.com", cstm.cs_fname + cstm.cs_mname + cstm.cs_lname,
+                cstm.cs_email, "Update from SBS", "Debit " + acct.actmP.ac_bal))
             {
                 mailResponse = "Mail sent.";
             }
