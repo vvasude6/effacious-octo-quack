@@ -21,7 +21,7 @@ namespace UI
             if (Global.IsPageAccessible(Page.Title))
             {
                 LoadFinancialAccountStatement();
-                LoadNonFinancialAccountStatement();
+                //LoadNonFinancialAccountStatement();
             }
         }
 
@@ -32,11 +32,11 @@ namespace UI
             FinHistoryGridView.DataBind();
         }
 
-        private void LoadNonFinancialAccountStatement()
-        {
-            var xSwitch = new Business.XSwitch();
-            NonFinHistoryGridView.DataSource = xSwitch.getNonFinHistory(Global.ConnectionString, Session["UserId"].ToString());
-            NonFinHistoryGridView.DataBind();
-        }
+        //private void LoadNonFinancialAccountStatement()
+        //{
+        //    var xSwitch = new Business.XSwitch();
+        //    NonFinHistoryGridView.DataSource = xSwitch.getNonFinHistory(Global.ConnectionString, Session["UserId"].ToString());
+        //    NonFinHistoryGridView.DataBind();
+        //}
     }
 }

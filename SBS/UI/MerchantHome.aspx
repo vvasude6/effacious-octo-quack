@@ -12,13 +12,13 @@
     </div>
 
    
-    <div class="panel panel-default">
+    <%--<div class="panel panel-default">
         <div class="panel-heading">Pending Transactions</div>
         <div class="panel-body">
             <asp:table id="Transactiontable" runat="server">
 
             </asp:table>
         </div>
-    </div>
+    </div>--%>
 
    </asp:Content>

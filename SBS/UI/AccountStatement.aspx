@@ -16,7 +16,7 @@
         <br />
         <br />
 
-         <div class="panel-heading">Non-Financial Account Statement</div>
+         <%--<div class="panel-heading">Non-Financial Account Statement</div>
         <br />
         <asp:GridView ID="NonFinHistoryGridView" runat="server" CssClass="table gridview" BorderWidth="0px" BorderColor="Transparent">
             <RowStyle BackColor="#EFEFEF"
@@ -24,5 +24,5 @@
             <AlternatingRowStyle BackColor="#FEFEFE"
                 ForeColor="#333333" />
         </asp:GridView>
-    </div>
+    </div>--%>
 </asp:Content>

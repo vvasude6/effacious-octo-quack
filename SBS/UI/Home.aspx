@@ -15,11 +15,11 @@
         </div>
     </div>
 
-    <div class="panel panel-default">
+   <%-- <div class="panel panel-default">
         <div class="panel-heading">Recent Activity</div>
         <div class="panel-body">
             No recent Activity
         </div>
-    </div>
+    </div>--%>
 
 </asp:Content>
