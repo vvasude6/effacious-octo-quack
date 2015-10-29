@@ -107,7 +107,7 @@ namespace Data
                             APPRV_EMPID [Approver Id],
                             AC_NO [Account Number]
                             from NFINHIST
-                            where INIT_CSNO = '{0}'
+                            
                             order by TRAN_TIMESTAMP desc", cs_no));
                 var data = DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
                 if (data != null)
