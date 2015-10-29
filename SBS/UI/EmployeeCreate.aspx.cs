@@ -121,9 +121,9 @@ namespace UI
                     return;
                 }
 
-                string[] arglist = new String[19];
+                string[] arglist = new String[21];
                 int argIndex = 0;
-                arglist[argIndex++] = Mnemonics.TxnCodes.TX_REGISTER_USER;
+                arglist[argIndex++] = Mnemonics.TxnCodes.TX_CREATE_EMPLOYEE;
                 arglist[argIndex++] = " ";
                 arglist[argIndex++] = FirstNameTextBox.Text;
                 arglist[argIndex++] = MiddleNameTextBox.Text;
