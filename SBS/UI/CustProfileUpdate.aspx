@@ -1,22 +1,7 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CustProfileUpdate.aspx.cs" Inherits="UI.CustProfileUpdate" %>
-
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Customer Profile Update</title>
-    <link href="Content/bootstrap.min.css" type="text/css" rel="stylesheet" />
-</head>
-<body>
-    <form id="CustProfUpdateForm" runat="server">
-   
-        <tr>
-            <td colspan="2">
-                <h2 style="text-align: center">Welcome to <b>SBS !</b></h2>
-                <h4 style="text-align: center; color: gray">The most secure bank.</h4>
-            </td>
-        </tr>
-        <br /><br />
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="CustProfileUpdate.aspx.cs" Inherits="UI.CustProfileUpdate" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Update Customer Profile</h4>
 
@@ -56,6 +41,4 @@
             <br />
             <br />
         </div>
-    </form>
-</body>
-</html>
+</asp:Content>

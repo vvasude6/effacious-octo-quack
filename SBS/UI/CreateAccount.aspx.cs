@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Windows.Forms;
 
 namespace UI
 {
@@ -21,14 +20,17 @@ namespace UI
         protected void AccountCreate_click(object sender, EventArgs e)
         {
             try { 
-                string[] arglist = new String[2];
+                string[] arglist = new String[4];
                 int argIndex = 0;
 
                 arglist[argIndex++] = Mnemonics.TxnCodes.TX_CREATE_ACCOUNT;
                 arglist[argIndex++] = AccountTypeDropDownList.Text;
-                
-                var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(), string.Format("{0}|{1}", arglist));
-                MessageBox.Show("Request for account created.  Email will be sent when administrator reviews.");
+                arglist[argIndex++] = "0";
+                arglist[argIndex++] = "0";
+
+                var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(), string.Format("{0}|{1}|{2}|{3}", arglist));
+                //MessageBox.Show("Request for account created.  Email will be sent when administrator reviews.");
+                ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Request for new account created.  Email will be sent when reviewed.');", true);
             }
             catch { }
             Response.Redirect(callingURL);

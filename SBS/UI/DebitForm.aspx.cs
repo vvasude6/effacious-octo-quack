@@ -5,7 +5,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Windows.Forms;
 
 namespace UI
 {
@@ -105,11 +104,14 @@ namespace UI
                 {
                     if (FromDropdown.SelectedValue == null)
                     {
-                        MessageBox.Show("Select the Account from which an amount has to be Debited");
+                        //MessageBox.Show("Select the Account from which an amount has to be Debited");
+                        ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Select account for debit');", true);
+
                     }
                     else if (Amount.Text == "" || !UI.Validate.isAmountValid(Amount.Text))
                     {
-                        MessageBox.Show("Amount cannot be empty, and amount accepts only decimal values.");
+                        //MessageBox.Show("Amount cannot be empty, and amount accepts only decimal values.");
+                        ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Invalid amount entered');", true);
                     }
                     else
                     {
@@ -162,7 +164,8 @@ namespace UI
 
                 else
                 {
-                    MessageBox.Show("Could not verify the OTP that you entered.");
+                    //MessageBox.Show("Could not verify the OTP that you entered.");
+                    ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Invalid OTP enetered');", true);
                 }
             }
             catch { }
@@ -173,7 +176,8 @@ namespace UI
             try
             {
                 var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(), string.Format("011|{0}| |{1}|{2}| ", FromDropdown.SelectedValue, amount, Session["Access"]));
-                MessageBox.Show(string.Format("The debit was successful. Your current balance is {0}", output.resultP));
+                //MessageBox.Show(string.Format("The debit was successful. Your current balance is {0}", output.resultP));
+                ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Debit successfull. Current balance is "+ output.resultP +"');", true);
             }
             catch { }
         }
