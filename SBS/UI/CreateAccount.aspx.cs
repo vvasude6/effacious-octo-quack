@@ -14,7 +14,7 @@ namespace UI
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
-                Request.UrlReferrer.ToString();
+                callingURL = Request.UrlReferrer.ToString();
         }
 
         protected void AccountCreate_click(object sender, EventArgs e)
@@ -34,7 +34,6 @@ namespace UI
             }
             catch { }
             Response.Redirect(callingURL);
-
         }
     }
 }
