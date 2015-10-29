@@ -119,6 +119,35 @@ namespace Data
                 return " ";
             }
         }
+
+
+        public static Empm GetEmployeeObjectFromUserName(string connectionString, string userName, Dber dberr)
+        {
+            try
+            {
+                var customerMasterObject = new Cstm();
+                var query = string.Format("select * from empm where emp_uname = '{0}'", userName);
+                var data = DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
+
+                //assign the data object to customer master object
+                if (data.Tables[0].Rows.Count > 0)
+                {
+                    return GetEmpmObject(data.Tables[0].Rows[0]);
+                }
+
+                else
+                {
+                    dberr.setError(Mnemonics.DbErrorCodes.DBERR_CSTM_NOFIND);
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_CSTM_NOFIND);
+                return null;
+            }
+        }
+
         public static DataSet ReadAll(string connectionString, Dber dberr)
         {
             var query = string.Format("select * from Empm");
@@ -199,6 +228,40 @@ namespace Data
             {
                 dberr.setError(Mnemonics.DbErrorCodes.DBERR_EMPM_NOFIND);
                 return false;
+            }
+        }
+
+        private static Empm GetEmpmObject(DataRow row)
+        {
+            try
+            {
+                var employeeMasterObject = new Empm();
+                employeeMasterObject.emp_no =    row["emp_id"].ToString();
+                employeeMasterObject.emp_fname = row["emp_fname"].ToString();
+                employeeMasterObject.emp_mname = row["emp_mname"].ToString();
+                employeeMasterObject.emp_lname = row["emp_lname"].ToString();
+                employeeMasterObject.emp_phn =   row["emp_phn"].ToString();
+                employeeMasterObject.emp_addr1 = row["emp_addr1"].ToString();
+                employeeMasterObject.emp_addr2 = row["emp_addr2"].ToString();
+                employeeMasterObject.emp_city =  row["emp_city"].ToString();
+                employeeMasterObject.emp_state = row["emp_state"].ToString();
+                employeeMasterObject.emp_zip =   row["emp_zip"].ToString();
+                employeeMasterObject.emp_uname = row["emp_uname"].ToString();
+                employeeMasterObject.emp_pass =  row["emp_pass"].ToString();
+                employeeMasterObject.emp_pvg =  Convert.ToInt32(row["emp_pvg"]);
+                employeeMasterObject.emp_mngr =  row["emp_mngr"].ToString();
+                employeeMasterObject.emp_brnch = row["emp_brnch"].ToString();
+                employeeMasterObject.emp_secq1 = row["emp_secq1"].ToString();
+                employeeMasterObject.emp_ans1 =  row["emp_ans1"].ToString();
+                employeeMasterObject.emp_secq2 = row["emp_secq2"].ToString();
+                employeeMasterObject.emp_ans2 =  row["emp_ans2"].ToString();
+                employeeMasterObject.emp_ans2 =  row["emp_ans2"].ToString();
+                employeeMasterObject.emp_email = row["emp_email"].ToString();
+                return employeeMasterObject;
+            }
+            catch (Exception ex)
+            {
+                return null;
             }
         }
     }

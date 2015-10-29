@@ -32,14 +32,21 @@ namespace UI
                 }
                 else
                 {
-                    var userName = UserNameTextBox.Text;
+                    var userName = UserNameTextBox.Text.ToString();
                     var password = hashPasswordHiddenField.Value;
                     if (UI.Validate.isUserNameValid(userName))
                     {
+                        var xSwitch = new Business.XSwitch();
+                        //var encryptedConnectionString = Security.PKIService.EncryptData(Global.ConnectionString, xSwitch.getBankPublicKey(Global.ConnectionString));
+                        var encryptedUserName = Security.PKIService.EncryptData(userName, xSwitch.getBankPublicKey(Global.ConnectionString));
+                        var encryptedData = Security.PKIService.EncryptData(string.Format("{0}|{1}", userName, password), xSwitch.getBankPublicKey(Global.ConnectionString));
+
+                        Session["Username"] = userName.Trim();
+                        //var xSwitchObject = new Business.XSwitch(Global.ConnectionString, userName, string.Format("001|{0}|{1}", userName, password));
+                        var xSwitchObject = new Business.XSwitch(Global.ConnectionString, encryptedUserName, "001|" + encryptedData);
                         
-                        Session["Username"] = userName;
-                        var xSwitchObject = new Business.XSwitch(Global.ConnectionString, userName, string.Format("001|{0}|{1}", userName, password));
-                        var output = xSwitchObject.resultP;
+                        var encrytedOutput = xSwitchObject.resultP;
+                        var output = (string)Security.PKIService.DecryptData(encrytedOutput, xSwitchObject.getCustomerPrivateKey(Global.ConnectionString, userName.ToString()));
                         if (output.Contains("|"))
                         {
                             var dataRecieved = output.Split('|');
@@ -82,7 +89,9 @@ namespace UI
                     }
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+            }
         }
 
         protected void ForgotPasswordLink_Click(object sender, EventArgs e)

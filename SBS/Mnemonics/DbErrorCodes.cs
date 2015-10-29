@@ -62,6 +62,7 @@ namespace Mnemonics
         public static String TXERR_INSUFFICIENT_BALANCE = "475";
         public static String TXERR_MISMATCH_CUSTOMER = "474";
         public static String TXERR_MAIL_NOSEND = "474";
+        public static String TXERR_PWD_NOUPDATE = "473";
         public static String TXERR_NO_USER = "000";
 
         public static String MSG_SENT_FOR_AUTH = "The Transaction is pending Authorization!";

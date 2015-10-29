@@ -79,8 +79,8 @@ namespace Data
                 var accountColumn = string.Empty;
                 if (!isAdmin) accountColumn = @" case 
                                                 when DR_AMT = 0 and CR_AMT = 0  then ''
-                                                when DR_AMT = 0 then '-' + CONVERT(varchar (max), CR_AMT)
-                                                else CONVERT(varchar (max), DR_AMT)
+                                                when CR_AMT = 0 then '-' + CONVERT(varchar (max), DR_AMT)
+                                                else CONVERT(varchar (max), CR_AMT)
                                                 end Amount, ";
                 if (isAdmin) condition = "=";
                 var query = string.Format(string.Format(@"select 

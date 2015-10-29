@@ -124,8 +124,8 @@ namespace Data
                             AC_NO [Account Number],
                             TRAN_TIMESTAMP [Timestamp],
                             TRAN_DESC [Transaction],
-                            case when DR_AMT = 0 then '-' + CONVERT(varchar (max), CR_AMT)
-	                            else CONVERT(varchar (max), DR_AMT)
+                            case when CR_AMT = 0 then '-' + CONVERT(varchar (max), DR_AMT)
+	                            else CONVERT(varchar (max), CR_AMT)
 	                            end Amount,
                             REM_BAL [Balance]
                             from FINHIST

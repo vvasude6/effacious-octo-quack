@@ -44,10 +44,11 @@ namespace Business
         public XSwitch(string connectionString, String loginAccount, String inData)
         {
             // DECRYPT incoming Message String here
+            //String tranCode = inData.Substring(0, 3);
             char[] delimiters = { '|' };
             String[] dataPart = inData.Split(delimiters);
             String loginAc = loginAccount;
-            
+            //String tranCode = inData.Substring(0, 3);
             
             // part[0] = transaction id
             // part[1] = account number 1
@@ -60,8 +61,13 @@ namespace Business
                 {
                     case "001": // Login
                         //String tempResult = "";
-                        Y_000 y000 = new Y_000(Mnemonics.TxnCodes.TX_LOGIN, connectionString, dataPart[1], dataPart[2]);
+                        String encrString = String.Join("|", dataPart.Skip(1));
+                        String loginAE = Security.PKIService.DecryptData(loginAccount, PkitD.GetBankPrivateKey(connectionString)).ToString();
+                        String inDataE = Security.PKIService.DecryptData(encrString, PkitD.GetBankPrivateKey(connectionString)).ToString();
+                        dataPart = inDataE.Split(delimiters);
+                        Y_000 y000 = new Y_000(Mnemonics.TxnCodes.TX_LOGIN, connectionString, dataPart[0], dataPart[1]);
                         result = y000.resultP;
+                        result = Security.PKIService.EncryptData(resultP, PkitD.GetCustomerPublicKey(connectionString, loginAE));
                         /*
                         Y_000 y000 = new Y_000(Mnemonics.TxnCodes.TX_LOGIN, connectionString, dataPart[1], dataPart[2]);
                         if (y000.errorGet)
@@ -122,6 +128,13 @@ namespace Business
                     case "013": // High Value Credit
                         Y_012 y012_1 = new Y_012(Mnemonics.TxnCodes.TX_HIGHVAL_CREDIT, connectionString,
                             dataPart[1], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
+                        if (y012_1.pvgBypassedP)
+                        {
+                            if (!deletePendingTransaction(connectionString, dataPart[5]))
+                            {
+                                throw (new Exception("Pending transaction not removed"));
+                            }
+                        }
                         result = y012_1.getOutput();
                         // ENCRYPT result here
                         break;
@@ -307,7 +320,18 @@ namespace Business
             }
             else return null;
         }
-        
+
+        public Entity.Empm getInternalUserDataFromUserName(string connectionString, string username)
+        {
+            var dberr = new Data.Dber();
+            var data = Data.EmpmD.GetEmployeeObjectFromUserName(connectionString, username, dberr);
+            if (!dberr.ifError())
+            {
+                return data;
+            }
+            else return null;
+        }
+
         public DataSet getEmployeeAccessibleCustomerData(string connectionString, string employeeId)
         {
             var dberr = new Data.Dber();

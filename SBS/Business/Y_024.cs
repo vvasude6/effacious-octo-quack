@@ -42,11 +42,17 @@ namespace Business
                 return -1;
             }
             Cp_Cstm cstm = new Cp_Cstm(connectionString, cus_no, dberr);
-            cstm.updatePassword(connectionString, cus_no, pwd, dberr);
+            if (cstm.cstmP != null)
+                cstm.updatePassword(connectionString, cus_no, pwd, dberr);
             if (dberr.ifError())
             {
-                result = dberr.getErrorDesc(connectionString);
-                return -1;
+                dberr = new Data.Dber();
+                if(!Data.EmpmD.UpdatePassword(connectionString, cus_no, pwd, dberr))
+                {
+                    dberr.setError(Mnemonics.DbErrorCodes.TXERR_PWD_NOUPDATE);
+                    resultP = dberr.getErrorDesc(connectionString);
+                    return -1;
+                }
             }
             //------------------------------
             //Entity.Cstm cstm = Data.CstmD.Read(connectionString, acct.actmP.cs_no1, dberr);
