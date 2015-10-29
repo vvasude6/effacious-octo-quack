@@ -53,7 +53,7 @@ namespace Business
             String mailResponse = "";
             if (!Security.OTPUtility.SendMail("SBS", "group2csefall2015@gmail.com",
                 cstm.cstmP.cs_fname + cstm.cstmP.cs_mname + cstm.cstmP.cs_lname, cstm.cstmP.cs_email,
-                "Update from SBS: Password updated via transaction: ", tx.txnmP.tran_desc))
+                "Update from SBS", "Password updated via transaction: "+ tx.txnmP.tran_desc))
             {
                 mailResponse = "Mail sent.";
             }

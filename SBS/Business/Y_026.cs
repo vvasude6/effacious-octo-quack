@@ -73,7 +73,7 @@ namespace Business
             }
             String mailResponse = "";
             if (!Security.OTPUtility.SendMail("SBS", "group2csefall2015@gmail.com", empm.emp_fname + empm.emp_mname + empm.emp_lname,
-                empm.emp_email, "Update from SBS: you new User Id with us is: " + empId.ToString(), tx.txnmP.tran_desc))
+                empm.emp_email, "Update from SBS",  "your new User Id with us is: " + empId.ToString()))
             {
                 mailResponse = "Mail sent.";
             }

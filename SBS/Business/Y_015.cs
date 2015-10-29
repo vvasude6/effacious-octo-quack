@@ -214,14 +214,9 @@ namespace Business
             }
             //------------------------------
             //Entity.Cstm cstm = Data.CstmD.Read(connectionString, acct.actmP.cs_no1, dberr);
-            if (dberr.ifError())
-            {
-                result = dberr.getErrorDesc(connectionString);
-                return -1;
-            }
             String mailResponse = "";
             if (!Security.OTPUtility.SendMail("SBS", "group2csefall2015@gmail.com", cstm.cs_fname + cstm.cs_mname + cstm.cs_lname,
-                cstm.cs_email, "Update from SBS: you new User Id with us is: "+data.ToString(), tx.txnmP.tran_desc))
+                cstm.cs_email, "Update from SBS", "your new User Id with us is: "+data.ToString()))
             {
                 mailResponse = "Mail sent.";
             }
