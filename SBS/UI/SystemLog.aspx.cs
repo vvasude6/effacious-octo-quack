@@ -11,7 +11,22 @@ namespace UI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+             if (Session["UserId"] == null || Session["Access"] == null)
+                Response.Redirect("UserLogin.aspx");
+            if (Session["Access"].ToString() == "3" || Session["Access"].ToString() == "4")
+                Response.Redirect("EmployeeHome.aspx");
+            if (Session["Access"].ToString() == "5")
+                Response.Redirect("AdminHome.aspx");
+            if (Global.IsPageAccessible(Page.Title))
+            {
+               LoadSystemLog();
+            }
+        }
+         private void LoadSystemLog()
+          {
+           var xSwitch = new Business.XSwitch();
+           NonFinHistoryGridView.DataSource = xSwitch.getNonFinHistory(Global.ConnectionString, Session["UserId"].ToString());
+           NonFinHistoryGridView.DataBind();
         }
     }
 }
