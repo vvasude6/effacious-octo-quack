@@ -22,9 +22,9 @@ namespace Business
                 this.pending = value;
             }
         }
-        public Cp_Pendtxn(String connectionString, int pvg, Data.Dber dberr)
+        public Cp_Pendtxn(String connectionString, String pvg, Boolean isAdmin, Data.Dber dberr)
         {
-            pendingP = Data.PendtxnD.GetAccessiblePendingTransactions(connectionString, pvg.ToString(), dberr);
+            pendingP = Data.PendtxnD.GetAccessiblePendingTransactions(connectionString, pvg, dberr, isAdmin);
         }
         public Cp_Pendtxn(String connectionString, String ac1, String ac2, String pvgb, String csNo, 
             String initEmpid, Decimal dr, Decimal cr, String tranDesc, String txid, String inData, Data.Dber dberr)

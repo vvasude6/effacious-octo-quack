@@ -71,7 +71,7 @@ namespace Data
             }
         }
 
-        public static DataSet GetAccessiblePendingTransactions(string connectionString, string pvgb, Dber dberr, bool isAdmin = false)
+        public static DataSet GetAccessiblePendingTransactions(string connectionString, string pvgb, Dber dberr, bool isAdmin)
         {
             try
             {

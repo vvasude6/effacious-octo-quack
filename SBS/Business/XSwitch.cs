@@ -73,7 +73,7 @@ namespace Business
                         // ENCRYPT result here
                         break;
                     case "008": // Fetch Pending transactions - Employee
-                        Y_008 y008 = new Y_008(connectionString, Mnemonics.TxnCodes.TX_EMP_PENDING, Convert.ToInt16(dataPart[1]));//Mnemonics.TxnCodes.TX_BALINQ, connectionString, dataPart[1]);
+                        Y_008 y008 = new Y_008(connectionString, Mnemonics.TxnCodes.TX_EMP_PENDING, dataPart[1]);//Mnemonics.TxnCodes.TX_BALINQ, connectionString, dataPart[1]);
                         resultSet = y008.resultSetP;
                         // ENCRYPT result here
                         break;

@@ -9,8 +9,9 @@ namespace Business
 {
     class Y_008
     {
+        String ADMIN_PVG = "5";
         Cp_Pendtxn pend;
-        int pvg;
+        String pvg;
         String TXID;
         DataSet resultSet;
         public DataSet resultSetP
@@ -26,16 +27,21 @@ namespace Business
         }
         Data.Dber dberr;
         String result;
-        public Y_008(String connectionString, String txid, int pvg)
+        public Y_008(String connectionString, String txid, String pvg)
         {
             this.TXID = txid;
             this.pvg = pvg;
             this.dberr = new Data.Dber();
             processTransaction(connectionString, this.pvg);
         }
-        public int processTransaction(String connectionString, int pvg)
+        public int processTransaction(String connectionString, String pvg)
         {
-            pend = new Cp_Pendtxn(connectionString, pvg, dberr);
+            Boolean isAdmin = false;
+            if(pvg.Equals(ADMIN_PVG))
+            {
+                isAdmin = true;
+            }
+            pend = new Cp_Pendtxn(connectionString, pvg, isAdmin, dberr);
             resultSetP = pend.pendingP;
             if (dberr.ifError())
             {
