@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -191,6 +191,9 @@ namespace UI
                 //TODO:
                 //var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(), string.Format("011|{0}| |{1}|{2}| ", FromDropdown.SelectedValue, amount, Session["Access"]));
                 //MessageBox.Show(string.Format("The debit was successful. Your current balance is {0}", output.resultP));
+                var output = new Business.XSwitch(Global.ConnectionString, FromDropdown.SelectedValue, string.Format("021|{0}|{1}|{2}|{3}| ", FromDropdown.SelectedValue, ToDropdown.SelectedValue, amount, Session["Access"].ToString()));
+                ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('" + output.resultP + "');", true);
+
             }
             catch { }
         }
