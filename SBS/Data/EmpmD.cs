@@ -141,7 +141,9 @@ namespace Data
                     dataObject.emp_zip, dataObject.emp_city, dataObject.emp_state, dataObject.emp_brnch, dataObject.emp_phn,
                     dataObject.emp_email, dataObject.emp_mngr, dataObject.emp_pvg, dataObject.emp_secq1, dataObject.emp_ans1,
                     dataObject.emp_secq2, dataObject.emp_ans2, dataObject.emp_uname, dataObject.emp_pass);
-                return (int)DbAccess.ExecuteScalar(connectionString, CommandType.Text, query);
+                var employeeId =  (int)DbAccess.ExecuteScalar(connectionString, CommandType.Text, query);
+                UpdateUserId(connectionString, employeeId, dberr);
+                return employeeId;
             }
             catch (Exception ex)
             {
@@ -154,6 +156,22 @@ namespace Data
             throw new NotImplementedException();
         }
 
+        private static bool UpdateUserId(string connectionString, int employeeId, Dber dberr)
+        {
+            try
+            {
+                var query = string.Format(@"UPDATE [SBS].[dbo].[EMPM]
+                                               SET 
+                                                   [EMP_UNAME] = '{0}'
+                                             WHERE EMP_ID = {0}", employeeId);
+                return DbAccess.ExecuteNonQuery(connectionString, CommandType.Text, query) == 1;
+            }
+            catch (Exception ex)
+            {
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_FAIL_UPDATE_PWD);
+                throw (new Exception(Mnemonics.DbErrorCodes.DBERR_FAIL_UPDATE_PWD));
+            }
+        }
         public static bool Delete(string connectionString, string id, Dber dberr)
         {
             try
