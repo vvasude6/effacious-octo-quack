@@ -297,7 +297,7 @@ GO
 SET ANSI_PADDING OFF
 GO
 SET IDENTITY_INSERT [dbo].[EMPM] ON
-INSERT [dbo].[EMPM] ([EMP_ID], [EMP_FNAME], [EMP_MNAME], [EMP_LNAME], [EMP_ADDR1], [EMP_ADDR2], [EMP_ZIP], [EMP_CITY], [EMP_STATE], [EMP_BRNCH], [EMP_PHN], [EMP_EMAIL], [EMP_MNGR], [EMP_PVG], [EMP_SECQ1], [EMP_ANS1], [EMP_SECQ2], [EMP_ANS2], [EMP_UNAME], [EMP_PASS]) VALUES (100004, N'Administrator', NULL, N'SBS', N'SBS', N'ASU', 85281, N'Tempe', N'AZ        ', N'AZ', N'480123456', N'group2csefall2015@gmail.com', NULL, 5, N'?', N'answer', N'2?', N'2 answer', N'1', N'3556498')
+INSERT [dbo].[EMPM] ([EMP_ID], [EMP_FNAME], [EMP_MNAME], [EMP_LNAME], [EMP_ADDR1], [EMP_ADDR2], [EMP_ZIP], [EMP_CITY], [EMP_STATE], [EMP_BRNCH], [EMP_PHN], [EMP_EMAIL], [EMP_MNGR], [EMP_PVG], [EMP_SECQ1], [EMP_ANS1], [EMP_SECQ2], [EMP_ANS2], [EMP_UNAME], [EMP_PASS]) VALUES (100004, N'Administrator', NULL, N'SBS', N'SBS', N'ASU', 85281, N'Tempe', N'AZ        ', N'AZ', N'480123456', N'group2csefall2015@gmail.com', NULL, 5, N'?', N'answer', N'2?', N'2 answer', N'100004', N'3556498')
 SET IDENTITY_INSERT [dbo].[EMPM] OFF
 /****** Object:  Table [dbo].[CSTM]    Script Date: 10/29/2015 12:51:55 ******/
 SET ANSI_NULLS ON
