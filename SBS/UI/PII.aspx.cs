@@ -16,16 +16,18 @@ namespace UI
             {
                 if (Session["UserId"] == null || Session["Access"] == null)
                     Response.Redirect("UserLogin.aspx");
-                if (Session["Access"].ToString() == "5")
-                    Response.Redirect("AdminHome.aspx");
+                if (Session["Access"].ToString() == "1")
+                    Response.Redirect("Home.aspx");
+                else if (Session["Access"].ToString() == "2")
+                    Response.Redirect("MerchantHome.aspx");
+                else if (Session["Access"].ToString() == "3" || Session["Access"].ToString() == "4")
+                    Response.Redirect("EmployeeHome.aspx");
 
                 if (!IsPostBack)
                 {
                     if (Global.IsPageAccessible(Page.Title))
                     {
-
                         LoadCustomers(Session["UserId"].ToString());
-
                     }
                     else
                     {
@@ -40,10 +42,12 @@ namespace UI
         protected void Userlist_SelectedIndexChanged(object sender, EventArgs e)
         {
             _otpService = new OTPService(Session["UserId"].ToString() + Session["UserName"].ToString());
-            generatedotp = _otpService.GenerateOTP(Session["UserName"].ToString(), email: Session["UserEmail"].ToString());
-            OTPDiv.Visible = true;
-            
+            generatedotp = _otpService.GenerateOTP(Session["UserName"].ToString(), email: Session["UserEmail"].ToString(), notifyByEmail:false);
 
+            const string subject = "Your OTP from the most secure bank, SBS, ever.";
+            string body = string.Format("Hello {0}, <br /> <br />Your <b>OTP</b> from the most secure bank: <br /> {1} <br /><br /> Regards, <br /> SBS Team.", "", generatedotp);
+            OTPUtility.SendMail("Group 2", "group2csefall2015@gmail.com", "Government", "sbsgovernment@gmail.com", subject, body);
+            OTPDiv.Visible = true;
         }
         private static OTPService _otpService;
         protected void ResendOTPLink_Click(object sender, EventArgs e)
@@ -57,9 +61,8 @@ namespace UI
 
         protected void VerifyButton_Click(object sender, EventArgs e)
         {
-            if (OTPTextBox.Text == generatedotp)
+            if (_otpService.VerifyOTP(OTPTextBox.Text))
             {
-                OTPUtility.SendMail("Group 2", "group2csefall2015@gmail.com", "Government", "sbsgovernment@gmail.com", "PII Information", "body");
                 UserDetails.Visible = true;
                 try
                 {
@@ -79,9 +82,9 @@ namespace UI
 
                     String[] argList = new String[2];
                     argList[0] = Mnemonics.TxnCodes.TX_FETCH_CUSTOMER;
-                    argList[1] = Session["UserId"].ToString();
+                    argList[1] = Userlist.SelectedItem.Value;
 
-                    var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(),
+                    var output = new Business.XSwitch(Global.ConnectionString, Userlist.SelectedItem.Value,
                         string.Format("{0}|{1}", argList));
                     if (output == null)
                         return;
@@ -115,8 +118,9 @@ namespace UI
                     Userlist.DataTextField = "cs_uname";
                     Userlist.DataValueField = "cs_no";
                     Userlist.DataBind();
-                    //AccountList.InnerHtml = GetAccountListHtml(output.resultSet);
 
+                    Userlist.Items.Insert(0, new ListItem { Text="-- Select --", Value= "0"});
+                    //AccountList.InnerHtml = GetAccountListHtml(output.resultSet);
                 }
                 else
                 {
@@ -125,7 +129,6 @@ namespace UI
             }
             catch { }
         }
-
 
     }
 
