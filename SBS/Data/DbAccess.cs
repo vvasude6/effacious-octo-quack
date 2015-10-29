@@ -16,19 +16,18 @@ namespace Data
         //private static const string CONNECTION_STRING = "Server=group2.mobicloud.asu.edu:1433;Database=SBS;User Id=sbsAdmin; password=sbsAdmin;encrypt=true";
         //private const string CONNECTION_STRING = "Server=(local);Initial Catalog=SBS;Integrated Security=True";
         private const int TIME_OUT = 1024;//Int32.Parse(ConfigurationManager.AppSettings["CommandTimeout"]);
-        
+
         #region ExecuteNonQuery
 
         public static int ExecuteNonQuery(string connectionString, CommandType commandType, string commandText, params SqlParameter[] commandParameters)
         {
+            var connection = new SqlConnection(connectionString);
             var command = new SqlCommand();
             var returnValue = 0;
             try
             {
-                var connection = new SqlConnection(connectionString);
                 Utility.PrepareCommand(command, connection, (SqlTransaction)null, commandType, commandText, commandParameters);
                 returnValue = command.ExecuteNonQuery();
-
                 command.Parameters.Clear();
             }
             catch (SystemException ex)
@@ -41,6 +40,7 @@ namespace Data
             }
             finally
             {
+                connection.Close();
                 command = null;
             }
             return returnValue;
@@ -123,6 +123,7 @@ namespace Data
             }
             finally
             {
+                connection.Close();
                 dataAdapter = null;
             }
             return dataSet;
@@ -198,6 +199,7 @@ namespace Data
             }
             finally
             {
+                connection.Close();
                 command = null;
             }
         }
