@@ -66,9 +66,6 @@ namespace UI
                 UserDetails.Visible = true;
                 try
                 {
-                    if (IsPostBack)
-                        return;
-
                     FirstNamebox.ForeColor = System.Drawing.Color.Black;
                     MiddleNamebox.ForeColor = System.Drawing.Color.Black;
                     LastNamebox.ForeColor = System.Drawing.Color.Black;
