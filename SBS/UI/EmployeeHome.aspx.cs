@@ -97,13 +97,15 @@ namespace UI
             {
                 var data = xSwitchObject.geTranDataFromRefNumber(Global.ConnectionString, referenceNumber);
                 var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(), string.Format("{0}|{1}|{2}", data, Session["Access"].ToString(), referenceNumber));
-                System.Windows.Forms.MessageBox.Show("Transaction was processed.");
+                //System.Windows.Forms.MessageBox.Show("Transaction was processed.");
+                ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Transaction was processed');", true);
             }
             else
             {
                 if (xSwitchObject.deletePendingTransaction(Global.ConnectionString, referenceNumber))
                 {
-                    System.Windows.Forms.MessageBox.Show("Transaction was deleted.");
+                    //System.Windows.Forms.MessageBox.Show("Transaction was deleted.");
+                    ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Transaction was deleted');", true);
                 }
             }
             Response.Redirect(Request.RawUrl);

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Windows.Forms;
 
 namespace UI
 {
@@ -28,7 +27,8 @@ namespace UI
             {
                 if (UserNameTextBox.Text == string.Empty || hashPasswordHiddenField.Value == string.Empty)
                 {
-                    MessageBox.Show("Looks like you have not entered the username and/or the password. They are required for sign in.");
+                    //MessageBox.Show("Looks like you have not entered the username and/or the password. They are required for sign in.");
+                    ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Looks like you have not entered the username and/or the password. They are required for sign in.');", true);
                 }
                 else
                 {
@@ -62,21 +62,22 @@ namespace UI
                                     Response.Redirect("AdminHome.aspx");
                                     break;
                                 default:
-                                    MessageBox.Show("Looks like we could not log you in. Please check the details you have entered.");
+                                    //MessageBox.Show("Looks like we could not log you in. Please check the details you have entered.");
+                                    ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Login failed, check userid and password');", true);
                                     break;
                             }
                         }
                         else
                         {
                             //MessageBox.Show(output);
-                            ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('" + output + "');", true);
+                            ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Login failed, check userid and password');", true);
                         }
                     }
                     else
                     {
                         //MessageBox.Show("Looks like we could not log you in. Please check the details you have entered.");
-                        var message = "Looks like we could not log you in. Please check the details you have entered.";
-                        ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('" + message + "');", true);
+                        //var message = "Looks like we could not log you in. Please check the details you have entered.";
+                        ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Login failed, check userid and password');", true);
                     }
                 }
             }

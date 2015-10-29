@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Windows.Forms;
 
 using Security;
 
@@ -29,13 +28,17 @@ namespace UI
                 Business.XSwitch xsw = new Business.XSwitch();
                 if (!UI.Validate.isUserNameValid(UserNameTextBox.Text))
                 {
-                    MessageBox.Show("Invalid User Name");
+                    //MessageBox.Show("Invalid User Name");
+                    ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Invalid user name');", true);
+
                     return;
                 }
                 var output = xsw.getExternalUserDataFromUserName(Global.ConnectionString, UserNameTextBox.Text);
                 if (output == null)
                 {
-                    MessageBox.Show("Invalid User Name");
+                    //MessageBox.Show("Invalid User Name");
+                    ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Invalid user name');", true);
+
                     return;
                 }
 
@@ -54,7 +57,8 @@ namespace UI
             {
                 if (!_otpService.VerifyOTP(OTPTextBox.Text.Trim()))
                 {
-                    MessageBox.Show("Could not verify the OTP that you entered.");
+                    //MessageBox.Show("Could not verify the OTP that you entered.");
+                    ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Could not verify the OTP entered');", true);
                     return;
                 }
 
@@ -62,7 +66,9 @@ namespace UI
                     hashPwdHiddenField.Value.Equals("0") ||
                     !hashPwdHiddenField.Value.Equals(hashCpwdHiddenField.Value))
                 {
-                    MessageBox.Show("Invalid Password Entered, or passwords do not match.");
+                    //MessageBox.Show("Invalid Password Entered, or passwords do not match.");
+                    ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Invalid password entered, or password dont match');", true);
+
                     pwdTextBox.Text = "";
                     cpwdTextBox.Text = "";
                     return;
@@ -77,7 +83,8 @@ namespace UI
 
                 var output = new Business.XSwitch(Global.ConnectionString, Session["TempUserId"].ToString(), string.Format("{0}|{1}|{2}", arglist));
 
-                MessageBox.Show("Password changed successfully.");
+                //MessageBox.Show("Password changed successfully.");
+                ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Password changed successfully');", true);
                 _otpService = null;
             }
             catch { }

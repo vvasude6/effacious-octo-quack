@@ -97,9 +97,10 @@ namespace Data
                             dataObject.ac_pvg, dataObject.ac_dr_flag, dataObject.ac_cr_flag, dataObject.ac_open_dt, dataObject.ac_activ);
                 return (int)DbAccess.ExecuteScalar(connectionString, CommandType.Text, query);
             }
-            catch (Exception ex)
+            catch
             {
-                throw ex;
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_ACTM_CREATE);
+                return -1;
             }
         }
         

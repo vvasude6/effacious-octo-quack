@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Windows.Forms;
 
 namespace UI
 {
@@ -148,11 +147,12 @@ namespace UI
 
                 if (errorFound)
                 {
-                    MessageBox.Show("Invalid data entered!  Please correct and resubmit.");
+                    //MessageBox.Show("Invalid data entered!  Please correct and resubmit.");
+                    ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Invalid data entered!  Please correct and resubmit.');", true);
                     return;
                 }
 
-                string[] arglist = new String[24];
+                string[] arglist = new String[26];
                 int argIndex = 0;
 
                 arglist[argIndex++] = Mnemonics.TxnCodes.TX_REGISTER_CUSTOMER;
@@ -179,9 +179,13 @@ namespace UI
                 arglist[argIndex++] = " ";
                 arglist[argIndex++] = " ";
                 arglist[argIndex++] = hashPwdHiddenField.Value;
+                arglist[argIndex++] = " ";
+                arglist[argIndex++] = " ";
 
-                var output = new Business.XSwitch(Global.ConnectionString, "0", string.Format("{0}|{1}|{2}|{3}|{4}|{5}|{6}|{7}|{8}|{9}|{10}|{11}|{12}|{13}|{14}|{15}|{16}|{17}|{17}|{18}{19}|{20}|{21}|{22}|{23}", arglist));
-                MessageBox.Show("Request for new user login created.  Email will be sent when administrator reviews.");
+                var output = new Business.XSwitch(Global.ConnectionString, "0", string.Format("{0}|{1}|{2}|{3}|{4}|{5}|{6}|{7}|{8}|{9}|{10}|{11}|{12}|{13}|{14}|{15}|{16}|{17}|{17}|{18}{19}|{20}|{21}|{22}|{23}|{24}|{25}", arglist));
+
+                //MessageBox.Show("Request for new user login created.  Email will be sent when administrator reviews.");
+                ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Request for new user login created.  Email will be sent when administrator reviews.');", true);
             }
             catch { }
             Response.Redirect("Home.aspx");

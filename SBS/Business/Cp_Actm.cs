@@ -33,6 +33,12 @@ namespace Business
         //actm = new Entity.Actm();
         public Cp_Actm()
         { }
+        //[CS_NO1],[CS_NO2],[AC_TYPE],[AC_BAL],[AC_HOLD],[AC_PVG],[AC_DR_FLAG],[AC_CR_FLAG],[AC_OPEN_DT],[AC_ACTIV]
+        public Cp_Actm(String connectionString, String cs1, String cs2, String acType, Decimal bal, Decimal hold,
+            Int32 pvg, String drFlag, String crFlag, String openDate, Boolean activeFlag)
+        {
+            actm = new Entity.Actm(cs1, cs2, acType, bal, hold, pvg, drFlag, crFlag, openDate, activeFlag);
+        }
         public Cp_Actm(string connectionString, String acno, Data.Dber dberr)
         {
             // fetch all details for ac_no = acno.

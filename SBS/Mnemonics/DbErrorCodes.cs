@@ -21,6 +21,7 @@ namespace Mnemonics
         public static String DBERR_TXNM_DELETE = "990";
         public static String DBERR_PENDTXN_DELETE = "989";
         public static String DBERR_PENDTXN_READ = "988";
+        public static String DBERR_ACTM_CREATE = "987";
 
         public static String TXERR_INIT_PVG = "500";
         public static String TXERR_NO_DEBIT = "499";
