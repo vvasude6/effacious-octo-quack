@@ -163,7 +163,7 @@ namespace Data
                 return DbAccess.ExecuteNonQuery(connectionString, CommandType.Text, query) == 1;
 
             }
-            catch (Exception ex)
+            catch
             {
                 return false;
             }
