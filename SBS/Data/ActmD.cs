@@ -44,7 +44,8 @@ namespace Data
             }
             catch(Exception ex)
             {
-                throw ex;
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_ACTM_NOFIND);
+                return null;
             }
         }
 
@@ -58,7 +59,8 @@ namespace Data
             }
             catch (Exception ex)
             {
-                throw ex;
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_ACTM_NOFIND);
+                return null;
             }
         }
 
@@ -80,7 +82,8 @@ namespace Data
             }
             catch (Exception ex)
             {
-                throw ex;
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_ACTM_NOFIND);
+                return null;
             }
         }
         public static int Create(string connectionString, Actm dataObject, Dber dberr)
@@ -97,14 +100,14 @@ namespace Data
                             dataObject.ac_pvg, dataObject.ac_dr_flag, dataObject.ac_cr_flag, dataObject.ac_open_dt, dataObject.ac_activ);
                 return (int)DbAccess.ExecuteScalar(connectionString, CommandType.Text, query);
             }
-            catch
+            catch (Exception ex)
             {
                 dberr.setError(Mnemonics.DbErrorCodes.DBERR_ACTM_CREATE);
                 return -1;
             }
         }
         
-        public static bool Delete (string connectionString, string acc_no, Dber dber)
+        public static bool Delete (string connectionString, string acc_no, Dber dberr)
         {
             try
             {
@@ -114,7 +117,8 @@ namespace Data
             }
             catch (Exception ex)
             {
-                throw ex;
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_ACTM_DELETE);
+                return false;
             }
         }
 
@@ -141,7 +145,8 @@ namespace Data
             }
             catch (Exception ex)
             {
-                throw ex;
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_ACTM_NOFIND);
+                return false;
             }
         }
 

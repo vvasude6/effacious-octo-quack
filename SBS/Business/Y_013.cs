@@ -78,6 +78,12 @@ namespace Business
                 result = dberr.getErrorDesc(connectionString);
                 return -1;
             }
+            if(!acct1.actmP.cs_no1.Equals(acct2.actmP.cs_no1))
+            {
+                dberr.setError(Mnemonics.DbErrorCodes.TXERR_MISMATCH_CUSTOMER);
+                resultP = dberr.getErrorDesc(connectionString);
+                return -1;
+            }
             String initEmpNumber = "0";
             String initCustomer = "0";
             if (this.newInitiator)

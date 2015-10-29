@@ -22,6 +22,9 @@ namespace Mnemonics
         public static String DBERR_PENDTXN_DELETE = "989";
         public static String DBERR_PENDTXN_READ = "988";
         public static String DBERR_ACTM_CREATE = "987";
+        public static String DBERR_CSTM_NOFIND = "986";
+        public static String DBERR_CSTM_CREATE = "985";
+        public static String DBERR_ACTM_DELETE = "984";
 
         public static String TXERR_INIT_PVG = "500";
         public static String TXERR_NO_DEBIT = "499";
@@ -49,6 +52,7 @@ namespace Mnemonics
         public static String TXERR_FMT_CUSTYPE = "477";
         public static String TXERR_EXISTING_USER = "476";
         public static String TXERR_INSUFFICIENT_BALANCE = "475";
+        public static String TXERR_MISMATCH_CUSTOMER = "474";
         public static String TXERR_NO_USER = "000";
 
         public static String MSG_SENT_FOR_AUTH = "The Transaction is pending Authorization!";

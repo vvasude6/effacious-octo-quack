@@ -49,11 +49,15 @@ namespace Data
                 }
 
                 else
+                {
+                    dberr.setError(Mnemonics.DbErrorCodes.DBERR_CSTM_NOFIND);
                     return null;
+                }
             }
             catch (Exception ex)
             {
-                throw ex;
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_CSTM_NOFIND);
+                return null;
             }
         }
 
@@ -72,11 +76,15 @@ namespace Data
                 }
 
                 else
+                {
+                    dberr.setError(Mnemonics.DbErrorCodes.DBERR_CSTM_NOFIND);
                     return null;
+                }
             }
             catch (Exception ex)
             {
-                throw ex;
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_CSTM_NOFIND);
+                return null;
             }
         }
 
@@ -96,13 +104,14 @@ namespace Data
 
                 else
                 {
-                    dberr.setError(Mnemonics.DbErrorCodes.DBERR_ACTM_NOFIND);
+                    dberr.setError(Mnemonics.DbErrorCodes.DBERR_CSTM_NOFIND);
                     return null;
                 }
             }
             catch (Exception ex)
             {
-                throw ex;
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_CSTM_NOFIND);
+                return null;
             }
         }
 
@@ -136,13 +145,16 @@ namespace Data
             }
             catch (Exception ex)
             {
-                throw ex;
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_CSTM_CREATE);
+                return -1;
             }
         }
 
         public static bool Update(string connectionString, Cstm dataObject, Dber dberr)
         {
-            var query = string.Format(@"UPDATE [SBS].[dbo].[CSTM]
+            try
+            {
+                var query = string.Format(@"UPDATE [SBS].[dbo].[CSTM]
                                        SET 
                                            [CS_FNAME] =       '{0}'
                                           ,[CS_MNAME] =       '{1}'
@@ -162,11 +174,17 @@ namespace Data
                                           ,[CS_SEC_QS3] =     '{14}'
                                           ,[CS_SEC_ANS3] =    '{15}'
                                           
-                                     WHERE CS_NO = {16}",  dataObject.cs_fname, dataObject.cs_mname, dataObject.cs_lname,
-                                     dataObject.cs_addr1, dataObject.cs_addr2, dataObject.cs_zip, dataObject.cs_city, dataObject.cs_state, dataObject.cs_phn,
-                                     dataObject.cs_email,  dataObject.cs_secq1, dataObject.cs_ans1, dataObject.cs_secq2,
-                                     dataObject.cs_ans2, dataObject.cs_secq3, dataObject.cs_ans3, dataObject.cs_no);
-            return DbAccess.ExecuteNonQuery(connectionString, CommandType.Text, query) == 1;
+                                     WHERE CS_NO = {16}", dataObject.cs_fname, dataObject.cs_mname, dataObject.cs_lname,
+                                         dataObject.cs_addr1, dataObject.cs_addr2, dataObject.cs_zip, dataObject.cs_city, dataObject.cs_state, dataObject.cs_phn,
+                                         dataObject.cs_email, dataObject.cs_secq1, dataObject.cs_ans1, dataObject.cs_secq2,
+                                         dataObject.cs_ans2, dataObject.cs_secq3, dataObject.cs_ans3, dataObject.cs_no);
+                return DbAccess.ExecuteNonQuery(connectionString, CommandType.Text, query) == 1;
+            }
+            catch(Exception ex)
+            {
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_CSTM_NOFIND);
+                return false;
+            }
         }
 
         private static bool UpdateUserId(string connectionString, int customerId, Dber dberr)
@@ -182,7 +200,7 @@ namespace Data
             catch (Exception ex)
             {
                 dberr.setError(Mnemonics.DbErrorCodes.DBERR_FAIL_UPDATE_PWD);
-                throw (new Exception(Mnemonics.DbErrorCodes.DBERR_FAIL_UPDATE_PWD));
+                return false;
             }
         }
 
@@ -196,7 +214,7 @@ namespace Data
             catch (Exception ex)
             {
                 dberr.setError(Mnemonics.DbErrorCodes.DBERR_FAIL_UPDATE_PWD);
-                throw (new Exception(Mnemonics.DbErrorCodes.DBERR_FAIL_UPDATE_PWD));
+                return false;
             }
         }
 
@@ -210,37 +228,45 @@ namespace Data
             }
             catch (Exception ex)
             {
-                throw ex;
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_FAIL_UPDATE_PWD);
+                return false;
             }
         }
 
         private static Cstm GetCstmObject(DataRow row)
         {
-            var customerMasterObject = new Cstm();
-            customerMasterObject.cs_no = row["cs_no"].ToString();
-            customerMasterObject.cs_type = row["cs_type"].ToString();
-            customerMasterObject.cs_fname = row["cs_fname"].ToString();
-            customerMasterObject.cs_mname = row["cs_mname"].ToString();
-            customerMasterObject.cs_lname = row["cs_lname"].ToString();
-            customerMasterObject.cs_access = row["cs_access"].ToString();
-            customerMasterObject.cs_addr1 = row["cs_addr1"].ToString();
-            customerMasterObject.cs_addr2 = row["cs_addr2"].ToString();
-            customerMasterObject.cs_branch = row["cs_branch"].ToString();
-            customerMasterObject.cs_city = row["cs_city"].ToString();
-            customerMasterObject.cs_email = row["cs_email"].ToString();
-            customerMasterObject.cs_phn = row["cs_phn"].ToString();
-            customerMasterObject.cs_zip = row["cs_zip"].ToString();
-            customerMasterObject.cs_uname = row["cs_uname"].ToString();
-            customerMasterObject.cs_pass = row["cs_pass"].ToString();
-            customerMasterObject.cs_secq1 = row["cs_sec_qs1"].ToString();
-            customerMasterObject.cs_secq2 = row["cs_sec_qs2"].ToString();
-            customerMasterObject.cs_secq3 = row["cs_sec_qs3"].ToString();
-            customerMasterObject.cs_state = row["cs_state"].ToString();
-            customerMasterObject.cs_uid = row["cs_uid"].ToString();
-            customerMasterObject.cs_ans1 = row["cs_sec_ans1"].ToString();
-            customerMasterObject.cs_ans2 = row["cs_sec_ans2"].ToString();
-            customerMasterObject.cs_ans3 = row["cs_sec_ans3"].ToString();
-            return customerMasterObject;
+            try
+            {
+                var customerMasterObject = new Cstm();
+                customerMasterObject.cs_no = row["cs_no"].ToString();
+                customerMasterObject.cs_type = row["cs_type"].ToString();
+                customerMasterObject.cs_fname = row["cs_fname"].ToString();
+                customerMasterObject.cs_mname = row["cs_mname"].ToString();
+                customerMasterObject.cs_lname = row["cs_lname"].ToString();
+                customerMasterObject.cs_access = row["cs_access"].ToString();
+                customerMasterObject.cs_addr1 = row["cs_addr1"].ToString();
+                customerMasterObject.cs_addr2 = row["cs_addr2"].ToString();
+                customerMasterObject.cs_branch = row["cs_branch"].ToString();
+                customerMasterObject.cs_city = row["cs_city"].ToString();
+                customerMasterObject.cs_email = row["cs_email"].ToString();
+                customerMasterObject.cs_phn = row["cs_phn"].ToString();
+                customerMasterObject.cs_zip = row["cs_zip"].ToString();
+                customerMasterObject.cs_uname = row["cs_uname"].ToString();
+                customerMasterObject.cs_pass = row["cs_pass"].ToString();
+                customerMasterObject.cs_secq1 = row["cs_sec_qs1"].ToString();
+                customerMasterObject.cs_secq2 = row["cs_sec_qs2"].ToString();
+                customerMasterObject.cs_secq3 = row["cs_sec_qs3"].ToString();
+                customerMasterObject.cs_state = row["cs_state"].ToString();
+                customerMasterObject.cs_uid = row["cs_uid"].ToString();
+                customerMasterObject.cs_ans1 = row["cs_sec_ans1"].ToString();
+                customerMasterObject.cs_ans2 = row["cs_sec_ans2"].ToString();
+                customerMasterObject.cs_ans3 = row["cs_sec_ans3"].ToString();
+                return customerMasterObject;
+            }
+            catch(Exception ex)
+            {
+                return null;
+            }
         }
 
         public static DataSet GetEmployeeAccessibleCustomerData(string connectionString, string employeeId, Dber dberr)
@@ -262,7 +288,8 @@ namespace Data
             }
             catch (Exception ex)
             {
-                throw ex;
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_FAIL_UPDATE_PWD);
+                return null;
             }
         }
     }
