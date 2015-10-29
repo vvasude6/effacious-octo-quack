@@ -40,6 +40,7 @@
                             <li><a runat="server" id="CreditFormLink" href="CreditForm.aspx">Deposit Money</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a runat="server" id="AccountStatementLink"  href="AccountStatement.aspx">Account Statement</a></li>
+                            <li><a runat="server" id="CreateAccountLink"  href="CreateAccount.aspx">New Account</a></li>
                         </ul>
                         
                     </li>

@@ -27,7 +27,7 @@ namespace UI
             if (output == null)
                 Response.Redirect("UserLogin.aspx");
 
-            if (output.resultSet.Tables[0].Rows.Count != 0)
+            if ((output.resultSet != null ) && (output.resultSet.Tables[0].Rows.Count != 0))
             {
                 MerchantAccountlist.InnerHtml = GetAccountListHtml(output.resultSet);
             }
