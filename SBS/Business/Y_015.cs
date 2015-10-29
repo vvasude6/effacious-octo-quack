@@ -12,7 +12,6 @@ namespace Business
     {
         Entity.Cstm cstm = new Entity.Cstm();
         Int32 txnPvga = 1;
-        Int32 usrPvga = 1;
         Int32 txnPvgb = 5;
         Entity.Pendtxn pendTxn;
         Cp_Txnm tx;
@@ -142,18 +141,20 @@ namespace Business
             }
             else
             {
+                // Insert new row in Customer table
                 int data = Data.CstmD.Create(connectionString, cstm, dberr);
                 if (dberr.ifError())
                 {
                     result = dberr.getErrorDesc(connectionString);
                     return -1;
                 }
+                // Write into history table
                 if (tx.txnmP.tran_fin_type.Equals("Y"))
                 {
                     // Write to FINHIST table
                     Entity.Finhist fhist = new Entity.Finhist(
                         "0",                        /* Account Number */
-                        "0",                        /* Reference Number */
+                        w,                          /* Reference Number */
                         this.tx.txnmP.tran_desc,    /* Transaction Description */
                         0,                          /* Debit Amount */
                         0,                          /* Credit Amount */
@@ -169,13 +170,25 @@ namespace Business
                     // Write to NFINHIST table
                     Entity.Nfinhist nFhist = new Entity.Nfinhist(
                         "0",                        /* Account Number */
-                        "0",                        /* Reference Number */
+                        w,                        /* Reference Number */
                         this.tx.txnmP.tran_desc,    /* Transaction Description */
                         "0",                        /* Initiating Employee Id */
                         loginAc,                    /* Approve Employee Id */
-                        cstm.cs_no                  /* Initiating Customer Number */
+                        data.ToString()             /* Initiating Customer Number */
                         );
                     Data.NfinhistD.Create(connectionString, nFhist, dberr);
+                }
+                if (dberr.ifError())
+                {
+                    result = dberr.getErrorDesc(connectionString);
+                    return -1;
+                }
+                // Delete the Pending transaction
+                if(!Data.PendtxnD.Delete(connectionString, w))
+                {
+                    dberr.setError(Mnemonics.DbErrorCodes.DBERR_PENDTXN_DELETE);
+                    result = dberr.getErrorDesc(connectionString);
+                    return -1;
                 }
             }
             if (dberr.ifError())
