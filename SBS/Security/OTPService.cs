@@ -30,12 +30,12 @@ namespace Security
             return _otp.GetCurrentOTP() == userOtp;
         }
 
-        public string GenerateOTP(string customerFullName, string email ="", string cellPhone="", bool notifyByEmail = true)
+        public string GenerateOTP(string customerFullName, string email ="", string cellPhone="", bool notifyByEmail = true, bool notifyByPhone = false)
         {
             var otpSecret =  _otp.GetNextOTP();
             if (notifyByEmail)
                 OTPUtility.SendMail(customerFullName, email, otpSecret);
-            else
+            if(notifyByPhone)
                 OTPUtility.SendMessage(cellPhone, otpSecret);
             return otpSecret;
         }
