@@ -36,6 +36,7 @@ namespace UI
                     var password = hashPasswordHiddenField.Value;
                     if (UI.Validate.isUserNameValid(userName))
                     {
+                        
                         Session["Username"] = userName;
                         var xSwitchObject = new Business.XSwitch(Global.ConnectionString, userName, string.Format("001|{0}|{1}", userName, password));
                         var output = xSwitchObject.resultP;

@@ -85,7 +85,7 @@ namespace Business
             catch(Exception e)
             {
                 this.error = true;
-                result = e.ToString();
+                result = e.Message.ToString();
             }
         }
         public Boolean basicValidationError()
@@ -187,6 +187,28 @@ namespace Business
                 result = dberr.getErrorDesc(connectionString);
                 return -1;
             }
+            Entity.Cstm cstm = Data.CstmD.Read(connectionString, acct.actmP.cs_no1, dberr);
+            if (dberr.ifError())
+            {
+                result = dberr.getErrorDesc(connectionString);
+                return -1;
+            }
+            String mailResponse = "";
+            if (!Security.OTPUtility.SendMail("SBS", "group2csefall2015@gmail.com", cstm.cs_fname + cstm.cs_mname + cstm.cs_lname,
+                cstm.cs_email, "Update from SBS for transaction ", tx.txnmP.tran_desc + acct.actmP.ac_bal))
+            {
+                mailResponse = "Mail sent.";
+            }
+            // -----------------------------------------
+            resultP = "Transaction Successful. Your new account balance is $" + acct.actmP.ac_bal + " " + mailResponse;
+            // --------------- send mail -----------------
+
+            //if(!loginAc.Equals(acc_no))
+            //{
+            //    Security.OTPUtility.SendMail(acc_no, )
+            //}
+
+            // -------------------------------------------
             return 0; // remove later
         }
         public String getOutput()

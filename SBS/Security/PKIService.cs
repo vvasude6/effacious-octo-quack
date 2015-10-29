@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,13 +11,24 @@ using System.Xml.Linq;
 
 namespace Security
 {
-    public static class PKIService
+    public class PKIService
     {
         private const int KEY_SIZE = 1024;
-        public static string GeneratePublicAndPrivateKey()
+
+        public string PrivateKey { get; set; } 
+        public string PublicKey { get; set; } 
+
+        public PKIService()
+        {
+            GeneratePublicAndPrivateKey();
+        }
+
+        private string GeneratePublicAndPrivateKey()
         {
             var provider = new RSACryptoServiceProvider(KEY_SIZE);
             var keyXml = provider.ToXmlString(true);
+            PrivateKey = provider.ToXmlString(true);
+            PublicKey = provider.ToXmlString(false);
 
             /*Example of keyXml  var keyXml = new XDocument(provider.ToXmlString(true));
              <RSAKeyValue>
@@ -41,7 +54,29 @@ namespace Security
             return keyXml;
         }
 
-        public static string EncryptData(string data, string keyXml)
+        private static byte[] ObjectToByteArray(Object obj)
+        {
+            var formatter = new BinaryFormatter();
+            using (var ms = new MemoryStream())
+            {
+                formatter.Serialize(ms, obj);
+                return ms.ToArray();
+            }
+        }
+
+        private static Object ByteArrayToObject(byte[] arrBytes)
+        {
+            using (var memStream = new MemoryStream())
+            {
+                var binForm = new BinaryFormatter();
+                memStream.Write(arrBytes, 0, arrBytes.Length);
+                memStream.Seek(0, SeekOrigin.Begin);
+                var obj = binForm.Deserialize(memStream);
+                return obj;
+            }
+        }
+
+        public static string EncryptData(Object dataObject, string keyXml)
         {
             try
             {
@@ -49,7 +84,7 @@ namespace Security
                 provider.FromXmlString(keyXml.ToString());
 
                 int newKeySize = KEY_SIZE / 8;
-                var bytes = Encoding.UTF32.GetBytes(data);
+                var bytes = ObjectToByteArray(dataObject);
                 var maxLength = newKeySize - 42;
                 var dataLength = bytes.Length;
                 int iterations = dataLength / maxLength;
@@ -69,7 +104,7 @@ namespace Security
             }
         }
 
-        public static string DecryptData(string encryptedData, string keyXml)
+        public static Object DecryptData(string encryptedData, string keyXml)
         {
             try
             {
@@ -84,7 +119,7 @@ namespace Security
                     byte[] encryptedBytes = Convert.FromBase64String(encryptedData.Substring(base64BlockSize * i, base64BlockSize));
                     arrayList.AddRange(provider.Decrypt(encryptedBytes, true));
                 }
-                return Encoding.UTF32.GetString(arrayList.ToArray(Type.GetType("System.Byte")) as byte[]);
+                return ByteArrayToObject(arrayList.ToArray(Type.GetType("System.Byte")) as byte[]);
 
             }
             catch (Exception ex)
@@ -92,5 +127,57 @@ namespace Security
                 throw ex;
             }
         }
+
+        //public static string EncryptData(string data, string keyXml)
+        //{
+        //    try
+        //    {
+        //        var provider = new RSACryptoServiceProvider(KEY_SIZE);
+        //        provider.FromXmlString(keyXml.ToString());
+
+        //        int newKeySize = KEY_SIZE / 8;
+        //        var bytes = Encoding.UTF32.GetBytes(data);
+        //        var maxLength = newKeySize - 42;
+        //        var dataLength = bytes.Length;
+        //        int iterations = dataLength / maxLength;
+        //        var stringBuilder = new StringBuilder();
+        //        for (int i = 0; i <= iterations; i++)
+        //        {
+        //            var tempBytes = new byte[(dataLength - maxLength * i > maxLength) ? maxLength : dataLength - maxLength * i];
+        //            Buffer.BlockCopy(bytes, maxLength * i, tempBytes, 0, tempBytes.Length);
+        //            var encryptedBytes = provider.Encrypt(tempBytes, true);
+        //            stringBuilder.Append(Convert.ToBase64String(encryptedBytes));
+        //        }
+        //        return stringBuilder.ToString();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
+
+        //public static string DecryptData(string encryptedData, string keyXml)
+        //{
+        //    try
+        //    {
+        //        var provider = new RSACryptoServiceProvider(KEY_SIZE);
+        //        provider.FromXmlString(keyXml.ToString());
+
+        //        var base64BlockSize = ((KEY_SIZE / 8) % 3 != 0) ? (((KEY_SIZE / 8) / 3) * 4) + 4 : ((KEY_SIZE / 8) / 3) * 4;
+        //        int iterations = encryptedData.Length / base64BlockSize;
+        //        var arrayList = new ArrayList();
+        //        for (var i = 0; i < iterations; i++)
+        //        {
+        //            byte[] encryptedBytes = Convert.FromBase64String(encryptedData.Substring(base64BlockSize * i, base64BlockSize));
+        //            arrayList.AddRange(provider.Decrypt(encryptedBytes, true));
+        //        }
+        //        return Encoding.UTF32.GetString(arrayList.ToArray(Type.GetType("System.Byte")) as byte[]);
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
     }
 }

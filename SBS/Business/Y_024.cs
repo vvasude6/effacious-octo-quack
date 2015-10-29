@@ -48,7 +48,18 @@ namespace Business
                 result = dberr.getErrorDesc(connectionString);
                 return -1;
             }
-            resultP = "Password Updated Successfully!";
+            //------------------------------
+            //Entity.Cstm cstm = Data.CstmD.Read(connectionString, acct.actmP.cs_no1, dberr);
+            String mailResponse = "";
+            if (!Security.OTPUtility.SendMail("SBS", "group2csefall2015@gmail.com",
+                cstm.cstmP.cs_fname + cstm.cstmP.cs_mname + cstm.cstmP.cs_lname, cstm.cstmP.cs_email,
+                "Update from SBS", "Password updated via transaction: "+ tx.txnmP.tran_desc))
+            {
+                mailResponse = "Mail sent.";
+            }
+            //-------------------------------
+            resultP = "Successful!" + mailResponse;
+            //resultP = "Password Updated Successfully!";
             return 0;
         }
     }

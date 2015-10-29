@@ -37,17 +37,29 @@ namespace Data
                 }
 
                 else
+                {
+                    dberr.setError(Mnemonics.DbErrorCodes.DBERR_NFINHIST_READ);
                     return null;
+                }
             }
             catch (Exception ex)
             {
-                throw ex;
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_NFINHIST_READ);
+                return null;
             }
         }
         public static DataSet ReadAll(string connectionString, Dber dberr)
         {
-            var query = string.Format("select * from Nfinhist");
-            return DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
+            try
+            {
+                var query = string.Format("select * from Nfinhist");
+                return DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
+            }
+            catch(Exception ex)
+            {
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_NFINHIST_READ);
+                return null;
+            }
         }
         public static int Create(string connectionString, Nfinhist dataObject, Dber dberr)
         {
@@ -73,7 +85,8 @@ namespace Data
             }
             catch (Exception ex)
             {
-                throw ex;
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_NFINHIST_CREATE);
+                return -1;
             }
         }
 
@@ -91,7 +104,8 @@ namespace Data
             }
             catch (Exception ex)
             {
-                throw ex;
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_NFINHIST_DELETE);
+                return false;
             }
         }
 
@@ -101,9 +115,13 @@ namespace Data
             {
                 var query = string.Format(string.Format(@"select 
                             TRAN_TIMESTAMP [Timestamp],
-                            TRAN_DESC [Transaction]
+                            TRAN_DESC [Transaction],
+                            INIT_CSNO [Customer Number],
+                            INIT_EMPID [Employee Id],
+                            APPRV_EMPID [Approver Id],
+                            AC_NO [Account Number]
                             from NFINHIST
-                            where INIT_CSNO = '{0}'
+                            
                             order by TRAN_TIMESTAMP desc", cs_no));
                 var data = DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
                 if (data != null)
@@ -112,13 +130,14 @@ namespace Data
                 }
                 else
                 {
-                    dberr.setError(Mnemonics.DbErrorCodes.DBERR_ACTM_NOFIND);
+                    dberr.setError(Mnemonics.DbErrorCodes.DBERR_NFINHIST_READ);
                     return null;
                 }
             }
             catch (Exception ex)
             {
-                throw ex;
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_NFINHIST_READ);
+                return null; 
             }
         }
     }

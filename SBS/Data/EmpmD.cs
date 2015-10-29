@@ -53,7 +53,8 @@ namespace Data
             }
             catch (Exception ex)
             {
-                throw ex;
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_EMPM_NOFIND);
+                return null;
             }
         }
 
@@ -100,7 +101,8 @@ namespace Data
             }
             catch (Exception ex)
             {
-                throw ex;
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_EMPM_NOFIND);
+                return null;
             }
         }
         // Somnath ---------------------------------
@@ -114,7 +116,7 @@ namespace Data
             catch (Exception ex)
             {
                 dberr.setError(Mnemonics.DbErrorCodes.DBERR_EMPM_NOFIND);
-                throw (new Exception(Mnemonics.DbErrorCodes.DBERR_EMPM_NOFIND));
+                return " ";
             }
         }
         public static DataSet ReadAll(string connectionString, Dber dberr)
@@ -156,6 +158,20 @@ namespace Data
             throw new NotImplementedException();
         }
 
+        public static bool UpdatePassword(string connectionString, string userId, string password, Dber dberr)
+        {
+            try
+            {
+                var query = string.Format("update empm set emp_pass = '{0}' where emp_id = {1}", password, userId);
+                return DbAccess.ExecuteNonQuery(connectionString, CommandType.Text, query) == 1;
+            }
+            catch (Exception ex)
+            {
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_FAIL_UPDATE_PWD);
+                return false;
+            }
+        }
+
         private static bool UpdateUserId(string connectionString, int employeeId, Dber dberr)
         {
             try
@@ -168,8 +184,8 @@ namespace Data
             }
             catch (Exception ex)
             {
-                dberr.setError(Mnemonics.DbErrorCodes.DBERR_FAIL_UPDATE_PWD);
-                throw (new Exception(Mnemonics.DbErrorCodes.DBERR_FAIL_UPDATE_PWD));
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_EMPM_UPDATE); 
+                return false;
             }
         }
         public static bool Delete(string connectionString, string id, Dber dberr)
@@ -181,7 +197,7 @@ namespace Data
             }
             catch (Exception ex)
             {
-                dberr.setError(Mnemonics.DbErrorCodes.DBERR_ACTM_NOFIND);
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_EMPM_NOFIND);
                 return false;
             }
         }

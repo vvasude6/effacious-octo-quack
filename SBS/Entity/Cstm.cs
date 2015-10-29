@@ -32,6 +32,7 @@ namespace Entity
 
         public String cs_pass { get; set; }
         public String cs_uname { get; set; }
+        public String cs_merch { get; set; }
         public Cstm()
         { }
         public Cstm(String a, String b, String c, String d, String e, String f, String g, String h, String i, 

@@ -13,6 +13,15 @@ namespace UI {
     public partial class AccountStatement {
         
         /// <summary>
+        /// CreatePdfButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button CreatePdfButton;
+        
+        /// <summary>
         /// FinHistoryGridView control.
         /// </summary>
         /// <remarks>

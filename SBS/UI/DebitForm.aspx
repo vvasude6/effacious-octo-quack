@@ -1,6 +1,9 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Site1.Master" CodeBehind="DebitForm.aspx.cs" Inherits="UI.DebitForm" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script src="Scripts/jquery.keyboard.extension-typing.js"></script>
+    <script src="Scripts/jquery.keyboard.js"></script>
+    <link href="css/keyboard.css" type="text/css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h3>Withdraw Money</h3>
@@ -10,7 +13,8 @@
     <div runat="server" id="FromCustomerDiv" class="input-group">
         <span class="input-group-addon">&nbsp;From Customer</span>
         <asp:DropDownList ID="CustomerDropDown" runat="server" Width="250px" Height="35px" CssClass="form-control"
-            OnSelectedIndexChanged="CustomerDropDown_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+            OnSelectedIndexChanged="CustomerDropDown_SelectedIndexChanged" AutoPostBack="true">
+        </asp:DropDownList>
     </div>
 
     <br />
@@ -45,5 +49,25 @@
             &nbsp;&nbsp;<asp:LinkButton ID="ResendOTPLink" runat="server" Text="Resend OTP" OnClick="ResendOTPLink_Click"></asp:LinkButton>
         </div>
     </div>
+
+    <div class="input-group" id="VirtualCheckBoxArea" runat="server" style="display:none;">
+        <span>
+            <input type="checkbox" id="VirtualKeyboardCheckBox" />
+            Use Virtual Keyboard
+        </span>
+    </div>
+
+    <script type="text/javascript">
+        $('#VirtualKeyboardCheckBox').change(function () {
+            if ($('#VirtualKeyboardCheckBox').is(':checked') == true) {
+                $('#ContentPlaceHolder1_OTPTextBox').keyboard({
+                    autoAccept: true
+                }).addTyping();
+            }
+            else {
+                window.location.reload();
+            }
+        });
+    </script>
 
 </asp:Content>

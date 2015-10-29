@@ -32,14 +32,15 @@ namespace Business
         String TXID;
         String cusNo;
         Boolean error = false;
-        public Y_025(String txid, String connectionString, String acType, String refNo, String loginAc)
+        public Y_025(String txid, String connectionString, String acType, String dummyAc, String dummyAccess, String refNo, String loginAc)
         {
             dberr = new Data.Dber();
             this.TXID = txid;
             this.loginAc = loginAc;
-            processTransaction(connectionString, loginAc, acType, refNo, dberr);
+            processTransaction(connectionString, loginAc, acType, dummyAc, dummyAccess, refNo, dberr);
         }
-        private int processTransaction(String connectionString, String loginAc, String acType, String refno, Data.Dber dberr)
+        private int processTransaction(String connectionString, String loginAc, String acType, 
+            String dummyAc, String dummyAccess, String refno, Data.Dber dberr)
         {
             tx = new Cp_Txnm(connectionString, TXID, dberr);
             // Check if TXNM fetch for transaction type "010" is successful. Return if error encountered
@@ -51,6 +52,7 @@ namespace Business
             cstm = Data.CstmD.Read(connectionString, loginAc, dberr);
             if (dberr.ifError())
             {
+                dberr = new Data.Dber();
                 empm = Data.EmpmD.Read(connectionString, loginAc, dberr);
                 if (dberr.ifError())
                 {
@@ -77,7 +79,7 @@ namespace Business
             }
             if (!pvg.verifyApprovePrivilege())
             {
-                String inData = this.TXID + "|" + acType;
+                String inData = this.TXID + "|" + acType + "|" + loginAc;
                     if (pvg.writeToPendingTxns(
                         connectionString,               /* connection string */
                         "0",                            /* account 1 */
@@ -100,7 +102,7 @@ namespace Business
                     return 0;
             }
 
-            actm = new Cp_Actm(connectionString, loginAc, "0", acType, 0, 0, 1, "Y", "Y", DateTime.Now.ToString(), true);
+            actm = new Cp_Actm(connectionString, dummyAc, "0", acType, 0, 0, 1, "Y", "Y", DateTime.Now.ToString(), true);
             if (dberr.ifError())
             {
                 result = dberr.getErrorDesc(connectionString);
@@ -118,6 +120,23 @@ namespace Business
                 result = dberr.getErrorDesc(connectionString);
                 return -1;
             }
+            //retCode
+            //Entity.Cstm cstm = Data.CstmD.Read(connectionString, acct.actmP.cs_no1, dberr);
+            Entity.Cstm cstm1 = Data.CstmD.Read(connectionString, retCode.ToString(), dberr);
+            if (dberr.ifError())
+            {
+                result = dberr.getErrorDesc(connectionString);
+                return -1;
+            }
+            String mailResponse = "";
+            if (!Security.OTPUtility.SendMail("SBS", "group2csefall2015@gmail.com",
+                cstm1.cs_fname + cstm1.cs_mname + cstm1.cs_lname, cstm1.cs_email,
+                "Update from SBS", "new account created for you is " + retCode.ToString()))
+            {
+                mailResponse = "Mail sent.";
+            }
+            //-------------------------------
+            resultP = "Successful!" + mailResponse;
             return 0;
         }
     }

@@ -109,9 +109,9 @@
 
         $('#VirtualKeyboardCheckBox').change(function () {
             if ($('#VirtualKeyboardCheckBox').is(':checked') == true) {
-                $('#UserNameTextBox').keyboard({
-                    autoAccept: true
-                }).addTyping();
+                //$('#UserNameTextBox').keyboard({
+                //    autoAccept: true
+                //}).addTyping();
                 $('#PasswordTextBox').keyboard({
                     autoAccept: true
                 }).addTyping();

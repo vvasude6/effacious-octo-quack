@@ -132,6 +132,8 @@ namespace UI
                             //show otp 
                             DebitButton.Visible = false;
                             OTPDiv.Visible = true;
+                            VirtualCheckBoxArea.Style.Remove("display");
+                            VirtualCheckBoxArea.Style.Add("display", "block");
                         }
                         else
                         {
@@ -195,7 +197,10 @@ namespace UI
             Amount.Text = string.Empty;
             FromDropdown.SelectedIndex = 0;
             OTPDiv.Visible = false;
+            VirtualCheckBoxArea.Style.Remove("display");
+            VirtualCheckBoxArea.Style.Add("display", "none");
             DebitButton.Visible = true;
+            OTPTextBox.Text = string.Empty;
         }
 
         protected void CustomerDropDown_SelectedIndexChanged(object sender, EventArgs e)

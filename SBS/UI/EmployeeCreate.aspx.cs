@@ -121,9 +121,9 @@ namespace UI
                     return;
                 }
 
-                string[] arglist = new String[19];
+                string[] arglist = new String[21];
                 int argIndex = 0;
-                arglist[argIndex++] = Mnemonics.TxnCodes.TX_REGISTER_USER;
+                arglist[argIndex++] = Mnemonics.TxnCodes.TX_CREATE_EMPLOYEE;
                 arglist[argIndex++] = " ";
                 arglist[argIndex++] = FirstNameTextBox.Text;
                 arglist[argIndex++] = MiddleNameTextBox.Text;
@@ -146,7 +146,7 @@ namespace UI
                 arglist[argIndex++] = hashPwdHiddenField.Value;
 
                 var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(),
-                    string.Format("{0}|{1}|{2}|{3}|{4}|{5}|{6}|{7}|{8}|{9}|{10}|{11}|{12}|{13}|{14}|{15}|{16}|{17}|{18}", arglist));
+                    string.Format("{0}|{1}|{2}|{3}|{4}|{5}|{6}|{7}|{8}|{9}|{10}|{11}|{12}|{13}|{14}|{15}|{16}|{17}|{18}|{19}|{20}", arglist));
 
                 ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('New employee created');", true);
             }

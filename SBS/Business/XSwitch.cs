@@ -6,9 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
 using Data;
+using Security;
 
 namespace Business
 {
+    [Serializable]
     public class XSwitch
     {
         String result;
@@ -229,7 +231,7 @@ namespace Business
                             dataPart[1], dataPart[2], dataPart[3], dataPart[4], dataPart[5], dataPart[6],
                             dataPart[7], dataPart[8], dataPart[9], dataPart[10], dataPart[11], dataPart[12],
                             dataPart[13], dataPart[14], dataPart[15], dataPart[16], dataPart[17], dataPart[18],
-                            dataPart[19], dataPart[20], dataPart[21], dataPart[22], dataPart[23], loginAc);
+                            dataPart[19], dataPart[20], dataPart[21], dataPart[22], dataPart[23], dataPart[24], dataPart[25], loginAc);
                         result = y015.resultP;
                         // ENCRYPT result here
                         break;
@@ -244,8 +246,16 @@ namespace Business
                         resultP = y024.resultP;
                         break;
                     case Mnemonics.TxnCodes.TX_CREATE_ACCOUNT:
-                        Y_025 y025 = new Y_025(Mnemonics.TxnCodes.TX_CREATE_ACCOUNT, connectionString, dataPart[1], dataPart[3], loginAc);
+                        Y_025 y025 = new Y_025(Mnemonics.TxnCodes.TX_CREATE_ACCOUNT, connectionString, dataPart[1],
+                            dataPart[2], dataPart[3], dataPart[4], loginAc);
                         resultP = y025.resultP;
+                        break;
+                    case Mnemonics.TxnCodes.TX_CREATE_EMPLOYEE:
+                        Y_026 y026 = new Y_026(connectionString, Mnemonics.TxnCodes.TX_CREATE_EMPLOYEE, dataPart[1], dataPart[2], dataPart[3], dataPart[4], dataPart[5], dataPart[6],
+                            dataPart[7], dataPart[8], dataPart[9], dataPart[10], dataPart[11], dataPart[12],
+                            dataPart[13], dataPart[14], dataPart[15], dataPart[16], dataPart[17], dataPart[18],
+                            dataPart[19], dataPart[20], loginAc);
+                            resultP = y026.resultP;
                         break;
                 }
             }
@@ -305,6 +315,39 @@ namespace Business
             if (!dberr.ifError())
             {
                 return ds;
+            }
+            else return null;
+        }
+
+        public DataSet getMerchantAccessibleCustomerData(string connectionString, string employeeId)
+        {
+            var dberr = new Data.Dber();
+            var ds = Data.CstmD.GetMerchantAccessibleCustomerData(connectionString, employeeId, dberr);
+            if (!dberr.ifError())
+            {
+                return ds;
+            }
+            else return null;
+        }
+
+        public string getCustomerPrivateKey(string connectionString, string customerNumber)
+        {
+            var dberr = new Data.Dber();
+            var data = Data.PkitD.GetCustomerPrivateKey(connectionString, customerNumber);
+            if (!dberr.ifError())
+            {
+                return data;
+            }
+            else return null;
+        }
+
+        public string getBankPublicKey(string connectionString)
+        {
+            var dberr = new Data.Dber();
+            var data = Data.PkitD.GetBankPrivateKey(connectionString);
+            if (!dberr.ifError())
+            {
+                return data;
             }
             else return null;
         }

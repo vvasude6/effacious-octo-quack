@@ -10,6 +10,42 @@ namespace Security
 {
     public static class OTPUtility
     {
+    	   public static bool SendMail(string SenderName, string SenderEmail, string ReceiverName, string ReceiverEmail, string Subject, string Body)
+        {
+            try
+            {
+                var fromAddress = new MailAddress(SenderEmail, "SBS");
+                var toAddress = new MailAddress(ReceiverEmail, ReceiverName);
+                const string fromPassword = "group2fall";
+                string subject = Subject;
+                string body = Body;
+
+                var smtp = new SmtpClient
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+                };
+                using (var message = new MailMessage(fromAddress, toAddress)
+                {
+                    Subject = subject,
+                    Body = body,
+                    IsBodyHtml = true
+                })
+                {
+                    smtp.Send(message);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        
         public static bool SendMail(string customerName, string customerEmail, string secretKey)
         {
             try
@@ -42,7 +78,7 @@ namespace Security
             }
             catch (Exception ex)
             {
-                throw ex;
+                return false;
             }
         }
 
