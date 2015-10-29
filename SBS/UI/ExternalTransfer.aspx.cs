@@ -82,7 +82,7 @@ namespace UI
             }
             else
             {
-                FromDropDown.Items.Add("No Accounts Found");
+                FromDropDown.Items.Add(new ListItem { Text = "No Accounts Found", Value = "0" });
             }
         }
 

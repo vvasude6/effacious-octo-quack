@@ -67,27 +67,34 @@ namespace UI
                 if (output == null)
                     Response.Redirect("Error.aspx");
 
-
-                if (output.resultSet.Tables[0].Rows.Count != 0)
+                if (output.resultSet.Tables.Count > 0)
                 {
-                    ToDropdown.DataSource = output.resultSet.Tables[0];
-                    ToDropdown.DataTextField = "ac_no";
-                    ToDropdown.DataValueField = "ac_no";
-                    ToDropdown.DataBind();
-                    //AccountList.InnerHtml = GetAccountListHtml(output.resultSet);
+                    if (output.resultSet.Tables[0].Rows.Count != 0)
+                    {
+                        ToDropdown.DataSource = output.resultSet.Tables[0];
+                        ToDropdown.DataTextField = "ac_no";
+                        ToDropdown.DataValueField = "ac_no";
+                        ToDropdown.DataBind();
+                        //AccountList.InnerHtml = GetAccountListHtml(output.resultSet);
+                    }
+                    else
+                    {
+                        ToDropdown.Items.Add(new ListItem { Text = "No Accounts Found", Value = "0" });
+                    }
                 }
                 else
                 {
-                    ToDropdown.Items.Add(new ListItem { Text = "No Accounts Found", Value = null });
+                    ToDropdown.Items.Clear();
+                    ToDropdown.Items.Add(new ListItem { Text = "No Accounts Found", Value = "0" });
                 }
-            }
+        }
         }
 
         protected void CreditButton_Click(object sender, EventArgs e)
         {
             if (Session["Access"].ToString() == "1" || Session["Access"].ToString() == "2")
             {
-                if (ToDropdown.SelectedValue == null)
+                if (ToDropdown.SelectedValue == "0")
                 {
                     MessageBox.Show("Select the Account from which an amount has to be Debited");
                 }

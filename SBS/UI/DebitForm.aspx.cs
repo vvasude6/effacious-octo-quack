@@ -71,25 +71,33 @@ namespace UI
 
         private void LoadAccounts(string externalUserId, bool byPass = false)
         {
-            try {
+            try
+            {
                 if (Session["Access"].ToString() == "1" || Session["Access"].ToString() == "2" || byPass)
                 {
                     var output = new Business.XSwitch(Global.ConnectionString, Session["Username"].ToString(), string.Format("009|{0}", externalUserId));
                     if (output == null)
                         Response.Redirect("Error.aspx");
 
-
-                    if (output.resultSet.Tables[0].Rows.Count != 0)
+                    if (output.resultSet.Tables.Count > 0)
                     {
-                        FromDropdown.DataSource = output.resultSet.Tables[0];
-                        FromDropdown.DataTextField = "ac_no";
-                        FromDropdown.DataValueField = "ac_no";
-                        FromDropdown.DataBind();
-                        //AccountList.InnerHtml = GetAccountListHtml(output.resultSet);
+                        if (output.resultSet.Tables[0].Rows.Count != 0)
+                        {
+                            FromDropdown.DataSource = output.resultSet.Tables[0];
+                            FromDropdown.DataTextField = "ac_no";
+                            FromDropdown.DataValueField = "ac_no";
+                            FromDropdown.DataBind();
+                            //AccountList.InnerHtml = GetAccountListHtml(output.resultSet);
+                        }
+                        else
+                        {
+                            FromDropdown.Items.Add(new ListItem { Text = "No Accounts Found", Value = "0" });
+                        }
                     }
                     else
                     {
-                        FromDropdown.Items.Add(new ListItem { Text = "No Accounts Found", Value = null });
+                        FromDropdown.Items.Clear();
+                        FromDropdown.Items.Add(new ListItem { Text = "No Accounts Found", Value = "0" });
                     }
 
                 }
@@ -103,7 +111,7 @@ namespace UI
             {
                 if (Session["Access"].ToString() == "1" || Session["Access"].ToString() == "2")
                 {
-                    if (FromDropdown.SelectedValue == null)
+                    if (FromDropdown.SelectedValue == "0")
                     {
                         MessageBox.Show("Select the Account from which an amount has to be Debited");
                     }

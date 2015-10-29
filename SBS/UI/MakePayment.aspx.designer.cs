@@ -13,66 +13,57 @@ namespace UI {
     public partial class MakePayment {
         
         /// <summary>
-        /// PayeeLabel control.
+        /// FromCustomerDiv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label PayeeLabel;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl FromCustomerDiv;
         
         /// <summary>
-        /// PayeeList control.
+        /// CustomerDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList PayeeList;
+        protected global::System.Web.UI.WebControls.DropDownList CustomerDropDown;
         
         /// <summary>
-        /// PayLabel control.
+        /// FromDropdown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label PayLabel;
+        protected global::System.Web.UI.WebControls.DropDownList FromDropdown;
         
         /// <summary>
-        /// AmountPay control.
+        /// ToDropdown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox AmountPay;
+        protected global::System.Web.UI.WebControls.DropDownList ToDropdown;
         
         /// <summary>
-        /// ConfirmLabel control.
+        /// Amount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ConfirmLabel;
+        protected global::System.Web.UI.WebControls.TextBox Amount;
         
         /// <summary>
-        /// ConfirmPay control.
+        /// MakePaymentButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ConfirmPay;
-        
-        /// <summary>
-        /// Payment control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Payment;
+        protected global::System.Web.UI.WebControls.Button MakePaymentButton;
     }
 }
