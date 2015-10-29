@@ -9,6 +9,7 @@ using Data;
 
 namespace Business
 {
+    [Serializable]
     public class XSwitch
     {
         String result;

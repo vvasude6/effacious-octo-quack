@@ -53,7 +53,8 @@ namespace Data
             }
             catch (Exception ex)
             {
-                throw ex;
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_EMPM_NOFIND);
+                return null;
             }
         }
 
@@ -100,7 +101,8 @@ namespace Data
             }
             catch (Exception ex)
             {
-                throw ex;
+                dberr.setError(Mnemonics.DbErrorCodes.DBERR_EMPM_NOFIND);
+                return null;
             }
         }
         // Somnath ---------------------------------
