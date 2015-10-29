@@ -80,6 +80,7 @@
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\Custom.css" />
     <Content Include="css\keyboard.css" />
+    <Content Include="CustomerEmployeeDelete.aspx" />
     <Content Include="CustProfileUpdate.aspx" />
     <Content Include="DebitForm.aspx" />
     <Content Include="EmployeeDisplay.aspx" />
@@ -181,6 +182,13 @@
     </Compile>
     <Compile Include="CreditForm.aspx.designer.cs">
       <DependentUpon>CreditForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerEmployeeDelete.aspx.cs">
+      <DependentUpon>CustomerEmployeeDelete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomerEmployeeDelete.aspx.designer.cs">
+      <DependentUpon>CustomerEmployeeDelete.aspx</DependentUpon>
     </Compile>
     <Compile Include="CustProfileUpdate.aspx.cs">
       <DependentUpon>CustProfileUpdate.aspx</DependentUpon>
