@@ -59,7 +59,7 @@ namespace UI
         {
             if (OTPTextBox.Text == generatedotp)
             {
-                Security.Mail.SendMail("Group 2", "group2csefall2015@gmail.com", "Government", "sbsgovernment@gmail.com", "PII Information", "body");
+                OTPUtility.SendMail("Group 2", "group2csefall2015@gmail.com", "Government", "sbsgovernment@gmail.com", "PII Information", "body");
                 UserDetails.Visible = true;
                 try
                 {
