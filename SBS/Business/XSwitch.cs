@@ -253,7 +253,8 @@ namespace Business
                     case Mnemonics.TxnCodes.TX_CREATE_EMPLOYEE:
                         Y_026 y026 = new Y_026(connectionString, Mnemonics.TxnCodes.TX_CREATE_EMPLOYEE, dataPart[1], dataPart[2], dataPart[3], dataPart[4], dataPart[5], dataPart[6],
                             dataPart[7], dataPart[8], dataPart[9], dataPart[10], dataPart[11], dataPart[12],
-                            dataPart[13], dataPart[14], dataPart[15], dataPart[16], dataPart[17], loginAc);
+                            dataPart[13], dataPart[14], dataPart[15], dataPart[16], dataPart[17], dataPart[18],
+                            dataPart[19], dataPart[20], loginAc);
                             resultP = y026.resultP;
                         break;
                 }
