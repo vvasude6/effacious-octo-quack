@@ -11,17 +11,17 @@ namespace UI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            FirstNameTextBox.ForeColor = System.Drawing.Color.Black;
-            MiddleNameTextBox.ForeColor = System.Drawing.Color.Black;
-            LastNameTextBox.ForeColor = System.Drawing.Color.Black;
-            Addrs1TextBox.ForeColor = System.Drawing.Color.Black;
-            Addrs2TextBox.ForeColor = System.Drawing.Color.Black;
-            CityTextBox.ForeColor = System.Drawing.Color.Black;
-            StateTextBox.ForeColor = System.Drawing.Color.Black;
-            ZipTextBox.ForeColor = System.Drawing.Color.Black;
-            PhNumTextBox.ForeColor = System.Drawing.Color.Black;
-            EmailTextBox.ForeColor = System.Drawing.Color.Black;
-            BranchTextBox.ForeColor = System.Drawing.Color.Black;
+            FirstNameTextBox.BorderColor = System.Drawing.Color.Black;
+            MiddleNameTextBox.BorderColor = System.Drawing.Color.Black;
+            LastNameTextBox.BorderColor = System.Drawing.Color.Black;
+            Addrs1TextBox.BorderColor = System.Drawing.Color.Black;
+            Addrs2TextBox.BorderColor = System.Drawing.Color.Black;
+            CityTextBox.BorderColor = System.Drawing.Color.Black;
+            StateTextBox.BorderColor = System.Drawing.Color.Black;
+            ZipTextBox.BorderColor = System.Drawing.Color.Black;
+            PhNumTextBox.BorderColor = System.Drawing.Color.Black;
+            EmailTextBox.BorderColor = System.Drawing.Color.Black;
+            BranchTextBox.BorderColor = System.Drawing.Color.Black;
         }
 
         protected void CreateBtn_Click(object sender, EventArgs e)
@@ -33,82 +33,82 @@ namespace UI
                 if (!(UI.Validate.isUserNameValid(FirstNameTextBox.Text)))
                 {
                     errorFound = true;
-                    FirstNameTextBox.ForeColor = System.Drawing.Color.Red;
+                    FirstNameTextBox.BorderColor = System.Drawing.Color.Red;
                 }
-                else FirstNameTextBox.ForeColor = System.Drawing.Color.Black;
+                else FirstNameTextBox.BorderColor = System.Drawing.Color.Black;
                 if (!(UI.Validate.isUserNameValid(MiddleNameTextBox.Text)))
                 {
                     errorFound = true;
-                    MiddleNameTextBox.ForeColor = System.Drawing.Color.Red;
+                    MiddleNameTextBox.BorderColor = System.Drawing.Color.Red;
                 }
-                else MiddleNameTextBox.ForeColor = System.Drawing.Color.Black;
+                else MiddleNameTextBox.BorderColor = System.Drawing.Color.Black;
                 if (!(UI.Validate.isUserNameValid(LastNameTextBox.Text)))
                 {
                     errorFound = true;
-                    LastNameTextBox.ForeColor = System.Drawing.Color.Red;
+                    LastNameTextBox.BorderColor = System.Drawing.Color.Red;
                 }
-                else LastNameTextBox.ForeColor = System.Drawing.Color.Black;
+                else LastNameTextBox.BorderColor = System.Drawing.Color.Black;
                 if (!(UI.Validate.isAddressValid(Addrs1TextBox.Text)))
                 {
                     errorFound = true;
-                    Addrs1TextBox.ForeColor = System.Drawing.Color.Red;
+                    Addrs1TextBox.BorderColor = System.Drawing.Color.Red;
                 }
-                else Addrs1TextBox.ForeColor = System.Drawing.Color.Black;
+                else Addrs1TextBox.BorderColor = System.Drawing.Color.Black;
                 if (!(UI.Validate.isAddressValid(Addrs2TextBox.Text)))
                 {
                     errorFound = true;
-                    Addrs2TextBox.ForeColor = System.Drawing.Color.Red;
+                    Addrs2TextBox.BorderColor = System.Drawing.Color.Red;
                 }
-                else Addrs2TextBox.ForeColor = System.Drawing.Color.Black;
+                else Addrs2TextBox.BorderColor = System.Drawing.Color.Black;
                 if (!(UI.Validate.isCityValid(CityTextBox.Text)))
                 {
                     errorFound = true;
-                    CityTextBox.ForeColor = System.Drawing.Color.Red;
+                    CityTextBox.BorderColor = System.Drawing.Color.Red;
                 }
-                else CityTextBox.ForeColor = System.Drawing.Color.Black;
+                else CityTextBox.BorderColor = System.Drawing.Color.Black;
                 if (!(UI.Validate.isStateValid(StateTextBox.Text)))
                 {
                     errorFound = true;
-                    StateTextBox.ForeColor = System.Drawing.Color.Red;
+                    StateTextBox.BorderColor = System.Drawing.Color.Red;
                 }
-                else StateTextBox.ForeColor = System.Drawing.Color.Black;
+                else StateTextBox.BorderColor = System.Drawing.Color.Black;
                 if (!(UI.Validate.isZipCodeValid(ZipTextBox.Text)))
                 {
                     errorFound = true;
-                    ZipTextBox.ForeColor = System.Drawing.Color.Red;
+                    ZipTextBox.BorderColor = System.Drawing.Color.Red;
                 }
-                else ZipTextBox.ForeColor = System.Drawing.Color.Black;
+                else ZipTextBox.BorderColor = System.Drawing.Color.Black;
                 if (!(UI.Validate.isPhoneNumberValid(PhNumTextBox.Text)))
                 {
                     errorFound = true;
-                    PhNumTextBox.ForeColor = System.Drawing.Color.Red;
+                    PhNumTextBox.BorderColor = System.Drawing.Color.Red;
                 }
-                else PhNumTextBox.ForeColor = System.Drawing.Color.Black;
+                else PhNumTextBox.BorderColor = System.Drawing.Color.Black;
                 if (!(UI.Validate.isEmailAddressValid(EmailTextBox.Text)))
                 {
                     errorFound = true;
-                    EmailTextBox.ForeColor = System.Drawing.Color.Red;
+                    EmailTextBox.BorderColor = System.Drawing.Color.Red;
                 }
-                else EmailTextBox.ForeColor = System.Drawing.Color.Black;
+                else EmailTextBox.BorderColor = System.Drawing.Color.Black;
 
                 if (!(UI.Validate.isBranchValid(BranchTextBox.Text)))
                 {
                     errorFound = true;
-                    BranchTextBox.ForeColor = System.Drawing.Color.Red;
+                    BranchTextBox.BorderColor = System.Drawing.Color.Red;
                 }
-                else BranchTextBox.ForeColor = System.Drawing.Color.Black;
+                else BranchTextBox.BorderColor = System.Drawing.Color.Black;
 
                 if (!UI.Validate.isPasswordValid(pwdTextBox.Text) ||
                     UI.Global.hashCode(pwdTextBox.Text) != UI.Global.hashCode(cpwdTextBox.Text))
                 {
                     errorFound = true;
-                    pwdTextBox.ForeColor = System.Drawing.Color.Red;
-                    cpwdTextBox.ForeColor = System.Drawing.Color.Red;
+                    pwdTextBox.BorderColor = System.Drawing.Color.Red;
+                    cpwdTextBox.BorderColor = System.Drawing.Color.Red;
                 }
                 else
                 {
-                    pwdTextBox.ForeColor = System.Drawing.Color.Black;
-                    cpwdTextBox.ForeColor = System.Drawing.Color.Black;
+                    pwdTextBox.BorderColor = System.Drawing.Color.Black;
+                    cpwdTextBox.BorderColor = System.Drawing.Color.Black;
                 }
 
 
