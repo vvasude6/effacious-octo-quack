@@ -35,7 +35,7 @@
                             <li><a runat="server" id="InternalTransferLink" href="InternalTransfer.aspx">Internal Transfer</a></li>
                             <li><a runat="server" id="ExternalTransferLink" href="ExternalTransfer.aspx">External Transfer</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a runat="server" id="MakePaymentLink" href="MakePayment.aspx">Make Payment</a></li>
+                            <li><a runat="server" id="MakePaymentLink" href="MakePayment.aspx">Request Payment</a></li>
                             <li><a runat="server" id="DebitFormLink" href="DebitForm.aspx">Withdraw Money</a></li>
                             <li><a runat="server" id="CreditFormLink" href="CreditForm.aspx">Deposit Money</a></li>
                             <li role="separator" class="divider"></li>
