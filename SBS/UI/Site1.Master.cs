@@ -31,6 +31,10 @@ namespace UI
                         AccountStatementLink.Visible = false;
                         CreateAccountLink.Visible = false;
                     }
+                    if (Session["Access"].ToString() != "4")
+                    {
+                        DeleteCustomerLink.Visible = false;
+                    }
                     if (Session["Access"].ToString() == "5")
                     {
                         TransactionMenu.Visible = false;

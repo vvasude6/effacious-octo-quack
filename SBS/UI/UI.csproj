@@ -83,6 +83,7 @@
     <Content Include="CustomerEmployeeDelete.aspx" />
     <Content Include="CustProfileUpdate.aspx" />
     <Content Include="DebitForm.aspx" />
+    <Content Include="DeleteCustomer.aspx" />
     <Content Include="EmployeeDisplay.aspx" />
     <Content Include="EmployeeHome.aspx" />
     <Content Include="EmployeeCreate.aspx" />
@@ -203,6 +204,13 @@
     </Compile>
     <Compile Include="DebitForm.aspx.designer.cs">
       <DependentUpon>DebitForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DeleteCustomer.aspx.cs">
+      <DependentUpon>DeleteCustomer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DeleteCustomer.aspx.designer.cs">
+      <DependentUpon>DeleteCustomer.aspx</DependentUpon>
     </Compile>
     <Compile Include="EmployeeDisplay.aspx.cs">
       <DependentUpon>EmployeeDisplay.aspx</DependentUpon>
