@@ -32,7 +32,7 @@ namespace Business
                     return -1;
                 }
             }
-            resultP = "Transaction Succeessfuly";
+            resultP = "Transaction Succeessful";
             return 0;
         }
     }
