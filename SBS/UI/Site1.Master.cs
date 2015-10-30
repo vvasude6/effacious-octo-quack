@@ -25,6 +25,7 @@ namespace UI
 
                     if (Session["Access"].ToString() != "2" && Session["Access"].ToString() != "1")
                     {
+                        ProfileUpdateLink.Visible = false;
                         InternalTransferLink.Visible = false;
                         ExternalTransferLink.Visible = false;
                         AccountStatementLink.Visible = false;
