@@ -168,6 +168,12 @@ namespace Data
 
         }
 
+        public static DataSet GetInternalUserList(string connectionString, Dber dberr)
+        {
+            var query = string.Format("select * from Empm where emp_pvg < 5 and emp_pvg > 2");
+            return DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
+        }
+
         public static int Create(string connectionString, Empm dataObject, Dber dberr)
         {
             try
