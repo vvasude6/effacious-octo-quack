@@ -41,8 +41,8 @@
                             <li role="separator" class="divider"></li>
                             <li><a runat="server" id="AccountStatementLink"  href="AccountStatement.aspx">Account Statement</a></li>
                             <li><a runat="server" id="CreateAccountLink"  href="CreateAccount.aspx">Request New Account</a></li>
+                            <li><a runat="server" id="DeleteCustomerLink"  href="DeleteCustomer.aspx">Delete Customer</a></li>
                         </ul>
-                        
                     </li>
 
                     <li class="dropdown" runat="server" id="AdminDropDown" visible="false">
@@ -52,6 +52,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a runat="server" id="EmployeeCreateLink" href="EmployeeCreate.aspx">Create New Employee</a></li>
+                            <li><a runat="server" id="DeleteEmployeeLink" href="DeleteEmployee.aspx">Delete Employee</a></li>
                             <li><a runat="server" id="AdminHomeLink" href="AdminHome.aspx">Pending Transactions</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a runat="server" id="PIILink" href="PII.aspx">PII</a></li>

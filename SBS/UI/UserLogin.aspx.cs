@@ -35,7 +35,14 @@ namespace UI
                     var userName = UserNameTextBox.Text.ToString();
                     var password = hashPasswordHiddenField.Value;
                     if (UI.Validate.isUserNameValid(userName))
-                    {
+                    { 
+
+                        if (Global.LoggedInUsers.Contains(userName) || Global.LoggedInUsers.Count>50)
+                        {
+                            ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Looks like there is another user logged in with this ID.');", true);
+                            return;
+                        }
+                        Global.LoggedInUsers.Add(userName);
                         var xSwitch = new Business.XSwitch();
                         //var encryptedConnectionString = Security.PKIService.EncryptData(Global.ConnectionString, xSwitch.getBankPublicKey(Global.ConnectionString));
                         var encryptedUserName = Security.PKIService.EncryptData(userName, xSwitch.getBankPublicKey(Global.ConnectionString));
