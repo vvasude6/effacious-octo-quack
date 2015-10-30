@@ -31,7 +31,6 @@ namespace UI
                         if (Session["Access"].ToString() == "2")
                         {
                             LoadCustomers(Session["UserId"].ToString());
-                            
                             LoadCurrentUserAccounts();
                         }
                     }
@@ -39,7 +38,6 @@ namespace UI
                     {
                         Response.Redirect("Error.aspx?error=NoAccess");
                     }
-
                 }
             }
             catch { }
@@ -48,7 +46,6 @@ namespace UI
         private void LoadCustomers(string internalUserId)
         {
             var xSwitchObject = new Business.XSwitch();
-
             try
             {
                 var output = xSwitchObject.getMerchantAccessibleCustomerData(Global.ConnectionString, Session["UserId"].ToString());
@@ -66,7 +63,8 @@ namespace UI
                     CustomerDropDown.Items.Add(new ListItem { Text = "You have access to no customers", Value = "0" });
                 }
             }
-            catch { }
+            catch (Exception ex)
+            { }
         }
 
         private void LoadAccounts(string externalUserId, bool byPass = false)
@@ -174,17 +172,18 @@ namespace UI
                     else
                     {
                         var amount = Convert.ToDecimal(Amount.Text);
-                        Business.XSwitch xsw = new Business.XSwitch();
-                        var employeeOutput = new Entity.Empm();
-                        employeeOutput = xsw.getInternalUserDataFromUserName(Global.ConnectionString, CustomerDropDown.SelectedValue);
-                        var customeremail = employeeOutput.emp_email;
-                        var customername = employeeOutput.emp_fname;
+                        var xsw = new Business.XSwitch();
+                        var customer = new Entity.Cstm();
+                        customer = xsw.getExternalUserDataFromUserName(Global.ConnectionString, CustomerDropDown.SelectedValue.ToString());
+                        var customeremail = customer.cs_email;
+                        var customername = customer.cs_fname + " " + customer.cs_lname;
                         _otpService = new OTPService(Session["UserId"].ToString() + Session["UserName"].ToString());
                         generatedotp = _otpService.GenerateOTP(Session["UserName"].ToString(), email: Session["UserEmail"].ToString(), notifyByEmail: false);
                         const string subject = "Your OTP from the most secure bank, SBS, ";
                         string body = string.Format("Hello {0}, <br /> <br />Your <b>OTP</b> from the most secure bank: <br /> {1} <br /><br /> Regards, <br /> SBS Team.", "", generatedotp);
                         OTPUtility.SendMail("Group 2", "group2csefall2015@gmail.com", customername, customeremail, subject, body);
                         OTPDiv.Visible = true;
+                        MakePaymentButton.Visible = false;
 
                    }
                 }
@@ -220,6 +219,7 @@ namespace UI
             CustomerDropDown.SelectedIndex = 0;
             OTPDiv.Visible = false;
             ToDropdown.SelectedIndex = 0;
+            MakePaymentButton.Visible = true;
         }
 
         protected void CustomerDropDown_SelectedIndexChanged(object sender, EventArgs e)
@@ -229,21 +229,30 @@ namespace UI
         
         protected void VerifyButton_Click(object sender, EventArgs e)
         {
-             if (_otpService.VerifyOTP(OTPTextBox.Text))
-             {
-                 ProcessTransaction(Convert.ToDecimal(Amount.Text));
-             }
-             else
-             {
-                 ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Enter the correct OTP.');", true);
-             }
+            if (_otpService.VerifyOTP(OTPTextBox.Text))
+            {
+                ProcessTransaction(Convert.ToDecimal(Amount.Text));
+                ResetPage();
+            }
+            else
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Enter the correct OTP.');", true);
+            }
         }
 
         protected void ResendOTPLink_Click(object sender, EventArgs e)
         {
-            const string subject = "Your OTP from the most secure bank, SBS, ever.";
+            var amount = Convert.ToDecimal(Amount.Text);
+            var xsw = new Business.XSwitch();
+            var customer = new Entity.Cstm();
+            customer = xsw.getExternalUserDataFromUserName(Global.ConnectionString, CustomerDropDown.SelectedValue.ToString());
+            var customeremail = customer.cs_email;
+            var customername = customer.cs_fname + " " + customer.cs_lname;
+            _otpService = new OTPService(Session["UserId"].ToString() + Session["UserName"].ToString());
+            generatedotp = _otpService.GenerateOTP(Session["UserName"].ToString(), email: Session["UserEmail"].ToString(), notifyByEmail: false);
+            const string subject = "Your OTP from the most secure bank, SBS, ";
             string body = string.Format("Hello {0}, <br /> <br />Your <b>OTP</b> from the most secure bank: <br /> {1} <br /><br /> Regards, <br /> SBS Team.", "", generatedotp);
-            OTPUtility.SendMail("Group 2", "group2csefall2015@gmail.com", "Government", "sbsgovernment@gmail.com", subject, body);
+            OTPUtility.SendMail("Group 2", "group2csefall2015@gmail.com", customername, customeremail, subject, body);
         }
     }
 }
