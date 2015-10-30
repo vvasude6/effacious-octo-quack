@@ -25,7 +25,7 @@
             &nbsp;&nbsp;<asp:LinkButton ID="ResendOTPLink" runat="server" Text="Resend OTP" OnClick="ResendOTPLink_Click"></asp:LinkButton></div>
        </div>
         
-        <div class="input-group" style="width: 300px" id="UserDetails" runat="server" visible="false">
+        <div  style="width: 300px" id="UserDetails" runat="server" visible="false">
         <span class="input-group-addon" id="First name">First Name</span>
             <asp:TextBox runat="server" type="text"  class="form-control" ReadOnly="true" ID="FirstNamebox" aria-describedby="basic-addon3"></asp:TextBox>
             <br />

@@ -97,6 +97,7 @@ namespace UI
                     Zipbox.Text = profileList[9];
                     Phnobox.Text = profileList[11];
                     Mailidbox.Text = profileList[12];
+                    OTPDiv.Visible = false;
                 }
                 catch { }
 
