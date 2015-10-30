@@ -134,6 +134,14 @@ namespace Business
                 resultP = empNo + "|" + empFname + "|" + empLname + "|" + pvgLevel + "|" + empm.empmP.emp_email;
                 return 0;
             }
+            //-----------
+            if (cstm.cstmP.cs_type.Equals("0"))
+            {
+                dberr.setError(Mnemonics.DbErrorCodes.TXERR_INACTIVE_CUSTOMER);
+                resultP = dberr.getErrorDesc(connectionString);
+                return -1;
+            }
+            //--------------
             if (txnm.txnmP.tran_fin_type.Equals("Y"))
             {
                 // Write to FINHIST table

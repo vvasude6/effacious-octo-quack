@@ -35,7 +35,7 @@
                             <li><a runat="server" id="InternalTransferLink" href="InternalTransfer.aspx">Internal Transfer</a></li>
                             <li><a runat="server" id="ExternalTransferLink" href="ExternalTransfer.aspx">External Transfer</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a runat="server" id="MakePaymentLink" href="MakePayment.aspx">Make Payment</a></li>
+                            <li><a runat="server" id="MakePaymentLink" href="MakePayment.aspx">Request Payment</a></li>
                             <li><a runat="server" id="DebitFormLink" href="DebitForm.aspx">Withdraw Money</a></li>
                             <li><a runat="server" id="CreditFormLink" href="CreditForm.aspx">Deposit Money</a></li>
                             <li role="separator" class="divider"></li>
@@ -60,7 +60,7 @@
                     </li>
 
                     <li>
-                        <a href="About.aspx" onclick="javascript:updateClass();"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>&nbsp;About</a>
+                        <a href="About.aspx" ><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>&nbsp;About</a>
                     </li>
                     <li>
                         <a href="Help.aspx"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>&nbsp;Help</a>

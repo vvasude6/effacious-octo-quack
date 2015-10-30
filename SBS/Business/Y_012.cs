@@ -123,6 +123,13 @@ namespace Business
                 result = dberr.getErrorDesc(connectionString);
                 return -1;
             }
+            Entity.Cstm cst = Data.CstmD.Read(connectionString, acct.actmP.cs_no1, dberr);
+            if (cst.cs_type.Equals("0"))
+            {
+                dberr.setError(Mnemonics.DbErrorCodes.TXERR_INACTIVE_CUSTOMER);
+                resultP = dberr.getErrorDesc(connectionString);
+                return -1;
+            }
             String initEmpNumber = "0";
             String initCustomer = "0";
             if (this.newInitiator)

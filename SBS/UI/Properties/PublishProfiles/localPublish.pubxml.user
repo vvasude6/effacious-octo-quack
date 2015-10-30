@@ -22,25 +22,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/28/2015 23:34:05</publishTime>
     </File>
     <File Include="bin/Business.dll">
-      <publishTime>10/29/2015 09:20:39</publishTime>
+      <publishTime>10/29/2015 17:54:57</publishTime>
     </File>
     <File Include="bin/Data.dll">
-      <publishTime>10/29/2015 09:20:39</publishTime>
+      <publishTime>10/29/2015 17:54:57</publishTime>
     </File>
     <File Include="bin/Entity.dll">
-      <publishTime>10/29/2015 09:20:39</publishTime>
+      <publishTime>10/29/2015 17:54:56</publishTime>
     </File>
     <File Include="bin/itextsharp.dll">
       <publishTime>10/29/2015 05:52:53</publishTime>
     </File>
     <File Include="bin/Mnemonics.dll">
-      <publishTime>10/29/2015 09:20:38</publishTime>
+      <publishTime>10/29/2015 17:54:56</publishTime>
     </File>
     <File Include="bin/Security.dll">
       <publishTime>10/29/2015 06:57:40</publishTime>
     </File>
     <File Include="bin/UI.dll">
-      <publishTime>10/29/2015 09:20:40</publishTime>
+      <publishTime>10/29/2015 17:54:58</publishTime>
     </File>
     <File Include="CheckBalance.aspx">
       <publishTime>10/26/2015 21:21:48</publishTime>
@@ -64,10 +64,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/26/2015 21:21:48</publishTime>
     </File>
     <File Include="CreateAccount.aspx">
-      <publishTime>10/28/2015 23:33:36</publishTime>
+      <publishTime>10/29/2015 13:48:22</publishTime>
     </File>
     <File Include="CreditForm.aspx">
-      <publishTime>10/26/2015 20:49:22</publishTime>
+      <publishTime>10/29/2015 16:12:40</publishTime>
     </File>
     <File Include="css/bootstrap-theme.css">
       <publishTime>10/26/2015 21:21:48</publishTime>
@@ -93,6 +93,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="css/keyboard.css">
       <publishTime>10/26/2015 21:21:48</publishTime>
     </File>
+    <File Include="CustomerEmployeeDelete.aspx">
+      <publishTime>10/29/2015 16:40:31</publishTime>
+    </File>
     <File Include="CustProfileUpdate.aspx">
       <publishTime>10/29/2015 04:34:16</publishTime>
     </File>
@@ -100,7 +103,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/29/2015 01:58:40</publishTime>
     </File>
     <File Include="EmployeeCreate.aspx">
-      <publishTime>10/29/2015 05:26:20</publishTime>
+      <publishTime>10/29/2015 12:10:21</publishTime>
     </File>
     <File Include="EmployeeDisplay.aspx">
       <publishTime>10/26/2015 21:21:48</publishTime>
@@ -160,7 +163,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/29/2015 05:52:57</publishTime>
     </File>
     <File Include="PII.aspx">
-      <publishTime>10/29/2015 03:59:41</publishTime>
+      <publishTime>10/29/2015 17:48:29</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>10/26/2015 21:21:48</publishTime>
@@ -187,7 +190,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/26/2015 21:21:48</publishTime>
     </File>
     <File Include="Site1.Master">
-      <publishTime>10/28/2015 23:07:03</publishTime>
+      <publishTime>10/29/2015 17:51:13</publishTime>
     </File>
     <File Include="SystemLog.aspx">
       <publishTime>10/29/2015 03:27:05</publishTime>
@@ -199,7 +202,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/29/2015 06:10:42</publishTime>
     </File>
     <File Include="UserRegistration.aspx">
-      <publishTime>10/29/2015 05:10:28</publishTime>
+      <publishTime>10/29/2015 13:15:19</publishTime>
     </File>
     <File Include="Web.config">
       <publishTime>10/29/2015 06:57:42</publishTime>
