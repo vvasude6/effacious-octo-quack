@@ -112,6 +112,15 @@ namespace UI {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor CreateAccountLink;
         
         /// <summary>
+        /// DeleteCustomerLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor DeleteCustomerLink;
+        
+        /// <summary>
         /// AdminDropDown control.
         /// </summary>
         /// <remarks>
@@ -128,6 +137,15 @@ namespace UI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor EmployeeCreateLink;
+        
+        /// <summary>
+        /// EmployeeDeleteLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor EmployeeDeleteLink;
         
         /// <summary>
         /// AdminHomeLink control.
