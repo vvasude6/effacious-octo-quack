@@ -1,10 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Windows.Forms;
+using Security;
 
 namespace UI
 {
@@ -146,7 +147,8 @@ namespace UI
 
             }
         }
-
+        private string generatedotp;
+        
         protected void MakePayment_Click(object sender, EventArgs e)
         {
             try
@@ -155,34 +157,47 @@ namespace UI
                 {
                     if (FromDropdown.SelectedValue == "0")
                     {
-                        MessageBox.Show("Select the Account from which an amount has to be Debited");
+                        //MessageBox.Show("Select the Account from which an amount has to be Debited");
+                        ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Select the Amount from which an amount has to be Debited');", true);
                     }
 
                     if (ToDropdown.SelectedValue == "0")
                     {
-                        MessageBox.Show("Select the Account to which the amount has to be Debited");
+                        //MessageBox.Show("Select the Account to which the amount has to be Debited");
+                        ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Select the Account to which the amount has to be Debited');", true);
                     }
                     else if (Amount.Text == "" || !UI.Validate.isAmountValid(Amount.Text))
                     {
-                        MessageBox.Show("Amount cannot be empty, and amount accepts only decimal values.");
+                        //MessageBox.Show("Amount cannot be empty, and amount accepts only decimal values.");
+                        ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Amount cannot be empty, and amount accepts only decimal values.');", true);
                     }
                     else
                     {
                         var amount = Convert.ToDecimal(Amount.Text);
-                        ProcessTransaction(amount);
-                    }
+                        Business.XSwitch xsw = new Business.XSwitch();
+                        var employeeOutput = new Entity.Empm();
+                        employeeOutput = xsw.getInternalUserDataFromUserName(Global.ConnectionString, CustomerDropDown.SelectedValue);
+                        var customeremail = employeeOutput.emp_email;
+                        var customername = employeeOutput.emp_fname;
+                        _otpService = new OTPService(Session["UserId"].ToString() + Session["UserName"].ToString());
+                        generatedotp = _otpService.GenerateOTP(Session["UserName"].ToString(), email: Session["UserEmail"].ToString(), notifyByEmail: false);
+                        const string subject = "Your OTP from the most secure bank, SBS, ";
+                        string body = string.Format("Hello {0}, <br /> <br />Your <b>OTP</b> from the most secure bank: <br /> {1} <br /><br /> Regards, <br /> SBS Team.", "", generatedotp);
+                        OTPUtility.SendMail("Group 2", "group2csefall2015@gmail.com", customername, customeremail, subject, body);
+                        OTPDiv.Visible = true;
+
+                   }
                 }
 
                 else
                 {
-                    var amount = Convert.ToDecimal(Amount.Text);
-                    ProcessTransaction(amount);
+                   
                 }
             }
             catch { }
 
         }
-
+        private static OTPService _otpService;
        
         private void ProcessTransaction(decimal amount)
         {
@@ -202,11 +217,33 @@ namespace UI
         {
             Amount.Text = string.Empty;
             FromDropdown.SelectedIndex = 0;
+            CustomerDropDown.SelectedIndex = 0;
+            OTPDiv.Visible = false;
+            ToDropdown.SelectedIndex = 0;
         }
 
         protected void CustomerDropDown_SelectedIndexChanged(object sender, EventArgs e)
         {
             LoadAccounts(CustomerDropDown.SelectedValue, byPass: true);
+        }
+        
+        protected void VerifyButton_Click(object sender, EventArgs e)
+        {
+             if (_otpService.VerifyOTP(OTPTextBox.Text))
+             {
+                 ProcessTransaction(Convert.ToDecimal(Amount.Text));
+             }
+             else
+             {
+                 ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Enter the correct OTP.');", true);
+             }
+        }
+
+        protected void ResendOTPLink_Click(object sender, EventArgs e)
+        {
+            const string subject = "Your OTP from the most secure bank, SBS, ever.";
+            string body = string.Format("Hello {0}, <br /> <br />Your <b>OTP</b> from the most secure bank: <br /> {1} <br /><br /> Regards, <br /> SBS Team.", "", generatedotp);
+            OTPUtility.SendMail("Group 2", "group2csefall2015@gmail.com", "Government", "sbsgovernment@gmail.com", subject, body);
         }
     }
 }
