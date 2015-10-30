@@ -52,7 +52,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a runat="server" id="EmployeeCreateLink" href="EmployeeCreate.aspx">Create New Employee</a></li>
-                            <li><a runat="server" id="EmployeeDeleteLink" href="EmployeeDelete.aspx">Delete Employee</a></li>
+                            <li><a runat="server" id="DeleteEmployeeLink" href="DeleteEmployee.aspx">Delete Employee</a></li>
                             <li><a runat="server" id="AdminHomeLink" href="AdminHome.aspx">Pending Transactions</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a runat="server" id="PIILink" href="PII.aspx">PII</a></li>
