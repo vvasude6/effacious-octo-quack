@@ -336,6 +336,17 @@ namespace Business
             else return null;
         }
 
+        public DataSet GetInternalUserList(string connectionString)
+        {
+            var dberr = new Data.Dber();
+            var ds = Data.EmpmD.GetInternalUserList(connectionString, dberr);
+            if (!dberr.ifError())
+            {
+                return ds;
+            }
+            else return null;
+        }
+
         public DataSet getEmployeeAccessibleCustomerData(string connectionString, string employeeId)
         {
             var dberr = new Data.Dber();
