@@ -67,6 +67,7 @@ namespace UI
 
                 //MessageBox.Show(output.resultP);
                 ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('"+ output.resultP +"');", true);
+                ResetPage();
             }
         }
 
@@ -91,5 +92,10 @@ namespace UI
             }
         }
 
+        private void ResetPage()
+        {
+            AmountTransfer.Text = string.Empty;
+            ConfirmAmount.Text = string.Empty;
+        }
     }
 }

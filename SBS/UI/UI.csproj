@@ -65,9 +65,7 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="AccountStatement.aspx" />
-    <Content Include="Admin.aspx" />
     <Content Include="AdminHome.aspx" />
-    <Content Include="CheckBalance.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -150,26 +148,12 @@
     <Compile Include="AccountStatement.aspx.designer.cs">
       <DependentUpon>AccountStatement.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin.aspx.cs">
-      <DependentUpon>Admin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin.aspx.designer.cs">
-      <DependentUpon>Admin.aspx</DependentUpon>
-    </Compile>
     <Compile Include="AdminHome.aspx.cs">
       <DependentUpon>AdminHome.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AdminHome.aspx.designer.cs">
       <DependentUpon>AdminHome.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CheckBalance.aspx.cs">
-      <DependentUpon>CheckBalance.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CheckBalance.aspx.designer.cs">
-      <DependentUpon>CheckBalance.aspx</DependentUpon>
     </Compile>
     <Compile Include="CreateAccount.aspx.cs">
       <DependentUpon>CreateAccount.aspx</DependentUpon>

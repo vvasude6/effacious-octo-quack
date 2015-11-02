@@ -188,8 +188,12 @@ namespace UI
                 var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(), string.Format("011|{0}| |{1}|{2}| ", FromDropdown.SelectedValue, amount, Session["Access"]));
                 //MessageBox.Show(string.Format("The debit was successful. Your current balance is {0}", output.resultP));
                 ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Debit successfull. Current balance is "+ output.resultP +"');", true);
+                ResetPage();
             }
-            catch { }
+            catch
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Something went wrong!');", true);
+            }
         }
 
         private void ResetPage()

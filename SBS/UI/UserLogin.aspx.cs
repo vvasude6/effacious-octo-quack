@@ -23,6 +23,7 @@ namespace UI
 
         protected void LoginButton_Click(object sender, EventArgs e)
         {
+            var userName = UserNameTextBox.Text.ToString();
             try
             {
                 if (UserNameTextBox.Text == string.Empty || hashPasswordHiddenField.Value == string.Empty)
@@ -32,7 +33,6 @@ namespace UI
                 }
                 else
                 {
-                    var userName = UserNameTextBox.Text.ToString();
                     var password = hashPasswordHiddenField.Value;
                     if (UI.Validate.isUserNameValid(userName))
                     { 
@@ -98,6 +98,8 @@ namespace UI
             }
             catch (Exception ex)
             {
+                Global.LoggedInUsers.Remove(userName);
+                ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Login failed, check Userid and Password');", true);
             }
         }
 

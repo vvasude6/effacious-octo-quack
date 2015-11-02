@@ -207,7 +207,7 @@ namespace UI
                 //MessageBox.Show(string.Format("The debit was successful. Your current balance is {0}", output.resultP));
                 var output = new Business.XSwitch(Global.ConnectionString, FromDropdown.SelectedValue, string.Format("021|{0}|{1}|{2}|{3}| ", FromDropdown.SelectedValue, ToDropdown.SelectedValue, amount, Session["Access"].ToString()));
                 ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('" + output.resultP + "');", true);
-
+                ResetPage();
             }
             catch { }
         }

@@ -37,12 +37,16 @@ namespace UI
 
         protected void Session_End(object sender, EventArgs e)
         {
-
+            Session.Clear();
+            Session.RemoveAll();
+            Session.Abandon();
         }
 
         protected void Application_End(object sender, EventArgs e)
         {
-
+            Session.Clear();
+            Session.RemoveAll();
+            Session.Abandon();
         }
     }
 }

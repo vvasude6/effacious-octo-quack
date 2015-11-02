@@ -113,7 +113,7 @@ namespace Data
             catch(Exception ex)
             {
                 //dberr.setError(Mnemonics.DbErrorCodes.DBERR_PKIT_ERROR);
-                return null;
+                throw ex;
             }
         }
         public static string GetBankPublicKey(String connectionString)
@@ -126,7 +126,7 @@ namespace Data
             }
             catch(Exception ex)
             {
-                return "error";
+                throw ex;
             }
         }
         public static string GetCustomerPublicKey(String connectionString, string cs_no)
@@ -135,11 +135,11 @@ namespace Data
             {
                 string p = (string.Format("select public_key FROM Pkit WHERE cs_no = '{0}'", cs_no));
                 var output = DbAccess.ExecuteScalar(connectionString, CommandType.Text, p);
-                return output.ToString();
+                return output == null ? null : output.ToString();
             }
             catch (Exception ex)
             {
-                return "error";
+                throw ex;
             }
         }
 
@@ -153,7 +153,7 @@ namespace Data
             }
             catch (Exception ex)
             {
-                return "error";
+                throw ex;
             }
 
         }

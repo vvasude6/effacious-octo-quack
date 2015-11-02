@@ -111,6 +111,7 @@ namespace UI
                     var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(), string.Format("{3}|{0}| |{1}|{2}| ", ToDropdown.SelectedValue, amount, Session["Access"].ToString(), transactionCode));
                     //MessageBox.Show(output.resultP);
                     ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('"+ output.resultP +"');", true);
+                    ResetPage();
                 }
             }
             else
@@ -119,12 +120,18 @@ namespace UI
                 var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(), string.Format("012|{0}| |{1}|{2}| ", ToDropdown.SelectedValue, amount, Session["Access"].ToString()));
                 //MessageBox.Show(output.resultP);
                 ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('"+output.resultP+"');", true);
+                ResetPage();
             }
         }
 
         protected void CustomerDropDown_SelectedIndexChanged(object sender, EventArgs e)
         {
             LoadAccounts(CustomerDropDown.SelectedValue, byPass: true);
+        }
+
+        private void ResetPage()
+        {
+            Amount.Text = string.Empty;
         }
     }
 }
