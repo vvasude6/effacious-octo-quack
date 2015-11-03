@@ -43,51 +43,59 @@ namespace UI
         //    NonFinHistoryGridView.DataBind();
         //}
 
-        public void ExportToPdf(DataTable dt)
+        public byte[] ExportToPdf(DataTable dt)
         {
-            try { Document document = new Document();
-                var path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(path + "\\AccountStatement.pdf", FileMode.Create));
-                document.Open();
-                iTextSharp.text.Font font5 = iTextSharp.text.FontFactory.GetFont(FontFactory.HELVETICA, 5);
-
-                PdfPTable table = new PdfPTable(dt.Columns.Count);
-                PdfPRow row = null;
-                float[] widths = new float[] { 4f, 4f, 4f, 4f, 4f };
-
-                table.SetWidths(widths);
-
-                table.WidthPercentage = 100;
-                int iCol = 0;
-                string colname = "";
-                PdfPCell cell = new PdfPCell(new Phrase("Products"));
-
-                cell.Colspan = dt.Columns.Count;
-
-                foreach (DataColumn c in dt.Columns)
+            try
+            {
+                using (var ms = new MemoryStream())
                 {
+                    Document document = new Document();
+                    var path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                    PdfWriter writer = PdfWriter.GetInstance(document, ms);
+                    document.Open();
+                    iTextSharp.text.Font font5 = iTextSharp.text.FontFactory.GetFont(FontFactory.HELVETICA, 5);
 
-                    table.AddCell(new Phrase(c.ColumnName, font5));
-                }
+                    PdfPTable table = new PdfPTable(dt.Columns.Count);
+                    PdfPRow row = null;
+                    float[] widths = new float[] { 4f, 4f, 4f, 4f, 4f };
 
-                foreach (DataRow r in dt.Rows)
-                {
-                    if (dt.Rows.Count > 0)
+                    table.SetWidths(widths);
+
+                    table.WidthPercentage = 100;
+                    int iCol = 0;
+                    string colname = "";
+                    PdfPCell cell = new PdfPCell(new Phrase("Products"));
+
+                    cell.Colspan = dt.Columns.Count;
+
+                    foreach (DataColumn c in dt.Columns)
                     {
-                        table.AddCell(new Phrase(r[0].ToString(), font5));
-                        table.AddCell(new Phrase(r[1].ToString(), font5));
-                        table.AddCell(new Phrase(r[2].ToString(), font5));
-                        table.AddCell(new Phrase(r[3].ToString(), font5));
-                        table.AddCell(new Phrase(r[4].ToString(), font5));
+
+                        table.AddCell(new Phrase(c.ColumnName, font5));
                     }
+
+                    foreach (DataRow r in dt.Rows)
+                    {
+                        if (dt.Rows.Count > 0)
+                        {
+                            table.AddCell(new Phrase(r[0].ToString(), font5));
+                            table.AddCell(new Phrase(r[1].ToString(), font5));
+                            table.AddCell(new Phrase(r[2].ToString(), font5));
+                            table.AddCell(new Phrase(r[3].ToString(), font5));
+                            table.AddCell(new Phrase(r[4].ToString(), font5));
+                        }
+                    }
+                    document.Add(table);
+                    document.Close();
+                    return ms.ToArray();
                 }
-                document.Add(table);
-                document.Close();
+               
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('" + ex.Message + "');", true);
                 Response.Redirect(Request.RawUrl);
+                return null;
             }
         }
 
@@ -95,7 +103,16 @@ namespace UI
         {
             var xSwitch = new Business.XSwitch();
             var table = xSwitch.getFinHistory(Global.ConnectionString, Session["UserId"].ToString()).Tables[0];
-            ExportToPdf(table);
+            var bytes = ExportToPdf(table);
+
+
+
+           HttpContext.Current.Response.ContentType = "application/octet-stream";
+           HttpContext.Current.Response.AddHeader("content-disposition", string.Format("attachment;filename= {0}-{1}.pdf", Session["UserId"], DateTime.Now));
+           HttpContext.Current.Response.Buffer = true;
+           HttpContext.Current.Response.Clear();
+           HttpContext.Current.Response.OutputStream.Write(bytes, 0, bytes.Length);
+           HttpContext.Current.Response.OutputStream.Flush();
         }
     }
 }
