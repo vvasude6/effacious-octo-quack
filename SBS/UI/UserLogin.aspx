@@ -82,6 +82,8 @@
                                 <br />
                                 <br />
                                 <p>Don't have an account? <a href="UserRegistration.aspx">Request</a> for one now.</p>
+                                <br />
+                                <p>Need <a href="Help.aspx">Help</a> ?</p>
                             </td>
                         </tr>
                         <tr class="spacerRow"></tr>

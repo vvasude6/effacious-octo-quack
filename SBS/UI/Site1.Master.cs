@@ -45,10 +45,29 @@ namespace UI
                         CreditFormLink.Visible = false;
                         DebitFormLink.Visible = false;
                         CreateAccountLink.Visible = false;
-
                         AdminDropDown.Visible = true;
                     }
                 }
+            }
+            else
+            {
+                MakePaymentLink.Visible = false;
+
+                ProfileUpdateLink.Visible = false;
+                InternalTransferLink.Visible = false;
+                ExternalTransferLink.Visible = false;
+                AccountStatementLink.Visible = false;
+                CreateAccountLink.Visible = false;
+                DeleteCustomerLink.Visible = false;
+                TransactionMenu.Visible = false;
+                AccountStatementLink.Visible = false;
+                InternalTransferLink.Visible = false;
+                ExternalTransferLink.Visible = false;
+                CreditFormLink.Visible = false;
+                DebitFormLink.Visible = false;
+                CreateAccountLink.Visible = false;
+                SignOutLink.Visible = false;
+                UserNameLabel.InnerText = "Guest";
             }
         }
 
