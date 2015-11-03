@@ -90,6 +90,10 @@
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>
+        <div>
+            <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+            <asp:Timer ID="messageTimer" Interval="4000" runat="server" OnTick="messageTimer_Tick"></asp:Timer>
+        </div>
     </form>
 </body>
 </html>
