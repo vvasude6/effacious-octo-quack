@@ -58,7 +58,7 @@ namespace UI
             else
             {
                 var transferAmount = Convert.ToDecimal(ConfirmAmount.Text);
-                var output = new Business.XSwitch(Global.ConnectionString, FromDropDown.SelectedValue, string.Format("021|{0}|{1}|{2}|{3}| ",FromDropDown.SelectedValue, ToTextBox.Text, transferAmount, Session["Access"].ToString()));
+                var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(), string.Format("021|{0}|{1}|{2}|{3}| ",FromDropDown.SelectedValue, ToTextBox.Text, transferAmount, Session["Access"].ToString()));
 
                 Master.ErrorMessage = output.resultP;
                 ResetPage();

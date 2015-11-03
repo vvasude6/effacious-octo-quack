@@ -59,7 +59,7 @@ namespace UI
             else
             {
                 var transferAmount = Convert.ToDecimal(ConfirmAmount.Text);
-                var output = new Business.XSwitch(Global.ConnectionString, FromDropDown.SelectedValue, string.Format("014|{0}|{1}|{2}|{3}| ",FromDropDown.SelectedValue, ToDropDown.SelectedValue, transferAmount, Session["Access"]));
+                var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(), string.Format("014|{0}|{1}|{2}|{3}| ",FromDropDown.SelectedValue, ToDropDown.SelectedValue, transferAmount, Session["Access"]));
 
                 Master.ErrorMessage = output.resultP;
                 ResetPage();

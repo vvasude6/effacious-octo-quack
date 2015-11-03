@@ -203,7 +203,7 @@ namespace UI
             {
                 //TODO:
                 //var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(), string.Format("011|{0}| |{1}|{2}| ", FromDropdown.SelectedValue, amount, Session["Access"]));
-                var output = new Business.XSwitch(Global.ConnectionString, FromDropdown.SelectedValue, string.Format("021|{0}|{1}|{2}|{3}| ", FromDropdown.SelectedValue, ToDropdown.SelectedValue, amount, Session["Access"].ToString()));
+                var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(), string.Format("021|{0}|{1}|{2}|{3}| ", FromDropdown.SelectedValue, ToDropdown.SelectedValue, amount, Session["Access"].ToString()));
                 Master.ErrorMessage =  output.resultP;
                 ResetPage();
             }
