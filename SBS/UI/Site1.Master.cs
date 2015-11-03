@@ -130,7 +130,14 @@ namespace UI
             set
             {
                 messageLabel.Text = value;
+                messageTimer.Enabled = true;
             }
+        }
+
+        protected void messageTimer_Tick(object sender, EventArgs e)
+        {
+            messageTimer.Enabled = false;
+            messageLabel.Text = string.Empty;
         }
     }
 }
