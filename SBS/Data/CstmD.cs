@@ -301,7 +301,7 @@ namespace Data
         {
             try
             {
-                var query = string.Format("select * from cstm");
+                var query = string.Format("select * from cstm where [CS_TYPE] <> '0'");
                 var data = DbAccess.ExecuteQuery(connectionString, CommandType.Text, query);
                 if (data.Tables[0].Rows.Count > 0)
                 {
