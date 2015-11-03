@@ -134,22 +134,43 @@ namespace Business
                         if (!y013.basicValidationError())
                         {
                             Y_012 y012_2 = new Y_012(Mnemonics.TxnCodes.TX_TRANSFER_CREDIT,
-                                connectionString, dataPart[1], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
+                                connectionString, dataPart[2], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
                             result = y012_2.getOutput();
                             if (!y012_2.basicValidationError())
                             {
                                 Y_011 y011_1 = new Y_011(Mnemonics.TxnCodes.TX_TRANSFER_DEBIT,
-                                connectionString, dataPart[2], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
+                                connectionString, dataPart[1], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
                                 if (!y011_1.txnErrorP)
                                 {
                                     if (y011_1.pvgBypassedP && y011_1.newInitiatorP)
                                     {
                                         if (!deletePendingTransaction(connectionString, dataPart[5]))
                                         {
-                                            throw (new Exception("Pending transaction not removed"));
+                                            resultP = "Transaction Failed";
+                                        }
+                                        else
+                                        {
+                                            if (y011_1.rollbackSubtractBalance(connectionString) == 0)
+                                            {
+                                                if (y012_2.rollbackAddBalance(connectionString) == 0)
+                                                {
+                                                    resultP = "Transaction Successful";
+                                                }
+                                                else
+                                                {
+                                                    resultP = "Transaction Failed ext 1";
+                                                }
+                                            }
+                                            else
+                                            {
+                                                resultP = "Transaction Failed ext 2";
+                                            }
                                         }
                                     }
-                                    resultP = "Successful!";
+                                    else
+                                    {
+                                        resultP = y011_1.resultP;
+                                    }
                                 }
                                 else
                                 {
@@ -169,12 +190,12 @@ namespace Business
                         if (!y013_1.basicValidationError())
                         {
                             Y_012 y012_2 = new Y_012(Mnemonics.TxnCodes.TX_TRANSFER_CREDIT,
-                                connectionString, dataPart[1], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
+                                connectionString, dataPart[2], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
                             result = y012_2.getOutput();
                             if (!y012_2.basicValidationError())
                             {
                                 Y_011 y011_1 = new Y_011(Mnemonics.TxnCodes.TX_TRANSFER_DEBIT,
-                                connectionString, dataPart[2], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
+                                connectionString, dataPart[1], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
                                 if (!y011_1.txnErrorP)
                                 {
                                     if (y011_1.pvgBypassedP && y011_1.newInitiatorP)
@@ -184,6 +205,8 @@ namespace Business
                                             throw (new Exception("Pending transaction not removed"));
                                         }
                                     }
+                                    y011_1.rollbackSubtractBalance(connectionString);
+                                    y012_2.rollbackAddBalance(connectionString);
                                     resultP = "Successful!";
                                 }
                                 else
@@ -204,13 +227,41 @@ namespace Business
                         if (!y021.basicValidationError())
                         {
                             Y_022 y022 = new Y_022(Mnemonics.TxnCodes.TX_TRANSFER_CREDIT,
-                                connectionString, dataPart[1], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
+                                connectionString, dataPart[2], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
                             result = y022.getOutput();
                             if (!y022.basicValidationError())
                             {
                                 Y_011 y011_1 = new Y_011(Mnemonics.TxnCodes.TX_TRANSFER_DEBIT,
-                                connectionString, dataPart[2], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
-                                result = y011_1.getOutput();
+                                connectionString, dataPart[1], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
+                                if (!y011_1.basicValidationError())
+                                {
+                                    if (!deletePendingTransaction(connectionString, dataPart[5]))
+                                    {
+                                        resultP = "Transaction Failed";
+                                    }
+                                    else
+                                    {
+                                        if (y011_1.rollbackSubtractBalance(connectionString) == 0)
+                                        {
+                                            if (y022.rollbackAddBalance(connectionString) == 0)
+                                            {
+                                                resultP = "Transaction Successful";
+                                            }
+                                            else
+                                            {
+                                                resultP = "Transaction Failed ext 1";
+                                            }
+                                        }
+                                        else
+                                        {
+                                            resultP = "Transaction Failed ext 2";
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    resultP = y011_1.resultP;
+                                }
                             }
                         }
                         else
@@ -225,13 +276,42 @@ namespace Business
                         if (!y021_1.basicValidationError())
                         {
                             Y_022 y022 = new Y_022(Mnemonics.TxnCodes.TX_TRANSFER_CREDIT,
-                                connectionString, dataPart[1], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
+                                connectionString, dataPart[2], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
                             result = y022.getOutput();
                             if (!y022.basicValidationError())
                             {
                                 Y_011 y011_1 = new Y_011(Mnemonics.TxnCodes.TX_TRANSFER_DEBIT,
-                                connectionString, dataPart[2], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
+                                connectionString, dataPart[1], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
+                                if(!y011_1.basicValidationError())
+                                {
+                                    if (!deletePendingTransaction(connectionString, dataPart[5]))
+                                    {
+                                        resultP = "Transaction Failed";
+                                    }
+                                    else
+                                    {
+                                        if (y011_1.rollbackSubtractBalance(connectionString) == 0)
+                                        {
+                                            if (y022.rollbackAddBalance(connectionString) == 0)
+                                            {
+                                                resultP = "Transaction Successful";
+                                            }
+                                            else
+                                            {
+                                                resultP = "Transaction Failed ext 1";
+                                            }
+                                        }
+                                        else
+                                        {
+                                            resultP = "Transaction Failed ext 2";
+                                        }
+                                    }
+                                }
                                 result = y011_1.getOutput();
+                            }
+                            else
+                            {
+                                resultP = y022.resultP;
                             }
                         }
                         else

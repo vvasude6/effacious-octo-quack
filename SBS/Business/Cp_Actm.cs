@@ -72,11 +72,11 @@ namespace Business
                 {
                     this.newBal = this.actmP.ac_bal + changeAmount;
                     this.actmP.ac_bal = this.newBal;
-                    resultP = this.newBal.ToString();
+                    //resultP = this.newBal.ToString();
                     // Check if newBal is at most as much as the maximum balance allowed for the account through ACPRM table.
 
                     // Update newBal in Actm.
-                    Boolean dbCode = Data.ActmD.UpdateAccountBalance(connectionString, this.actmP.ac_no, this.actmP.ac_bal, dberr);
+                    //Boolean dbCode = Data.ActmD.UpdateAccountBalance(connectionString, this.actmP.ac_no, this.actmP.ac_bal, dberr);
                 }
                 else
                 {
@@ -85,6 +85,18 @@ namespace Business
                 }
             }
             catch(Exception e)
+            {
+                dberr.setError(Mnemonics.DbErrorCodes.TXERR_NO_DEBIT);
+                resultP = dberr.getErrorDesc(connectionString);
+            }
+        }
+        public void updateBalance(String connectionString, Data.Dber dberr)
+        {
+            try
+            {
+                Boolean dbCode = Data.ActmD.UpdateAccountBalance(connectionString, this.actmP.ac_no, this.actmP.ac_bal, dberr);
+            }
+            catch(Exception ex)
             {
                 dberr.setError(Mnemonics.DbErrorCodes.TXERR_NO_DEBIT);
                 resultP = dberr.getErrorDesc(connectionString);
@@ -109,7 +121,7 @@ namespace Business
                         // need to implement minimum balance check through new account type parameter table ACPRM
 
                         // Update newBal in Actm.
-                        Boolean dbCode = Data.ActmD.UpdateAccountBalance(connectionString, this.actmP.ac_no, this.actmP.ac_bal ,dberr);
+                        //Boolean dbCode = Data.ActmD.UpdateAccountBalance(connectionString, this.actmP.ac_no, this.actmP.ac_bal ,dberr);
                     }
                 }
                 else 

@@ -198,18 +198,72 @@ namespace Business
                 result = dberr.getErrorDesc(connectionString);
                 return -1;
             }
+            if (!this.TXID.Equals(Mnemonics.TxnCodes.TX_TRANSFER_CREDIT))
+            {
+                acct.updateBalance(connectionString, dberr);
+                //acct.addBalance(connectionString, this.changeAmount, dberr);
+                if (dberr.ifError())
+                {
+                    result = dberr.getErrorDesc(connectionString);
+                    return -1;
+                }
+                // Store transaction in hisory table. Determine which history table to store in based on tx.txnmP.tran_fin_type
+                if (tx.txnmP.tran_fin_type.Equals("Y"))
+                {
+                    // Write to FINHIST table
+                    Entity.Finhist fhist = new Entity.Finhist(acc_no, "0", this.tx.txnmP.tran_desc,
+                        changeAmount, 0, Convert.ToString(this.acct.actmP.ac_bal), "0", "0", "0");
+                    Data.FinhistD.Create(connectionString, fhist, dberr);
+                }
+                else
+                {
+                    // Write to NFINHIST table
+                    Entity.Nfinhist nFhist = new Entity.Nfinhist(acc_no, "0", this.tx.txnmP.tran_desc, "0", "0", this.acct.actmP.cs_no1);
+                    Data.NfinhistD.Create(connectionString, nFhist, dberr);
+                }
+                if (dberr.ifError())
+                {
+                    result = dberr.getErrorDesc(connectionString);
+                    return -1;
+                }
+                Entity.Cstm cstm = Data.CstmD.Read(connectionString, acct.actmP.cs_no1, dberr);
+                if (dberr.ifError())
+                {
+                    result = dberr.getErrorDesc(connectionString);
+                    return -1;
+                }
+                String mailResponse = "";
+                if (!Security.OTPUtility.SendMail("SBS", "group2csefall2015@gmail.com", cstm.cs_fname + cstm.cs_mname + cstm.cs_lname,
+                    cstm.cs_email, "Update from SBS", tx.txnmP.tran_desc + acct.actmP.ac_bal))
+                {
+                    mailResponse = "Mail sent.";
+                }
+                // -----------------------------------------
+                resultP = "Transaction Successful. Your new account balance is $" + acct.actmP.ac_bal + " " + mailResponse;
+            }
+            //-------------------------------------------
+            return 0; // remove later
+        }
+        public int rollbackAddBalance(String connectionString)
+        {
+            acct.updateBalance(connectionString, dberr);
+            if (dberr.ifError())
+            {
+                result = dberr.getErrorDesc(connectionString);
+                return -1;
+            }
             // Store transaction in hisory table. Determine which history table to store in based on tx.txnmP.tran_fin_type
             if (tx.txnmP.tran_fin_type.Equals("Y"))
             {
                 // Write to FINHIST table
-                Entity.Finhist fhist = new Entity.Finhist(acc_no, "0", this.tx.txnmP.tran_desc,
+                Entity.Finhist fhist = new Entity.Finhist(acct.actmP.ac_no, "0", this.tx.txnmP.tran_desc,
                     changeAmount, 0, Convert.ToString(this.acct.actmP.ac_bal), "0", "0", "0");
                 Data.FinhistD.Create(connectionString, fhist, dberr);
             }
             else
             {
                 // Write to NFINHIST table
-                Entity.Nfinhist nFhist = new Entity.Nfinhist(acc_no, "0", this.tx.txnmP.tran_desc, "0", "0", this.acct.actmP.cs_no1);
+                Entity.Nfinhist nFhist = new Entity.Nfinhist(acct.actmP.ac_no, "0", this.tx.txnmP.tran_desc, "0", "0", this.acct.actmP.cs_no1);
                 Data.NfinhistD.Create(connectionString, nFhist, dberr);
             }
             if (dberr.ifError())
@@ -231,8 +285,7 @@ namespace Business
             }
             // -----------------------------------------
             resultP = "Transaction Successful. Your new account balance is $" + acct.actmP.ac_bal + " " + mailResponse;
-            //-------------------------------------------
-            return 0; // remove later
+            return 0;
         }
         public String getOutput()
         {

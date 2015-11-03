@@ -16,6 +16,18 @@ namespace Business
         public String resultP{ get{return this.result;} set{this.result = value;}}
         Cp_Actm acct1, acct2, acct_init;
         Cp_Txnm tx;
+        Boolean pvgBypassed;
+        public Boolean pvgBypassedP
+        {
+            get
+            {
+                return this.pvgBypassed;
+            }
+            set
+            {
+                this.pvgBypassed = value;
+            }
+        }
         //Privilege pvg;
         Boolean error = false;
         Sequence seq;
@@ -168,12 +180,19 @@ namespace Business
                     ) != 0)
                 {
                     resultP = dberr.getErrorDesc(connectionString);
+                    error = true;
                     return -1;
                 }
                 resultP = Mnemonics.DbErrorCodes.MSG_SENT_FOR_AUTH;
+                error = true;
                 return 0;
             }
+            else
+            {
+                this.pvgBypassedP = true;
+            }
             resultP = "Transaction Processed!";
+            
             return 0; // remove later
         }
         public String getOutput()
