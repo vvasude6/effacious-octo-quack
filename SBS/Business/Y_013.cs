@@ -36,10 +36,10 @@ namespace Business
                 seq = new Sequence(TXID);
                 this.changeAmount = amount;
                 //processTransaction(connectionString, ac1, ac2, amount);
-                if (!ac1.Equals(loginAc))
+                /*if (!ac1.Equals(loginAc))
                 {
                     newInitiator = true;
-                }
+                }*/
                 if (processTransaction(connectionString, ac1, ac2, amount, loginAc) != 0)
                 {
                     this.error = true;
@@ -64,7 +64,60 @@ namespace Business
                 result = dberr.getErrorDesc(connectionString);
                 return -1;
             }
-            this.acct1 = new Cp_Actm(connectionString, ac1, dberr);
+            //Check if it is a Banker initiated transaction
+            if(Validation.employeeInitiatedTxn(connectionString, loginAc, dberr)==0)
+            {
+                this.newInitiator = true;
+            }
+            //From account and To account cannot be the same
+            if(Validation.validateFromToAccSame(ac1, ac2)!=0)
+            {
+                dberr.setError(Mnemonics.DbErrorCodes.TXERR_FROM_TO_AC_SAME);
+                resultP = dberr.getErrorDesc(connectionString);
+                return -1;
+            }
+            //Validations if Banker processes the txn
+            if (this.newInitiator)
+            {
+                //From Account and To Account should belong to the same customer
+                if (Validation.accountsBelongToSameCus(connectionString, ac1, ac2, dberr) != 0)
+                {
+                    dberr.setError(Mnemonics.DbErrorCodes.TXERR_INTERNAL_TFR_EMP_FROM_TO_ACC_DIFF_CUS);
+                    resultP = dberr.getErrorDesc(connectionString);
+                    return -1;
+                }
+                //Check if from Customer is Active (Enabled)
+                if (Validation.isActiveCustomerUsingAcc(connectionString, ac1, dberr))
+                {
+                    resultP = dberr.getErrorDesc(connectionString);
+                    return -1;
+                }
+                //Check if to Customer is Active (Enabled)
+                if (Validation.isActiveCustomerUsingAcc(connectionString, ac2, dberr))
+                {
+                    resultP = dberr.getErrorDesc(connectionString);
+                    return -1;
+                }
+            }
+            //Validations if customer processes the transaction.
+            else
+            {
+                //From account must belong the customer who has logged in
+                if (Validation.validateCustomerSelfAccount(connectionString, loginAc, ac1, dberr) != 0)
+                {
+                    dberr.setError(Mnemonics.DbErrorCodes.TXERR_INTERNAL_TFR_FROM_DIFF_CUS);
+                    resultP = dberr.getErrorDesc(connectionString);
+                    return -1;
+                }
+                //To account must also belong to the logged in customer
+                if (Validation.validateCustomerSelfAccount(connectionString, loginAc, ac2, dberr) != 0)
+                {
+                    dberr.setError(Mnemonics.DbErrorCodes.TXERR_INTERNAL_TFR_TO_DIFF_CUS);
+                    resultP = dberr.getErrorDesc(connectionString);
+                    return -1;
+                }
+            }
+            /*this.acct1 = new Cp_Actm(connectionString, ac1, dberr);
             // Check if ACTM fetch for account number acc_no is successful. Return if error encountered
             if (dberr.ifError())
             {
@@ -83,12 +136,15 @@ namespace Business
                 dberr.setError(Mnemonics.DbErrorCodes.TXERR_MISMATCH_CUSTOMER);
                 resultP = dberr.getErrorDesc(connectionString);
                 return -1;
-            }
+            }*/
             String initEmpNumber = "0";
             String initCustomer = "0";
             if (this.newInitiator)
             {
-                this.acct_init = new Cp_Actm(connectionString, loginAc, dberr);
+                initEmpNumber = loginAc;
+                Cp_Empm cpEmpm = new Cp_Empm(connectionString, loginAc, dberr);
+                pvg = new Privilege(tx.txnmP.tran_pvga, tx.txnmP.tran_pvgb, cpEmpm.empmP.emp_pvg);
+                /*this.acct_init = new Cp_Actm(connectionString, loginAc, dberr);
                 // Check if ACTM fetch for account number acc_no is successful. Return if error encountered
                 if (dberr.ifError())
                 {
@@ -103,15 +159,17 @@ namespace Business
                 else
                 {
                     initCustomer = this.acct_init.actmP.cs_no1;
-                }
+                }*/
             }
             else
             {
-                this.acct_init = this.acct1;
-                initCustomer = this.acct_init.actmP.cs_no1;
+                //this.acct_init = this.acct1;
+                initCustomer = loginAc; // this.acct_init.actmP.cs_no1;
+                Cp_Actm cpActm = new Cp_Actm(connectionString, ac1, dberr);
+                pvg = new Privilege(tx.txnmP.tran_pvga, tx.txnmP.tran_pvgb, cpActm.actmP.ac_pvg);
             }
             // Verify if account has the privilege to execute the transaction
-            pvg = new Privilege(tx.txnmP.tran_pvga, tx.txnmP.tran_pvgb, acct_init.actmP.ac_pvg);
+            //pvg = new Privilege(tx.txnmP.tran_pvga, tx.txnmP.tran_pvgb, acct_init.actmP.ac_pvg);
             if (!pvg.verifyInitPrivilege(dberr))
             {
                 result = dberr.getErrorDesc(connectionString);
@@ -164,7 +222,7 @@ namespace Business
                     return -1;
                 }
             }*/
-
+            resultP = "Transaction Processed!";
             return 0; // remove later
         }
         public String getOutput()
