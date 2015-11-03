@@ -79,7 +79,7 @@ namespace UI
                     if (output == null)
                         Response.Redirect("Error.aspx");
 
-                    if (output.resultSet.Tables.Count > 0)
+                    if (output != null && output.resultSet != null && output.resultSet.Tables.Count > 0 && output.resultSet.Tables.Count > 0)
                     {
                         if (output.resultSet.Tables[0].Rows.Count != 0)
                         {

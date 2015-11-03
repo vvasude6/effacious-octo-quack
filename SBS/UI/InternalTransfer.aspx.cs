@@ -73,7 +73,7 @@ namespace UI
                 Response.Redirect("Error.aspx");
 
 
-            if (output.resultSet.Tables[0].Rows.Count != 0)
+            if (output != null && output.resultSet != null && output.resultSet.Tables.Count > 0 && output.resultSet.Tables[0].Rows.Count != 0)
             {
                 FromDropDown.DataSource = output.resultSet.Tables[0];
                 FromDropDown.DataTextField = "ac_no";
@@ -99,7 +99,7 @@ namespace UI
                 Response.Redirect("Error.aspx");
 
 
-            if (output.resultSet.Tables[0].Rows.Count != 0)
+            if (output != null && output.resultSet != null && output.resultSet.Tables.Count > 0 && output.resultSet.Tables[0].Rows.Count != 0)
             {
                 ToDropDown.DataSource = output.resultSet.Tables[0];
                 ToDropDown.DataTextField = "ac_no";
