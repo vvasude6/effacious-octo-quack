@@ -101,5 +101,17 @@ namespace UI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton ResendOTPLink;
+        
+        /// <summary>
+        /// Master property.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated property.
+        /// </remarks>
+        public new UI.Site1 Master {
+            get {
+                return ((UI.Site1)(base.Master));
+            }
+        }
     }
 }

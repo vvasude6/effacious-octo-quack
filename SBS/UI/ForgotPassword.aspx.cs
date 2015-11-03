@@ -93,7 +93,6 @@ namespace UI
                 var output = new Business.XSwitch(Global.ConnectionString, Session["TempUserId"].ToString(), string.Format("{0}|{1}|{2}", arglist));
 
                 MessageLabel.Text = "Password changed successfully.";
-                ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Password changed successfully');", true);
                 _otpService = null;
                 System.Threading.Thread.Sleep(2000);
             }

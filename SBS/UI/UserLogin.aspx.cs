@@ -45,7 +45,7 @@ namespace UI
 
                         if (Global.LoggedInUsers.Contains(userName) || Global.LoggedInUsers.Count>50)
                         {
-                            MessageLabel.Text = "Error: User is already logged in.:
+                            MessageLabel.Text = "Error: User is already logged in.";
                             return;
                         }
                         var xSwitch = new Business.XSwitch();

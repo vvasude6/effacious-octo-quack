@@ -12,7 +12,6 @@ namespace UI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
             if (Session["UserId"] == null || Session["Access"] == null)
                 Response.Redirect("UserLogin.aspx");
             if(Session["Access"].ToString() == "3" || Session["Access"].ToString() == "4")
@@ -39,41 +38,30 @@ namespace UI
             //Send the Message of successful or failure(reason for failure)
             if (FromDropDown.SelectedValue == null || FromDropDown.SelectedValue == "0")
             {
-                //MessageBox.Show("Select the sender Account.");
-                ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Select the sender account');", true);
-
+                Master.ErrorMessage = "Error: Select the sender Account.";
             }
             else if (ToDropDown.SelectedValue == null || ToDropDown.SelectedValue == "0")
             {
-                //MessageBox.Show("Select the recepient Account.");
-                ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Select the recipient account');", true);
-
+                Master.ErrorMessage = "Error: Select the recepient Account.";
             }
             else if (AmountTransfer.Text == "" || !UI.Validate.isAmountValid(AmountTransfer.Text))
             {
-                //MessageBox.Show("Amount cannot be empty, and amount accepts only decimal values.");\
-                ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Invalid amount entered');", true);
-
+                Master.ErrorMessage = "Error: Amount cannot be empty, and amount accepts only decimal values.";
             }
             else if (ConfirmAmount.Text == "" || !UI.Validate.isAmountValid(ConfirmAmount.Text))
             {
-                //MessageBox.Show("Confirmation Amount cannot be empty, and Confirmation Amount accepts only decimal values.");
-                ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Invalid confirmation amount entered');", true);
-
+                Master.ErrorMessage = "Error: Confirmation Amount cannot be empty, and Confirmation Amount accepts only decimal values.";
             }
             else if (ConfirmAmount.Text != AmountTransfer.Text)
             {
-                //MessageBox.Show("Amount and Confirmation Amount should be same.");
-                ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Confirmation amount does not match');", true);
-
+                Master.ErrorMessage = "Error: Amount and Confirmation Amount should be same.";
             }
             else
             {
                 var transferAmount = Convert.ToDecimal(ConfirmAmount.Text);
                 var output = new Business.XSwitch(Global.ConnectionString, FromDropDown.SelectedValue, string.Format("014|{0}|{1}|{2}|{3}| ",FromDropDown.SelectedValue, ToDropDown.SelectedValue, transferAmount, Session["Access"]));
 
-                //MessageBox.Show(output.resultP);
-                ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('"+ output.resultP +"');", true);
+                Master.ErrorMessage = "Error: " + output.resultP;
                 ResetPage();
             }
         }

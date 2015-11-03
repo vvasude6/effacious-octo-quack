@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="InternalTransfer.aspx.cs" Inherits="UI.InternalTransfer" %>
+<%@ MasterType VirtualPath="~/Site1.Master" %> 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>

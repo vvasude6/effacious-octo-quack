@@ -123,8 +123,7 @@ namespace UI
 
                 if (errorFound)
                 {
-                    ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Invalid data entered. Please correct and resubmit.');", true);
-                    //MessageBox.Show("Invalid data entered!  Please correct and resubmit.");
+                    Master.ErrorMessage = "Error: Invalid data entered!  Please correct and resubmit.";
                     return;
                 }
 
@@ -155,7 +154,7 @@ namespace UI
                 var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(),
                     string.Format("{0}|{1}|{2}|{3}|{4}|{5}|{6}|{7}|{8}|{9}|{10}|{11}|{12}|{13}|{14}|{15}|{16}|{17}|{18}|{19}|{20}", arglist));
 
-                ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('New employee created');", true);
+                Master.ErrorMessage ="New employee created";
             }
             catch { }
             Response.Redirect("AdminHome.aspx");

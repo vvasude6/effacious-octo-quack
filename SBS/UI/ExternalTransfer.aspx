@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="ExternalTransfer.aspx.cs" Inherits="UI.TransferMoney" %>
+<%@ MasterType VirtualPath="~/Site1.Master" %> 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -37,10 +38,4 @@
     <br />
 
     <asp:Button ID="Transfer" runat="server" Text="Transfer Amount" OnClick="Transfer_Click" CssClass="btn btn-default" />
-
-
-
-
-
-
 </asp:Content>

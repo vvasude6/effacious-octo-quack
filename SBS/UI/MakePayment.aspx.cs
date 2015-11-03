@@ -157,19 +157,16 @@ namespace UI
                 {
                     if (FromDropdown.SelectedValue == "0")
                     {
-                        //MessageBox.Show("Select the Account from which an amount has to be Debited");
-                        ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Select the Amount from which an amount has to be Debited');", true);
+                        Master.ErrorMessage = "Error: Select the Account from which an amount has to be Debited";
                     }
 
                     if (ToDropdown.SelectedValue == "0")
                     {
-                        //MessageBox.Show("Select the Account to which the amount has to be Debited");
-                        ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Select the Account to which the amount has to be Debited');", true);
+                        Master.ErrorMessage = "Error: Select the Account to which the amount has to be Debited";
                     }
                     else if (Amount.Text == "" || !UI.Validate.isAmountValid(Amount.Text))
                     {
-                        //MessageBox.Show("Amount cannot be empty, and amount accepts only decimal values.");
-                        ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Amount cannot be empty, and amount accepts only decimal values.');", true);
+                        Master.ErrorMessage = "Error: Amount cannot be empty, and amount accepts only decimal values.";
                     }
                     else
                     {
@@ -206,9 +203,8 @@ namespace UI
             {
                 //TODO:
                 //var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(), string.Format("011|{0}| |{1}|{2}| ", FromDropdown.SelectedValue, amount, Session["Access"]));
-                //MessageBox.Show(string.Format("The debit was successful. Your current balance is {0}", output.resultP));
                 var output = new Business.XSwitch(Global.ConnectionString, FromDropdown.SelectedValue, string.Format("021|{0}|{1}|{2}|{3}| ", FromDropdown.SelectedValue, ToDropdown.SelectedValue, amount, Session["Access"].ToString()));
-                ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('" + output.resultP + "');", true);
+                Master.ErrorMessage = string.Format("The debit was successful. Your current balance is {0}", output.resultP);
                 ResetPage();
             }
             catch { }
@@ -238,7 +234,7 @@ namespace UI
             }
             else
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Enter the correct OTP.');", true);
+                Master.ErrorMessage = "Error: OTP entered was not recognized.";
             }
         }
 
