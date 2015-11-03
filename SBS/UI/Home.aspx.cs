@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -64,6 +65,18 @@ namespace UI
             sb.Append(string.Format("<li class='list-group-item'> <span class='custombadge badge'>{1}</span> {0} </li>", "Checkings Account", "$50.00"));
 
             return sb.ToString();
+        }
+
+        [WebMethod]
+        public static string GetKey()
+        {
+            return Global.ReadCustomerPrivateKey();
+        }
+
+        [WebMethod]
+        public static string GetPublicKey()
+        {
+            return Global.ReadBankPublicKey();
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 
@@ -79,6 +80,39 @@ namespace UI
             return hash;
         }
 
+        public static string ReadCustomerPrivateKey()
+        {
+            var userId = HttpContext.Current.Session["UserId"].ToString();
+            var xSwitchObject = new Business.XSwitch();
+            return xSwitchObject.getCustomerPrivateKey(Global.ConnectionString, userId);
+        }
+
+        public static string ReadBankPublicKey()
+        {
+            var xSwitchObject = new Business.XSwitch();
+            return xSwitchObject.getBankPublicKey(Global.ConnectionString);
+        }
+
+        public static void SaveCustomerPrivateKey()
+        {
+            try {
+                var userId = HttpContext.Current.Session["UserId"].ToString();
+                var xSwitchObject = new Business.XSwitch();
+                var keyXml = xSwitchObject.getCustomerPrivateKey(Global.ConnectionString, userId);
+                byte[] bytes = Encoding.ASCII.GetBytes(keyXml);
+
+                HttpContext.Current.Response.ContentType = "application/octet-stream";
+                HttpContext.Current.Response.AddHeader("content-disposition", string.Format("attachment;filename= {0}-key.pem", userId));
+                HttpContext.Current.Response.Buffer = true;
+                HttpContext.Current.Response.Clear();
+                HttpContext.Current.Response.OutputStream.Write(bytes, 0, bytes.Length);
+                HttpContext.Current.Response.OutputStream.Flush();
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 
     public static class Validate
