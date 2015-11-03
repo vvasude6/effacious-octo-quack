@@ -43,11 +43,11 @@ namespace UI
                     if (UI.Validate.isUserNameValid(userName))
                     { 
 
-                        if (Global.LoggedInUsers.Contains(userName) || Global.LoggedInUsers.Count>50)
-                        {
-                            MessageLabel.Text = "Error: User is already logged in.";
-                            return;
-                        }
+                        //if (Global.LoggedInUsers.Contains(userName) || Global.LoggedInUsers.Count>50)
+                        //{
+                        //    MessageLabel.Text = "Error: User is already logged in.";
+                        //    return;
+                        //}
                         var xSwitch = new Business.XSwitch();
                         //var encryptedConnectionString = Security.PKIService.EncryptData(Global.ConnectionString, xSwitch.getBankPublicKey(Global.ConnectionString));
                         var encryptedUserName = Security.PKIService.EncryptData(userName, xSwitch.getBankPublicKey(Global.ConnectionString));
@@ -61,7 +61,7 @@ namespace UI
                         var output = (string)Security.PKIService.DecryptData(encrytedOutput, xSwitchObject.getCustomerPrivateKey(Global.ConnectionString, userName.ToString()));
                         if (output.Contains("|"))
                         {
-                            Global.LoggedInUsers.Add(userName);
+                            //Global.LoggedInUsers.Add(userName);
                             var dataRecieved = output.Split('|');
                             Session["UserId"] = dataRecieved[0];
                             Session["UserName"] = dataRecieved[1].Trim() + " " + dataRecieved[2].Trim();
@@ -85,7 +85,7 @@ namespace UI
                                     break;
                                 default:
                                     MessageLabel.Text = "Error: Invalid login credentials.";
-                                    Global.LoggedInUsers.Remove(userName);
+                                    //Global.LoggedInUsers.Remove(userName);
 
                                     break;
                             }
@@ -103,7 +103,7 @@ namespace UI
             }
             catch (Exception ex)
             {
-                Global.LoggedInUsers.Remove(userName);
+                //Global.LoggedInUsers.Remove(userName);
                 MessageLabel.Text = "Error: Invalid login credentials.";
             }
         }

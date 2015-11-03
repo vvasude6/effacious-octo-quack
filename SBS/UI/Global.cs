@@ -31,7 +31,7 @@ namespace UI
             }
         }
 
-        public static List<string> LoggedInUsers = new List<string>();
+        //public static List<string> LoggedInUsers = new List<string>();
 
         public static bool SendPendingTransactionStatusMail(string customerName, string customerEmail, string status, string employeeName)
         {

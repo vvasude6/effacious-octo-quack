@@ -53,7 +53,7 @@ namespace UI
 
         protected void SignOutLink_Click(object sender, EventArgs e)
         {
-            Global.LoggedInUsers.Remove(Session["UserId"].ToString());
+            //Global.LoggedInUsers.Remove(Session["UserId"].ToString());
             DestroySession();
             Response.Redirect("UserLogin.aspx");
         }
