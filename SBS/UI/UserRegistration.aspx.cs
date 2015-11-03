@@ -11,6 +11,10 @@ namespace UI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
+            Response.Cache.SetNoStore();
+
             FirstNameTextBox.BorderColor = System.Drawing.Color.Black;
             MiddleNameTextBox.BorderColor = System.Drawing.Color.Black;
             LastNameTextBox.BorderColor = System.Drawing.Color.Black;

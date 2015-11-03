@@ -9,10 +9,15 @@ namespace UI
 {
     public partial class CreateAccount : System.Web.UI.Page
     {
-        String callingURL;
-
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["UserId"] == null || Session["Access"] == null)
+                Response.Redirect("UserLogin.aspx");
+            if (Session["Access"].ToString() == "3" || Session["Access"].ToString() == "4")
+                Response.Redirect("EmployeeHome.aspx");
+            if (Session["Access"].ToString() == "5")
+                Response.Redirect("AdminHome.aspx");
+
             if (!IsPostBack)
                 Request.UrlReferrer.ToString();
         }

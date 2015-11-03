@@ -1,6 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UserLogin.aspx.cs" Inherits="UI.UserLogin" %>
 
-<%@ Register TagPrefix="OTP" TagName="OTPBar" Src="OTPControl.ascx" %>
 
 <!DOCTYPE html>
 

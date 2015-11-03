@@ -11,6 +11,15 @@ namespace UI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["UserId"] == null || Session["Access"] == null)
+                Response.Redirect("UserLogin.aspx");
+            if (Session["Access"].ToString() == "3" || Session["Access"].ToString() == "4")
+                Response.Redirect("EmployeeHome.aspx");
+            if (Session["Access"].ToString() == "1")
+                Response.Redirect("Home.aspx");
+            if (Session["Access"].ToString() == "2")
+                Response.Redirect("MerchantHome.aspx");
+
             if (!IsPostBack)
             {
                 if (Global.IsPageAccessible(Page.Title))

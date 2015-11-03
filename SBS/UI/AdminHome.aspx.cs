@@ -20,6 +20,11 @@ namespace UI
                 LoadPendingTransactions();
             }
 
+            else
+            {
+                Response.Redirect("UserLogin.aspx");
+            }
+
             if (Global.IsPageAccessible(Page.Title))
             {
                 //write code here !

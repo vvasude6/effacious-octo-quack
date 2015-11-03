@@ -14,6 +14,13 @@ namespace UI
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
             Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
             Response.Cache.SetNoStore();
+
+           if(!IsPostBack)
+            {
+                Session.Clear();
+                Session.RemoveAll();
+                Session.Abandon();
+            }
         }
                 
         protected void Forgotpassword_Click(object sender, EventArgs e)
@@ -42,7 +49,6 @@ namespace UI
                             ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Looks like there is another user logged in with this ID.');", true);
                             return;
                         }
-                        Global.LoggedInUsers.Add(userName);
                         var xSwitch = new Business.XSwitch();
                         //var encryptedConnectionString = Security.PKIService.EncryptData(Global.ConnectionString, xSwitch.getBankPublicKey(Global.ConnectionString));
                         var encryptedUserName = Security.PKIService.EncryptData(userName, xSwitch.getBankPublicKey(Global.ConnectionString));
@@ -56,6 +62,7 @@ namespace UI
                         var output = (string)Security.PKIService.DecryptData(encrytedOutput, xSwitchObject.getCustomerPrivateKey(Global.ConnectionString, userName.ToString()));
                         if (output.Contains("|"))
                         {
+                            Global.LoggedInUsers.Add(userName);
                             var dataRecieved = output.Split('|');
                             Session["UserId"] = dataRecieved[0];
                             Session["UserName"] = dataRecieved[1].Trim() + " " + dataRecieved[2].Trim();
@@ -64,21 +71,23 @@ namespace UI
                             switch (dataRecieved[3])
                             {
                                 case "1":
-                                    Response.Redirect("Home.aspx");
+                                    Response.Redirect("Home.aspx", false);
                                     break;
                                 case "2":
-                                    Response.Redirect("MerchantHome.aspx");
+                                    Response.Redirect("MerchantHome.aspx", false);
                                     break;
                                 case "3":
                                 case "4":
-                                    Response.Redirect("EmployeeHome.aspx");
+                                    Response.Redirect("EmployeeHome.aspx", false);
                                     break;
                                 case "5":
-                                    Response.Redirect("AdminHome.aspx");
+                                    Response.Redirect("AdminHome.aspx", false);
                                     break;
                                 default:
                                     //MessageBox.Show("Looks like we could not log you in. Please check the details you have entered.");
                                     ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Login failed, check userid and password');", true);
+                                    Global.LoggedInUsers.Remove(userName);
+
                                     break;
                             }
                         }

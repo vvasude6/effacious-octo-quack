@@ -21,6 +21,8 @@ namespace UI
                     Response.Redirect("AdminHome.aspx");
                 else if (Session["Access"].ToString() == "1")
                     Response.Redirect("Home.aspx");
+                else if (Session["Access"].ToString() == "2")
+                    Response.Redirect("MerchantHome.aspx");
                 else if (Session["Access"].ToString() == "3" || Session["Access"].ToString() == "4")
                     Response.Redirect("EmployeeHome.aspx");
 

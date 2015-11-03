@@ -83,7 +83,6 @@
     <Content Include="DebitForm.aspx" />
     <Content Include="DeleteCustomer.aspx" />
     <Content Include="DeleteEmployee.aspx" />
-    <Content Include="EmployeeDisplay.aspx" />
     <Content Include="EmployeeHome.aspx" />
     <Content Include="EmployeeCreate.aspx" />
     <Content Include="Error.aspx" />
@@ -106,7 +105,6 @@
     <Content Include="MakePayment.aspx" />
     <Content Include="MerchantHome.aspx" />
     <Content Include="ForgotPassword.aspx" />
-    <Content Include="OTPControl.ascx" />
     <Content Include="PII.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -204,13 +202,6 @@
     <Compile Include="DeleteEmployee.aspx.designer.cs">
       <DependentUpon>DeleteEmployee.aspx</DependentUpon>
     </Compile>
-    <Compile Include="EmployeeDisplay.aspx.cs">
-      <DependentUpon>EmployeeDisplay.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EmployeeDisplay.aspx.designer.cs">
-      <DependentUpon>EmployeeDisplay.aspx</DependentUpon>
-    </Compile>
     <Compile Include="EmployeeHome.aspx.cs">
       <DependentUpon>EmployeeHome.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -278,13 +269,6 @@
     </Compile>
     <Compile Include="ForgotPassword.aspx.designer.cs">
       <DependentUpon>ForgotPassword.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OTPControl.ascx.cs">
-      <DependentUpon>OTPControl.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OTPControl.ascx.designer.cs">
-      <DependentUpon>OTPControl.ascx</DependentUpon>
     </Compile>
     <Compile Include="PII.aspx.cs">
       <DependentUpon>PII.aspx</DependentUpon>

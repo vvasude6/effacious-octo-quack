@@ -16,6 +16,13 @@ namespace UI
             if (Session["UserId"] == null)
                 Response.Redirect("UserLogin.aspx");
 
+            if (Session["UserId"] == null || Session["Access"] == null)
+                Response.Redirect("UserLogin.aspx");
+            if (Session["Access"].ToString() == "3" || Session["Access"].ToString() == "4")
+                Response.Redirect("EmployeeHome.aspx");
+            if (Session["Access"].ToString() == "1")
+                Response.Redirect("Home.aspx");
+
             if (Global.IsPageAccessible(Page.Title))
             {
                 LoadAccounts();
