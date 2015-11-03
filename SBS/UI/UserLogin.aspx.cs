@@ -35,8 +35,7 @@ namespace UI
             {
                 if (UserNameTextBox.Text == string.Empty || hashPasswordHiddenField.Value == string.Empty)
                 {
-                    //MessageBox.Show("Looks like you have not entered the username and/or the password. They are required for sign in.");
-                    ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Looks like you have not entered the username and/or the password. They are required for sign in.');", true);
+                    MessageLabel.Text = "Error: Invalid login credentials.";
                 }
                 else
                 {
@@ -46,7 +45,7 @@ namespace UI
 
                         if (Global.LoggedInUsers.Contains(userName) || Global.LoggedInUsers.Count>50)
                         {
-                            ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Looks like there is another user logged in with this ID.');", true);
+                            MessageLabel.Text = "Error: User is already logged in.:
                             return;
                         }
                         var xSwitch = new Business.XSwitch();
@@ -68,6 +67,7 @@ namespace UI
                             Session["UserName"] = dataRecieved[1].Trim() + " " + dataRecieved[2].Trim();
                             Session["Access"] = dataRecieved[3];
                             Session["UserEmail"] = dataRecieved[4];
+                            MessageLabel.Text = "";
                             switch (dataRecieved[3])
                             {
                                 case "1":
@@ -84,8 +84,7 @@ namespace UI
                                     Response.Redirect("AdminHome.aspx", false);
                                     break;
                                 default:
-                                    //MessageBox.Show("Looks like we could not log you in. Please check the details you have entered.");
-                                    ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Login failed, check userid and password');", true);
+                                    MessageLabel.Text = "Error: Invalid login credentials.";
                                     Global.LoggedInUsers.Remove(userName);
 
                                     break;
@@ -93,22 +92,19 @@ namespace UI
                         }
                         else
                         {
-                            //MessageBox.Show(output);
-                            ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Login failed, check userid and password');", true);
+                            MessageLabel.Text = "Error: " + output;
                         }
                     }
                     else
                     {
-                        //MessageBox.Show("Looks like we could not log you in. Please check the details you have entered.");
-                        //var message = "Looks like we could not log you in. Please check the details you have entered.";
-                        ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Login failed, check userid and password');", true);
+                        MessageLabel.Text = "Error: Invalid login credentials.";
                     }
                 }
             }
             catch (Exception ex)
             {
                 Global.LoggedInUsers.Remove(userName);
-                ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Login failed, check Userid and Password');", true);
+                MessageLabel.Text = "Error: Invalid login credentials.";
             }
         }
 
