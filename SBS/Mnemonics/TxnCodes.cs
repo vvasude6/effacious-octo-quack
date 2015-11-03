@@ -30,5 +30,6 @@ namespace Mnemonics
         public const String TX_CREATE_EMPLOYEE = "026";
         public const String TX_DELETE_USER_EMPLOYEE = "027";
         public const String TX_DEBIT_AUTH = "028";
+        public const String TX_EXT_HIVAL_TRANSFER = "029";
     }
 }

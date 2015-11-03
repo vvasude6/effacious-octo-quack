@@ -106,6 +106,7 @@ namespace Business
             }
             else
             {
+                dberr = new Data.Dber();
                 if (cstm.cs_type.Equals("A") || cstm.cs_type.Equals("1") || cstm.cs_type.Equals(" "))
                 {
                     cusPvg = 1;
