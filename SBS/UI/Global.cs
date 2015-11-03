@@ -115,7 +115,7 @@ namespace UI
 
         public static Boolean isZipCodeValid(String inputString)
         {
-            if (inputString.Length > 10)
+            if ((inputString.Length > 10) || (inputString.Length < 5))
                 return false;
 
             return generalValidate(inputString, false, true, "-");

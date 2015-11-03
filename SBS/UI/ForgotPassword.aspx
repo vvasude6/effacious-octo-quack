@@ -53,7 +53,9 @@
         &nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Label ID="Label2" runat="server" Text="Enter New Password" CssClass="label label-primary"></asp:Label>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:TextBox ID="pwdTextBox" runat="server" TextMode="Password"></asp:TextBox>
+        <asp:TextBox ID="pwdTextBox" runat="server" TextMode="Password"></asp:TextBox>&nbsp;&nbsp;
+        <asp:Label ID="Label20" runat="server" Text="at least 8 char, 1 cap, 1 lower, 1 num, 1 spec (!@#$-_')"></asp:Label>
+
         <asp:HiddenField ID="hashPwdHiddenField" runat="server"></asp:HiddenField>
         <br />
         <br />
