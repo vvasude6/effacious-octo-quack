@@ -120,5 +120,17 @@ namespace UI
                 }
             }
         }
+
+        public string ErrorMessage
+        {
+            get
+            {
+                return messageLabel.Text;
+            }
+            set
+            {
+                messageLabel.Text = value;
+            }
+        }
     }
 }

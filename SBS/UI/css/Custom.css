@@ -6,6 +6,14 @@
     align-content: center;
     width: 1170px;
     display: block;
+    margin-left: auto; margin-right: auto; margin-top:-30px; margin-bottom:0px/* this will center the page */
+}
+
+.messagecontent {
+    padding: 10px;
+    align-content: center;
+    width: 1170px;
+    display: block;
     margin: 50px auto; /* this will center the page */
 }
 
