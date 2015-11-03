@@ -86,6 +86,12 @@ namespace Business
         {
             return error;
         }
+        /*
+         * VALIDATIONS
+         * 1. From acc same as login acc, if customer initiated
+         * 2. amount not <= 0
+         * 3. 
+         */
         private int processTransaction(string connectionString, String acc_no, Int32 initPvg, String loginAc)
         {
             tx = new Cp_Txnm(connectionString, TXID, dberr);
@@ -95,46 +101,50 @@ namespace Business
                 result = dberr.getErrorDesc(connectionString);
                 return -1;
             }
-            em = new Cp_Empm(connectionString, loginAc, dberr);
-            if (!dberr.ifError())
+            //Check if it is a Banker initiated transaction
+            if (Validation.employeeInitiatedTxn(connectionString, loginAc, dberr) == 0)
             {
-
-                newInitiator = true;
-                //result = dberr.getErrorDesc(connectionString);
-                //return -1;
+                this.newInitiator = true;
+            }
+            if (this.newInitiator)
+            {
+                //Check if Customer is Active (Enabled)
+                if (Validation.isActiveCustomerUsingAcc(connectionString, acc_no, dberr))
+                {
+                    resultP = dberr.getErrorDesc(connectionString);
+                    return -1;
+                }
             }
             else
             {
-                dberr = new Data.Dber();
-            }
-            acct = new Cp_Actm(connectionString, acc_no, dberr);
-            // Check if ACTM fetch for account number acc_no is successful. Return if error encountered
-            if (dberr.ifError())
-            {
-                //newInitiator = true;
-                result = dberr.getErrorDesc(connectionString);
-                return -1;
-            }
-            Entity.Cstm cst = Data.CstmD.Read(connectionString, acct.actmP.cs_no1, dberr);
-            if(cst.cs_type.Equals("0"))
-            {
-                dberr.setError(Mnemonics.DbErrorCodes.TXERR_INACTIVE_CUSTOMER);
-                resultP = dberr.getErrorDesc(connectionString);
-                return -1;
+                // From account should belong to logged in customer
+                if (Validation.validateCustomerSelfAccount(connectionString, loginAc, acc_no, dberr) != 0)
+                {
+                    dberr.setError(Mnemonics.DbErrorCodes.TXERR_INTERNAL_TFR_FROM_DIFF_CUS);
+                    resultP = dberr.getErrorDesc(connectionString);
+                    return -1;
+                }
+                //Check if Customer is Active (Enabled)
+                if (Validation.isActiveCustomer(connectionString, loginAc, dberr))
+                {
+                    resultP = dberr.getErrorDesc(connectionString);
+                    return -1;
+                }
             }
             String initEmpNumber = "0";
             String initCustomer = "0";
             if (this.newInitiator)
             {
-                initEmpNumber = em.empmP.emp_no;
-                initCustomer = this.acct.actmP.cs_no1;
-                pvg = new Privilege(this.tx.txnmP.tran_pvga, this.tx.txnmP.tran_pvgb, Convert.ToInt32(em.empmP.emp_pvg));
+                initEmpNumber = loginAc;
+                Cp_Empm cpEmpm = new Cp_Empm(connectionString, loginAc, dberr);
+                pvg = new Privilege(tx.txnmP.tran_pvga, tx.txnmP.tran_pvgb, cpEmpm.empmP.emp_pvg);
             }
             else
             {
                 //this.acct = this.acct;
-                initCustomer = this.acct.actmP.cs_no1;
-                pvg = new Privilege(this.tx.txnmP.tran_pvga, this.tx.txnmP.tran_pvgb, Convert.ToInt32(acct.actmP.ac_pvg));
+                initCustomer = loginAc; // this.acct_init.actmP.cs_no1;
+                Cp_Actm cpActm = new Cp_Actm(connectionString, acc_no, dberr);
+                pvg = new Privilege(tx.txnmP.tran_pvga, tx.txnmP.tran_pvgb, cpActm.actmP.ac_pvg);
             }
             if (!pvg.verifyInitPrivilege(dberr))
             {
@@ -143,7 +153,7 @@ namespace Business
             }
             if (!pvg.verifyApprovePrivilege())
             {
-                String inData = this.TXID + "|" + acct.actmP.ac_no + "| |" + this.changeAmount.ToString();
+                String inData = this.TXID + "|" + acc_no + "| |" + this.changeAmount.ToString();
                 if (pvg.writeToPendingTxns(
                     connectionString,               /* connection string */
                     acct.actmP.ac_no,               /* account 1 */
@@ -171,6 +181,7 @@ namespace Business
                 this.pvgBypassedP = true;
             }
             // Update new balance in ACTM
+            acct = new Cp_Actm(connectionString, acc_no, dberr);
             acct.subtractBalance(connectionString, this.changeAmount, dberr);
             if (dberr.ifError())
             {
@@ -182,14 +193,14 @@ namespace Business
             if (tx.txnmP.tran_fin_type.Equals("Y"))
             {
                 // Write to FINHIST table
-                Entity.Finhist fhist = new Entity.Finhist(this.acct.actmP.ac_no, "0", this.tx.txnmP.tran_desc,
+                Entity.Finhist fhist = new Entity.Finhist(acc_no, "0", this.tx.txnmP.tran_desc,
                     changeAmount, 0, Convert.ToString(this.acct.actmP.ac_bal), "0", "0", "0");
                 Data.FinhistD.Create(connectionString, fhist, dberr);
             }
             else
             {
                 // Write to NFINHIST table
-                Entity.Nfinhist nFhist = new Entity.Nfinhist(this.acct.actmP.ac_no, "0", this.tx.txnmP.tran_desc, "0", "0", this.acct.actmP.cs_no1);
+                Entity.Nfinhist nFhist = new Entity.Nfinhist(acc_no, "0", this.tx.txnmP.tran_desc, "0", "0", this.acct.actmP.cs_no1);
                 Data.NfinhistD.Create(connectionString, nFhist, dberr);
             }
             if (dberr.ifError())
@@ -211,14 +222,6 @@ namespace Business
             }
             // -----------------------------------------
             resultP = "Transaction Successful. Your new account balance is $" + acct.actmP.ac_bal + " " + mailResponse;
-            // --------------- send mail -----------------
-
-            //if(!loginAc.Equals(acc_no))
-            //{
-            //    Security.OTPUtility.SendMail(acc_no, )
-            //}
-
-            // -------------------------------------------
             return 0; // remove later
         }
         public String getOutput()

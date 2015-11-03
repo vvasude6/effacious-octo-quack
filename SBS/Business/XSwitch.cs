@@ -68,16 +68,6 @@ namespace Business
                         Y_000 y000 = new Y_000(Mnemonics.TxnCodes.TX_LOGIN, connectionString, dataPart[0], dataPart[1]);
                         result = y000.resultP;
                         result = Security.PKIService.EncryptData(resultP, PkitD.GetCustomerPublicKey(connectionString, loginAE));
-                        /*
-                        Y_000 y000 = new Y_000(Mnemonics.TxnCodes.TX_LOGIN, connectionString, dataPart[1], dataPart[2]);
-                        if (y000.errorGet)
-                        {
-                            resultSet = new DataSet(y000.getOutput().ToString());
-                        }
-                        else
-                        {
-                            resultSet = y000.resultSetGet;
-                        }*/
                         // ENCRYPT result here
                         break;
                     case "008": // Fetch Pending transactions - Employee
@@ -208,24 +198,24 @@ namespace Business
                         }
                         // ENCRYPT result here
                         break;
-                    case "021": // External Funds Transfer = TRANSFER_DEBIT + TRANSFER_CREDIT
-                        Y_013 y013_2 = new Y_013(Mnemonics.TxnCodes.TX_EXT_TRANSFER, connectionString, dataPart[1], dataPart[2],
+                    case Mnemonics.TxnCodes.TX_EXT_TRANSFER: // External Funds Transfer = TRANSFER_DEBIT + TRANSFER_CREDIT
+                        Y_021 y021 = new Y_021(Mnemonics.TxnCodes.TX_EXT_TRANSFER, connectionString, dataPart[1], dataPart[2],
                             Convert.ToDecimal(dataPart[3]), loginAc);
-                        if (!y013_2.basicValidationError())
+                        if (!y021.basicValidationError())
                         {
                             Y_011 y011_1 = new Y_011(Mnemonics.TxnCodes.TX_TRANSFER_DEBIT,
                                 connectionString, dataPart[1], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
                             result = y011_1.getOutput();
                             if (!y011_1.basicValidationError())
                             {
-                                Y_012 y012_2 = new Y_012(Mnemonics.TxnCodes.TX_TRANSFER_CREDIT,
+                                Y_022 y022 = new Y_022(Mnemonics.TxnCodes.TX_TRANSFER_CREDIT,
                                 connectionString, dataPart[2], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
-                                result = y012_2.getOutput();
+                                result = y022.getOutput();
                             }
                         }
                         else
                         {
-                            result = y013_2.getOutput();
+                            result = y021.getOutput();
                         }
                         // ENCRYPT result here
                         break;

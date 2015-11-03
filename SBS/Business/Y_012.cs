@@ -103,101 +103,98 @@ namespace Business
                 result = dberr.getErrorDesc(connectionString);
                 return -1;
             }
-            em = new Cp_Empm(connectionString, loginAc, dberr);
-            if (!dberr.ifError())
+            //Check if it is a Banker initiated transaction
+            if (Validation.employeeInitiatedTxn(connectionString, loginAc, dberr) == 0)
             {
-                
-                newInitiator = true;
-                //result = dberr.getErrorDesc(connectionString);
-               //return -1;
+                this.newInitiator = true;
+            }
+            if (this.newInitiator)
+            {
+                //Check if Customer is Active (Enabled)
+                if (Validation.isActiveCustomerUsingAcc(connectionString, acc_no, dberr))
+                {
+                    resultP = dberr.getErrorDesc(connectionString);
+                    return -1;
+                }
             }
             else
             {
-                dberr = new Data.Dber();
-            }
-            acct = new Cp_Actm(connectionString, acc_no, dberr);
-            // Check if ACTM fetch for account number acc_no is successful. Return if error encountered
-            if (dberr.ifError())
-            {
-                //newInitiator = true;
-                result = dberr.getErrorDesc(connectionString);
-                return -1;
-            }
-            Entity.Cstm cst = Data.CstmD.Read(connectionString, acct.actmP.cs_no1, dberr);
-            if (cst.cs_type.Equals("0"))
-            {
-                dberr.setError(Mnemonics.DbErrorCodes.TXERR_INACTIVE_CUSTOMER);
-                resultP = dberr.getErrorDesc(connectionString);
-                return -1;
+                //Check if Customer is Active (Enabled)
+                if (Validation.isActiveCustomer(connectionString, loginAc, dberr))
+                {
+                    resultP = dberr.getErrorDesc(connectionString);
+                    return -1;
+                }
             }
             String initEmpNumber = "0";
             String initCustomer = "0";
             if (this.newInitiator)
             {
-                    initEmpNumber = em.empmP.emp_no;
-                    initCustomer = this.acct.actmP.cs_no1;
-                    pvg = new Privilege(this.tx.txnmP.tran_pvga, this.tx.txnmP.tran_pvgb, Convert.ToInt32(em.empmP.emp_pvg));
+                initEmpNumber = loginAc;
+                Cp_Empm cpEmpm = new Cp_Empm(connectionString, loginAc, dberr);
+                pvg = new Privilege(tx.txnmP.tran_pvga, tx.txnmP.tran_pvgb, cpEmpm.empmP.emp_pvg);
             }
             else
             {
-
-                initCustomer = this.acct.actmP.cs_no1;
-                pvg = new Privilege(this.tx.txnmP.tran_pvga, this.tx.txnmP.tran_pvgb, Convert.ToInt32(acct.actmP.ac_pvg));
+                //this.acct = this.acct;
+                initCustomer = loginAc; // this.acct_init.actmP.cs_no1;
+                Cp_Actm cpActm = new Cp_Actm(connectionString, acc_no, dberr);
+                pvg = new Privilege(tx.txnmP.tran_pvga, tx.txnmP.tran_pvgb, cpActm.actmP.ac_pvg);
             }
-                if (!pvg.verifyInitPrivilege(dberr))
+            if (!pvg.verifyInitPrivilege(dberr))
+            {
+                result = dberr.getErrorDesc(connectionString);
+                return -1;
+            }
+            if (!pvg.verifyApprovePrivilege())
+            {
+                String inData = this.TXID + "|" + acc_no + "| |" + this.changeAmount.ToString();
+                if (pvg.writeToPendingTxns(
+                    connectionString,               /* connection string */
+                    acct.actmP.ac_no,               /* account 1 */
+                    "0",                            /* account 2 */
+                    initCustomer,                   /* customer number */
+                    tx.txnmP.tran_pvgb.ToString(),  /* transaction approve privilege */
+                    tx.txnmP.tran_desc,             /* transaction description */
+                    initEmpNumber,                  /* initiating employee number */
+                    0,                              /* debit amount */
+                    this.changeAmount,              /* credit amount */
+                    tx.txnmP.tran_id,               /* transaction id (not tran code) */
+                    inData,                         /* incoming transaction string in XSwitch */
+                    dberr                           /* error tracking object */
+                    ) != 0)
                 {
-                    result = dberr.getErrorDesc(connectionString);
+                    resultP = dberr.getErrorDesc(connectionString);
                     return -1;
                 }
-                if (!pvg.verifyApprovePrivilege())
-                {
-                    String inData = this.TXID + "|" + acct.actmP.ac_no + "| |" + this.changeAmount.ToString();
-                    if (pvg.writeToPendingTxns(
-                        connectionString,               /* connection string */
-                        acct.actmP.ac_no,               /* account 1 */
-                        "0",                            /* account 2 */
-                        initCustomer,                   /* customer number */
-                        tx.txnmP.tran_pvgb.ToString(),  /* transaction approve privilege */
-                        tx.txnmP.tran_desc,             /* transaction description */
-                        initEmpNumber,                  /* initiating employee number */
-                        0,                              /* debit amount */
-                        this.changeAmount,              /* credit amount */
-                        tx.txnmP.tran_id,               /* transaction id (not tran code) */
-                        inData,                         /* incoming transaction string in XSwitch */
-                        dberr                           /* error tracking object */
-                        ) != 0)
-                    {
-                        resultP = dberr.getErrorDesc(connectionString);
-                        return -1;
-                    }
-                    resultP = Mnemonics.DbErrorCodes.MSG_SENT_FOR_AUTH;
-                    return 0;
-                }
+                resultP = Mnemonics.DbErrorCodes.MSG_SENT_FOR_AUTH;
+                return 0;
+            }
             //}
-                else
-                {
-                    this.pvgBypassedP = true;
-                }
+            else
+            {
+                this.pvgBypassedP = true;
+            }
             // Update new balance in ACTM
+            acct = new Cp_Actm(connectionString, acc_no, dberr);
             acct.addBalance(connectionString, this.changeAmount, dberr);
             if (dberr.ifError())
             {
                 result = dberr.getErrorDesc(connectionString);
                 return -1;
             }
-            this.resultP = "Successful! Your new balance: " + acct.resultP;
             // Store transaction in hisory table. Determine which history table to store in based on tx.txnmP.tran_fin_type
             if (tx.txnmP.tran_fin_type.Equals("Y"))
             {
                 // Write to FINHIST table
-                Entity.Finhist fhist = new Entity.Finhist(this.acct.actmP.ac_no, "0", this.tx.txnmP.tran_desc,
-                    0, changeAmount, Convert.ToString(this.acct.actmP.ac_bal), "0", "0","0");
+                Entity.Finhist fhist = new Entity.Finhist(acc_no, "0", this.tx.txnmP.tran_desc,
+                    changeAmount, 0, Convert.ToString(this.acct.actmP.ac_bal), "0", "0", "0");
                 Data.FinhistD.Create(connectionString, fhist, dberr);
             }
             else
             {
                 // Write to NFINHIST table
-                Entity.Nfinhist nFhist = new Entity.Nfinhist(this.acct.actmP.ac_no, "0", this.tx.txnmP.tran_desc, "0", "0","0");
+                Entity.Nfinhist nFhist = new Entity.Nfinhist(acc_no, "0", this.tx.txnmP.tran_desc, "0", "0", this.acct.actmP.cs_no1);
                 Data.NfinhistD.Create(connectionString, nFhist, dberr);
             }
             if (dberr.ifError())
@@ -205,8 +202,6 @@ namespace Business
                 result = dberr.getErrorDesc(connectionString);
                 return -1;
             }
-            
-            // ----------- send email ------------------
             Entity.Cstm cstm = Data.CstmD.Read(connectionString, acct.actmP.cs_no1, dberr);
             if (dberr.ifError())
             {
