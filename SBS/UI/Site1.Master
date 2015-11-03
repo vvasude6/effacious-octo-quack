@@ -83,7 +83,7 @@
                 </ul>
             </div>
         </nav>
-        <div class="messagecontent" style="padding: 10px; align-content: center; width: 1170px; display: block; margin-left: auto; margin-right: auto; margin-top:50px; margin-bottom:0px">
+        <div class="messagecontent" style="height: 20px; padding: 10px; align-content: center; width: 1170px; display: block; margin-left: auto; margin-right: auto; margin-top:50px; margin-bottom:0px">
             <asp:Label ID="messageLabel" runat="server" Text="Message"></asp:Label>
         </div>
         <div class="maincontent">
