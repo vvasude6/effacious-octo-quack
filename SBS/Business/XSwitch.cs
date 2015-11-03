@@ -92,7 +92,7 @@ namespace Business
                     case "011": // Debit
                         Y_011 y011 = new Y_011(Mnemonics.TxnCodes.TX_DEBIT, connectionString, dataPart[1],
                             Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
-                        if (y011.pvgBypassedP)
+                        if (y011.pvgBypassedP && y011.newInitiatorP)
                         {
                             if(!deletePendingTransaction(connectionString, dataPart[5]))
                             {
@@ -105,7 +105,7 @@ namespace Business
                     case "012": // Credit
                         Y_012 y012 = new Y_012(Mnemonics.TxnCodes.TX_CREDIT, connectionString, dataPart[1],
                             Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
-                        if (y012.pvgBypassedP)
+                        if (y012.pvgBypassedP && y012.newInitiatorP)
                         {
                             if (!deletePendingTransaction(connectionString, dataPart[5]))
                             {
@@ -118,7 +118,7 @@ namespace Business
                     case "013": // High Value Credit
                         Y_012 y012_1 = new Y_012(Mnemonics.TxnCodes.TX_HIGHVAL_CREDIT, connectionString,
                             dataPart[1], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
-                        if (y012_1.pvgBypassedP)
+                        if (y012_1.pvgBypassedP && y012_1.newInitiatorP)
                         {
                             if (!deletePendingTransaction(connectionString, dataPart[5]))
                             {
@@ -133,16 +133,16 @@ namespace Business
                             Convert.ToDecimal(dataPart[3]), loginAc);
                         if (!y013.basicValidationError())
                         {
-                            Y_011 y011_1 = new Y_011(Mnemonics.TxnCodes.TX_TRANSFER_DEBIT,
+                            Y_012 y012_2 = new Y_012(Mnemonics.TxnCodes.TX_TRANSFER_CREDIT,
                                 connectionString, dataPart[1], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
-                            result = y011_1.getOutput();
-                            if (!y011_1.basicValidationError())
+                            result = y012_2.getOutput();
+                            if (!y012_2.basicValidationError())
                             {
-                                Y_012 y012_2 = new Y_012(Mnemonics.TxnCodes.TX_TRANSFER_CREDIT,
+                                Y_011 y011_1 = new Y_011(Mnemonics.TxnCodes.TX_TRANSFER_DEBIT,
                                 connectionString, dataPart[2], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
-                                if (!y012_2.txnErrorP)
+                                if (!y011_1.txnErrorP)
                                 {
-                                    if (y012_2.pvgBypassedP)
+                                    if (y011_1.pvgBypassedP && y011_1.newInitiatorP)
                                     {
                                         if (!deletePendingTransaction(connectionString, dataPart[5]))
                                         {
@@ -153,7 +153,7 @@ namespace Business
                                 }
                                 else
                                 {
-                                    resultP = y012_2.getOutput();
+                                    resultP = y011_1.getOutput();
                                 }
                             }
                         }
@@ -168,16 +168,16 @@ namespace Business
                             Convert.ToDecimal(dataPart[3]), loginAc);
                         if (!y013_1.basicValidationError())
                         {
-                            Y_011 y011_1 = new Y_011(Mnemonics.TxnCodes.TX_TRANSFER_DEBIT,
+                            Y_012 y012_2 = new Y_012(Mnemonics.TxnCodes.TX_TRANSFER_CREDIT,
                                 connectionString, dataPart[1], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
-                            result = y011_1.getOutput();
-                            if (!y011_1.basicValidationError())
+                            result = y012_2.getOutput();
+                            if (!y012_2.basicValidationError())
                             {
-                                Y_012 y012_2 = new Y_012(Mnemonics.TxnCodes.TX_TRANSFER_CREDIT,
+                                Y_011 y011_1 = new Y_011(Mnemonics.TxnCodes.TX_TRANSFER_DEBIT,
                                 connectionString, dataPart[2], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
-                                if (!y012_2.txnErrorP)
+                                if (!y011_1.txnErrorP)
                                 {
-                                    if (y012_2.pvgBypassedP)
+                                    if (y011_1.pvgBypassedP && y011_1.newInitiatorP)
                                     {
                                         if (!deletePendingTransaction(connectionString, dataPart[5]))
                                         {
@@ -188,7 +188,7 @@ namespace Business
                                 }
                                 else
                                 {
-                                    resultP = y012_2.getOutput();
+                                    resultP = y011_1.getOutput();
                                 }
                             }
                         }
@@ -203,19 +203,40 @@ namespace Business
                             Convert.ToDecimal(dataPart[3]), loginAc);
                         if (!y021.basicValidationError())
                         {
-                            Y_011 y011_1 = new Y_011(Mnemonics.TxnCodes.TX_TRANSFER_DEBIT,
+                            Y_022 y022 = new Y_022(Mnemonics.TxnCodes.TX_TRANSFER_CREDIT,
                                 connectionString, dataPart[1], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
-                            result = y011_1.getOutput();
-                            if (!y011_1.basicValidationError())
+                            result = y022.getOutput();
+                            if (!y022.basicValidationError())
                             {
-                                Y_022 y022 = new Y_022(Mnemonics.TxnCodes.TX_TRANSFER_CREDIT,
+                                Y_011 y011_1 = new Y_011(Mnemonics.TxnCodes.TX_TRANSFER_DEBIT,
                                 connectionString, dataPart[2], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
-                                result = y022.getOutput();
+                                result = y011_1.getOutput();
                             }
                         }
                         else
                         {
                             result = y021.getOutput();
+                        }
+                        // ENCRYPT result here
+                        break;
+                    case Mnemonics.TxnCodes.TX_EXT_HIVAL_TRANSFER: // External Funds Transfer = TRANSFER_DEBIT + TRANSFER_CREDIT
+                        Y_021 y021_1 = new Y_021(Mnemonics.TxnCodes.TX_EXT_HIVAL_TRANSFER, connectionString, dataPart[1], dataPart[2],
+                            Convert.ToDecimal(dataPart[3]), loginAc);
+                        if (!y021_1.basicValidationError())
+                        {
+                            Y_022 y022 = new Y_022(Mnemonics.TxnCodes.TX_TRANSFER_CREDIT,
+                                connectionString, dataPart[1], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
+                            result = y022.getOutput();
+                            if (!y022.basicValidationError())
+                            {
+                                Y_011 y011_1 = new Y_011(Mnemonics.TxnCodes.TX_TRANSFER_DEBIT,
+                                connectionString, dataPart[2], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
+                                result = y011_1.getOutput();
+                            }
+                        }
+                        else
+                        {
+                            result = y021_1.getOutput();
                         }
                         // ENCRYPT result here
                         break;

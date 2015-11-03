@@ -52,6 +52,17 @@ namespace Business
         String loginAcc;
         Int32 initPvg;
         Boolean newInitiator = false; // if the person transacting is different from the initiator, like in case of pending txns
+        public Boolean newInitiatorP
+        {
+            get
+            {
+                return this.newInitiator;
+            }
+            set
+            {
+                this.newInitiator = value;
+            }
+        }
         public Y_011(String txid, String connectionString, String acc_no, Decimal amount, String initPvg, String refno, String loginAc)
         {
             try
@@ -102,14 +113,15 @@ namespace Business
                 return -1;
             }
             //Check if it is a Banker initiated transaction
-            if (Validation.employeeInitiatedTxn(connectionString, loginAc, dberr) == 0)
+            if (Validation.employeeInitiatedTxn(connectionString, loginAc) == 0)
             {
                 this.newInitiator = true;
             }
             if (this.newInitiator)
             {
+                
                 //Check if Customer is Active (Enabled)
-                if (Validation.isActiveCustomerUsingAcc(connectionString, acc_no, dberr))
+                if (!Validation.isActiveCustomerUsingAcc(connectionString, acc_no))
                 {
                     resultP = dberr.getErrorDesc(connectionString);
                     return -1;
@@ -117,15 +129,16 @@ namespace Business
             }
             else
             {
+                dberr = new Data.Dber();
                 // From account should belong to logged in customer
-                if (Validation.validateCustomerSelfAccount(connectionString, loginAc, acc_no, dberr) != 0)
+                if (Validation.validateCustomerSelfAccount(connectionString, loginAc, acc_no) != 0)
                 {
                     dberr.setError(Mnemonics.DbErrorCodes.TXERR_INTERNAL_TFR_FROM_DIFF_CUS);
                     resultP = dberr.getErrorDesc(connectionString);
                     return -1;
                 }
                 //Check if Customer is Active (Enabled)
-                if (Validation.isActiveCustomer(connectionString, loginAc, dberr))
+                if (!Validation.isActiveCustomer(connectionString, loginAc))
                 {
                     resultP = dberr.getErrorDesc(connectionString);
                     return -1;
@@ -143,8 +156,8 @@ namespace Business
             {
                 //this.acct = this.acct;
                 initCustomer = loginAc; // this.acct_init.actmP.cs_no1;
-                Cp_Actm cpActm = new Cp_Actm(connectionString, acc_no, dberr);
-                pvg = new Privilege(tx.txnmP.tran_pvga, tx.txnmP.tran_pvgb, cpActm.actmP.ac_pvg);
+                acct = new Cp_Actm(connectionString, acc_no, dberr);
+                pvg = new Privilege(tx.txnmP.tran_pvga, tx.txnmP.tran_pvgb, acct.actmP.ac_pvg);
             }
             if (!pvg.verifyInitPrivilege(dberr))
             {
@@ -156,7 +169,7 @@ namespace Business
                 String inData = this.TXID + "|" + acc_no + "| |" + this.changeAmount.ToString();
                 if (pvg.writeToPendingTxns(
                     connectionString,               /* connection string */
-                    acct.actmP.ac_no,               /* account 1 */
+                    acc_no,                         /* account 1 */
                     "0",                            /* account 2 */
                     initCustomer,                   /* customer number */
                     tx.txnmP.tran_pvgb.ToString(),  /* transaction approve privilege */
@@ -170,9 +183,11 @@ namespace Business
                     ) != 0)
                 {
                     resultP = dberr.getErrorDesc(connectionString);
+                    error = true;
                     return -1;
                 }
                 resultP = Mnemonics.DbErrorCodes.MSG_SENT_FOR_AUTH;
+                error = true;
                 return 0;
             }
             //}
