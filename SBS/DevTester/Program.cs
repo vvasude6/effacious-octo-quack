@@ -14,11 +14,11 @@ namespace DevTester
         static void Main(string[] args)
         {
             var error = new Data.Dber();
-            var s = FinhistD.Read(CONNECTION_STRING,"1", error);
+            var s = CstmD.Read(CONNECTION_STRING,"10001", error);
 
-            var c = FinhistD.Create(CONNECTION_STRING,s,error);
+            var c = CstmD.Create(CONNECTION_STRING,s,error);
 
-            var d = FinhistD.Delete(CONNECTION_STRING, c.ToString(),null);
+            var d = CstmD.Delete(CONNECTION_STRING, c.ToString(),null);
             // TestSecurity();
 
             Console.ReadLine();

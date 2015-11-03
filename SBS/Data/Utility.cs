@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,6 +11,14 @@ namespace Data
 {
     internal static class Utility
     {
+        static string[] _blackList = {"--", ";", "/*", "*/", "@@", "@",
+                  "char", "nchar", "varchar", "nvarchar",
+                  "alter", "begin", "cast", "create", "cursor",
+                  "declare", "delete", "drop", "end", "exec",
+                  "execute", "fetch", "insert", "kill", "open",
+                   "sys", "sysobjects", "syscolumns",
+                  "table", "update"};
+
         internal static void AttachParameters(SqlCommand command, SqlParameter[] commandParameters)
         {
             try
@@ -150,6 +159,41 @@ namespace Data
                 connection.Dispose();
                 connection = null;
             }
+        }
+
+        internal static bool ValidData(string data)
+        {
+            var isValid = false;
+
+            var dataArray = data.Split(' ');
+
+            var found = false;
+            for (var i = 0; i < dataArray.Count(); i++)
+            {
+                if (_blackList.Contains(dataArray[i].Trim()))
+                {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) isValid = true;
+
+            return isValid;
+        }
+
+        internal static bool ValidData(Object dataObject)
+        {
+            var isValid = false;
+            Type type = dataObject.GetType();
+            PropertyInfo[] properties = type.GetProperties();
+
+            foreach (PropertyInfo property in properties)
+            {
+                isValid = ValidData(property.GetValue(dataObject, null).ToString());
+                if (!isValid) break;
+            }
+
+            return isValid;
         }
     }
 }

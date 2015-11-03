@@ -126,6 +126,8 @@ namespace Data
             try
             {
 
+                var s = Utility.ValidData(dataObject);
+
                 var query = string.Format(@"INSERT INTO [SBS].[dbo].[CSTM]
                     ([CS_TYPE],[CS_FNAME],[CS_MNAME],[CS_LNAME],[CS_ADDR1],[CS_ADDR2],[CS_ZIP],[CS_CITY]
                     ,[CS_STATE],[CS_PHN],[CS_EMAIL],[CS_UID],[CS_BRANCH],[CS_SEC_QS1],[CS_SEC_ANS1],[CS_SEC_QS2],[CS_SEC_ANS2]
