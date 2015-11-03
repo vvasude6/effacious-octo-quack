@@ -170,7 +170,7 @@ namespace Data
             var found = false;
             for (var i = 0; i < dataArray.Count(); i++)
             {
-                if (_blackList.Contains(dataArray[i].Trim()))
+                if (_blackList.Contains(dataArray[i].Trim().ToLower()))
                 {
                     found = true;
                     break;
