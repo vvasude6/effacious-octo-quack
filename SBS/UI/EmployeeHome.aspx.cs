@@ -15,7 +15,7 @@ namespace UI
         {
             if (Session["UserId"] == null || Session["Access"] == null)
                 Response.Redirect("UserLogin.aspx");
-            else if (Session["Access"].ToString() != "3" || Session["Access"].ToString() != "4")
+            else if (Session["Access"].ToString() == "2" || Session["Access"].ToString() == "1")
                 Response.Redirect("UserLogin.aspx");
 
             if (Global.IsPageAccessible(Page.Title))
