@@ -185,7 +185,7 @@ namespace UI
             try
             {
                 var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(), string.Format("011|{0}| |{1}|{2}| ", FromDropdown.SelectedValue, amount, Session["Access"]));
-                Master.ErrorMessage = string.Format("The debit was successful. Your current balance is {0}", output.resultP);
+                Master.ErrorMessage = string.Format(output.resultP);
                 ResetPage();
             }
             catch
