@@ -124,19 +124,39 @@ namespace Business
             //Validations if customer processes the transaction.
             else
             {
-                //From account must belong the customer who has logged in
-                if (Validation.validateCustomerSelfAccount(connectionString, loginAc, ac1) != 0)
+                if (Validation.isMerchant(connectionString, loginAc))
                 {
-                    dberr.setError(Mnemonics.DbErrorCodes.TXERR_INTERNAL_TFR_FROM_DIFF_CUS);
-                    resultP = dberr.getErrorDesc(connectionString);
-                    return -1;
+                    //From account should not belong to the Merchant
+                    if (Validation.validateCustomerSelfAccount(connectionString, loginAc, ac1) == 0)
+                    {
+                        dberr.setError(Mnemonics.DbErrorCodes.TXERR_INTERNAL_TFR_EMP_FROM_TO_ACC_DIFF_CUS);
+                        resultP = dberr.getErrorDesc(connectionString);
+                        return -1;
+                    }
+                    //To account should belong to the merchant
+                    if (Validation.validateCustomerSelfAccount(connectionString, loginAc, ac2) != 0)
+                    {
+                        dberr.setError(Mnemonics.DbErrorCodes.TXERR_EXTERNAL_TFR_EMP_TO_ACC_SAME_CUS);
+                        resultP = dberr.getErrorDesc(connectionString);
+                        return -1;
+                    }
                 }
-                //To account must NOT belong to the logged in customer
-                if (Validation.validateCustomerSelfAccount(connectionString, loginAc, ac2) == 0)
+                else
                 {
-                    dberr.setError(Mnemonics.DbErrorCodes.TXERR_EXTERNAL_TFR_EMP_TO_ACC_SAME_CUS);
-                    resultP = dberr.getErrorDesc(connectionString);
-                    return -1;
+                    //From account must belong the customer who has logged in
+                    if (Validation.validateCustomerSelfAccount(connectionString, loginAc, ac1) != 0)
+                    {
+                        dberr.setError(Mnemonics.DbErrorCodes.TXERR_INTERNAL_TFR_FROM_DIFF_CUS);
+                        resultP = dberr.getErrorDesc(connectionString);
+                        return -1;
+                    }
+                    //To account must NOT belong to the logged in customer
+                    if (Validation.validateCustomerSelfAccount(connectionString, loginAc, ac2) == 0)
+                    {
+                        dberr.setError(Mnemonics.DbErrorCodes.TXERR_EXTERNAL_TFR_EMP_TO_ACC_SAME_CUS);
+                        resultP = dberr.getErrorDesc(connectionString);
+                        return -1;
+                    }
                 }
             }
             String initEmpNumber = "0";

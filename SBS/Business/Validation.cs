@@ -112,5 +112,22 @@ namespace Business
             }
             return 0;
         }
+        public static Boolean isMerchant(String connectionString, String loginAc)
+        {
+            Data.Dber dberr = new Data.Dber();
+            Cp_Cstm cpCstm = new Cp_Cstm(connectionString, loginAc, dberr);
+            if (dberr.ifError())
+            {
+                return false;
+            }
+            if(cpCstm.cstmP.cs_type.Equals("2"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

@@ -235,9 +235,30 @@ namespace Business
                                 connectionString, dataPart[1], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
                                 if (!y011_1.basicValidationError())
                                 {
-                                    if (!deletePendingTransaction(connectionString, dataPart[5]))
+                                    if (y011_1.pvgBypassedP && y011_1.newInitiatorP)
                                     {
-                                        resultP = "Transaction Failed";
+                                        if (!deletePendingTransaction(connectionString, dataPart[5]))
+                                        {
+                                            resultP = "Transaction Failed";
+                                        }
+                                        else
+                                        {
+                                            if (y011_1.rollbackSubtractBalance(connectionString) == 0)
+                                            {
+                                                if (y022.rollbackAddBalance(connectionString) == 0)
+                                                {
+                                                    resultP = "Transaction Successful";
+                                                }
+                                                else
+                                                {
+                                                    resultP = "Transaction Failed ext 1";
+                                                }
+                                            }
+                                            else
+                                            {
+                                                resultP = "Transaction Failed ext 2";
+                                            }
+                                        }
                                     }
                                     else
                                     {

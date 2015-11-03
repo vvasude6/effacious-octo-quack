@@ -131,12 +131,25 @@ namespace Business
                     resultP = dberr.getErrorDesc(connectionString);
                     return -1;
                 }
-                //To account should NOT belong to the logged in customer
-                if (Validation.validateCustomerSelfAccount(connectionString, loginAc, acc_no) == 0)
+                //Check if logged user is a Merchant
+                if (Validation.isMerchant(connectionString, loginAc))
                 {
-                    dberr.setError(Mnemonics.DbErrorCodes.TXERR_INTERNAL_TFR_EMP_FROM_TO_ACC_DIFF_CUS);
-                    resultP = dberr.getErrorDesc(connectionString);
-                    return -1;
+                    if (Validation.validateCustomerSelfAccount(connectionString, loginAc, acc_no) != 0)
+                    {
+                        dberr.setError(Mnemonics.DbErrorCodes.TXERR_INTERNAL_TFR_EMP_FROM_TO_ACC_DIFF_CUS);
+                        resultP = dberr.getErrorDesc(connectionString);
+                        return -1;
+                    }
+                }
+                else
+                {
+                    //To account should NOT belong to the logged in customer
+                    if (Validation.validateCustomerSelfAccount(connectionString, loginAc, acc_no) == 0)
+                    {
+                        dberr.setError(Mnemonics.DbErrorCodes.TXERR_INTERNAL_TFR_EMP_FROM_TO_ACC_DIFF_CUS);
+                        resultP = dberr.getErrorDesc(connectionString);
+                        return -1;
+                    }
                 }
             }
             String initEmpNumber = "0";

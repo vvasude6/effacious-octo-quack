@@ -131,11 +131,24 @@ namespace Business
             {
                 dberr = new Data.Dber();
                 // From account should belong to logged in customer
-                if (Validation.validateCustomerSelfAccount(connectionString, loginAc, acc_no) != 0)
+                if (Validation.isMerchant(connectionString, loginAc))
                 {
-                    dberr.setError(Mnemonics.DbErrorCodes.TXERR_INTERNAL_TFR_FROM_DIFF_CUS);
-                    resultP = dberr.getErrorDesc(connectionString);
-                    return -1;
+                    //From account should not belong to the Merchant
+                    if (Validation.validateCustomerSelfAccount(connectionString, loginAc, acc_no) == 0)
+                    {
+                        dberr.setError(Mnemonics.DbErrorCodes.TXERR_INTERNAL_TFR_EMP_FROM_TO_ACC_DIFF_CUS);
+                        resultP = dberr.getErrorDesc(connectionString);
+                        return -1;
+                    }
+                }
+                else
+                {
+                    if (Validation.validateCustomerSelfAccount(connectionString, loginAc, acc_no) != 0)
+                    {
+                        dberr.setError(Mnemonics.DbErrorCodes.TXERR_INTERNAL_TFR_FROM_DIFF_CUS);
+                        resultP = dberr.getErrorDesc(connectionString);
+                        return -1;
+                    }
                 }
                 //Check if Customer is Active (Enabled)
                 if (!Validation.isActiveCustomer(connectionString, loginAc))
@@ -143,6 +156,7 @@ namespace Business
                     resultP = dberr.getErrorDesc(connectionString);
                     return -1;
                 }
+              
             }
             String initEmpNumber = "0";
             String initCustomer = "0";
