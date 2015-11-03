@@ -107,7 +107,7 @@ namespace UI
                     var transactionCode = "012";
                     if (amount > 1000) transactionCode = "013";
                     var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(), string.Format("{3}|{0}| |{1}|{2}| ", ToDropdown.SelectedValue, amount, Session["Access"].ToString(), transactionCode));
-                    Master.ErrorMessage = "Error: " + output.resultP;
+                    Master.ErrorMessage = output.resultP;
                     ResetPage();
                 }
             }
@@ -115,7 +115,7 @@ namespace UI
             {
                 var amount = Convert.ToDouble(Amount.Text);
                 var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(), string.Format("012|{0}| |{1}|{2}| ", ToDropdown.SelectedValue, amount, Session["Access"].ToString()));
-                Master.ErrorMessage = "Error: " + output.resultP;
+                Master.ErrorMessage = output.resultP;
                 ResetPage();
             }
         }
