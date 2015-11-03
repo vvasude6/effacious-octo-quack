@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="AccountStatement.aspx.cs" Inherits="UI.AccountStatement" %>
+<%@ MasterType VirtualPath="~/Site1.Master" %> 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>

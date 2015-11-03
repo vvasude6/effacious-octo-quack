@@ -93,7 +93,7 @@ namespace UI
             }
             catch (Exception ex)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('" + ex.Message + "');", true);
+                Master.ErrorMessage = "Error: PDF Creation Failed.";
                 Response.Redirect(Request.RawUrl);
                 return null;
             }
@@ -104,15 +104,13 @@ namespace UI
             var xSwitch = new Business.XSwitch();
             var table = xSwitch.getFinHistory(Global.ConnectionString, Session["UserId"].ToString()).Tables[0];
             var bytes = ExportToPdf(table);
-
-
-
-           HttpContext.Current.Response.ContentType = "application/octet-stream";
-           HttpContext.Current.Response.AddHeader("content-disposition", string.Format("attachment;filename= {0}-{1}.pdf", Session["UserId"], DateTime.Now));
-           HttpContext.Current.Response.Buffer = true;
-           HttpContext.Current.Response.Clear();
-           HttpContext.Current.Response.OutputStream.Write(bytes, 0, bytes.Length);
-           HttpContext.Current.Response.OutputStream.Flush();
+            
+            HttpContext.Current.Response.ContentType = "application/octet-stream";
+            HttpContext.Current.Response.AddHeader("content-disposition", string.Format("attachment;filename= {0}-{1}.pdf", Session["UserId"], DateTime.Now));
+            HttpContext.Current.Response.Buffer = true;
+            HttpContext.Current.Response.Clear();
+            HttpContext.Current.Response.OutputStream.Write(bytes, 0, bytes.Length);
+            HttpContext.Current.Response.OutputStream.Flush();
         }
     }
 }

@@ -95,13 +95,11 @@ namespace UI
             {
                 if (ToDropdown.SelectedValue == "0")
                 {
-                    //MessageBox.Show("Select the Account from which an amount has to be credited");
-                    ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Select account for credit');", true);
+                    Master.ErrorMessage = "Error: Select the Account from which an amount has to be credited";
                 }
                 else if (Amount.Text == "" || !UI.Validate.isAmountValid(Amount.Text))
                 {
-                    //MessageBox.Show("Amount cannot be empty, and amount accepts only decimal values.");
-                    ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Invalid amount entered');", true);
+                    Master.ErrorMessage = "Error: Amount cannot be empty, and amount accepts only decimal values.";
                 }
                 else
                 {
@@ -109,8 +107,7 @@ namespace UI
                     var transactionCode = "012";
                     if (amount > 1000) transactionCode = "013";
                     var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(), string.Format("{3}|{0}| |{1}|{2}| ", ToDropdown.SelectedValue, amount, Session["Access"].ToString(), transactionCode));
-                    //MessageBox.Show(output.resultP);
-                    ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('"+ output.resultP +"');", true);
+                    Master.ErrorMessage = "Error: " + output.resultP;
                     ResetPage();
                 }
             }
@@ -118,8 +115,7 @@ namespace UI
             {
                 var amount = Convert.ToDouble(Amount.Text);
                 var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(), string.Format("012|{0}| |{1}|{2}| ", ToDropdown.SelectedValue, amount, Session["Access"].ToString()));
-                //MessageBox.Show(output.resultP);
-                ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('"+output.resultP+"');", true);
+                Master.ErrorMessage = "Error: " + output.resultP;
                 ResetPage();
             }
         }

@@ -24,11 +24,6 @@ namespace UI
             {
                 Response.Redirect("UserLogin.aspx");
             }
-
-            if (Global.IsPageAccessible(Page.Title))
-            {
-                //write code here !
-            }
         }
 
         private void LoadPendingTransactions()
@@ -40,10 +35,6 @@ namespace UI
             if (output.resultSet.Tables[0].Rows.Count != 0)
             {
                 GetPendingTransactionTableHtml(output.resultSet);
-            }
-            else
-            {
-                //no data
             }
         }
 
@@ -106,15 +97,13 @@ namespace UI
             {
                 var data = xSwitchObject.geTranDataFromRefNumber(Global.ConnectionString, referenceNumber);
                 var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(), string.Format("{0}|{1}|{2}", data, Session["Access"].ToString(), referenceNumber));
-                //System.Windows.Forms.MessageBox.Show("Transaction was processed.");
-                ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Transaction was processed');", true);
+                Master.ErrorMessage = "Transaction was processed.";
             }
             else
             {
                 if (xSwitchObject.deletePendingTransaction(Global.ConnectionString, referenceNumber))
                 {
-                    //System.Windows.Forms.MessageBox.Show("Transaction was deleted.");
-                    ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Transaction was deleted');", true);
+                    Master.ErrorMessage = "Transaction was deleted.";
                     Response.Redirect(Request.RawUrl);
                 }
             }

@@ -35,8 +35,7 @@ namespace UI
                 arglist[argIndex++] = "0";
 
                 var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(), string.Format("{0}|{1}|{2}|{3}|{4}", arglist));
-                //MessageBox.Show("Request for account created.  Email will be sent when administrator reviews.");
-                ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Request for new account created.  Email will be sent when reviewed.');", true);
+                Master.ErrorMessage = "Account request created.  Email will be sent when administrator reviews.";
             }
             catch { }
 
