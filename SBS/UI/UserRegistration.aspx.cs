@@ -151,8 +151,7 @@ namespace UI
 
                 if (errorFound)
                 {
-                    //MessageBox.Show("Invalid data entered!  Please correct and resubmit.");
-                    ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Invalid data entered!  Please correct and resubmit.');", true);
+                    MessageLabel.Text = "Invalid data entered!  Please correct and resubmit.";
                     return;
                 }
 
@@ -188,10 +187,11 @@ namespace UI
 
                 var output = new Business.XSwitch(Global.ConnectionString, "0", string.Format("{0}|{1}|{2}|{3}|{4}|{5}|{6}|{7}|{8}|{9}|{10}|{11}|{12}|{13}|{14}|{15}|{16}|{17}|{18}|{19}|{20}|{21}|{22}|{23}|{24}|{25}", arglist));
 
-                //MessageBox.Show("Request for new user login created.  Email will be sent when administrator reviews.");
-                ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Request for new user login created.  Email will be sent when administrator reviews.');", true);
+                MessageLabel.Text = "Request for new user login created.  Email will be sent when administrator reviews.";
+                System.Threading.Thread.Sleep(2000);
             }
             catch { }
+            MessageLabel.Text = "";
             Response.Redirect("Home.aspx");
         }
     }

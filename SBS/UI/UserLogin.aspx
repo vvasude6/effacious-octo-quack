@@ -54,6 +54,8 @@
                             </td>
                         </tr>
                         <tr class="spacerRow"></tr>
+                        <%--<tr class="spacerRowBig"></tr>--%>
+                        <asp:Label ID="MessageLabel" runat="server" Text="" />
                         <tr>
                             <td>
                                 <div class="input-group">
