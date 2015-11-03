@@ -112,14 +112,12 @@ namespace UI
                 {
                     if (FromDropdown.SelectedValue == "0")
                     {
-                        //MessageBox.Show("Select the Account from which an amount has to be Debited");
-                        ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Select account for debit');", true);
+                        Master.ErrorMessage = "Error: Select the Account from which an amount has to be Debited";
 
                     }
                     else if (Amount.Text == "" || !UI.Validate.isAmountValid(Amount.Text))
                     {
-                        //MessageBox.Show("Amount cannot be empty, and amount accepts only decimal values.");
-                        ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Invalid amount entered');", true);
+                        Master.ErrorMessage = "Error: Amount cannot be empty, and amount accepts only decimal values.";
                     }
                     else
                     {
@@ -174,11 +172,12 @@ namespace UI
 
                 else
                 {
-                    //MessageBox.Show("Could not verify the OTP that you entered.");
-                    ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Invalid OTP enetered');", true);
+                    Master.ErrorMessage = "Error: Could not verify the OTP that you entered.";
                 }
             }
-            catch { }
+            catch {
+                Master.ErrorMessage = "Error: Could not verify the OTP that you entered.";
+            }
         }
 
         private void ProcessTransaction(decimal amount)
@@ -186,13 +185,12 @@ namespace UI
             try
             {
                 var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(), string.Format("011|{0}| |{1}|{2}| ", FromDropdown.SelectedValue, amount, Session["Access"]));
-                //MessageBox.Show(string.Format("The debit was successful. Your current balance is {0}", output.resultP));
-                ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Debit successfull. Current balance is "+ output.resultP +"');", true);
+                Master.ErrorMessage = string.Format("The debit was successful. Your current balance is {0}", output.resultP);
                 ResetPage();
             }
             catch
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Something went wrong!');", true);
+                Master.ErrorMessage = "Error: transaction failed.";
             }
         }
 

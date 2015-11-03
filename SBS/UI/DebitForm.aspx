@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Site1.Master" CodeBehind="DebitForm.aspx.cs" Inherits="UI.DebitForm" %>
+<%@ MasterType VirtualPath="~/Site1.Master" %> 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script src="Scripts/jquery.keyboard.extension-typing.js"></script>

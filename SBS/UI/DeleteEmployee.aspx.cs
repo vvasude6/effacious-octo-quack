@@ -63,11 +63,10 @@ namespace UI
                 arglist[argIndex++] = Mnemonics.TxnCodes.TX_DELETE_USER_EMPLOYEE;
                 arglist[argIndex++] = EmployeeDropDown.SelectedValue;
 
-
                 var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(),
                     string.Format("{0}|{1}", arglist));
 
-                ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Profile Updated');", true);
+                Master.ErrorMessage = "Employee Account Disabled.";
             }
             catch { }
             Response.Redirect("AdminHome.aspx");

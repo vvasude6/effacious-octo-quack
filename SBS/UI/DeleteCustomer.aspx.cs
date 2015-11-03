@@ -67,7 +67,7 @@ namespace UI
                 var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(),
                     string.Format("{0}|{1}", arglist));
 
-                ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Profile Updated');", true);
+                Master.ErrorMessage = "Customer Account Disabled.";
             }
             catch { }
             Response.Redirect("EmployeeHome.aspx");
