@@ -58,9 +58,16 @@ namespace UI
             else
             {
                 var transferAmount = Convert.ToDecimal(ConfirmAmount.Text);
-                var output = new Business.XSwitch(Global.ConnectionString, FromDropDown.SelectedValue, string.Format("021|{0}|{1}|{2}|{3}| ",FromDropDown.SelectedValue, ToTextBox.Text, transferAmount, Session["Access"].ToString()));
-
-                Master.ErrorMessage = "Error: " + output.resultP;
+                if (transferAmount > 1000)
+                {
+                    var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(), string.Format("029|{0}|{1}|{2}|{3}| ", FromDropDown.SelectedValue, ToTextBox.Text, transferAmount, Session["Access"].ToString()));
+                    Master.ErrorMessage = output.resultP;
+                }
+                else
+                {
+                    var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(), string.Format("021|{0}|{1}|{2}|{3}| ", FromDropDown.SelectedValue, ToTextBox.Text, transferAmount, Session["Access"].ToString()));
+                    Master.ErrorMessage = output.resultP;
+                }
                 ResetPage();
             }
         }

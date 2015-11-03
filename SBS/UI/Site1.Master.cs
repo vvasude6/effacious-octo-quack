@@ -11,6 +11,7 @@ namespace UI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            ErrorMessage = string.Empty;
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
             Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
             Response.Cache.SetNoStore();

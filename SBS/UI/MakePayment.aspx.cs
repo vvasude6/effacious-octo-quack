@@ -203,8 +203,8 @@ namespace UI
             {
                 //TODO:
                 //var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(), string.Format("011|{0}| |{1}|{2}| ", FromDropdown.SelectedValue, amount, Session["Access"]));
-                var output = new Business.XSwitch(Global.ConnectionString, FromDropdown.SelectedValue, string.Format("021|{0}|{1}|{2}|{3}| ", FromDropdown.SelectedValue, ToDropdown.SelectedValue, amount, Session["Access"].ToString()));
-                Master.ErrorMessage = string.Format("The debit was successful. Your current balance is {0}", output.resultP);
+                var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(), string.Format("021|{0}|{1}|{2}|{3}| ", FromDropdown.SelectedValue, ToDropdown.SelectedValue, amount, Session["Access"].ToString()));
+                Master.ErrorMessage =  output.resultP;
                 ResetPage();
             }
             catch { }

@@ -5,12 +5,57 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Mail;
 using System.Net;
+using System.Reflection;
 
 namespace Security
 {
     public static class OTPUtility
     {
-    	   public static bool SendMail(string SenderName, string SenderEmail, string ReceiverName, string ReceiverEmail, string Subject, string Body)
+
+        static string[] _blackList = {"--", ";", "/*", "*/", "@@", "@",
+                  "char", "nchar", "varchar", "nvarchar",
+                  "alter", "begin", "cast", "create", "cursor",
+                  "declare", "delete", "drop", "end", "exec",
+                  "execute", "fetch", "insert", "kill", "open",
+                   "sys", "sysobjects", "syscolumns",
+                  "table", "update"};
+
+        public static bool ValidData(string data)
+        {
+            var isValid = false;
+
+            var dataArray = data.Split('|');
+
+            var found = false;
+            for (var i = 0; i < dataArray.Count(); i++)
+            {
+                if (_blackList.Contains(dataArray[i].Trim().ToLower()))
+                {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) isValid = true;
+
+            return isValid;
+        }
+
+        internal static bool ValidData(Object dataObject)
+        {
+            var isValid = false;
+            Type type = dataObject.GetType();
+            PropertyInfo[] properties = type.GetProperties();
+
+            foreach (PropertyInfo property in properties)
+            {
+                isValid = ValidData(property.GetValue(dataObject, null).ToString());
+                if (!isValid) break;
+            }
+
+            return isValid;
+        }
+
+        public static bool SendMail(string SenderName, string SenderEmail, string ReceiverName, string ReceiverEmail, string Subject, string Body)
         {
             try
             {
@@ -45,7 +90,7 @@ namespace Security
                 throw ex;
             }
         }
-        
+
         public static bool SendMail(string customerName, string customerEmail, string secretKey)
         {
             try
@@ -88,7 +133,7 @@ namespace Security
         }
 
     }
-   
+
     public class OTP
     {
         public const int
@@ -127,10 +172,10 @@ namespace Security
 
         private static int[] dd = new int[10] { 0, 2, 4, 6, 8, 1, 3, 5, 7, 9 };
 
-        private byte[] secretKey = new byte[SECRET_LENGTH] 
+        private byte[] secretKey = new byte[SECRET_LENGTH]
         {
-			0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39,
-			0x3A, 0x3B, 0x3C, 0x3D, 0x3E, 0x3F, 0x40, 0x41, 0x42, 0x43
+            0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39,
+            0x3A, 0x3B, 0x3C, 0x3D, 0x3E, 0x3F, 0x40, 0x41, 0x42, 0x43
         };
 
         private ulong counter = 0x0000000000000001;
@@ -518,13 +563,13 @@ namespace Security
 
         #region SHA constants
 
-        static UInt32[] CONST = new UInt32[4] 
-		{
-			0x5a827999, 
-			0x6ed9eba1,
-			0x8f1bbcdc,
-			0xca62c1d6
-		};
+        static UInt32[] CONST = new UInt32[4]
+        {
+            0x5a827999,
+            0x6ed9eba1,
+            0x8f1bbcdc,
+            0xca62c1d6
+        };
 
         #endregion
 
