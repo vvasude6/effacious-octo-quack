@@ -48,6 +48,17 @@ namespace Business
         Decimal changeAmount;
         String loginAcc;
         Boolean newInitiator = false; // if the person transacting is different from the initiator, like in case of pending txns
+        public Boolean newInitiatorP
+        {
+            get
+            {
+                return this.newInitiator;
+            }
+            set
+            {
+                this.newInitiator = value;
+            }
+        }
         public Y_022(String txid, String connectionString, String acc_no, Decimal amount, String initPvg, String refno, String loginAc)
         {
             this.dberr = new Data.Dber();
@@ -99,14 +110,14 @@ namespace Business
                 return -1;
             }
             //Check if it is a Banker initiated transaction
-            if (Validation.employeeInitiatedTxn(connectionString, loginAc, dberr) == 0)
+            if (Validation.employeeInitiatedTxn(connectionString, loginAc) == 0)
             {
                 this.newInitiator = true;
             }
             if (this.newInitiator)
             {
                 //Check if Customer is Active (Enabled)
-                if (Validation.isActiveCustomerUsingAcc(connectionString, acc_no, dberr))
+                if (!Validation.isActiveCustomerUsingAcc(connectionString, acc_no))
                 {
                     resultP = dberr.getErrorDesc(connectionString);
                     return -1;
@@ -115,13 +126,13 @@ namespace Business
             else
             {
                 //Check if Customer is Active (Enabled)
-                if (Validation.isActiveCustomer(connectionString, loginAc, dberr))
+                if (!Validation.isActiveCustomer(connectionString, loginAc))
                 {
                     resultP = dberr.getErrorDesc(connectionString);
                     return -1;
                 }
                 //To account should NOT belong to the logged in customer
-                if (Validation.validateCustomerSelfAccount(connectionString, loginAc, acc_no, dberr) == 0)
+                if (Validation.validateCustomerSelfAccount(connectionString, loginAc, acc_no) == 0)
                 {
                     dberr.setError(Mnemonics.DbErrorCodes.TXERR_INTERNAL_TFR_EMP_FROM_TO_ACC_DIFF_CUS);
                     resultP = dberr.getErrorDesc(connectionString);
@@ -153,7 +164,7 @@ namespace Business
                 String inData = this.TXID + "|" + acc_no + "| |" + this.changeAmount.ToString();
                 if (pvg.writeToPendingTxns(
                     connectionString,               /* connection string */
-                    acct.actmP.ac_no,               /* account 1 */
+                    acc_no,                         /* account 1 */
                     "0",                            /* account 2 */
                     initCustomer,                   /* customer number */
                     tx.txnmP.tran_pvgb.ToString(),  /* transaction approve privilege */
@@ -167,9 +178,11 @@ namespace Business
                     ) != 0)
                 {
                     resultP = dberr.getErrorDesc(connectionString);
+                    error = true;
                     return -1;
                 }
                 resultP = Mnemonics.DbErrorCodes.MSG_SENT_FOR_AUTH;
+                error = true;
                 return 0;
             }
             //}

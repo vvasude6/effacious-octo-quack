@@ -65,7 +65,7 @@ namespace Business
                 return -1;
             }
             //Check if it is a Banker initiated transaction
-            if(Validation.employeeInitiatedTxn(connectionString, loginAc, dberr)==0)
+            if(Validation.employeeInitiatedTxn(connectionString, loginAc)==0)
             {
                 this.newInitiator = true;
             }
@@ -80,20 +80,20 @@ namespace Business
             if (this.newInitiator)
             {
                 //From Account and To Account should belong to the same customer
-                if (Validation.accountsBelongToSameCus(connectionString, ac1, ac2, dberr) != 0)
+                if (Validation.accountsBelongToSameCus(connectionString, ac1, ac2) != 0)
                 {
                     dberr.setError(Mnemonics.DbErrorCodes.TXERR_INTERNAL_TFR_EMP_FROM_TO_ACC_DIFF_CUS);
                     resultP = dberr.getErrorDesc(connectionString);
                     return -1;
                 }
                 //Check if from Customer is Active (Enabled)
-                if (Validation.isActiveCustomerUsingAcc(connectionString, ac1, dberr))
+                if (!Validation.isActiveCustomerUsingAcc(connectionString, ac1))
                 {
                     resultP = dberr.getErrorDesc(connectionString);
                     return -1;
                 }
                 //Check if to Customer is Active (Enabled)
-                if (Validation.isActiveCustomerUsingAcc(connectionString, ac2, dberr))
+                if (!Validation.isActiveCustomerUsingAcc(connectionString, ac2))
                 {
                     resultP = dberr.getErrorDesc(connectionString);
                     return -1;
@@ -103,14 +103,14 @@ namespace Business
             else
             {
                 //From account must belong the customer who has logged in
-                if (Validation.validateCustomerSelfAccount(connectionString, loginAc, ac1, dberr) != 0)
+                if (Validation.validateCustomerSelfAccount(connectionString, loginAc, ac1) != 0)
                 {
                     dberr.setError(Mnemonics.DbErrorCodes.TXERR_INTERNAL_TFR_FROM_DIFF_CUS);
                     resultP = dberr.getErrorDesc(connectionString);
                     return -1;
                 }
                 //To account must also belong to the logged in customer
-                if (Validation.validateCustomerSelfAccount(connectionString, loginAc, ac2, dberr) != 0)
+                if (Validation.validateCustomerSelfAccount(connectionString, loginAc, ac2) != 0)
                 {
                     dberr.setError(Mnemonics.DbErrorCodes.TXERR_INTERNAL_TFR_TO_DIFF_CUS);
                     resultP = dberr.getErrorDesc(connectionString);

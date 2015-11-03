@@ -8,8 +8,10 @@ namespace Business
 {
     static class Validation
     {
-        public static int validateCustomerSelfAccount(String connectionString, String loginAc, String ac, Data.Dber dberr)
+        
+        public static int validateCustomerSelfAccount(String connectionString, String loginAc, String ac)
         {
+            Data.Dber dberr = new Data.Dber();
             Cp_Cstm cpCstm = new Cp_Cstm(connectionString, loginAc, dberr);
             if(dberr.ifError())
             {
@@ -31,8 +33,9 @@ namespace Business
             }
             return 0;
         }
-        public static int employeeInitiatedTxn(String connectionString, String empno, Data.Dber dberr)
+        public static int employeeInitiatedTxn(String connectionString, String empno)
         {
+            Data.Dber dberr = new Data.Dber();
             Cp_Empm cpEmpm = new Cp_Empm(connectionString, empno, dberr);
             if(dberr.ifError())
             {
@@ -40,8 +43,9 @@ namespace Business
             }
             return 0;
         }
-        public static int accountsBelongToSameCus(String connectionString, String ac1, String ac2, Data.Dber dberr)
+        public static int accountsBelongToSameCus(String connectionString, String ac1, String ac2)
         {
+            Data.Dber dberr = new Data.Dber();
             Cp_Actm cpActm1 = new Cp_Actm(connectionString, ac1, dberr);
             if (dberr.ifError())
             {
@@ -58,8 +62,9 @@ namespace Business
             }
             return 0;
         }
-        public static Boolean isActiveCustomer(String connectinString, String cusno, Data.Dber dberr)
+        public static Boolean isActiveCustomer(String connectinString, String cusno)
         {
+            Data.Dber dberr = new Data.Dber();
             Cp_Cstm cpCstm = new Cp_Cstm(connectinString, cusno, dberr);
             if(dberr.ifError())
             {
@@ -72,8 +77,9 @@ namespace Business
             }
             return true;
         }
-        public static Boolean isActiveCustomerUsingAcc(String connectionString, String ac, Data.Dber dberr)
+        public static Boolean isActiveCustomerUsingAcc(String connectionString, String ac)
         {
+            Data.Dber dberr = new Data.Dber();
             Cp_Actm cpActm = new Cp_Actm(connectionString, ac, dberr);
             if (dberr.ifError())
             {
@@ -91,8 +97,9 @@ namespace Business
             }
             return true;
         }
-        public static int validateCustomerNotSelfAccount(String connectionString, String loginAc, String ac, Data.Dber dberr)
+        public static int validateCustomerNotSelfAccount(String connectionString, String loginAc, String ac)
         {
+            Data.Dber dberr = new Data.Dber();
             Cp_Cstm cpCstm = new Cp_Cstm(connectionString, loginAc, dberr);
             if (dberr.ifError())
             {

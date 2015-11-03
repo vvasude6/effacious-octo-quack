@@ -24,6 +24,17 @@ namespace Business
         Privilege pvg;
         //String loginAcc;
         Boolean newInitiator = false;
+        public Boolean newInitiatorP
+        {
+            get
+            {
+                return this.newInitiator;
+            }
+            set
+            {
+                this.newInitiator = value;
+            }
+        }
         public Y_021(String txid, String connectionString, String ac1, String ac2, Decimal amount, String loginAc)
         {
             try
@@ -64,7 +75,7 @@ namespace Business
                 return -1;
             }
             //Check if it is a Banker initiated transaction
-            if(Validation.employeeInitiatedTxn(connectionString, loginAc, dberr)==0)
+            if(Validation.employeeInitiatedTxn(connectionString, loginAc)==0)
             {
                 this.newInitiator = true;
             }
@@ -79,20 +90,20 @@ namespace Business
             if (this.newInitiator)
             {
                 //From Account and To Account should NOT belong to the same customer
-                if (Validation.accountsBelongToSameCus(connectionString, ac1, ac2, dberr) == 0)
+                if (Validation.accountsBelongToSameCus(connectionString, ac1, ac2) == 0)
                 {
                     dberr.setError(Mnemonics.DbErrorCodes.TXERR_INTERNAL_TFR_EMP_FROM_TO_ACC_DIFF_CUS);
                     resultP = dberr.getErrorDesc(connectionString);
                     return -1;
                 }
                 //Check if from Customer is Active (Enabled)
-                if (Validation.isActiveCustomerUsingAcc(connectionString, ac1, dberr))
+                if (!Validation.isActiveCustomerUsingAcc(connectionString, ac1))
                 {
                     resultP = dberr.getErrorDesc(connectionString);
                     return -1;
                 }
                 //Check if to Customer is Active (Enabled)
-                if (Validation.isActiveCustomerUsingAcc(connectionString, ac2, dberr))
+                if (!Validation.isActiveCustomerUsingAcc(connectionString, ac2))
                 {
                     resultP = dberr.getErrorDesc(connectionString);
                     return -1;
@@ -102,14 +113,14 @@ namespace Business
             else
             {
                 //From account must belong the customer who has logged in
-                if (Validation.validateCustomerSelfAccount(connectionString, loginAc, ac1, dberr) != 0)
+                if (Validation.validateCustomerSelfAccount(connectionString, loginAc, ac1) != 0)
                 {
                     dberr.setError(Mnemonics.DbErrorCodes.TXERR_INTERNAL_TFR_FROM_DIFF_CUS);
                     resultP = dberr.getErrorDesc(connectionString);
                     return -1;
                 }
                 //To account must NOT belong to the logged in customer
-                if (Validation.validateCustomerSelfAccount(connectionString, loginAc, ac2, dberr) == 0)
+                if (Validation.validateCustomerSelfAccount(connectionString, loginAc, ac2) == 0)
                 {
                     dberr.setError(Mnemonics.DbErrorCodes.TXERR_EXTERNAL_TFR_EMP_TO_ACC_SAME_CUS);
                     resultP = dberr.getErrorDesc(connectionString);
@@ -143,8 +154,8 @@ namespace Business
                 String inData = this.TXID + "|" + ac1 + "|" + ac2 + "|" + this.changeAmount.ToString();
                 if (pvg.writeToPendingTxns(
                     connectionString,               /* connection string */
-                    acct1.actmP.ac_no,              /* account 1 */
-                    acct2.actmP.ac_no,              /* account 2 */
+                    ac1,                            /* account 1 */
+                    ac2,                            /* account 2 */
                     initCustomer,                   /* initiating customer number */
                     tx.txnmP.tran_pvgb.ToString(),  /* transaction approve privilege */
                     tx.txnmP.tran_desc,             /* transaction description */
