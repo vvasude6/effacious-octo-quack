@@ -67,6 +67,7 @@
     <Compile Include="Y_025.cs" />
     <Compile Include="Y_026.cs" />
     <Compile Include="Y_027.cs" />
+    <Compile Include="Y_030.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj">

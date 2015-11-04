@@ -65,8 +65,16 @@ namespace UI
                 }
                 else
                 {
-                    var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(), string.Format("021|{0}|{1}|{2}|{3}| ", FromDropDown.SelectedValue, ToTextBox.Text, transferAmount, Session["Access"].ToString()));
-                    Master.ErrorMessage = output.resultP;
+                    if (Session["Access"].ToString() != "2")
+                    {
+                        var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(), string.Format("021|{0}|{1}|{2}|{3}| ", FromDropDown.SelectedValue, ToTextBox.Text, transferAmount, Session["Access"].ToString()));
+                        Master.ErrorMessage = output.resultP;
+                    }
+                    else if (Session["Access"].ToString() == "2")
+                    {
+                        var output = new Business.XSwitch(Global.ConnectionString, Session["UserId"].ToString(), string.Format("030|{0}|{1}|{2}|{3}| ", FromDropDown.SelectedValue, ToTextBox.Text, transferAmount, Session["Access"].ToString()));
+                        Master.ErrorMessage = output.resultP;
+                    }
                 }
                 ResetPage();
             }

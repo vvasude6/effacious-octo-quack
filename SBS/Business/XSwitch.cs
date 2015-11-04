@@ -152,9 +152,11 @@ namespace Business
                                         if (!deletePendingTransaction(connectionString, dataPart[5]))
                                         {
                                             resultP = "Transaction Failed";
+                                            return;
                                         }
-                                        else
-                                        {
+                                    }
+                                    //else
+                                    //{
                                             if (y011_1.rollbackSubtractBalance(connectionString) == 0)
                                             {
                                                 if (y012_2.rollbackAddBalance(connectionString) == 0)
@@ -170,12 +172,12 @@ namespace Business
                                             {
                                                 resultP = "Transaction Failed ext 2";
                                             }
-                                        }
-                                    }
-                                    else
-                                    {
-                                        resultP = y011_1.resultP;
-                                    }
+                                        
+                                    //}
+                                    //else // here
+                                    //{
+                                    //    resultP = y011_1.resultP;
+                                    //}
                                 }
                                 else
                                 {
@@ -293,6 +295,76 @@ namespace Business
                         else
                         {
                             result = y021.getOutput();
+                        }
+                        // ENCRYPT result here
+                        break;
+                    case Mnemonics.TxnCodes.TX_EXT_TFR_MERCHANT: // External Funds Transfer = TRANSFER_DEBIT + TRANSFER_CREDIT
+                        Y_030 y030 = new Y_030(Mnemonics.TxnCodes.TX_EXT_TFR_MERCHANT, connectionString, dataPart[1], dataPart[2],
+                            Convert.ToDecimal(dataPart[3]), loginAc);
+                        if (!y030.basicValidationError())
+                        {
+                            Y_022 y022 = new Y_022(Mnemonics.TxnCodes.TX_TRANSFER_CREDIT,
+                                connectionString, dataPart[2], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
+                            result = y022.getOutput();
+                            if (!y022.basicValidationError())
+                            {
+                                Y_011 y011_1 = new Y_011(Mnemonics.TxnCodes.TX_TRANSFER_DEBIT,
+                                connectionString, dataPart[1], Convert.ToDecimal(dataPart[3]), dataPart[4], dataPart[5], loginAc);
+                                if (!y011_1.basicValidationError())
+                                {
+                                    if (y011_1.pvgBypassedP && y011_1.newInitiatorP)
+                                    {
+                                        if (!deletePendingTransaction(connectionString, dataPart[5]))
+                                        {
+                                            resultP = "Transaction Failed";
+                                        }
+                                        else
+                                        {
+                                            if (y011_1.rollbackSubtractBalance(connectionString) == 0)
+                                            {
+                                                if (y022.rollbackAddBalance(connectionString) == 0)
+                                                {
+                                                    resultP = "Transaction Successful";
+                                                }
+                                                else
+                                                {
+                                                    resultP = "Transaction Failed ext 1";
+                                                }
+                                            }
+                                            else
+                                            {
+                                                resultP = "Transaction Failed ext 2";
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (y011_1.rollbackSubtractBalance(connectionString) == 0)
+                                        {
+                                            if (y022.rollbackAddBalance(connectionString) == 0)
+                                            {
+                                                resultP = "Transaction Successful";
+                                            }
+                                            else
+                                            {
+                                                resultP = "Transaction Failed ext 1";
+                                            }
+                                        }
+                                        else
+                                        {
+                                            resultP = "Transaction Failed ext 2";
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    resultP = y011_1.resultP;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            result = y030.getOutput();
                         }
                         // ENCRYPT result here
                         break;

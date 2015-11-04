@@ -66,13 +66,14 @@ namespace Mnemonics
         public static String TXERR_MAIL_NOSEND = "473";
         public static String TXERR_PWD_NOUPDATE = "472";
         public static String TXERR_INACTIVE_CUSTOMER = "471";
+        public static String TXERR_NO_USER = "000";
         //----
         public static String TXERR_FROM_TO_AC_SAME = "470"; // Both From and To accounts in a Transfer cannot be the same
         public static String TXERR_INTERNAL_TFR_TO_DIFF_CUS = "469"; // To Account belongs to a different user
         public static String TXERR_INTERNAL_TFR_FROM_DIFF_CUS = "468"; // From Account belongs to a different user
         public static String TXERR_INTERNAL_TFR_EMP_FROM_TO_ACC_DIFF_CUS = "467"; // From and To accounts do not belong to the same customer
         public static String TXERR_EXTERNAL_TFR_EMP_TO_ACC_SAME_CUS = "466"; // To account cannot belong to the same customer
-        public static String TXERR_NO_USER = "000";
+        public static String TXERR_ADMIN_PWD_NOCHANGE = "465"; // Admin password cannot be changed online
 
         public static String MSG_SENT_FOR_AUTH = "The Transaction is pending Authorization!";
     }
