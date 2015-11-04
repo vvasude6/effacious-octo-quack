@@ -13,7 +13,7 @@ namespace UI
         {
             if (Session["UserId"] == null || Session["Access"] == null)
                 Response.Redirect("UserLogin.aspx");
-            if (Session["Access"].ToString() == "3" || Session["Access"].ToString() == "4")
+            if (Session["Access"].ToString() == "3")
                 Response.Redirect("EmployeeHome.aspx");
             if (Session["Access"].ToString() == "1")
                 Response.Redirect("Home.aspx");

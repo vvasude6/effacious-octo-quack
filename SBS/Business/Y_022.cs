@@ -134,12 +134,13 @@ namespace Business
                 //Check if logged user is a Merchant
                 if (Validation.isMerchant(connectionString, loginAc))
                 {
-                    if (Validation.validateCustomerSelfAccount(connectionString, loginAc, acc_no) != 0)
+                    //CHANGED 1103
+                    /*if (Validation.validateCustomerSelfAccount(connectionString, loginAc, acc_no) != 0)
                     {
                         dberr.setError(Mnemonics.DbErrorCodes.TXERR_INTERNAL_TFR_EMP_FROM_TO_ACC_DIFF_CUS);
                         resultP = dberr.getErrorDesc(connectionString);
                         return -1;
-                    }
+                    }*/
                 }
                 else
                 {

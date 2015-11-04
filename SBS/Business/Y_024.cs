@@ -41,6 +41,28 @@ namespace Business
                 result = dberr.getErrorDesc(connectionString);
                 return -1;
             }
+            if(Validation.employeeInitiatedTxn(connectionString, cus_no) == 0)
+            {
+                Cp_Empm cpEmpm = new Cp_Empm(connectionString, cus_no, dberr);
+                if(dberr.ifError())
+                {
+                    resultP = dberr.getErrorDesc(connectionString);
+                    return -1;
+                }
+                if(cpEmpm.empmP.emp_pvg == 5)
+                {
+                    dberr.setError(Mnemonics.DbErrorCodes.TXERR_ADMIN_PWD_NOCHANGE);
+                    resultP = dberr.getErrorDesc(connectionString);
+                    return -1;
+                }
+                if(!Data.EmpmD.UpdatePassword(connectionString, cus_no, pwd, dberr))
+                {
+                    resultP = dberr.getErrorDesc(connectionString);
+                    return -1;
+                }
+                resultP = "Password Changed successfully!";
+                return 0;
+            }
             Cp_Cstm cstm = new Cp_Cstm(connectionString, cus_no, dberr);
             if (cstm.cstmP != null)
                 cstm.updatePassword(connectionString, cus_no, pwd, dberr);
@@ -64,7 +86,7 @@ namespace Business
                 mailResponse = "Mail sent.";
             }
             //-------------------------------
-            resultP = "Successful!" + mailResponse;
+            resultP = "Password Changed successfully!" + mailResponse;
             //resultP = "Password Updated Successfully!";
             return 0;
         }

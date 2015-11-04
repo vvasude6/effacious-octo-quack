@@ -134,12 +134,12 @@ namespace Business
                 if (Validation.isMerchant(connectionString, loginAc))
                 {
                     //From account should not belong to the Merchant
-                    if (Validation.validateCustomerSelfAccount(connectionString, loginAc, acc_no) == 0)
+                    /*if (Validation.validateCustomerSelfAccount(connectionString, loginAc, acc_no) == 0)
                     {
                         dberr.setError(Mnemonics.DbErrorCodes.TXERR_INTERNAL_TFR_EMP_FROM_TO_ACC_DIFF_CUS);
                         resultP = dberr.getErrorDesc(connectionString);
                         return -1;
-                    }
+                    }*/
                 }
                 else
                 {
