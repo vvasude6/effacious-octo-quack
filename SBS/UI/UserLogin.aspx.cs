@@ -92,7 +92,7 @@ namespace UI
                         }
                         else
                         {
-                            MessageLabel.Text = "Error: " + output;
+                            MessageLabel.Text = "Error: Invalid login credentials.";
                         }
                     }
                     else
