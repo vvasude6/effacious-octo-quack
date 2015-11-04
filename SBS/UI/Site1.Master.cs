@@ -22,7 +22,11 @@ namespace UI
                 else
                 {
                     UserNameLabel.InnerText = Session["UserName"].ToString();
-                    if (Session["Access"].ToString() != "2") MakePaymentLink.Visible = false;
+                    if (Session["Access"].ToString() != "2")
+                        MakePaymentLink.Visible = false;
+
+                    if (Session["Access"].ToString() == "2")
+                        ExternalTransferLink.Visible = false;
 
                     if (Session["Access"].ToString() != "2" && Session["Access"].ToString() != "1")
                     {
