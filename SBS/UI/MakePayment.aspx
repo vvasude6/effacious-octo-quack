@@ -4,7 +4,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h3>Make Payment</h3>
+    <h3>Request Payment</h3>
 
     <br />
     <br />
@@ -29,13 +29,13 @@
     <br />
     <div class="input-group">
         <span class="input-group-addon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Amount ($)</span>
-        <asp:TextBox ID="Amount" runat="server" class="form-control" Width="250px" TextMode="Number"></asp:TextBox>
+        <asp:TextBox ID="Amount" runat="server" class="form-control" Width="250px"></asp:TextBox>
     </div>
 
     <br />
     <br />
 
-    <asp:Button ID="MakePaymentButton" runat="server" Text="Make Payment" OnClick="MakePayment_Click" CssClass="btn btn-default" />
+    <asp:Button ID="MakePaymentButton" runat="server" Text="Request Payment" OnClick="MakePayment_Click" CssClass="btn btn-default" />
     <div runat="server" id="OTPDiv" visible="false">
         <p>To proceed please enter the OTP that was sent to the Customer mail</p>
         <div class="input-group" style="width: 300px">
