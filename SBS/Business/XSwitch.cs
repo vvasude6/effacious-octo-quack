@@ -43,6 +43,11 @@ namespace Business
         }
         public XSwitch(string connectionString, String loginAccount, String inData)
         {
+            if(!Security.OTPUtility.ValidData(inData))
+            {
+                result = "Invalid Data !";
+                return;
+            }
             // DECRYPT incoming Message String here
             //String tranCode = inData.Substring(0, 3);
             char[] delimiters = { '|' };

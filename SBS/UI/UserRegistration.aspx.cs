@@ -186,13 +186,21 @@ namespace UI
                 arglist[argIndex++] = " ";
 
                 var output = new Business.XSwitch(Global.ConnectionString, "0", string.Format("{0}|{1}|{2}|{3}|{4}|{5}|{6}|{7}|{8}|{9}|{10}|{11}|{12}|{13}|{14}|{15}|{16}|{17}|{18}|{19}|{20}|{21}|{22}|{23}|{24}|{25}", arglist));
-
-                MessageLabel.Text = "Request for new user login created.  Email will be sent when administrator reviews.";
-                System.Threading.Thread.Sleep(2000);
+                if (output.resultP.ToLower().Contains("invalid data !"))
+                {
+                    MessageLabel.Text = output.resultP;
+                }
+                else
+                {
+                    MessageLabel.Text = "Request for new user login created.  Email will be sent when administrator reviews.";
+                    System.Threading.Thread.Sleep(6000);
+                    Response.Redirect("Home.aspx");
+                    MessageLabel.Text = "";
+                }
             }
             catch { }
-            MessageLabel.Text = "";
-            Response.Redirect("Home.aspx");
+            //MessageLabel.Text = "";
+            //Response.Redirect("Home.aspx");
         }
     }
 }

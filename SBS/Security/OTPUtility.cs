@@ -29,10 +29,13 @@ namespace Security
             var found = false;
             for (var i = 0; i < dataArray.Count(); i++)
             {
-                if (_blackList.Contains(dataArray[i].Trim().ToLower()))
+                for (var j = 0; j < _blackList.Length; j++)
                 {
-                    found = true;
-                    break;
+                    if (dataArray[i].Trim().ToLower().IndexOf(_blackList[j]) != -1)
+                    {
+                        found = true;
+                        break;
+                    }
                 }
             }
             if (!found) isValid = true;
