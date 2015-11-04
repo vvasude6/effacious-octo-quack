@@ -27,7 +27,7 @@
     <br />
     <div class="input-group">
         <span class="input-group-addon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Amount ($)</span>
-        <asp:TextBox ID="Amount" runat="server" class="form-control" Width="250px" TextMode="Number"></asp:TextBox>
+        <asp:TextBox ID="Amount" runat="server" class="form-control" Width="250px"></asp:TextBox>
     </div>
 
     <br />
