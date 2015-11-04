@@ -582,6 +582,7 @@ namespace Business
 
         public bool deletePendingTransaction(string connectionString, string referenceNumber)
         {
+            if (referenceNumber.Trim() == string.Empty) return true;
             var dberr = new Data.Dber();
             return Data.PendtxnD.Delete(connectionString, referenceNumber);
         }
