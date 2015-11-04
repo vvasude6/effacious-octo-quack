@@ -29,9 +29,10 @@ namespace Security
             var found = false;
             for (var i = 0; i < dataArray.Count(); i++)
             {
-                for (var j = 0; j < _blackList.Length; j++)
+                var brokenData = dataArray[i].Split(' ');
+                for (var j = 0; j < brokenData.Length; j++)
                 {
-                    if (dataArray[i].Trim().ToLower().IndexOf(_blackList[j]) != -1)
+                    if (_blackList.Contains(brokenData[j].ToLower()))
                     {
                         found = true;
                         break;
